@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import './assets/css/app.scss';
+// import './assets/css/app.scss';
+import './run_map.scss';
 
 
 class RunMap extends Component {
