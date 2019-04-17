@@ -1,4 +1,9 @@
+
 import React from 'react';
+
+import Runs from './runs';
+import TotalStats from './total_stats';
+import Chart from './chart';
 import ApiTest from './api_test';
 import RunMap from './run_map/run_map';
 import RunResult from './run_map/run_results';
@@ -14,12 +19,16 @@ const App = () => {
         <RunMap/>
         <RunResult/>
         <RunStats/>
+        <Runs />
+      <TotalStats />
+      <Chart />
         <Login />
         <Signup />
         <Tutorial />
       </div>
     )
 };
+
 
 
 {/* <ApiTest/> */}
