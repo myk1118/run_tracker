@@ -13,9 +13,9 @@ const App = () => {
         // <RunMap/>
         // <RunResult/>
         <RunStats/>
-        {/* <Login /> */}
+        <Login />
         <Signup />
-        {/* <Tutorial /> */}
+        <Tutorial />
     )
 };
 
