@@ -1,15 +1,18 @@
 import React from 'react';
-import ApiTest from './api_test';
-import '../assets/css/app.scss';
-import logo from '../assets/images/logo.svg';
+// import '../assets/css/app.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './login';
+import Signup from './signup';
+import Tutorial from './tutorial';
+
 
 const App = () => (
     <div>
         <div className="app center">
-            <img src={logo} className="logo rotate"/>
-            <h1>Welcome to React</h1>
         </div>
-        <ApiTest/>
+        {/* <Login /> */}
+        <Signup />
+        {/* <Tutorial /> */}
     </div>
 );
 
