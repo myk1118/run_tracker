@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 // import './assets/css/app.scss';
 import './run_map.scss';
+import {Route, Switch} from 'react-router-dom';
+import RunResult from './run_results';
+import RunStats from './run_stats';
+
 
 
 class RunMap extends Component {
@@ -21,6 +25,8 @@ class RunMap extends Component {
                     <div className="statContainer">Pace</div>
                     <div className="statContainer">Calories Burned</div>
                 </div>
+                <Route path="/runmap/results" component={RunResult} />
+                <Route path="/runmap/stats" component={RunStats} />
             </div>
         )
     }
