@@ -6,6 +6,7 @@
             "time": 700,
             "pace": 700,
             "date": "2019-04-16 07 07:12:00",
+            "mapimage": ["images/track-run-image.jpg"],
             "id": 1
         },
         {
@@ -13,6 +14,7 @@
             "time": 3200,
             "pace": 800,
             "date": "2019-04-15 08:14:10",
+            "mapimage": ["images/track-run-image.jpg"],
             "id": 2
         },
         {
@@ -20,6 +22,7 @@
             "time": 2000,
             "pace": 900,
             "date": "2019-04-13 08:15:08",
+            "mapimage": ["images/track-run-image.jpg"],
             "id": 3
         },
         {
@@ -27,6 +30,7 @@
             "time": 42207,
             "pace": 900,
             "date": "2019-04-06 06:35:18",
+            "mapimage": ["images/track-run-image.jpg"],
             "id": 4
         }
     ]
