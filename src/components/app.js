@@ -5,7 +5,7 @@ import Runs from './runs/runs';
 import TotalStats from './total_stats';
 import Table from './table';
 import ApiTest from './api_test';
-import RunMap from './run_map/run_map';
+import RunRoute from './run_map';
 // import RunResult from './run_map/run_results';
 // import RunStats from './run_map/run_stats';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,7 +18,7 @@ const App = (props) => {
       <div>
         <Switch>
           <Route exact path="/" component={Runs}/>
-          <Route path="/runmap" component={RunMap}/>
+          <Route path="/runmap" component={RunRoute}/>
           <Route path="/totalstats" component={TotalStats}/>
           <Route path="/table" component={Table} />
           {/* <Route path="/login" component={Login}/> */}
