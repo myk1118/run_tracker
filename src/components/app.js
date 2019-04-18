@@ -1,6 +1,6 @@
 
 import React from 'react';
-
+import {Route, Switch} from 'react-router-dom';
 import Runs from './runs';
 import TotalStats from './total_stats';
 import Chart from './chart';
@@ -13,18 +13,16 @@ import Login from './login';
 import Signup from './signup';
 import Tutorial from './tutorial';
 
-const App = () => {
+const App = (props) => {
     return(
       <div>
-        <RunMap/>
-        <RunResult/>
-        <RunStats/>
-        <Runs />
-      <TotalStats />
-      <Chart />
-        <Login />
-        <Signup />
-        <Tutorial />
+        <Switch>
+          <Route exact path="/" component={Runs}/>
+          <Route path="/runmap" component={RunMap}/>
+          <Route path="/totalstats" component={TotalStats}/>
+          <Route path="/chart" component={Chart} />
+          {/* <Route path="/login" component={Login}/> */}
+        </Switch>
       </div>
     )
 };

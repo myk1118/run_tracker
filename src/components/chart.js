@@ -10,7 +10,7 @@ class Chart extends React.Component {
     return (
     <div>
       <div className="float-right text-primary pt-3 pb-3">Total | Month | Week</div>
-      <table class="table table-hover">
+      <table className="table table-hover">
         <thead>
           <tr>
             <th scope="col">Date</th>
