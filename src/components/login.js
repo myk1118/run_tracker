@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
+import {Route} from 'react-router-dom';
+
 // import './login.scss';
 
 class Login extends Component {
-    // constructor() {
 
-    // }
-    // handleChange() {
-
-    // }
-    // handleSubmit() {
-
-    // }
     render() {
         return (
-            <div >
+            <div>
+              <Router />
                 <div className="text-center">
                     <button type="button" className="btn btn-warning center-block">Sign Up</button>
                     <button type="button" className="btn btn-warning center-block">Log In</button>
