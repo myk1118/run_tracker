@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {NavLink} from 'react-router-dom';
 
 
 class Runs extends React.Component {
@@ -26,38 +27,41 @@ class Runs extends React.Component {
 
     return (
       <div style={background} className="container-fluid">
+
         <div className="row">
-          <div className="col-6 text-center">
-            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
-          </div>
-          <div className="col-6 text-center">
-            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-6 text-center">
-            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
-          </div>
-          <div className="col-6 text-center">
-            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-6 text-center">
-            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
-          </div>
-          <div className="col-6 text-center">
-            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-6 text-center">
-            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
-          </div>
           <div className="col-6 text-center">
             <button style={buttonStyle} className="btn btn-dark btn-lg">
-              <img style={imageStyle} src="https://cdn.pixabay.com/photo/2016/10/10/01/49/plus-1727487__340.png"/>
+              <NavLink to="/runmap">
+                <img style={imageStyle} src="https://cdn.pixabay.com/photo/2016/10/10/01/49/plus-1727487__340.png"/>
+              </NavLink>
             </button>
+          </div>
+          <div className="col-6 text-center">
+            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-6 text-center">
+            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
+          </div>
+          <div className="col-6 text-center">
+            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-6 text-center">
+            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
+          </div>
+          <div className="col-6 text-center">
+            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-6 text-center">
+            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
+          </div>
+          <div className="col-6 text-center">
+            <button style={buttonStyle} className="btn btn-dark btn-lg">4/20/19</button>
           </div>
         </div>
       </div>
