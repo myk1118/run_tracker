@@ -3,7 +3,7 @@ import './run_nav.scss';
 import {NavLink} from 'react-router-dom';
 
 
-class Header extends Component {
+class RunHeader extends Component {
    render(){
        return(
            <div className="headerContainer">
@@ -31,4 +31,4 @@ class Header extends Component {
    }
 }
 
-export default Header;
+export default RunHeader;

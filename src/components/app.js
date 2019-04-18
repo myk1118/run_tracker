@@ -12,12 +12,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './account/login/login';
 import Signup from './account/sign_up/sign_up';
 import Tutorial from './tutorial';
-import Header from './nav_folder/run_nav';
+import RunHeader from './nav_folder/run_nav';
+import Nav from './nav_folder/nav'
 
 const App = (props) => {
     return(
       <div>
-        <Header />
+        <Nav />
         <Switch>
           <Route exact path="/" component={Runs}/>
           <Route path="/runmap" component={RunRoute}/>
