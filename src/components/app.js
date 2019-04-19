@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import Runs from './runs/runs';
 import TotalStats from './total_stats';
@@ -12,10 +12,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './account/login/login';
 import Signup from './account/sign_up/sign_up';
 import Tutorial from './tutorial';
+import MapNav from './nav_folder/map_nav'
 
 const App = (props) => {
     return(
-      <div>
+      <Fragment>
         <Switch>
           <Route exact path="/" component={Runs}/>
           <Route path="/runmap" component={RunRoute}/>
@@ -23,7 +24,7 @@ const App = (props) => {
           <Route path="/table" component={Table} />
           {/* <Route path="/login" component={Login}/> */}
         </Switch>
-      </div>
+      </Fragment>
     )
 };
 
