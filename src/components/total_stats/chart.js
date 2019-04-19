@@ -25,8 +25,8 @@ class Chart extends Component {
               fontSize: 25
             },
             legend: {
-              display: false,
-              position: 'right',
+              display: true,
+              position: 'bottom',
             },
             elements: {
               line: {

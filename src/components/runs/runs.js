@@ -14,8 +14,9 @@ class Runs extends React.Component {
   render() {
 
     return (
+      <React.Fragment>
+      <RunHeader />
       <div  className="container-fluid runs">
-        <RunHeader />
         <div className="row">
           <div className="col-6 text-center">
             <button  className="btn btn-dark btn-lg">
@@ -53,6 +54,7 @@ class Runs extends React.Component {
           </div>
         </div>
       </div>
+    </React.Fragment>
     )
   }
 }

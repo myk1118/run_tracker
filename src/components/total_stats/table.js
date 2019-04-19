@@ -1,13 +1,41 @@
 import React, {Component} from 'react';
 import RunHeader from '../nav_folder/run_nav';
+import axios from 'axios';
 
 
 class Chart extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      stats: []
+    }
+  }
+
+  componentDidMount() {
+    this.getActivityLogData();
+  }
+
+  getActivityLogData() {
+    axios.get('/api/get_table_data.php').then(resp => {
+      const {tableItems} = resp.data;
+      const stats = tableItems.map(item => {
+        return (
+          <tr key={item.id}>
+            <td>{item.date}</td>
+            <td>{item.distance}</td>
+            <td>{item.time}</td>
+          </tr>
+        )
+      })
+      this.setState({
+        stats: [...stats]
+      })
+    })
   }
 
   render() {
+    console.log(this.state.stats)
     return (
     <div>
       <RunHeader />
@@ -16,36 +44,12 @@ class Chart extends React.Component {
         <thead>
           <tr>
             <th scope="col">Date</th>
-            <th scope="col">Distance</th>
+            <th scope="col">Distance (mi)</th>
             <th scope="col">Time</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>4-14-19</td>
-            <td>3.9 miles</td>
-            <td>24:36</td>
-          </tr>
-          <tr>
-            <td>4-17-19</td>
-            <td>3.3 miles</td>
-            <td>38:34</td>
-          </tr>
-          <tr>
-            <td>4-18-19</td>
-            <td>3.4 miles</td>
-            <td>4:34</td>
-          </tr>
-          <tr>
-            <td>4-19-19</td>
-            <td>6.4 miles</td>
-            <td>54:34</td>
-          </tr>
-          <tr>
-            <td>4-20-19</td>
-            <td>4.5 miles</td>
-            <td>22:34</td>
-          </tr>
+          {this.state.stats}
         </tbody>
       </table>
     </div>
