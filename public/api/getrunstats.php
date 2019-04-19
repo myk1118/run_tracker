@@ -4,14 +4,13 @@ require_once('config.php');
 require_once('mysqlconnect.php');
 set_exception_handler('handleError');
 
+$user_id = 3;
 
-// if(empty($_SESSION['user_id'])){
-//     throw new Exception ('Missing user id');
-// }
-
-$user_id = 1;
-
-$query = "SELECT `first_name`, `last_name`, `email`, `password` FROM `users` WHERE `id` = $user_id ";
+$runstats_query = "SELECT 
+s.`distance`, s.`time`, s.`pace`, s.`date` 
+FROM `run_stats` AS `s`
+JOIN `users` ON users.`id` = s.`user_id`
+WHERE users.`id` = $user_id ";
 
 $result = mysqli_query($conn, $query);
 
@@ -20,7 +19,7 @@ if(!$result){
 }
 
 if(mysqli_num_rows($result) === 0){
-    throw new Exception("no user");
+    throw new Exception("no stats");
 };
 
 $data = mysqli_fetch_assoc($result);
