@@ -16,7 +16,8 @@ class LogIn extends Component {
     render() {
         return (
             <div>
-
+                <h1 className="center">Log In</h1>
+                <LogInForm logIn={this.handleLogIn} />
             </div>
         );
     }
