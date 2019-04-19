@@ -8,11 +8,11 @@
         "success"=> false,
     ];
 
-    $distance = 8;
-    $time = 34000;
-    $pace = 600;
-    $calories = 1000;
-    $user_id = 2;
+    $distance = (int)$_GET['distance'];
+    $time = (int)$_GET['time'];
+    $pace = (int)$_GET['pace'];
+    $calories = (int)$_GET['calories'];
+    $user_id = (int)$_GET['user_id'];
 
     $addRunQuery = "INSERT INTO `run_stats` SET `distance` = $distance, `time` = $time, `pace` = $pace, `date` = NOW(), `heart_rate` = 0, `calories` = $calories, `user_id` = $user_id";
     
