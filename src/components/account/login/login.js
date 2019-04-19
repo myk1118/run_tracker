@@ -8,7 +8,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-              <Router />
+              {/* <Router /> */}
                 <div className="text-center">
                     <button type="button" className="btn btn-warning center-block">Sign Up</button>
                     <button type="button" className="btn btn-warning center-block">Log In</button>

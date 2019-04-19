@@ -24,7 +24,7 @@ const App = (props) => {
           <Route path="/runmap" component={RunRoute}/>
           <Route path="/totalstats" component={TotalStats}/>
           <Route path="/table" component={Table} />
-          {/* <Route path="/login" component={Login}/> */}
+          <Route path="/login" component={Login}/>
         </Switch>
       </Fragment>
     )
