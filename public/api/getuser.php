@@ -21,3 +21,5 @@ if (mysqli_num_rows($result) === 0) {
 $data = mysqli_fetch_assoc($result);
 
 print_r(json_encode($data));
+
+?>
