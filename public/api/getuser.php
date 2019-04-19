@@ -4,10 +4,6 @@ require_once('config.php');
 require_once('mysqlconnect.php');
 set_exception_handler('handleError');
 
-// if(empty($_SESSION['user_id'])){
-//     throw new Exception ('Missing user id');
-// }
-
 $user_id = 1;
 
 $query = "SELECT `first_name`, `last_name`, `email`, `password` FROM `users` WHERE `id` = $user_id";

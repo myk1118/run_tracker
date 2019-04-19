@@ -7,6 +7,8 @@ class Login extends Component {
     render() {
         return (
             <div>
+
+              {/* <Router /> */}
                 {/* <!--Carousel Wrapper--> */}
                 <div id="carousel-example-1z" className="carousel slide carousel-fade" data-ride="carousel">
                     {/* <!--Indicators--> */}
