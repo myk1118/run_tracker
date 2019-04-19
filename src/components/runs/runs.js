@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
+import RunHeader from '../nav_folder/run_nav';
 
 
 class Runs extends React.Component {
@@ -27,7 +28,7 @@ class Runs extends React.Component {
 
     return (
       <div style={background} className="container-fluid">
-
+        <RunHeader />
         <div className="row">
           <div className="col-6 text-center">
             <button style={buttonStyle} className="btn btn-dark btn-lg">

@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import LineGraph from './line_graph';
+import RunHeader from '../nav_folder/run_nav';
 
 class TotalStats extends React.Component {
   constructor(props) {
@@ -15,8 +17,10 @@ class TotalStats extends React.Component {
     }
 
     return (
+
       <div>
-        <img style={imageStyle} src="https://previews.123rf.com/images/bjarts/bjarts1801/bjarts180100024/94398065-continuous-line-drawing-of-graph-icon-isolated-on-black-background-growing-chart-image-with-arrow-up.jpg"/>
+        <RunHeader />
+        <LineGraph />
         <p>Selectable key to see additional lines in graph</p>
         <div className="d-flex" style={divStyle}>
           <div className="col-6 bg-primary text-center">

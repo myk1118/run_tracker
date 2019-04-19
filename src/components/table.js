@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import RunHeader from './nav_folder/run_nav';
 
 
 class Chart extends React.Component {
@@ -9,6 +10,7 @@ class Chart extends React.Component {
   render() {
     return (
     <div>
+      <RunHeader />
       <div className="float-right text-primary pt-3 pb-3">Total | Month | Week</div>
       <table className="table table-hover">
         <thead>
