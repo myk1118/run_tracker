@@ -1,32 +1,53 @@
 import React from 'react';
+import MapNav from '../nav_folder/map_nav';
 
 export default props =>{
     return(
     <div className="currentRunStatsBody">
-            <div className="bg-secondary">Header</div>
-            <div className="bg-secondary">Nav Bar</div>
-            <table>
-                <tbody className="col-12">
-                    <tr className="currentRunStatsRow">
-                        <th className="col-4">Mile</th>
-                        <th className="col-2">Pace</th>
-                        <th className="col-2">Heart Rate</th>
-                        <th className="col-2">Calories Burned</th>
-                    </tr>
-                    <tr className="currentRunStatsRow">
-                        <th>1</th>
-                        <th>7:50</th>
-                        <th>155</th>
-                        <th>255</th>
-                    </tr>
-                    <tr className="currentRunStatsRow">
-                        <th>2</th>
-                        <th>8:00</th>
-                        <th>160</th>
-                        <th>270</th>
-                    </tr>
-                </tbody>
-            </table>
+            <MapNav/>
+      <div className="float-right text-primary pt-3 pb-3">Total | Month | Week </div>
+      <table className="table table-hover">
+        <thead>
+          <tr>
+            <th scope="text-center col-3">Mile</th>
+            <th scope="text-center col-3">Time</th>
+            <th scope="text-center col-3">Heart Rate</th>
+            <th scope="text-center col-3">Calories Burned</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>09:46</td>
+            <td>145</td>
+            <td>102</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>10:00</td>
+            <td>152</td>
+            <td>102</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>9:00</td>
+            <td>157</td>
+            <td>112</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>8:59</td>
+            <td>161</td>
+            <td>110</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>9:18</td>
+            <td>164</td>
+            <td>124</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     )
 }
