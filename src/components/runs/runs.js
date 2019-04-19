@@ -1,10 +1,8 @@
-import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom';
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import RunHeader from '../nav_folder/run_nav';
 import './runs.scss';
 import plus from './images/plus.png';
-
-
 
 class Runs extends React.Component {
   constructor(props) {
@@ -12,15 +10,14 @@ class Runs extends React.Component {
   }
 
   render() {
-
     return (
-      <div  className="container-fluid runs">
+      <div className="container-fluid runs">
         <RunHeader />
         <div className="row">
           <div className="col-6 text-center">
-            <button  className="btn btn-dark btn-lg">
+            <button className="btn btn-dark btn-lg">
               <NavLink to="/runmap">
-                <img className="plus-img" src={plus}/>
+                <img className="plus-img" src={plus} />
               </NavLink>
             </button>
           </div>
@@ -30,7 +27,7 @@ class Runs extends React.Component {
         </div>
         <div className="row">
           <div className="col-6 text-center">
-            <button  className="btn btn-dark btn-lg">4/20/19</button>
+            <button className="btn btn-dark btn-lg">4/20/19</button>
           </div>
           <div className="col-6 text-center">
             <button className="btn btn-dark btn-lg">4/20/19</button>
@@ -41,7 +38,7 @@ class Runs extends React.Component {
             <button className="btn btn-dark btn-lg">4/20/19</button>
           </div>
           <div className="col-6 text-center">
-            <button  className="btn btn-dark btn-lg">4/20/19</button>
+            <button className="btn btn-dark btn-lg">4/20/19</button>
           </div>
         </div>
         <div className="row">
@@ -49,7 +46,7 @@ class Runs extends React.Component {
             <button className="btn btn-dark btn-lg">4/20/19</button>
           </div>
           <div className="col-6 text-center">
-            <button  className="btn btn-dark btn-lg">4/20/19</button>
+            <button className="btn btn-dark btn-lg">4/20/19</button>
           </div>
         </div>
       </div>

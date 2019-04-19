@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogInForm from './login_form';
 import { logIn } from '../../../actions';
-
-// import { Route } from 'react-router-dom';
-// import './login.scss';
+import { Route } from 'react-router-dom';
+import Carousel from './carousel';
+import './login.scss';
 
 class LogIn extends Component {
     handleLogIn = (values) => {
@@ -16,8 +16,7 @@ class LogIn extends Component {
     render() {
         return (
             <div>
-                <h1 className="center">Log In</h1>
-                <LogInForm logIn={this.handleLogIn} />
+
             </div>
         );
     }
