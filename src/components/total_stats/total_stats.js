@@ -24,7 +24,7 @@ class TotalStats extends React.Component {
             '09/10/2018', '09/12/2018', '09/14/2018'],
         datasets: [
           {
-            // label: 'Distance (mi)',
+            label: 'miles',
             fill: false,
             data: [
               1.5,
