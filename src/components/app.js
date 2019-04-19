@@ -15,6 +15,8 @@ import Tutorial from './tutorial';
 import MapNav from './nav_folder/map_nav'
 
 const App = (props) => {
+
+  console.log(props)
     return(
       <Fragment>
         <Switch>
