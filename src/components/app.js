@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Runs from './runs/runs';
 import TotalStats from './total_stats';
-import Table from './table';
+import Table from './total_stats/table';
 import ApiTest from './api_test';
 import RunRoute from './run_map';
 // import RunResult from './run_map/run_results';

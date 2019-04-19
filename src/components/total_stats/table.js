@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import RunHeader from './nav_folder/run_nav';
+import RunHeader from '../nav_folder/run_nav';
 
 
 class Chart extends React.Component {
