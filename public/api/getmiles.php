@@ -8,9 +8,11 @@ set_exception_handler('handleError');
 //     throw new Exception ('Missing user id');
 // }
 
-$user_id = 1;
+$run_stats_id = 3;
 
-$query = "SELECT `first_name`, `last_name`, `email`, `password` FROM `users` WHERE `id` = $user_id";
+$query = "SELECT m.`time`, m.`mileage` FROM `miles` AS `m`
+JOIN `run_stats` AS `rs` ON rs.`id` = m.`run_id`
+WHERE rs.`id` = $run_stats_id";
 
 $result = mysqli_query($conn, $query);
 

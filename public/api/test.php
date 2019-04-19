@@ -1,7 +1,7 @@
 <?php
 
 $output = [
-    'key' => 'this is here to make sure you called the correct file',
+    'key' => 'This is here to make sure you called the correct file',
     'message' => 'Your setup is correct, successfully communicated with Apache server',
     'success' => true,
 ];
