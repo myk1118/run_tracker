@@ -20,7 +20,7 @@ class TotalStats extends React.Component {
     //axios call goes here
     this.setState({
       chartData: {
-        labels: ['09/04/2018', '09/06/2018', '09/07018',
+        labels: ['09/04/2018', '09/06/2018', '09/07/2018',
             '09/10/2018', '09/12/2018', '09/14/2018'],
         datasets: [
           {
