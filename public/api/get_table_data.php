@@ -10,8 +10,9 @@ $output = [
 
 $user_id = 1;
 
-$query = "SELECT `user_id` AS `id`, `date`, `distance`, `time`, `pace` FROM `run_stats`
+$query = "SELECT `id`, `date`, `distance`, `time`, `pace` FROM `run_stats`
   WHERE `user_id` = $user_id
+  ORDER BY `date` DESC
   ";
 
 $result = mysqli_query($conn, $query);
@@ -21,10 +22,12 @@ $output['success'] = true;
 $output['tableItems'] = [];
 
 while($row = mysqli_fetch_assoc($result)) {
+  $date= new DateTime($row['date']);
+
   $output['tableItems'][] = [
-  'date' => $row['date'],
-  'distance' => (int)$row['distance'],
-  'time' => $row['time'],
+  'date' => $date->format('m-d-Y'),
+  'distance' => round((int)$row['distance'],2),
+  'time' => gmdate('H:i:s', $row['time']),
   'pace' => (int)$row['pace'],
   'id' => (int)$row['id']
   ];

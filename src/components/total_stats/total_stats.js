@@ -48,7 +48,6 @@ class TotalStats extends React.Component {
       <div className="total-stats">
         <RunHeader />
         <Chart chartData={this.state.chartData}/>
-        <p>Selectable key to see additional lines in graph</p>
         <div className="d-flex chart-container">
           <div className="col-6 bg-primary text-center">
             <div className="bg-success h-75 mt-3"></div>

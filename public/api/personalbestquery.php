@@ -10,7 +10,7 @@ $output = [
 
 $userid = 1;
 
-$query = "SELECT 
+$query = "SELECT
 MAX(s. `distance`), MIN((s.`pace`)/(s.`distance`)), MAX(s.`date`)
 FROM `run_stats` AS `s`
 JOIN `users` ON users.`id` = s.`user_id`
@@ -27,11 +27,13 @@ if(mysqli_num_rows($result) === 0){
 }
 
 $data = mysqli_fetch_assoc($result);
+// $date = new DateTime($data['MAX(s.`date`)']);
 
 $output = [];
 $output['longestRun'] = $data['MAX(s. `distance`)'];
 $output['fastestpace'] = $data['MIN((s.`pace`)/(s.`distance`))'];
 $output['lastRunDate'] = $data['MAX(s.`date`)'];
+// $output['lastRunDate'] = $date->format('m-d-Y');
 
 
 
