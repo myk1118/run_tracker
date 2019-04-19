@@ -1,32 +1,17 @@
 import React, { Component } from 'react';
-import axios from "axios";
 import MapNav from '../nav_folder/map_nav';
 import Stopwatch from './stopwatch';
 
 class RunMap extends Component {
-    state = {
-        distance: 100,
-        time: 100,
-        pace: 100,
-        calories: 100,
-        user_id: 2
-    }
 
     startWatch = () => {
         this.refs.child.start();
     }
-    stopWatch = () => {
-        this.refs.child.stop();
+    pauseWatch = () => {
+        this.refs.child.pause();
     }
     resetWatch = () => {
         this.refs.child.reset();
-        this.postCurrentRun();
-    }
-    postCurrentRun = () =>{
-        const {distance, time, pace, calories, user_id} = this.state;
-        axios.get(`/api/addrun.php?user_id=${user_id}&distance=${distance}&time=${time}&pace=${pace}&calories=${calories}`).then((resp) => {
-            console.log('this is response:', resp);
-        });
     }
 
 
@@ -38,8 +23,8 @@ class RunMap extends Component {
                     <div className="map"></div>
                     <div className="buttonsContainer">
                         <button onClick={this.startWatch} className="btn btn-info">Start</button>
-                        <button onClick={this.stopWatch} className="btn btn-info">Stop</button>
-                        <button onClick={this.resetWatch} className="btn btn-info">Reset</button>
+                        <button onClick={this.pauseWatch} className="btn btn-info">Pause</button>
+                        <button onClick={this.resetWatch}className="btn btn-info">Reset</button>
                     </div>
                 </div>
                 <div className="mapStatsContainer">
