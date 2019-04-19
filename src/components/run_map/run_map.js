@@ -1,21 +1,46 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import MapNav from '../nav_folder/map_nav';
+import Stopwatch from './stopwatch';
 
 class RunMap extends Component {
-
+    startWatch = () => {
+        this.refs.child.start();
+    }
+    stopWatch = () => {
+        this.refs.child.stop();
+    }
+    resetWatch = () => {
+        this.refs.child.reset();
+    }
     render() {
         return (
             <div className="mapBody">
-                <MapNav/>
+                <MapNav />
                 <div className="h-60 d-inline-block mapContainer">
                     <div className="map"></div>
-                    <button className="bg-secondary startBtn">Start Button</button>
+                    <div className="buttonsContainer">
+                        <button onClick={this.startWatch} className="btn btn-info">Start</button>
+                        <button onClick={this.stopWatch} className="btn btn-info">Stop</button>
+                        <button onClick={this.resetWatch} className="btn btn-info">Reset</button>
+                    </div>
                 </div>
                 <div className="mapStatsContainer">
-                    <div className="statContainer">Time</div>
-                    <div className="statContainer">Distance</div>
-                    <div className="statContainer">Pace</div>
-                    <div className="statContainer">Calories Burned</div>
+                    <div className="statContainer">
+                        <div className="statTitle">Time</div>
+                        <Stopwatch ref="child" className="statResult" />
+                    </div>
+                    <div className="statContainer">
+                        <div className="statTitle">Distance</div>
+                        <div className="statResult">100mi</div>
+                    </div>
+                    <div className="statContainer">
+                        <div className="statTitle">Pace</div>
+                        <div className="statResult">11:44</div>
+                    </div>
+                    <div className="statContainer">
+                        <div className="statTitle">Calories Burned</div>
+                        <div className="statResult">1,600 calories</div>
+                    </div>
                 </div>
             </div>
         )
