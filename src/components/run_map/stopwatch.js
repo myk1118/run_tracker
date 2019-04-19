@@ -19,7 +19,7 @@ class Stopwatch extends Component {
         const { start, elapsed } = this.state;
         let newStart = new Date().getTime();
         if (start) {
-            return newStart -= elapsed;
+            newStart -= elapsed;
         }
         this.setState({
             status: 'running',

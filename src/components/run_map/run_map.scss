@@ -1,9 +1,13 @@
 .mapBody {
     margin: 0;
+
+    .buttonsContainer {
+        margin: auto
+    }
 }
 
 .mapContainer {
-    background-color: lightskyblue;
+    background-color: #d1d1d1;
     height: 50vh;
     width: 100vw;
     // position: flex;
@@ -12,17 +16,25 @@
 .mapStatsContainer {
     // background-color: rgb(255, 106, 106);
     height: 40vh;
-    width: 100vw;
+    width: 100vw; 
     position: flex;
     margin: 0;
 
     .statContainer {
         height: 50%;
         width: 50%;
-        // background-color: purple;
-        border: 1px black solid;
+        background-color: #718f94;
+        border: 1px white solid;
         box-sizing: border-box;
         display: inline-block;
+        text-align: center;
+        font-size: 1.2em;
+        color: white
+    }
+
+    .statResult {
+        text-align: center;
+        font-size: 1.8em
     }
 }
 
