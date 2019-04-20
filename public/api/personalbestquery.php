@@ -27,13 +27,13 @@ if(mysqli_num_rows($result) === 0){
 }
 
 $data = mysqli_fetch_assoc($result);
-// $date = new DateTime($data['MAX(s.`date`)']);
+$date = new DateTime($data['MAX(s.`date`)']);
 
 $output = [];
-$output['longestRun'] = $data['MAX(s. `distance`)'];
-$output['fastestpace'] = $data['MIN((s.`pace`)/(s.`distance`))'];
-$output['lastRunDate'] = $data['MAX(s.`date`)'];
-// $output['lastRunDate'] = $date->format('m-d-Y');
+$output['longestRun'] = $data['MAX(s. `distance`)'] . " miles";
+$output['fastestpace'] = round($data['MIN((s.`pace`)/(s.`distance`))'], 2) . " minutes per mile";
+// $output['lastRunDate'] = $data['MAX(s.`date`)'];
+$output['lastRunDate'] = $date->format('m-d-Y');
 
 
 

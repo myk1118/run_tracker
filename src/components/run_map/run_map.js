@@ -4,6 +4,10 @@ import Stopwatch from './stopwatch';
 
 class RunMap extends Component {
 
+  componentDidMount() {
+    this.getCurrentLocation();
+  }
+
     startWatch = () => {
         this.refs.child.start();
     }
@@ -12,6 +16,16 @@ class RunMap extends Component {
     }
     resetWatch = () => {
         this.refs.child.reset();
+    }
+
+    getCurrentLocation() {
+      if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          console.log(position)
+        })
+      } else {
+        console.log('Location not found')
+      }
     }
 
 
@@ -24,7 +38,7 @@ class RunMap extends Component {
                     <div className="buttonsContainer">
                         <button onClick={this.startWatch} className="btn btn-info">Start</button>
                         <button onClick={this.pauseWatch} className="btn btn-info">Pause</button>
-                        <button onClick={this.resetWatch}className="btn btn-info">Reset</button>
+                        <button onClick={this.resetWatch} className="btn btn-info">Reset</button>
                     </div>
                 </div>
                 <div className="mapStatsContainer">
