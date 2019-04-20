@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+// import { Route } from 'react-router-dom';
 import image2 from './images/image2.jpeg';
 import image3 from './images/image3.jpeg';
 import image5 from './images/image5.jpeg';
 
 class Carousel extends Component {
+    componentDidMount() {
+        $(this.carousel).carousel()
+    }
     render() {
+
         return (
             <div>
-                <div id="carousel-example-1z" className="carousel slide carousel-fade" data-ride="carousel">
+                <div ref={(element) => this.carousel = element} id="carousel-example-1z" className="carousel slide carousel-fade" data-ride="carousel">
                     <ol className="carousel-indicators">
                         <li data-target="#carousel-example-1z" data-slide-to="0" className="active"></li>
                         <li data-target="#carousel-example-1z" data-slide-to="1"></li>
@@ -37,7 +41,7 @@ class Carousel extends Component {
                     </a>
                 </div>
             </div>
-        )
+        );
     }
 }
 

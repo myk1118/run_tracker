@@ -11,48 +11,47 @@ class Runs extends React.Component {
 
   render() {
     return (
-
       <React.Fragment>
-      <RunHeader />
-      <div  className="container-fluid runs">
-        <div className="row">
-          <div className="col-6 text-center">
-            <button className="btn btn-dark btn-lg">
-              <NavLink to="/runmap">
-                <img className="plus-img" src={plus} />
-              </NavLink>
-            </button>
+        <RunHeader />
+        <div className="container-fluid runs">
+          <div className="row">
+            <div className="col-6 text-center">
+              <button className="btn btn-dark btn-lg">
+                <NavLink to="/runmap">
+                  <img className="plus-img" src={plus} />
+                </NavLink>
+              </button>
+            </div>
+            <div className="col-6 text-center">
+              <button className="btn btn-dark btn-lg">4/20/19</button>
+            </div>
           </div>
-          <div className="col-6 text-center">
-            <button className="btn btn-dark btn-lg">4/20/19</button>
+          <div className="row">
+            <div className="col-6 text-center">
+              <button className="btn btn-dark btn-lg">4/20/19</button>
+            </div>
+            <div className="col-6 text-center">
+              <button className="btn btn-dark btn-lg">4/20/19</button>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6 text-center">
+              <button className="btn btn-dark btn-lg">4/20/19</button>
+            </div>
+            <div className="col-6 text-center">
+              <button className="btn btn-dark btn-lg">4/20/19</button>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6 text-center">
+              <button className="btn btn-dark btn-lg">4/20/19</button>
+            </div>
+            <div className="col-6 text-center">
+              <button className="btn btn-dark btn-lg">4/20/19</button>
+            </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-6 text-center">
-            <button className="btn btn-dark btn-lg">4/20/19</button>
-          </div>
-          <div className="col-6 text-center">
-            <button className="btn btn-dark btn-lg">4/20/19</button>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-6 text-center">
-            <button className="btn btn-dark btn-lg">4/20/19</button>
-          </div>
-          <div className="col-6 text-center">
-            <button className="btn btn-dark btn-lg">4/20/19</button>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-6 text-center">
-            <button className="btn btn-dark btn-lg">4/20/19</button>
-          </div>
-          <div className="col-6 text-center">
-            <button className="btn btn-dark btn-lg">4/20/19</button>
-          </div>
-        </div>
-      </div>
-    </React.Fragment>
+      </React.Fragment>
     )
   }
 }

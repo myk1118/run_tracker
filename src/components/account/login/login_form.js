@@ -7,13 +7,12 @@ const LoginForm = props => {
     return (
         <form onSubmit={handleSubmit(logIn)}>
             <div className="row">
-                <Field col="s12" id="email" name="email" component={Input} label="Email" />
-                <Field col="s12" id="password" name="password" component={Input} type="password" label="Password" />
+                <Field col="s12" id="email" name="email" component={Input} type="email" placeholder="Email" />
+                <Field col="s12" id="password" name="password" component={Input} type="password" placeholder="Password"/>
             </div>
-
             <div className="row">
                 <div className="col s12 center">
-                    <button className="btn blue darken-2">Log In</button>
+                    <button className="btn btn-info">Log In</button>
                 </div>
             </div>
         </form>
@@ -22,15 +21,12 @@ const LoginForm = props => {
 
 function validate({ email, password }) {
     const errors = {};
-
     if (!email) {
         errors.email = 'Please enter your email';
     }
-
     if (!password) {
         errors.password = 'Please enter your password';
     }
-
     return errors;
 }
 
