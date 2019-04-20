@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { logIn } from '../../../actions';
 // import { Route } from 'react-router-dom';
@@ -8,8 +9,11 @@ import './login.scss';
 
 class LogIn extends Component {
     handleLogIn = (values) => {
+        console.log('Form Values:', values);
+
         this.props.logIn(values);
     }
+
     render() {
         return (
             <div className="loginPage">
