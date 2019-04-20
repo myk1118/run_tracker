@@ -46,7 +46,6 @@ class Runs extends React.Component {
 
   render() {
     return (
-
       <React.Fragment>
       <RunHeader />
       <div  className="runs">
