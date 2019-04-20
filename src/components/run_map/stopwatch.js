@@ -29,7 +29,7 @@ class Stopwatch extends Component {
             start: newStart
         });
         // setTimeout(this.update, 10);
-        setTimeout(() => {
+        setInterval(() => {
             this.update();
         }, 10);
     }
@@ -57,8 +57,8 @@ class Stopwatch extends Component {
             })
             setTimeout(this.update, 10);
         }
-    } 
-        
+    }
+
     postCurrentRun = (elapsed) => {
         const {distance, pace, calories} = this.state;
         axios.get(`/api/addrun.php?distance=${distance}&time=${elapsed}&pace=${pace}&calories=${calories}`).then((resp) => {
