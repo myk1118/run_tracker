@@ -7,23 +7,33 @@ set_exception_handler('handleError');
 // if(empty($_SESSION['user_id'])){
 //     throw new Exception ('Missing user id');
 // }
+$output = [
+    'success' => false,
+];
 
 $run_stats_id = 3;
 
-$query = "SELECT m.`time`, m.`mileage` FROM `miles` AS `m`
-JOIN `run_stats` AS `rs` ON rs.`id` = m.`run_id`
-WHERE rs.`id` = $run_stats_id";
+$query = "SELECT `time`, `mileage`, `id` FROM `miles` 
+WHERE `run_id` = $run_stats_id";
 
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
-    throw new Exception('invalid query: ' . mysqli_error($conn));
+    throw new Exception(mysqli_error($conn));
 }
 
 if (mysqli_num_rows($result) === 0) {
     throw new Exception("no user");
 };
 
-$data = mysqli_fetch_assoc($result);
+
+$data['mileTime'] = [];
+while($row = mysqli_fetch_assoc($result)){
+    $data['mileTime'][] = [
+        'mile' => (int)$row['mileage'],
+        'time' => gmdate('H:i:s', $row['time']),
+        'id' => (int)$row['id']
+    ];
+}
 
 print_r(json_encode($data));
