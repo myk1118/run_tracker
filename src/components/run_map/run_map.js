@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import MapNav from '../nav_folder/map_nav';
 import Stopwatch from './stopwatch';
 import axios from 'axios';
+import Distance from './distance';
 
 class RunMap extends Component {
     state = {
@@ -30,44 +32,94 @@ class RunMap extends Component {
         this.postlatestMile();
         this.refs.child.start();
     }
-    pauseWatch = () => {
-        this.refs.child.pause();
-    }
-    resetWatch = () => {
-        this.refs.child.reset();
-    }
 
     getCurrentLocation() {
-      if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-          console.log(position)
-        })
-      } else {
-        console.log('Location not found')
-      }
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                console.log(position)
+            })
+        } else {
+            console.log('Location not found')
+        }
     }
-
-
+    start() {
+        const { start, elapsed } = this.state;
+        let newStart = new Date().getTime();
+        if (start) {
+            newStart -= elapsed;
+        }
+        this.setState({
+            status: 'running',
+            start: newStart
+        });
+        setTimeout(() => {
+            this.update();
+        }, 10);
+    }
+    pause() {
+        this.setState({
+            status: 'stopped'
+        })
+    }
+    reset() {
+        const { elapsed } = this.state;
+        if (this.state.status === 'stopped') {
+            this.postCurrentRun(elapsed);
+            this.setState({
+                status: 'stopped',
+                start: null,
+                elapsed: 0
+            });
+        }
+    }
+    update() {
+        const { status, start } = this.state;
+        if (status === 'running') {
+            this.setState({
+                elapsed: new Date().getTime() - start
+            })
+            setTimeout(this.update, 10);
+        }
+    }
+    distanceIncrement() {
+        setTimeout(() => {
+            this.distanceUpdate();
+        }, 1000);
+    }
+    distanceUpdate() {
+        this.setState({
+            distance: this.state.distance + 0.01
+        })
+        setTimeout(this.distanceUpdate, 1000);
+    }
+    postCurrentRun = (elapsed) => {
+        const { distance, pace, calories } = this.state;
+        axios.get(`/api/addrun.php?distance=${distance}&time=${elapsed}&pace=${pace}&calories=${calories}`).then((resp) => {
+            console.log('this is response:', resp);
+        });
+    }
     render() {
+        const { elapsed, distance } = this.state;
         return (
             <div className="mapBody">
                 <MapNav />
                 <div className="h-60 d-inline-block mapContainer">
                     <div className="map"></div>
                     <div className="buttonsContainer">
-                        <button onClick={this.startWatch} className="btn btn-info">Start</button>
-                        <button onClick={this.pauseWatch} className="btn btn-info">Pause</button>
-                        <button onClick={this.resetWatch} className="btn btn-info">Reset</button>
+                        <button onClick={this.start} className="btn btn-info">Start</button>
+                        <button onClick={this.pause} className="btn btn-info">Pause</button>
+                        <button onClick={this.reset} className="btn btn-info">Reset</button>
                     </div>
                 </div>
                 <div className="mapStatsContainer">
                     <div className="statContainer">
                         <div className="statTitle">Time</div>
-                        <Stopwatch ref="child" className="statResult" />
+                        <Stopwatch className="statResult" elapsed={elapsed} />
                     </div>
                     <div className="statContainer">
                         <div className="statTitle">Distance</div>
-                        <div className="statResult">100mi</div>
+                        <Distance className="statResult" distance={distance} />
+                        <button onClick={this.distanceIncrement} className="btn btn-info">Increment</button>
                     </div>
                     <div className="statContainer">
                         <div className="statTitle">Pace</div>
@@ -82,4 +134,5 @@ class RunMap extends Component {
         )
     }
 }
+
 export default RunMap;
