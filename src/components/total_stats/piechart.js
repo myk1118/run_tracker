@@ -8,7 +8,7 @@ export default props => {
   return (
     <div>
       <article className="graph-container">
-      <Line
+      <Pie
         data={props.chartData}
         // options={props.options}
         options = {{

@@ -4,6 +4,7 @@ import RunHeader from '../nav_folder/run_nav';
 import './total_stats.scss';
 import PersonalBests from './personal_bests';
 import axios from 'axios';
+import PieChart from './piechart';
 
 class TotalStats extends React.Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class TotalStats extends React.Component {
               borderColor: 'blue',
             }
           ]
-        }
+        },
       })
     })
   }
@@ -47,13 +48,13 @@ class TotalStats extends React.Component {
 
       <div className="total-stats">
         <RunHeader />
-        <Chart chartData={this.state.chartData}/>
+        <Chart options={this.state.options} chartData={this.state.chartData}/>
         <div className="d-flex chart-container">
-          <div className="col-6 bg-primary text-center">
-            <div className="bg-success h-75 mt-3"></div>
+          <div className="col-6  text-center">
+              <PieChart options={this.state.options} chartData={this.state.chartData}/>
           </div>
-          <div className="col-6 bg-primary text-center">
-            <div className="bg-success h-75 mt-3"></div>
+          <div className="col-6  text-center">
+              <PieChart options={this.state.options} chartData={this.state.chartData}/>
           </div>
         </div>
         <PersonalBests />
