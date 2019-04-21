@@ -2,16 +2,25 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import MapNav from '../nav_folder/map_nav';
 import Stopwatch from './stopwatch';
-import axios from 'axios';
 import Distance from './distance';
 
 class RunMap extends Component {
-    state = {
-        mileStats: [],
-        distance: 2.,
-        time: 480,
-        mileage: 0,
-        runId: 55
+  constructor(props) {
+          super(props);
+          this.state = {
+              status: 'stopped',
+              start: null,
+              elapsed: 0,
+              distance: 0,
+              pace: 100,
+              calories: 100,
+          }
+          this.start = this.start.bind(this);
+          this.pause = this.pause.bind(this);
+          this.update = this.update.bind(this);
+          this.reset = this.reset.bind(this);
+          this.distanceIncrement = this.distanceIncrement.bind(this);
+          this.distanceUpdate = this.distanceUpdate.bind(this);
       }
 
       postlatestMile(){
@@ -21,7 +30,7 @@ class RunMap extends Component {
             axios.get(`/api/addpermile.php?run_id=${runId}&distance=${distance}&time=${time}&mileage=${mileage}`).then((resp) => {
                 console.log('this is response:', resp);
             })
-    }
+          }
     }
 
   componentDidMount() {
