@@ -1,10 +1,10 @@
 import React from 'react';
 import RunHeader from '../nav_folder/run_nav';
 
-export default props =>{
-    return(
+export default props => {
+    return (
         <div className="postRunBody">
-          <RunHeader />
+            <RunHeader />
             <div className="bg-secondary">Header</div>
             <div className="bg-secondary">Nav Bar</div>
             <div className="postRunMap">
