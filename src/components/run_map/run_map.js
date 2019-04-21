@@ -9,13 +9,36 @@ class RunMap extends Component {
 
     this.state = {
       currentLocation: {},
-      startPos: null
+      startPos: null,
     }
   }
 
   componentDidMount() {
-    this.getCurrentLocation();
-    // this.monitorUserLocation();
+    // setInterval(this.getCurrentLocation(), 5000)
+    // this.getCurrentLocation();
+    // this.increaseLocation();
+    // this.dostuff();
+  }
+
+  dostuff() {
+    setInterval(this.getCurrentLocation, 2000)
+  }
+
+  increaseLocation() {
+    setInterval(() => {
+    const lat = this.state.latitude + 0.5;
+    const long = this.state.longitude + 0.5;
+    console.log(this.state.longitude)
+    this.setState({
+      latitude: parseFloat(lat),
+      longitude: parseFloat(long),
+      startPos: {
+        latitude:  33.6349,
+        longitude:  -117.74049
+      }
+    })
+    this.monitorUserLocation();
+  }, 5000)
   }
 
     startWatch = () => {
@@ -31,29 +54,32 @@ class RunMap extends Component {
    getCurrentLocation() {
       if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
-          this.setState({
-            currentLocation: {
-              lat: parseFloat(position.coords.latitude),
-              lng: parseFloat(position.coords.longitude)
-            },
-            startPos: position
-          })
+          console.log(position.coords.latitude);
+          console.log(position.coords.longitude);
+          // this.setState({
+          //   currentLocation: {
+          //     lat: parseFloat(position.coords.latitude),
+          //     lng: parseFloat(position.coords.longitude)
+          //   },
+          //   startPos: position
+          // })
+          // setInterval(() => {
+          //     this.monitorUserLocation();
+          // }, 3000);
         })
       } else {
         console.log('Location not found')
       }
-      // setInterval(() => {
-      //     this.monitorUserLocation();
-      // }, 3000);
+      console.log('hello')
     }
 
    // async getCurrentLocation() {
-   //    if(navigator.geolocation) {
-   //      const position = await navigator.geolocation.getCurrentPosition();
-   //      let latitude = parseFloat(position.coords.latitude);
-   //      let longitude = parseFloat(position.coords.longitude);
-   //      console.log('longitude: ', longitude);
-   //      console.log('latitude: ', latitude)
+   //    // if(navigator.geolocation) {
+   //      const position = await navigator.geolocation;
+   //      // let latitude = parseFloat(position.coords.latitude);
+   //      // let longitude = parseFloat(position.coords.longitude);
+   //      // console.log('longitude: ', longitude);
+   //      // console.log('latitude: ', latitude)
    //        // this.setState({
    //        //   currentLocation: {
    //        //     lat: parseFloat(position.coords.latitude),
@@ -62,23 +88,35 @@ class RunMap extends Component {
    //        //   startPos: position
    //        // })
    //      // })
-   //    } else {
-   //      console.log('Location not found')
-   //    }
+   //    // } else {
+   //    //   console.log('Location not found')
+   //    // }
    //    // setInterval(() => {
    //    //     this.monitorUserLocation();
    //    // }, 3000);
    //  }
 
-    monitorUserLocation() {
-      navigator.geolocation.watchPosition(position => {
-        console.log('latitude: ', position.coords.latitude);
-        console.log('longitude: ',position.coords.longitude);
-        const distanceTravled =  this.calculateDistance(this.state.startPos.coords.latitude, this.state.startPos.coords.longitude,
-                                  position.coords.latitude, position.coords.longitude);
-        console.log('distance traveled: ', distanceTravled)
-      })
-    }
+    // monitorUserLocation() {
+    //   navigator.geolocation.watchPosition(position => {
+    //     console.log('latitude: ', position.coords.latitude);
+    //     console.log('longitude: ',position.coords.longitude);
+    //     const distanceTravled =  this.calculateDistance(this.state.startPos.coords.latitude, this.state.startPos.coords.longitude,
+    //                               position.coords.latitude, position.coords.longitude);
+    //     console.log('distance traveled: ', distanceTravled)
+    //   })
+    // }
+    // monitorUserLocation = () => {
+    //   navigator.geolocation.watchPosition(position => {
+    //     console.log('latitude: ', position.coords.latitude);
+    //     console.log('longitude: ',position.coords.longitude);
+    //     const distanceTravled =  this.calculateDistance(this.state.latitude, this.state.longitude,
+    //                               position.coords.latitude, position.coords.longitude);
+    //     console.log('distance traveled: ', distanceTravled)
+    //   })
+    // }
+     monitorUserLocation = () => {
+       console.log('dlksfjl;')
+     }
 
     calculateDistance(lat1, lon1, lat2, lon2) {
       const R = 6371; // km
@@ -107,6 +145,8 @@ class RunMap extends Component {
                         containerElement={<div style={{ height: `400px` }} />}
                         mapElement={<div style={{ height: `100%` }} />}
                         coordinates = {this.state.currentLocation}
+                        longitude = {this.state.longitude}
+                        latitude = {this.state.latitude}
                       />
                     </div>
                     <div className="buttonsContainer">
