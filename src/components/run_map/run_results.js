@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import RunHeader from '../nav_folder/run_nav';
 import axios from 'axios';
-import Chart from '../total_stats/chart';
+import ResultsChart from './results_chart';
 import MyMapComponent from './map';
 
 class RunResult extends Component {
@@ -10,10 +10,11 @@ class RunResult extends Component {
 
       this.state = {
         chartData: {},
+        options: {},
         currentLatLng: {
           lat: 33,
           lng: -117
-        }
+        },
       }
     }
 
@@ -34,38 +35,6 @@ class RunResult extends Component {
           }
         ]
       },
-      options: {
-        maintainAspectRatio: false,
-        title: {
-          display: true,
-          text: 'Today\'s Run',
-          fontSize: 25
-        },
-        legend: {
-          display: true,
-          position: 'bottom',
-        },
-        elements: {
-          line: {
-            tension: 0
-          }
-        },
-        scales: {
-          xAxes: [{
-            scaleLabel: {
-              display: true,
-              labelString: 'Mile'
-            },
-          }],
-          yAxes: [{
-            scaleLabel: {
-              display: true,
-              labelString: 'Minutes'
-            }
-          }],
-        }
-      }
-
     })
   }
 
@@ -95,7 +64,7 @@ class RunResult extends Component {
             </div>
             <div className="graphContainer">
                 <div className="graph">
-                  <Chart options={this.state.options} chartData={this.state.chartData}/>
+                  <ResultsChart  chartData={this.state.chartData}/>
                 </div>
             </div>
         </div>
