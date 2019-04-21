@@ -16,7 +16,7 @@ class LogIn extends Component {
     render() {
         return (
             <div className="loginPage">
-                <div className="logo">Run</div>
+                <div className="loginPageLogo">Run</div>
                 <div className="carouselContainer">
                     <Carousel />
                 </div>
