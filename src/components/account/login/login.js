@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { logIn } from '../../../actions';
 // import { Route } from 'react-router-dom';
+// import axios from 'axios';
 import LogInForm from './login_form';
 import Carousel from './carousel';
 import './login.scss';
@@ -10,17 +10,17 @@ import './login.scss';
 class LogIn extends Component {
     handleLogIn = (values) => {
         console.log('Form Values:', values);
-
         this.props.logIn(values);
     }
 
     render() {
         return (
             <div className="loginPage">
-                <div className="carousel">
+                <div className="logo">Run</div>
+                <div className="carouselContainer">
                     <Carousel />
                 </div>
-                <div className="logInForm">
+                <div className="loginFormContainer">
                     <LogInForm logIn={this.handleLogIn} />
                 </div>
             </div>

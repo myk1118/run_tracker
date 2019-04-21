@@ -1,10 +1,44 @@
-// .loginPage {
-//     background-image: url(./images/image2.jpeg);
-//     background-size: cover;
-//     background-repeat: no-repeat;
-//     height: 100vh;
+.logo {
+    position: absolute;
+    z-index: 2;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    font-size: 40pt;
+}
+
+.loginFormContainer {
+    position: absolute;
+    z-index: 2;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.carousel {
+    height: 100vh;
+}
+
+.d-block {
+    height: 100vh;
+    object-fit: cover;
+}
+
+// .image8,
+// .image9 {
+//     background-position: left bottom;
 // }
 
-// .logInForm {
-    
+// .image10 {
+//     background-position: right bottom;
 // }
+
+.inputFields {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: center;
+}
