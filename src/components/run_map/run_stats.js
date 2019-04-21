@@ -1,10 +1,10 @@
 import React from 'react';
 import MapNav from '../nav_folder/map_nav';
 
-export default props =>{
-    return(
+export default props => {
+  return (
     <div className="currentRunStatsBody">
-            <MapNav/>
+      <MapNav />
       <div className="float-right text-primary pt-3 pb-3">Total | Month | Week </div>
       <table className="table table-hover">
         <thead>
@@ -49,5 +49,5 @@ export default props =>{
         </tbody>
       </table>
     </div>
-    )
+  )
 }
