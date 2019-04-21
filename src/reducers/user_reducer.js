@@ -9,8 +9,8 @@ function userReducer(state = DEFAULT_STATE, action) {
     switch (action.type) {
         case types.LOG_IN:
             return { ...state, auth: true, email: action.email };
-        // case types.LOG_OUT:
-        //     return {...DEFAULT_STATE};
+        case types.LOG_OUT:
+            return {...DEFAULT_STATE};
         default:
             return state;
     }
