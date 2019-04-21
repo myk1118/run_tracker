@@ -8,38 +8,48 @@ class RunMap extends Component {
     super();
 
     this.state = {
-      currentLocation: {},
+      currentLatLng: {
+        lat: 33,
+        lng: -117
+      },
       startPos: null,
+      watchId: null,
+      map: null,
+      prevCoords: null,
     }
   }
 
   componentDidMount() {
-    // setInterval(this.getCurrentLocation(), 5000)
-    // this.getCurrentLocation();
-    // this.increaseLocation();
-    // this.dostuff();
+    this.getGeoLocation();
   }
 
-  dostuff() {
-    setInterval(this.getCurrentLocation, 2000)
-  }
+  getGeoLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+          position => {
+              console.log('geolocation coords: ',position.coords);
+              this.setState(prevState => ({
+                currentLatLng: {
+                  ...prevState.currentLatLng,
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+               }
+             }))
+           }
+         )
+        } else {
+            error => console.log(error)
+        }
+    }
 
-  increaseLocation() {
-    setInterval(() => {
-    const lat = this.state.latitude + 0.5;
-    const long = this.state.longitude + 0.5;
-    console.log(this.state.longitude)
-    this.setState({
-      latitude: parseFloat(lat),
-      longitude: parseFloat(long),
-      startPos: {
-        latitude:  33.6349,
-        longitude:  -117.74049
-      }
-    })
-    this.monitorUserLocation();
-  }, 5000)
-  }
+
+
+
+
+
+
+
+
 
     startWatch = () => {
         this.refs.child.start();
@@ -51,50 +61,9 @@ class RunMap extends Component {
         this.refs.child.reset();
     }
 
-   getCurrentLocation() {
-      if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-          console.log(position.coords.latitude);
-          console.log(position.coords.longitude);
-          // this.setState({
-          //   currentLocation: {
-          //     lat: parseFloat(position.coords.latitude),
-          //     lng: parseFloat(position.coords.longitude)
-          //   },
-          //   startPos: position
-          // })
-          // setInterval(() => {
-          //     this.monitorUserLocation();
-          // }, 3000);
-        })
-      } else {
-        console.log('Location not found')
-      }
-      console.log('hello')
-    }
 
-   // async getCurrentLocation() {
-   //    // if(navigator.geolocation) {
-   //      const position = await navigator.geolocation;
-   //      // let latitude = parseFloat(position.coords.latitude);
-   //      // let longitude = parseFloat(position.coords.longitude);
-   //      // console.log('longitude: ', longitude);
-   //      // console.log('latitude: ', latitude)
-   //        // this.setState({
-   //        //   currentLocation: {
-   //        //     lat: parseFloat(position.coords.latitude),
-   //        //     lng: parseFloat(position.coords.longitude)
-   //        //   },
-   //        //   startPos: position
-   //        // })
-   //      // })
-   //    // } else {
-   //    //   console.log('Location not found')
-   //    // }
-   //    // setInterval(() => {
-   //    //     this.monitorUserLocation();
-   //    // }, 3000);
-   //  }
+
+
 
     // monitorUserLocation() {
     //   navigator.geolocation.watchPosition(position => {
@@ -114,25 +83,24 @@ class RunMap extends Component {
     //     console.log('distance traveled: ', distanceTravled)
     //   })
     // }
-     monitorUserLocation = () => {
-       console.log('dlksfjl;')
-     }
 
-    calculateDistance(lat1, lon1, lat2, lon2) {
-      const R = 6371; // km
-      let dLat = (lat2 - lat1) * Math.PI / 180;
-      let dLon = (lon2 - lon1) * Math.PI / 180;
-      let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-          Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-          Math.sin(dLon / 2) * Math.sin(dLon / 2);
-          let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-          let d = R * c;
-        return d;
-      }
+
+    // calculateDistance(lat1, lon1, lat2, lon2) {
+    //   const R = 6371; // km
+    //   let dLat = (lat2 - lat1) * Math.PI / 180;
+    //   let dLon = (lon2 - lon1) * Math.PI / 180;
+    //   let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    //       Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    //       Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    //       let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    //       let d = R * c;
+    //     return d;
+    //   }
 
 
     render() {
-      console.log('state: ', this.state)
+      console.log('state: ', this.state.currentLatLng);
+
         return (
             <div className="mapBody">
                 <MapNav />
@@ -144,9 +112,7 @@ class RunMap extends Component {
                         loadingElement={<div style={{ height: `100%` }} />}
                         containerElement={<div style={{ height: `400px` }} />}
                         mapElement={<div style={{ height: `100%` }} />}
-                        coordinates = {this.state.currentLocation}
-                        longitude = {this.state.longitude}
-                        latitude = {this.state.latitude}
+                        currentLocation = {this.state.currentLatLng}
                       />
                     </div>
                     <div className="buttonsContainer">
