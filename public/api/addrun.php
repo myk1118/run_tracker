@@ -29,4 +29,4 @@
 
     $runOutput['success'] = true;
 
-    print_r(json_encode($runOutput));
+    print(json_encode($runOutput));

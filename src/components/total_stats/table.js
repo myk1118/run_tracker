@@ -19,6 +19,7 @@ class Chart extends React.Component {
   getActivityLogData() {
     axios.get('/api/get_table_data.php').then(resp => {
       const {tableItems} = resp.data;
+      console.log('tabledata:', resp);
       const stats = tableItems.map(item => {
         return (
           <tr key={item.id}>
