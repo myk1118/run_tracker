@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 // import './assets/css/app.scss';
 import './run_map.scss';
-import { Route, Link } from 'react-router-dom';
+import { Route} from 'react-router-dom';
 import RunResult from './run_results';
 import RunStats from './run_stats';
 import RunMap from './run_map';
@@ -16,11 +16,11 @@ class RunRoute extends Component {
         console.log(this.props.match)
 
         return (
-            <div>
+            <Fragment>
                 <Route path="/runmap" exact component={RunMap} />
                 <Route path="/runmap/results" component={RunResult} />
                 <Route path="/runmap/stats" component={RunStats} />
-            </div>
+            </Fragment>
         )
     }
 }

@@ -20,7 +20,6 @@ class TotalStats extends React.Component {
   }
 
   getChartData() {
-    //axios call goes here
     axios.get('/api/get_table_data.php').then(resp => {
       const {tableItems} = resp.data;
       const dates = tableItems.reverse().map(item => item.date);
@@ -43,9 +42,7 @@ class TotalStats extends React.Component {
   }
 
   render() {
-
     return (
-
       <div className="total-stats">
         <RunHeader />
         <Chart options={this.state.options} chartData={this.state.chartData}/>

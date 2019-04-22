@@ -1,25 +1,23 @@
 .runs {
-  // background-image: url("images/background.jpg");
-  background-image: url('../account/login/images/image1.jpeg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 88vh;
 
-  button {
-    height: 120px;
-    width: 120px;
-    margin-top: 20px;
-    opacity: 0.8;
-    background-color: #3d5467;
-    color: white;
-    border: none;
-  }
+  height:100vh;
+  background-image: url('./images/background.jpg');
+  background-repeat: no-repeat;  
+  background-position: 0% 0%;
+  background-size: 100% 100%;
+}
 
-  .plus-img {
-    width: 50%;
-  }
+button {
+  margin-top: 20px;
+  opacity: 0.8;
+  min-height: 20vh;
+}
 
-  .run-time {
-    font-size: 14px;
-  }
+.plus-img, .run-img{
+  width: 50%;
+  opacity:1.0;
+}
+
+.run-time {
+  font-size: 1rem;
 }

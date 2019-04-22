@@ -5,68 +5,70 @@ import Stopwatch from './stopwatch';
 import MyMapComponent from './map';
 import apiKey from '../googlemap';
 import Distance from './distance';
+import {NavLink} from 'react-router-dom';
+import WatchBtns from './button.js';
+import './run_map.scss';
 
 class RunMap extends Component {
-  constructor(props) {
+    constructor(props) {
     super(props);
-
+    
     this.state = {
-      currentLatLng: {
+        currentLatLng: {
         lat: 33,
         lng: -117
-      },
-      startPos: null,
-      watchId: null,
-      map: null,
-      prevCoords: null,
-      status: 'stopped',
-      start: null,
-      elapsed: 0,
-      distance: 0,
-      pace: 100,
-      calories: 100,
+        },
+        startPos: null,
+        watchId: null,
+        map: null,
+        prevCoords: null,
+        status: 'stopped',
+        start: null,
+        elapsed: 0,
+        distance: 0,
+        pace: 100,
+        calories: 100,
     }
     
-      this.start = this.start.bind(this);
-      this.pause = this.pause.bind(this)
-      this.update = this.update.bind(this);
-      this.reset = this.reset.bind(this);
-      this.distanceIncrement = this.distanceIncrement.bind(this);
-      this.distanceUpdate = this.distanceUpdate.bind(this);
-  }
-  
-        postlatestMile(){
+    this.start = this.start.bind(this);
+    this.pause = this.pause.bind(this)
+    this.update = this.update.bind(this);
+    this.reset = this.reset.bind(this);
+    this.distanceIncrement = this.distanceIncrement.bind(this);
+    this.distanceUpdate = this.distanceUpdate.bind(this);
+    }
+
+    postlatestMile(){
         const {distance} = this.state;
         if(distance && distance - Math.floor(distance) === 0){
             let{distance, mileage, time, runId} = this.state;
             axios.get(`/api/addpermile.php?run_id=${runId}&distance=${distance}&time=${time}&mileage=${mileage}`).then((resp) => {
                 console.log('this is response:', resp);
             })
-          }
+        }
     }
 
+    componentDidMount() {
+        this.getGeoLocation();
+    }
 
-  componentDidMount() {
-    this.getGeoLocation();
-  }
-
-  getGeoLocation = () => {
+    getGeoLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-          position => {
-              console.log('geolocation coords: ',position.coords);
-              this.setState(prevState => ({
-                currentLatLng: {
-                  ...prevState.currentLatLng,
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude
-               }
-             }))
-           }
-         )
-        } else {
-            error => console.log(error)
-        }
+    navigator.geolocation.getCurrentPosition(
+    position => {
+    console.log('geolocation coords: ',position.coords);
+    this.setState(prevState => ({
+    currentLatLng: {
+    ...prevState.currentLatLng,
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
+    }
+    }))
+    }
+    )
+    } else {
+    error => console.log(error)
+    }
     }
 
 
@@ -135,12 +137,12 @@ class RunMap extends Component {
     }
     pause() {
         this.setState({
-            status: 'stopped'
+            status: 'paused'
         })
     }
     reset() {
         const { elapsed } = this.state;
-        if (this.state.status === 'stopped') {
+        if (this.state.status === 'paused') {
             this.postCurrentRun(elapsed);
             this.setState({
                 status: 'stopped',
@@ -148,6 +150,7 @@ class RunMap extends Component {
                 elapsed: 0
             });
         }
+        
     }
     update() {
         const { status, start } = this.state;
@@ -176,13 +179,14 @@ class RunMap extends Component {
         });
     }
     render() {
-        const { elapsed, distance } = this.state;
+        const { elapsed, distance, status} = this.state;
         return (
             <div className="mapBody">
                 <MapNav />
+
                 <div className="h-60 mapContainer">
                     <div className="map">
-                      <MyMapComponent
+                    <MyMapComponent
                         isMarkerShown
                         // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
                         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
@@ -190,13 +194,11 @@ class RunMap extends Component {
                         containerElement={<div style={{ height: `400px` }} />}
                         mapElement={<div style={{ height: `100%` }} />}
                         currentLocation = {this.state.currentLatLng}
-                      />
+                    />
                     </div>
-                    <div className="watchButtons">
-                        <button onClick={this.start} className="btn btn-info">Start</button>
-                        <button onClick={this.pause} className="btn btn-info">Pause</button>
-                        <button onClick={this.reset} className="btn btn-info">Reset</button>
-                    </div>
+                        <div className="buttonsContainer">
+                        <WatchBtns status ={status} start={this.start} pause = {this.pause} reset = {this.reset}/>
+                        </div>
                 </div>
                 <div className="mapStatsContainer">
                     <div className="statContainer">

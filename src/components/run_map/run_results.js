@@ -4,6 +4,8 @@ import axios from 'axios';
 import ResultsChart from './results_chart';
 import MyMapComponent from './map';
 import apiKey from '../googlemap';
+import './run_results.scss';
+import RunResults from './run_results';
 
 class RunResult extends Component {
     constructor(props) {
@@ -13,14 +15,14 @@ class RunResult extends Component {
         chartData: {},
         options: {},
         currentLatLng: {
-          lat: 33,
-          lng: -117
+            lat: 33,
+            lng: -117
         },
       }
     }
 
     componentDidMount() {
-      this.getChartData();
+        this.getChartData();
     }
 
   async getChartData() {
@@ -51,9 +53,7 @@ class RunResult extends Component {
     render() {
       return(
         <div className="postRunBody">
-          <RunHeader />
-            {/* <div className="bg-secondary">Header</div>
-            <div className="bg-secondary">Nav Bar</div> */}
+            <RunHeader />
             <div className="postRunMap">
                   <MyMapComponent
                     isMarkerShown
@@ -66,16 +66,56 @@ class RunResult extends Component {
                   />
             </div>
             <div className="postRunStats">
-                <div className="col-6">Total Distance</div>
-                <div className="col-6">Total Time</div>
+                <svg className="progress-ring col-5 offset-1">
+                    <circle className="progressCircle"
+                        stroke="blue"
+                        strokeWidth="4"
+                        fill="transparent"
+                        r="52"
+                        cx="60"
+                        cy="60"/>
+                        <text x="45%" y="25%" textAnchor="middle" stroke="rgb(8, 5, 198)" strokeWidth="1px" dy=".3em">Total Time</text>
+                </svg>
+                <svg className="progress-ring col-5 ">
+                    <circle className="progressCircle"
+                        stroke="red"
+                        strokeWidth="4"
+                        fill="transparent"
+                        r="52"
+                        cx="60"
+                        cy="60"/>
+                        <text x="45%" y="25%" textAnchor="middle" stroke="rgb(249, 28, 28)" strokeWidth="1px" dy=".3em">Total Distance</text>
+                </svg>
+                <svg className="progress-ring col-5 offset-1">
+                    <circle className="progressCircle"
+                        stroke="purple"
+                        strokeWidth="4"
+                        fill="transparent"
+                        r="52"
+                        cx="60"
+                        cy="60"/>
+                        <text x="45%" y="25%" textAnchor="middle" stroke="rgb(146, 28, 249)" strokeWidth="1px" dy=".3em">Avg Pace</text>
+                </svg>
+                <svg className="progress-ring col-5 ">
+                    <circle className="progressCircle"
+                        stroke="orange"
+                        strokeWidth="4"
+                        fill="transparent"
+                        r="52"
+                        cx="60"
+                        cy="60"/>
+                        <text x="45%" y="25%" textAnchor="middle" stroke="rgb(249, 124, 28)" strokeWidth="1px" dy=".3em">Calories Burned</text>
+                </svg>
+                {/* <div className="col-6">Total Time</div>
                 <div className="col-6">Avg Pace</div>
-                <div className="col-6">Total Calories Burned</div>
+                <div className="col-6">Total Calories Burned</div> */}
             </div>
             <div className="graphContainer">
                 <div className="graph">
                   <ResultsChart  chartData={this.state.chartData}/>
                 </div>
             </div>
+
         </div>
     )
   }
