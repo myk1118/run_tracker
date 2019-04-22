@@ -23,6 +23,7 @@ function validate({ email, password }) {
     const errors = {};
     if (!email) {
         errors.email = 'Please enter your email';
+        console.log('hello')
     }
     if (!password) {
         errors.password = 'Please enter your password';
