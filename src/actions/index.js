@@ -9,8 +9,8 @@ export function logIn(user) {
     }
 }
 
-// export function signOut(){
-//     return{
-//         type: types.SIGN_OUT
-//     }
-// }
+export function logOut(){
+    return{
+        type: types.LOG_OUT
+    }
+}
