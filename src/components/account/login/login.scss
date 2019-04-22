@@ -1,7 +1,7 @@
 .loginPageLogo {
     position: absolute;
     z-index: 2;
-    top: 35%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, 0%);
     font-size: 40pt;
@@ -21,7 +21,9 @@
 
 .d-block {
     height: 100vh;
+    width: 100vw;
     object-fit: cover;
+    opacity: 0.85;
 }
 
 // .image8,
