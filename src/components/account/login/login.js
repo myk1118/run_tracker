@@ -1,19 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logIn } from '../../../actions';
-// import { Route } from 'react-router-dom';
-// import axios from 'axios';
+import axios from 'axios';
 import LogInForm from './login_form';
 import Carousel from './carousel';
 import './login.scss';
+import { Redirect } from 'react-router-dom';
 
 class LogIn extends Component {
-    handleLogIn = (values) => {
-        console.log('Form Values:', values);
-        this.props.logIn(values);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loggedIn: false
+    }
+  }
+
+  handleLogIn = (values)  => {
+      this.props.logIn(values);
+      axios.post('/api/login.php', values).then(resp => {
+        console.log('response: ', resp);
+        if(resp.data.success) {
+          this.setState({
+            loggedIn: true
+          })
+        }
+      })
     }
 
     render() {
+      if(this.state.loggedIn === true) {
+    return (<Redirect to="/" />) }
+    else {
         return (
             <div className="loginPage">
                 <div className="loginPageLogo">Run</div>
@@ -24,7 +42,7 @@ class LogIn extends Component {
                     <LogInForm logIn={this.handleLogIn} />
                 </div>
             </div>
-        );
+        ); }
     }
 }
 

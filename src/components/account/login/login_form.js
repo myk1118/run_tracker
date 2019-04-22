@@ -24,18 +24,18 @@ const LoginForm = props => {
     )
 }
 
-// function validate({ email, password }) {
-//     const errors = {};
-//     if (!email) {
-//         errors.email = 'Please enter your email';
-//     }
-//     if (!password) {
-//         errors.password = 'Please enter your password';
-//     }
-//     return errors;
-// }
+function validate({ email, password }) {
+    const errors = {};
+    if (!email) {
+        errors.email = 'Please enter your email';
+    }
+    if (!password) {
+        errors.password = 'Please enter your password';
+    }
+    return errors;
+}
 
 export default reduxForm({
     form: 'login-form',
-    // validate: validate
+    validate: validate
 })(LoginForm);
