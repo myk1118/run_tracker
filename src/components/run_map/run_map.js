@@ -95,9 +95,9 @@ class RunMap extends Component {
         return (
             <div className="mapBody">
                 <MapNav />
-                <div className="h-60 d-inline-block mapContainer">
+                <div className="h-60 mapContainer">
                     <div className="map"></div>
-                    <div className="buttonsContainer">
+                    <div className="watchButtons">
                         <button onClick={this.start} className="btn btn-info">Start</button>
                         <button onClick={this.pause} className="btn btn-info">Pause</button>
                         <button onClick={this.reset} className="btn btn-info">Reset</button>
@@ -111,7 +111,7 @@ class RunMap extends Component {
                     <div className="statContainer">
                         <div className="statTitle">Distance</div>
                         <Distance className="statResult" distance={distance} />
-                        <button onClick={this.distanceIncrement} className="btn btn-info">Increment</button>
+                        <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button>
                     </div>
                     <div className="statContainer">
                         <div className="statTitle">Pace</div>
@@ -119,7 +119,7 @@ class RunMap extends Component {
                     </div>
                     <div className="statContainer">
                         <div className="statTitle">Calories Burned</div>
-                        <div className="statResult">1,600 calories</div>
+                        <div className="statResult">1,600 cal</div>
                     </div>
                 </div>
             </div>

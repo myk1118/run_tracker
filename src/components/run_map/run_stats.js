@@ -9,10 +9,10 @@ export default props => {
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col-3">Mile</th>
-            <th scope="col-3">Time</th>
-            <th scope="col-3">Heart Rate</th>
-            <th scope="col-3">Calories Burned</th>
+            <th className="w-25">Mile</th>
+            <th className="w-25">Time</th>
+            <th className="w-25">Heart Rate</th>
+            <th className="w-25">Calories Burned</th>
           </tr>
         </thead>
         <tbody>

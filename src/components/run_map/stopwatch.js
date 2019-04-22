@@ -1,6 +1,5 @@
 import React from 'react';
 import Time from './format_time';
-import './stopwatch.scss';
 
 export default props => {
     return (

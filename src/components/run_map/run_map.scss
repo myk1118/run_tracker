@@ -1,40 +1,44 @@
 .mapBody {
     margin: 0;
 
-    .buttonsContainer {
-        margin: auto
+    .mapContainer {
+        background-color: #d1d1d1;
+        height: 54vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
     }
 }
 
-.mapContainer {
-    background-color: #d1d1d1;
-    height: 50vh;
-    width: 100vw;
-    // position: flex;
-}
-
 .mapStatsContainer {
-    // background-color: rgb(255, 106, 106);
-    height: 40vh;
+    height: 34vh;
     width: 100vw;
-    position: flex;
-    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
 
     .statContainer {
         height: 50%;
         width: 50%;
-        background-color: #718f94;
-        border: 1px white solid;
         box-sizing: border-box;
-        display: inline-block;
+        background-color: #718f94;
+        border: 0.5px white solid;
         text-align: center;
         font-size: 1.2em;
-        color: white
+        color: white;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
     }
 
     .statResult {
         text-align: center;
-        font-size: 1.8em
+        font-size: 1.4em
+    }
+
+    .time,
+    .distance {
+        font-size: 1.4em;
     }
 }
 
@@ -43,7 +47,6 @@
     margin: 0;
     height: 90vh;
     width: 100vw;
-
 
     .postRunMap {
         width: 100%;
@@ -73,7 +76,7 @@
     padding: 0;
     margin: 0;
 
-    .currentRunStatsRow {
-        border: 2px solid black;
+    .table {
+        text-align: center;
     }
 }
