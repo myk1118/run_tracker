@@ -22,15 +22,24 @@ class RunResult extends Component {
       this.getChartData();
     }
 
-    getChartData() {
+  async getChartData() {
+
+    const resp =  await axios.get('/api/get_runsession_results.php');
+    const {sessionData} = resp.data;
+    // console.log(sessionData)
+    const miles = sessionData.map(mile => mile.currentMile);
+    const time = sessionData.map(minutes => minutes.time)
+    console.log('miles: ', miles);
+    console.log('time: ', time);
+
     this.setState({
       chartData: {
-        labels: [1,2,3,4,5,6,7],
+        labels: [0, ...miles],
         datasets: [
           {
             label: 'Time',
             fill: false,
-            data: [6.4, 7,8.5,7.6,8,9,9.6],
+            data: [0, ...time],
             borderColor: 'blue',
           }
         ]
