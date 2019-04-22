@@ -4,15 +4,15 @@ require_once('config.php');
 require_once('mysqlconnect.php');
 set_exception_handler('handleError');
 
-$user_id = 3;
+$user_id = 1;
 
-$runstats_query = "SELECT 
-s.`distance`, s.`time`, s.`pace`, s.`date` 
+$runstats_query = "SELECT
+s.`distance`, s.`time`, s.`pace`, s.`date`
 FROM `run_stats` AS `s`
 JOIN `users` ON users.`id` = s.`user_id`
 WHERE users.`id` = $user_id ";
 
-$result = mysqli_query($conn, $query);
+$result = mysqli_query($conn, $runstats_query);
 
 if(!$result){
     throw new Exception('invalid query: '. mysqli_error($conn));

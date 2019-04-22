@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Bar, Line, Pie} from 'react-chartjs-2';
-import './total_stats.scss';
+// import './total_stats.scss';
 
 
 
@@ -15,7 +15,7 @@ export default props => {
           maintainAspectRatio: false,
           title: {
             display: true,
-            text: 'Running Data',
+            text: 'Today\'s Run',
             fontSize: 25
           },
           legend: {
@@ -31,13 +31,13 @@ export default props => {
             xAxes: [{
               scaleLabel: {
                 display: true,
-                labelString: 'Date'
+                labelString: 'Mile'
               },
             }],
             yAxes: [{
               scaleLabel: {
                 display: true,
-                labelString: 'Distance (mi)'
+                labelString: 'Minutes'
               }
             }],
           }

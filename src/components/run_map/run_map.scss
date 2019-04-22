@@ -12,10 +12,13 @@
 }
 
 .mapStatsContainer {
-    height: 34vh;
+
+    // background-color: rgb(255, 106, 106);
+    height: 40vh;
     width: 100vw;
-    display: flex;
-    flex-wrap: wrap;
+    position: flex;
+    margin: 0;
+
 
     .statContainer {
         height: 50%;
@@ -50,11 +53,11 @@
 
     .postRunMap {
         width: 100%;
-        height: 40%;
+        height: 45%;
     }
 
     .postRunStats {
-        height: 20%;
+        height: 15%;
         background-color: green;
         width: 100%;
     }
