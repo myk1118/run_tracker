@@ -5,26 +5,43 @@ import Stopwatch from './stopwatch';
 import Distance from './distance';
 
 class RunMap extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            status: 'stopped',
-            start: null,
-            elapsed: 0,
-            distance: 0,
-            pace: 100,
-            calories: 100,
-        }
-        this.start = this.start.bind(this);
-        this.pause = this.pause.bind(this);
-        this.update = this.update.bind(this);
-        this.reset = this.reset.bind(this);
-        this.distanceIncrement = this.distanceIncrement.bind(this);
-        this.distanceUpdate = this.distanceUpdate.bind(this);
+  constructor(props) {
+          super(props);
+          this.state = {
+              status: 'stopped',
+              start: null,
+              elapsed: 0,
+              distance: 0,
+              pace: 100,
+              calories: 100,
+          }
+          this.start = this.start.bind(this);
+          this.pause = this.pause.bind(this);
+          this.update = this.update.bind(this);
+          this.reset = this.reset.bind(this);
+          this.distanceIncrement = this.distanceIncrement.bind(this);
+          this.distanceUpdate = this.distanceUpdate.bind(this);
+      }
+
+      postlatestMile(){
+        const {distance} = this.state;
+        if(distance && distance - Math.floor(distance) === 0){
+            let{distance, mileage, time, runId} = this.state;
+            axios.get(`/api/addpermile.php?run_id=${runId}&distance=${distance}&time=${time}&mileage=${mileage}`).then((resp) => {
+                console.log('this is response:', resp);
+            })
+          }
     }
-    componentDidMount() {
-        this.getCurrentLocation();
+
+  componentDidMount() {
+    this.getCurrentLocation();
+  }
+
+    startWatch = () => {
+        this.postlatestMile();
+        this.refs.child.start();
     }
+
     getCurrentLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
