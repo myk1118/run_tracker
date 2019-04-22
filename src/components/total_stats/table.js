@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import RunHeader from '../nav_folder/run_nav';
 import axios from 'axios';
+import './total_stats.scss';
 
 
 class Chart extends React.Component {
@@ -36,9 +37,8 @@ class Chart extends React.Component {
   }
 
   render() {
-    console.log(this.state.stats)
     return (
-    <div>
+    <div className="tableContainer">
       <RunHeader />
       <div className="float-right text-primary pt-3 pb-3">Total | Month | Week</div>
       <table className="table table-hover">

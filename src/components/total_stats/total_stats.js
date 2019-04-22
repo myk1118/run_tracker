@@ -46,7 +46,7 @@ class TotalStats extends React.Component {
     return (
 
       <div className="total-stats">
-        <RunHeader />
+        <RunHeader/>
         <Chart chartData={this.state.chartData}/>
         <div className="d-flex chart-container">
           <div className="col-6 bg-primary text-center">

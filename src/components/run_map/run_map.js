@@ -3,6 +3,8 @@ import axios from 'axios';
 import MapNav from '../nav_folder/map_nav';
 import Stopwatch from './stopwatch';
 import Distance from './distance';
+import {NavLink} from 'react-router-dom';
+import WatchBtns from './button.js';
 
 class RunMap extends Component {
   constructor(props) {
@@ -14,6 +16,7 @@ class RunMap extends Component {
               distance: 0,
               pace: 100,
               calories: 100,
+              btnHolder: []
           }
           this.start = this.start.bind(this);
           this.pause = this.pause.bind(this);
@@ -33,9 +36,11 @@ class RunMap extends Component {
           }
     }
 
-  componentDidMount() {
-    this.getCurrentLocation();
-  }
+    componentDidMount() {
+        this.getCurrentLocation();
+    }
+
+
 
     startWatch = () => {
         this.postlatestMile();
@@ -67,12 +72,12 @@ class RunMap extends Component {
     }
     pause() {
         this.setState({
-            status: 'stopped'
+            status: 'paused'
         })
     }
     reset() {
         const { elapsed } = this.state;
-        if (this.state.status === 'stopped') {
+        if (this.state.status === 'paused') {
             this.postCurrentRun(elapsed);
             this.setState({
                 status: 'stopped',
@@ -80,6 +85,7 @@ class RunMap extends Component {
                 elapsed: 0
             });
         }
+        
     }
     update() {
         const { status, start } = this.state;
@@ -108,17 +114,15 @@ class RunMap extends Component {
         });
     }
     render() {
-        const { elapsed, distance } = this.state;
+        const { elapsed, distance, status} = this.state;
         return (
             <div className="mapBody">
                 <MapNav />
                 <div className="h-60 d-inline-block mapContainer">
                     <div className="map"></div>
-                    <div className="buttonsContainer">
-                        <button onClick={this.start} className="btn btn-info">Start</button>
-                        <button onClick={this.pause} className="btn btn-info">Pause</button>
-                        <button onClick={this.reset} className="btn btn-info">Reset</button>
-                    </div>
+                        <div className="buttonsContainer">
+                        <WatchBtns status ={status} start={this.start} pause = {this.pause} reset = {this.reset}/>
+                        </div>
                 </div>
                 <div className="mapStatsContainer">
                     <div className="statContainer">

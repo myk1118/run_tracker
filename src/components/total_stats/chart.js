@@ -13,8 +13,8 @@ class Chart extends Component {
 
   render() {
     return (
-      <div>
-        <article className="graph-container">
+      <div className="graph-container">
+        <article>
         <Line
           data={this.props.chartData}
           options={{
