@@ -12,7 +12,7 @@ import RunRoute from './run_map';
 // import RunStats from './run_map/run_stats';
 import Login from './account/login/login';
 import Logout from './account/logout/logout';
-// import Signup from './account/sign_up/sign_up';
+import Signup from './account/sign_up/sign_up';
 // import Tutorial from './tutorial';
 import MapNav from './nav_folder/map_nav';
 
@@ -26,6 +26,7 @@ const App = (props) => {
         <Route path="/table" component={Table} />
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />
+        <Route path="/sign_up" component={Signup} />
         <Route path="/account" component={AccountRoutes} />
       </Switch>
     </Fragment>

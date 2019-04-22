@@ -3,34 +3,37 @@ import { reduxForm, Field } from 'redux-form';
 import Input from '../../general/input';
 
 const SignUpForm = props => {
-    // console.log('Sign In Form Props:', props);
     const { handleSubmit, signUp } = props;
 
     return (
         <form onSubmit={handleSubmit(signUp)}>
-            {/*if we want to test what parameters it is given, we can CL it like this */}
             <div className="row">
-                <Field col="s12" id="name" name="name" component={Input} label="Name" />
-                <Field col="s12" id="email" name="email" component={Input} label="Email" />
-                <Field col="s12" id="password" name="password" component={Input} type="password" label="Password" />
-                <Field col="s12" id="confirmpassword" name="confirmpassword" component={Input} type="password" label="Confirm Password" />
+                <Field col="s12" id="first_name" name="first_name" component={Input} label="First Name" placeholder="First Name" />
+                <Field col="s12" id="last_name" name="last_name" component={Input} label="Le Name" placeholder="Last Name" />
+                <Field col="s12" id="email" name="email" component={Input} label="Email" placeholder="Email" />
+                <Field col="s12" id="password" name="password" component={Input} type="password" label="Password" placeholder="Password" />
+                <Field col="s12" id="confirmpassword" name="confirmpassword" component={Input} type="password" label="Confirm Password" placeholder="Confirm Password" />
 
             </div>
 
             <div className="row">
                 <div className="col s12 right-align">
-                    <button className="btn purple darken-2">Sign Up</button>
+                    <button className="btn purple darken-1">Sign Up</button>
                 </div>
             </div>
         </form>
     )
 }
 
-function validate({name, email, password, confirmpassword}) {
+function validate({first_name, last_name, email, password, confirmpassword}) {
     const errors = {};
 
-    if(!name) {
-        errors.name = 'Please enter full name';
+    if(!first_name) {
+        errors.first_name = 'Please enter first name';
+    }
+
+    if(!last_name) {
+        errors.last_name = 'Please enter last name';
     }
 
     if (!email) {
@@ -51,6 +54,6 @@ function validate({name, email, password, confirmpassword}) {
 }
 
 export default reduxForm({
-    form: 'sign-up-form', //this is us setting the name of the form, THIS IS MADE-UP!!!! 
+    form: 'sign-up-form',  
     validate: validate
 })(SignUpForm);
