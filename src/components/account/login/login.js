@@ -8,10 +8,17 @@ import Carousel from './carousel';
 import './login.scss';
 
 class LogIn extends Component {
+
     handleLogIn = (values) => {
         console.log('Form Values:', values);
-
         this.props.logIn(values);
+
+        axios.post('/api/login.php', {
+          topic: 'topic',
+          logs: values,
+        }).then(resp => {
+          console.log('resp: ', resp.data)
+        });
     }
 
     render() {
