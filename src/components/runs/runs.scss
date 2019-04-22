@@ -1,15 +1,18 @@
 .runs {
   // background-image: url("images/background.jpg");
-  background-image: url('../account/login/images/image2.jpeg');
+  background-image: url('../account/login/images/image1.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: 88vh;
 
   button {
     height: 120px;
     width: 120px;
     margin-top: 20px;
     opacity: 0.8;
+    background-color: #3d5467;
+    color: white;
+    border: none;
   }
 
   .plus-img {

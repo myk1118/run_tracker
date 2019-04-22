@@ -8,7 +8,6 @@ import axios from 'axios';
 class Runs extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       date_buttons: []
     }
@@ -16,12 +15,7 @@ class Runs extends React.Component {
 
   componentDidMount() {
     this.getDates();
-
   }
-
-
-
-
 
   async getDates() {
     const run_dates = await axios.get('/api/get_run_dates.php');
@@ -41,25 +35,24 @@ class Runs extends React.Component {
     this.setState({
       date_buttons: [...date_buttons]
     })
-
   }
 
   render() {
     return (
       <React.Fragment>
-      <RunHeader />
-      <div  className="runs">
-        <div className="col-6 text-center d-inline-block">
-          <NavLink to="/runmap">
-            <button className="btn btn-dark btn-lg">
-              <img className="plus-img" src={plus} />
-            </button>
-          </NavLink>
+        <RunHeader />
+        <div className="runs">
+          <div className="col-6 text-center d-inline-block">
+            <NavLink to="/runmap">
+              <button className="btn btn-dark btn-lg">
+                <img className="plus-img" src={plus} />
+              </button>
+            </NavLink>
+          </div>
+          {this.state.date_buttons}
         </div>
-        {this.state.date_buttons}
-      </div>
-    </React.Fragment>
-    )
+      </React.Fragment>
+    );
   }
 }
 

@@ -37,8 +37,10 @@ render(){
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col-3">Mile</th>
-            <th scope="col-3">Time</th>
+            <th className="w-25">Mile</th>
+            <th className="w-25">Time</th>
+            <th className="w-25">Heart Rate</th>
+            <th className="w-25">Calories Burned</th>
           </tr>
         </thead>
         <tbody>

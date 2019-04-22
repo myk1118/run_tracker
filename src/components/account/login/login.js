@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { logIn } from '../../../actions';
+import axios from 'axios';
 import LogInForm from './login_form';
 import Carousel from './carousel';
 import './login.scss';
@@ -26,7 +26,6 @@ class LogIn extends Component {
           })
         }
       })
-
     }
 
     render() {
@@ -35,10 +34,11 @@ class LogIn extends Component {
     else {
         return (
             <div className="loginPage">
-                <div className="carousel">
+                <div className="loginPageLogo">Run</div>
+                <div className="carouselContainer">
                     <Carousel />
                 </div>
-                <div className="logInForm">
+                <div className="loginFormContainer">
                     <LogInForm logIn={this.handleLogIn} />
                 </div>
             </div>
