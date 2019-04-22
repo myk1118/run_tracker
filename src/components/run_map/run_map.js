@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MapNav from '../nav_folder/map_nav';
 import Stopwatch from './stopwatch';
 import MyMapComponent from './map';
+import apiKey from '../googlemap';
 
 class RunMap extends Component {
   constructor() {
@@ -108,7 +109,8 @@ class RunMap extends Component {
                     <div className="map">
                       <MyMapComponent
                         isMarkerShown
-                        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
+                        // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
+                        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
                         loadingElement={<div style={{ height: `100%` }} />}
                         containerElement={<div style={{ height: `400px` }} />}
                         mapElement={<div style={{ height: `100%` }} />}

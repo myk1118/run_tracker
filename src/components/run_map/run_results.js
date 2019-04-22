@@ -3,6 +3,7 @@ import RunHeader from '../nav_folder/run_nav';
 import axios from 'axios';
 import ResultsChart from './results_chart';
 import MyMapComponent from './map';
+import apiKey from '../googlemap';
 
 class RunResult extends Component {
     constructor(props) {
@@ -54,16 +55,15 @@ class RunResult extends Component {
             {/* <div className="bg-secondary">Header</div>
             <div className="bg-secondary">Nav Bar</div> */}
             <div className="postRunMap">
-                {/* <div className="mapContainer"> */}
                   <MyMapComponent
                     isMarkerShown
-                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
+                    // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
+                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ height: `100%` }} />}
                     mapElement={<div style={{ height: `100%` }} />}
                     currentLocation = {this.state.currentLatLng}
                   />
-                {/* </div> */}
             </div>
             <div className="postRunStats">
                 <div className="col-6">Total Distance</div>
