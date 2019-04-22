@@ -1,25 +1,48 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LogInForm from './login_form';
 import { logIn } from '../../../actions';
-import { Route } from 'react-router-dom';
+import axios from 'axios';
+import LogInForm from './login_form';
 import Carousel from './carousel';
 import './login.scss';
+import { Redirect } from 'react-router-dom';
 
 class LogIn extends Component {
-    handleLogIn = (values) => {
-        console.log('Form Values:', values);
+  constructor(props) {
+    super(props);
 
-        this.props.logIn(values);
-
+    this.state = {
+      loggedIn: false
     }
+  }
+
+  handleLogIn = (values)  => {
+      this.props.logIn(values);
+      axios.post('/api/login.php', values).then(resp => {
+        console.log('response: ', resp);
+        if(resp.data.success) {
+          this.setState({
+            loggedIn: true
+          })
+        }
+      })
+    }
+
     render() {
+      if(this.state.loggedIn === true) {
+    return (<Redirect to="/" />) }
+    else {
         return (
-            <div>
-                <h1 className="center">Log In</h1>
-                <LogInForm logIn={this.handleLogIn} />
+            <div className="loginPage">
+                <div className="loginPageLogo">Run</div>
+                <div className="carouselContainer">
+                    <Carousel />
+                </div>
+                <div className="loginFormContainer">
+                    <LogInForm logIn={this.handleLogIn} />
+                </div>
             </div>
-        );
+        ); }
     }
 }
 
