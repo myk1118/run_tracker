@@ -9,6 +9,8 @@ export function logIn(user) {
     }
 }
 
+
+
 export function logOut(){
     return{
         type: types.LOG_OUT
