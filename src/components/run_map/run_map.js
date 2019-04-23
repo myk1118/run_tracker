@@ -160,7 +160,7 @@ class RunMap extends Component {
     distanceIncrement() {
         setTimeout(() => {
             this.distanceUpdate();
-        }, 10);
+        }, 1000);
     }
     distanceUpdate() {
         this.setState({
@@ -195,8 +195,7 @@ class RunMap extends Component {
                         <WatchBtns status={status}
                             start={this.start}
                             pause={this.pause}
-                            reset={this.reset}
-                            distanceIncrement={this.distanceIncrement} />
+                            reset={this.reset} />
                     </div>
                 </div>
                 <div className="mapStatsContainer">
