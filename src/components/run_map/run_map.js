@@ -184,7 +184,7 @@ class RunMap extends Component {
             <div className="mapBody">
                 <MapNav />
 
-                <div className="h-60 mapContainer">
+                <div className="h-60 d-inline-block mapContainer">
                     <div className="map">
                     <MyMapComponent
                         isMarkerShown
