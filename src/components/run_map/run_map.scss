@@ -45,33 +45,6 @@
     }
 }
 
-.postRunBody {
-    padding: 0;
-    margin: 0;
-    height: 90vh;
-    width: 100vw;
-
-    .postRunMap {
-        width: 100%;
-        height: 45%;
-    }
-
-    .postRunStats {
-        height: 15%;
-        background-color: green;
-        width: 100%;
-    }
-
-    .graphContainer {
-        height: 45%;
-
-        .graph {
-            height: 100%;
-            width: 100%;
-            background-color: rgb(246, 255, 117);
-        }
-    }
-}
 
 .currentRunStatsBody {
     height: 100vh;

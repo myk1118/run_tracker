@@ -40,8 +40,8 @@ render(){
           <tr>
             <th className="w-25">Mile</th>
             <th className="w-25">Time</th>
-            <th className="w-25">Heart Rate</th>
-            <th className="w-25">Calories Burned</th>
+            {/* <th className="w-25">Heart Rate</th>
+            <th className="w-25">Calories Burned</th> */}
           </tr>
         </thead>
         <tbody>

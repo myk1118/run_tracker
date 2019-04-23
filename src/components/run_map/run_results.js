@@ -65,57 +65,37 @@ class RunResult extends Component {
                     currentLocation = {this.state.currentLatLng}
                   />
             </div>
-            <div className="postRunStats">
-                <svg className="progress-ring col-5 offset-1">
-                    <circle className="progressCircle"
-                        stroke="blue"
-                        strokeWidth="4"
-                        fill="transparent"
-                        r="52"
-                        cx="60"
-                        cy="60"/>
-                        <text x="45%" y="25%" textAnchor="middle" stroke="rgb(8, 5, 198)" strokeWidth="1px" dy=".3em">Total Time</text>
-                </svg>
-                <svg className="progress-ring col-5 ">
-                    <circle className="progressCircle"
-                        stroke="red"
-                        strokeWidth="4"
-                        fill="transparent"
-                        r="52"
-                        cx="60"
-                        cy="60"/>
-                        <text x="45%" y="25%" textAnchor="middle" stroke="rgb(249, 28, 28)" strokeWidth="1px" dy=".3em">Total Distance</text>
-                </svg>
-                <svg className="progress-ring col-5 offset-1">
-                    <circle className="progressCircle"
-                        stroke="purple"
-                        strokeWidth="4"
-                        fill="transparent"
-                        r="52"
-                        cx="60"
-                        cy="60"/>
-                        <text x="45%" y="25%" textAnchor="middle" stroke="rgb(146, 28, 249)" strokeWidth="1px" dy=".3em">Avg Pace</text>
-                </svg>
-                <svg className="progress-ring col-5 ">
-                    <circle className="progressCircle"
-                        stroke="orange"
-                        strokeWidth="4"
-                        fill="transparent"
-                        r="52"
-                        cx="60"
-                        cy="60"/>
-                        <text x="45%" y="25%" textAnchor="middle" stroke="rgb(249, 124, 28)" strokeWidth="1px" dy=".3em">Calories Burned</text>
-                </svg>
-                {/* <div className="col-6">Total Time</div>
-                <div className="col-6">Avg Pace</div>
-                <div className="col-6">Total Calories Burned</div> */}
-            </div>
             <div className="graphContainer">
                 <div className="graph">
                   <ResultsChart  chartData={this.state.chartData}/>
                 </div>
             </div>
-
+            <div className="progressContainer">
+                <div class="row">
+                  <div class="offset-1 col-5 col-md-3 col-sm-6">
+                      <div class="progress blue">
+                      <span class="progress-left">
+                        <span class="progress-bar"></span>
+                      </span>
+                      <span class="progress-right">
+                        <span class="progress-bar"></span>
+                      </span>
+                      <div class="progress-value">Total Distance</div>
+                      </div>
+                      </div>
+                      <div class="col-5 col-md-3 col-sm-6">
+                      <div class="progress yellow">
+                      <span class="progress-left">
+                        <span class="progress-bar"></span>
+                      </span>
+                      <span class="progress-right">
+                        <span class="progress-bar"></span>
+                      </span>
+                    <div class="progress-value">Total Time</div>
+                    </div>
+                  </div>
+              </div>
+            </div>            
         </div>
     )
   }
