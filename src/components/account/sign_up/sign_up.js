@@ -3,7 +3,7 @@ import SignUpForm from './signup_form';
 
 
 class SignUp extends Component {
-    handleSignUp(values){
+    handleSignUp(values) {
         console.log('Form Values:', values);
     }
 
@@ -11,7 +11,7 @@ class SignUp extends Component {
         return (
             <div>
                 <h1 className="center">Sign Up</h1>
-                <SignUpForm signUp={this.handleSignUp}/>
+                <SignUpForm signUp={this.handleSignUp} />
             </div>
         );
     }
