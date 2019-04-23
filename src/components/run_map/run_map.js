@@ -8,6 +8,7 @@ import Distance from './distance';
 import {NavLink} from 'react-router-dom';
 import WatchBtns from './button.js';
 import './run_map.scss';
+import haversine from 'haversine';
 
 class RunMap extends Component {
     constructor(props) {
@@ -15,8 +16,8 @@ class RunMap extends Component {
 
     this.state = {
         currentLatLng: {
-        lat: 33,
-        lng: -117
+        lat: 33.6349179,
+        lng: -117.74050049999998
         },
         startPos: null,
         watchId: null,
@@ -29,9 +30,10 @@ class RunMap extends Component {
         pace: 100,
         calories: 100,
         watchId: null,
-        latitude: null,
-        longitude: null,
         distanceTraveled: 0,
+        latitude: 33.6349179,
+        longitude: -117.74050049999998,
+
     }
 
     this.start = this.start.bind(this);
@@ -42,32 +44,33 @@ class RunMap extends Component {
     this.distanceUpdate = this.distanceUpdate.bind(this);
     }
 
+    componentDidMount() {
+        this.getGeoLocation();
+    }
+
     postlatestMile(){
         const {distance} = this.state;
         if(distance && distance - Math.floor(distance) === 0){
             let{distance, mileage, time, runId} = this.state;
             axios.get(`/api/addpermile.php?run_id=${runId}&distance=${distance}&time=${time}&mileage=${mileage}`).then((resp) => {
-                console.log('this is response:', resp);
+                // console.log('this is response:', resp);
             })
         }
     }
 
-    componentDidMount() {
-        this.getGeoLocation();
-    }
-
+//get the current location
     getGeoLocation = () => {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          position => {
+        navigator.geolocation.getCurrentPosition( position => {
             console.log('geolocation coords: ',position.coords);
-            this.setState(prevState => ({
+            this.setState({
               currentLatLng: {
-                ...prevState.currentLatLng,
+                // ...prevState.currentLatLng,
+                // ...this.state.currentLatLng,
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
               }
-            }))
+            })
           }
         )
       } else {
@@ -75,67 +78,70 @@ class RunMap extends Component {
       }
     }
 
-    trackLocation = () => {
+//when you click the button, start tracking
+    startTracking = () => {
       console.log('distance tracked');
       const watchId = navigator.geolocation.watchPosition( position => {
-        console.log('track location position coordinates: ', position.coords)
-        this.monitorUserLocation(position);
+        console.log('position changed. position coordinates: ', position.coords)
+        this.monitorUserDistance(position);
       });
-      console.log(watchId);
       this.setState({
         watchId: watchId
       })
     }
-
+//when you click the stop button, stop tracking
     stopTracking = () => {
       console.log('tracking stopped');
       navigator.geolocation.clearWatch(this.watchId);
     }
 
 
-    startWatch = () => {
-        this.postlatestMile();
-        this.refs.child.start();
-    }
-
-    monitorUserLocation = (position) => {
-        const distanceTraveled =  this.calculateDistance(this.state.latitude, this.state.longitude,
+//track distance traveled.  Updates everytime movement is tracked.
+    monitorUserDistance = (position) => {
+        const {lat, lng} = this.state.currentLatLng
+        const distanceTraveled =  this.calcDistanceHaversine(lat, lng,
                                   position.coords.latitude, position.coords.longitude);
         console.log('Location is being monitored. distance traveled: ', distanceTraveled);
         let newDistance = this.state.distanceTraveled + distanceTraveled;
         this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          distanceTraveled: newDistance
+          // latitude: position.coords.latitude,
+          // longitude: position.coords.longitude,
+          distanceTraveled: newDistance,
+          currentLatLng: {
+            // ...prevState.currentLatLng,
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }
         })
 
     }
 
 
-    // monitorUserLocation = () => {
-    //   navigator.geolocation.watchPosition(position => {
-    //     console.log('latitude: ', position.coords.latitude);
-    //     console.log('longitude: ',position.coords.longitude);
-    //     const distanceTraveled =  this.calculateDistance(this.state.latitude, this.state.longitude,
-    //                               position.coords.latitude, position.coords.longitude);
-    //     console.log('distance traveled: ', distanceTraveled)
-    //   })
-    // }
+//convert distance to miles formula
+    calcDistanceHaversine(lat1, lon1, lat2, lon2) {
+      const start = {latitude: lat1, longitude: lon1};
+      const end = {latitude: lat2, longitude: lon2};
+      return haversine(start, end, {unit: 'mile'});
+    }
+
+    // calculateDistance(lat1, lon1, lat2, lon2) {
+    //   const R = 6371; // km
+    //   let dLat = (lat2 - lat1) * Math.PI / 180;
+    //   let dLon = (lon2 - lon1) * Math.PI / 180;
+    //   let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    //       Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    //       Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    //       let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    //       let d = R * c;
+    //     return d;
+    //   }
 
 
-    calculateDistance(lat1, lon1, lat2, lon2) {
-      const R = 6371; // km
-      let dLat = (lat2 - lat1) * Math.PI / 180;
-      let dLon = (lon2 - lon1) * Math.PI / 180;
-      let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-          Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-          Math.sin(dLon / 2) * Math.sin(dLon / 2);
-          let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-          let d = R * c;
-        return d;
-      }
 
-
+    startWatch = () => {
+        this.postlatestMile();
+        this.refs.child.start();
+    }
 
     start() {
         const { start, elapsed } = this.state;
@@ -191,11 +197,10 @@ class RunMap extends Component {
     postCurrentRun = (elapsed) => {
         const { distance, pace, calories } = this.state;
         axios.get(`/api/addrun.php?distance=${distance}&time=${elapsed}&pace=${pace}&calories=${calories}`).then((resp) => {
-            console.log('this is response:', resp);
+            // console.log('this is response:', resp);
         });
     }
     render() {
-      console.log('watch id: ', this.state.watchId)
         const { elapsed, distance, status} = this.state;
 
         return (
@@ -237,7 +242,7 @@ class RunMap extends Component {
                         <div className="statResult">1,600 cal</div>
                     </div>
                 </div>
-                    <button onClick={this.trackLocation}>Start Tracking. distance traveled: {this.state.distanceTraveled}</button>
+                    <button onClick={this.startTracking}>Start Tracking. distance traveled: {this.state.distanceTraveled}</button>
                     <button onClick={this.stopTracking}>Stop Tracking</button>
             </div>
         )
