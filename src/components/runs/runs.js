@@ -26,7 +26,7 @@ class Runs extends React.Component {
       return (
         <div key={item.id} className="col-6 col-md-6 col-sm-6 col-lg-6 text-center d-inline-block">
           <NavLink to="/runmap/results">
-            <button className="btn btn-dark btn-lg">
+            <button className="runsbutton btn btn-dark btn-lg">
               <div>{item.date}</div>
               <div className="run-time">{item.time}
                 <img className="run-img" src={runIcon} />
@@ -44,16 +44,16 @@ class Runs extends React.Component {
   render() {
     return (
       <React.Fragment>
-      <RunHeader />
-      <div className="runs">
-        <div className="col-6 col-md-6 col-sm-6 col-lg-6 text-center d-inline-block">
-          <NavLink to="/runmap">
-            <button className="btn btn-dark btn-lg">
-              <img className="plus-img" src={plus} />
-            </button>
-          </NavLink>
-        </div>
-        {this.state.date_buttons}
+        <RunHeader />
+        <div className="runs">
+          <div className="col-6 col-md-6 col-sm-6 col-lg-6 text-center d-inline-block">
+            <NavLink to="/runmap">
+              <button className="runsbutton btn btn-dark btn-lg">
+                <img className="plus-img" src={plus} />
+              </button>
+            </NavLink>
+          </div>
+          {this.state.date_buttons}
         </div>
       </React.Fragment>
     );

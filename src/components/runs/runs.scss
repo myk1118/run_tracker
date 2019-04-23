@@ -1,21 +1,21 @@
 .runs {
-
-  height:100vh;
+  height: 100vh;
   background-image: url('./images/background.jpg');
-  background-repeat: no-repeat;  
+  background-repeat: no-repeat;
   background-position: 0% 0%;
   background-size: 100% 100%;
 }
 
-button {
+.runsbutton {
   margin-top: 20px;
   opacity: 0.8;
   min-height: 20vh;
 }
 
-.plus-img, .run-img{
+.plus-img,
+.run-img {
   width: 50%;
-  opacity:1.0;
+  opacity: 1.0;
 }
 
 .run-time {

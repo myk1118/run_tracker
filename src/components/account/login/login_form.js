@@ -17,7 +17,7 @@ const LoginForm = props => {
                 // className="col s12 center"
                 className="buttonsContainer">
                 <button className="btn btn-info">Log In</button>
-                <button className="btn btn-info">Sign Up</button>
+                {/* <button className="btn btn-info">Sign Up</button> */}
             </div>
             {/* </div> */}
         </form>
