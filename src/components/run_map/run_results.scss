@@ -3,7 +3,7 @@
 
     .postRunMap{
         width:100%;
-        height:50%;      
+        height:40%;      
     }
     .graphContainer{
         width:90%;
@@ -22,17 +22,20 @@
 
 div.row{
     display:flex;
+
+}
+.pieContainer{
+    width:50%;
+    height:100%;
 }
 
 $borderWidth: 7px;
 $animationTime: 1.5s;
 $border-color-default: #eee;
-$border-color-fill: #ffb43e;
-$size: 150px;
+$border-color-fill: #50fda6;
+$size: 120px;
+$howManySteps: 10; 
 
-//Create how many steps
-$howManySteps: 10; //this needs to be even. 
-//for fun try using 20 and changine in the HTML the data-percentage to 15 or 85
 
 .progress {
   width: $size;
@@ -59,6 +62,7 @@ $howManySteps: 10; //this needs to be even.
     position: absolute;
     top: 0;
     z-index: 1;
+    text-align: center;
   }
   .progress-left {
     left: 0;
@@ -109,8 +113,8 @@ $howManySteps: 10; //this needs to be even.
       margin-top: 10px;
     }
     span {
-      font-size: 12px;
-      text-transform: uppercase;
+        font-size: .5rem;
+        text-transform: uppercase;
     }
   }
 }
