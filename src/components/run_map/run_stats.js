@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import MapNav from '../nav_folder/map_nav';
 import axios from 'axios';
 import '../total_stats/total_stats.scss';
@@ -12,10 +12,10 @@ class RunStats extends Component {
     this.getMileData();
   }
 
-  getMileData(){
-    axios.get('/api/getpermile.php').then(resp =>{
+  getMileData() {
+    axios.get('/api/getpermile.php').then(resp => {
       console.log('this is the resp:', resp);
-      const {mileTime} = resp.data;
+      const { mileTime } = resp.data;
       const mileStats = mileTime.map(item => {
         return (
           <tr key={item.id}>
@@ -23,12 +23,13 @@ class RunStats extends Component {
             <td>{item.time}</td>
           </tr>
         )
+      })
+      this.setState({
+        mileStats: [...mileStats]
+      })
     })
-    this.setState({
-      mileStats: [...mileStats]
-    })
-  })
-}
+  }
+
 
 render(){
     return(
@@ -54,4 +55,3 @@ render(){
 }
 
 export default RunStats;
-

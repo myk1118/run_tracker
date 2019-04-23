@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import RunHeader from '../nav_folder/run_nav';
 import axios from 'axios';
 import ResultsChart from './results_chart';
@@ -8,27 +8,27 @@ import './run_results.scss';
 import RunResults from './run_results';
 
 class RunResult extends Component {
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
 
-      this.state = {
-        chartData: {},
-        options: {},
-        currentLatLng: {
-            lat: 33,
-            lng: -117
-        },
-      }
+    this.state = {
+      chartData: {},
+      options: {},
+      currentLatLng: {
+        lat: 33,
+        lng: -117
+      },
     }
+  }
 
-    componentDidMount() {
-        this.getChartData();
-    }
+  componentDidMount() {
+    this.getChartData();
+  }
 
   async getChartData() {
 
-    const resp =  await axios.get('/api/get_runsession_results.php');
-    const {sessionData} = resp.data;
+    const resp = await axios.get('/api/get_runsession_results.php');
+    const { sessionData } = resp.data;
     // console.log(sessionData)
     const miles = sessionData.map(mile => mile.currentMile);
     const time = sessionData.map(minutes => minutes.time)
@@ -51,6 +51,7 @@ class RunResult extends Component {
   }
 
   render() {
+
     return(
     <div className="postRunBody">
       <RunHeader />
@@ -140,6 +141,7 @@ class RunResult extends Component {
         </div>
       </div>
     </div>
+
     )
   }
 }

@@ -1,54 +1,58 @@
 .total-stats {
-  height:100%;
+  height: 100%;
 
   .graph-container {
     height: 50%;
-      article{
-        height:100%;
-      }
+
+    article {
+      height: 100%;
+    }
   }
+
   .chart-container {
     height: 25%;
   }
 }
 
-.tableContainer{
-  height:100%;
+.tableContainer {
+  height: 100%;
 
-  table {  
+  table {
     color: rgb(51, 51, 51);
     font-family: Helvetica, Arial, sans-serif;
 
-    border-collapse: 
-    collapse; border-spacing: 0; 
-}
+    border-collapse:
+      collapse;
+    border-spacing: 0;
+  }
 
-td, th {  
-    border: 1px solid transparent; 
+  td,
+  th {
+    border: 1px solid transparent;
     transition: all 0.3s;
-    text-align: center;  
-}
+    text-align: center;
+  }
 
-th {  
-    background: #DFDFDF; 
+  th {
+    background: #DFDFDF;
     font-weight: bold;
-}
+  }
 
-td {  
+  td {
     background: #FAFAFA;
-}
+  }
 
-tr:nth-child(even) td { 
-  background: #F1F1F1; 
-}   
+  tr:nth-child(even) td {
+    background: #F1F1F1;
+  }
 
-tr:nth-child(odd) td { 
-  background: #FEFEFE; 
-}  
+  tr:nth-child(odd) td {
+    background: #FEFEFE;
+  }
 
-tbody tr:hover { 
-  color: rgb(255, 50, 50); 
-}  
+  tbody tr:hover {
+    color: rgb(255, 50, 50);
+  }
 }
 
 .table {

@@ -1,24 +1,32 @@
 .mapBody {
     margin: 0;
+    height: 100%;
 
     .mapContainer {
         background-color: #d1d1d1;
-        height: 54vh;
-        width: 100vw;
+        height: 60%;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: flex-end;
     }
 }
 
+.map {
+    height: 100%;
+    width: 100%;
+}
+
+.buttonsContainer {
+    position: absolute;
+}
+
 .mapStatsContainer {
-
-    // background-color: rgb(255, 106, 106);
-    height: 40vh;
-    width: 100vw;
-    position: flex;
+    height: 32%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
     margin: 0;
-
 
     .statContainer {
         height: 50%;
@@ -56,4 +64,3 @@
         text-align: center;
     }
 }
-
