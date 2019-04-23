@@ -1,21 +1,53 @@
 .runs {
-  height: 100vh;
+  height:100vh;
+
   background-image: url('./images/background.jpg');
   background-repeat: no-repeat;
   background-position: 0% 0%;
   background-size: 100% 100%;
 }
 
-.runsbutton {
-  margin-top: 20px;
-  opacity: 0.8;
-  min-height: 20vh;
+
+.imgContainer{
+  height: 20%;
+  margin-top: 5%;
+  button{
+    opacity: 0.8;
+    height: 100%;
+    width: 100%;
+  }
 }
 
-.plus-img,
-.run-img {
+
+
+
+.runImg{
+  background-image: url('./images/running-icon.png');
+  background-size: contain;
+
+}
+.plusImg{
+  background-image: url('./images/plus.png');
+  background-position: center; 
+  background-size: 50% 50%;
+}
+
+
+.runImg, .plusImg {
+  background-repeat: no-repeat;  
+
+}
+
+
+
+
+
+
+.plus-img, .run-img{
   width: 50%;
-  opacity: 1.0;
+  height:100%;
+  opacity:1.0;
+
 }
 
 .run-time {

@@ -50,8 +50,21 @@ class TotalStats extends React.Component {
           <div className="col-6  text-center">
             <PieChart options={this.state.options} chartData={this.state.chartData} />
           </div>
-          <div className="col-6  text-center">
-            <PieChart options={this.state.options} chartData={this.state.chartData} />
+          <div className="col-4">
+          <div className="col-sm-3 col-md-2">
+            <div className="eventProgress" data-percentage="90">
+              <span className="eventProgress-left">
+                <span className="eventProgress-bar"></span>
+              </span>
+              <span className="eventProgress-right">
+                <span className="eventProgress-bar"></span>
+              </span>
+            <div className="eventProgress-value">
+            Event Date
+              {/* <span>completed</span> */}
+            </div>
+            </div>
+            </div>
           </div>
         </div>
         <PersonalBests />

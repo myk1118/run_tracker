@@ -7,6 +7,7 @@ import SignUpForm from '../sign_up/signup_form';
 import Carousel from './carousel';
 import './login.scss';
 import { Redirect } from 'react-router-dom';
+import SignUp from '../sign_up';
 
 class LogIn extends Component {
   constructor(props) {
