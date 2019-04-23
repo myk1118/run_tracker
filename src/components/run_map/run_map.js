@@ -31,8 +31,8 @@ class RunMap extends Component {
         calories: 100,
         watchId: null,
         distanceTraveled: 0,
-        latitude: 33.6349179,
-        longitude: -117.74050049999998,
+        distanceDisplay: 0,
+
 
     }
 
@@ -46,6 +46,7 @@ class RunMap extends Component {
 
     componentDidMount() {
         this.getGeoLocation();
+        // this.startTracking();
     }
 
     postlatestMile(){
@@ -78,13 +79,24 @@ class RunMap extends Component {
       }
     }
 
+    geoLocationInterval = () => {
+      navigator.geolocation.getCurrentPosition(position => {
+         console.log('geolocation coords: ',position.coords);
+         this.monitorUserDistance(position);
+      })
+    }
+
 //when you click the button, start tracking
     startTracking = () => {
       console.log('distance tracked');
-      const watchId = navigator.geolocation.watchPosition( position => {
-        console.log('position changed. position coordinates: ', position.coords)
-        this.monitorUserDistance(position);
-      });
+      // const watchId = navigator.geolocation.watchPosition( position => {
+      //   console.log('position changed. position coordinates: ', position.coords)
+      //   this.monitorUserDistance(position);
+      // });
+      // this.setState({
+      //   watchId: watchId
+      // })
+      const watchId = setInterval(this.geoLocationInterval, 5000);
       this.setState({
         watchId: watchId
       })
@@ -92,7 +104,8 @@ class RunMap extends Component {
 //when you click the stop button, stop tracking
     stopTracking = () => {
       console.log('tracking stopped');
-      navigator.geolocation.clearWatch(this.watchId);
+      // navigator.geolocation.clearWatch(this.state.watchId);
+      clearInterval(this.state.watchId);
     }
 
 
@@ -101,14 +114,13 @@ class RunMap extends Component {
         const {lat, lng} = this.state.currentLatLng
         const distanceTraveled =  this.calcDistanceHaversine(lat, lng,
                                   position.coords.latitude, position.coords.longitude);
-        console.log('Location is being monitored. distance traveled: ', distanceTraveled);
+        console.log('Location is being monitored. distance changed: ', distanceTraveled);
         let newDistance = this.state.distanceTraveled + distanceTraveled;
+        console.log('location is being monitored. total distance traveled: ', newDistance);
+
         this.setState({
-          // latitude: position.coords.latitude,
-          // longitude: position.coords.longitude,
           distanceTraveled: newDistance,
           currentLatLng: {
-            // ...prevState.currentLatLng,
             lat: position.coords.latitude,
             lng: position.coords.longitude
           }
@@ -201,7 +213,7 @@ class RunMap extends Component {
         });
     }
     render() {
-        const { elapsed, distance, status} = this.state;
+        const { elapsed, status, distance, distanceTraveled} = this.state;
 
         return (
             <div className="mapBody">
@@ -231,7 +243,7 @@ class RunMap extends Component {
                     <div className="statContainer">
                         <div className="statTitle">Distance</div>
                         <Distance className="statResult" distance={distance} />
-                        <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button>
+                        {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
                     </div>
                     <div className="statContainer">
                         <div className="statTitle">Pace</div>
