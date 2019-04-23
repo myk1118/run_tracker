@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Chart from './chart';
 import RunHeader from '../nav_folder/run_nav';
 import './total_stats.scss';
@@ -21,7 +21,7 @@ class TotalStats extends React.Component {
 
   getChartData() {
     axios.get('/api/get_table_data.php').then(resp => {
-      const {tableItems} = resp.data;
+      const { tableItems } = resp.data;
       const dates = tableItems.reverse().map(item => item.date);
       const distances = tableItems.map(item => item.distance);
 
@@ -45,13 +45,13 @@ class TotalStats extends React.Component {
     return (
       <div className="total-stats">
         <RunHeader />
-        <Chart options={this.state.options} chartData={this.state.chartData}/>
+        <Chart options={this.state.options} chartData={this.state.chartData} />
         <div className="d-flex chart-container">
           <div className="col-6  text-center">
-              <PieChart options={this.state.options} chartData={this.state.chartData}/>
+            <PieChart options={this.state.options} chartData={this.state.chartData} />
           </div>
           <div className="col-6  text-center">
-              <PieChart options={this.state.options} chartData={this.state.chartData}/>
+            <PieChart options={this.state.options} chartData={this.state.chartData} />
           </div>
         </div>
         <PersonalBests />

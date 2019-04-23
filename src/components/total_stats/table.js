@@ -36,22 +36,22 @@ class Chart extends Component {
 
   render() {
     return (
-    <div className="tableContainer">
-      <RunHeader />
-      <div className="float-right text-primary pt-3 pb-3">Total | Month | Week</div>
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Distance (mi)</th>
-            <th scope="col">Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.stats}
-        </tbody>
-      </table>
-    </div>
+      <div className="tableContainer">
+        <RunHeader />
+        <div className="float-right text-primary pt-3 pb-3">Total | Month | Week</div>
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Distance (mi)</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.stats}
+          </tbody>
+        </table>
+      </div>
     )
   }
 }
