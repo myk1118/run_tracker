@@ -13,9 +13,16 @@
 }
 
 
-.nav-link {
+.nav-link,.map-Nav{
     font-size: .75rem;
+    text-align: center;
 }
+
+.mapNav{
+    height:100%;
+}
+
+
 .nav>li>a:hover,
 .nav>li>a:focus {
     background-color: transparent;
