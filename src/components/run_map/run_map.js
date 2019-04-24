@@ -45,9 +45,10 @@ class RunMap extends Component {
 
     postlatestMile() {
         const { distance } = this.state;
+        console.log('latest mile');
         if (distance && distance - Math.floor(distance) === 0) {
             let { distance, mileage, time, runId } = this.state;
-            axios.get(`/api/addpermile.php?run_id=${runId}&distance=${distance}&time=${time}&mileage=${mileage}`).then((resp) => {
+            axios.get(`/api/addpermile.php?run_id=1&distance=${distance}&time=${time}&mileage=${mileage}`).then((resp) => {
                 console.log('this is response:', resp);
             })
         }
@@ -95,7 +96,6 @@ class RunMap extends Component {
     }
 
     startWatch = () => {
-        this.postlatestMile();
         this.refs.child.start();
     }
 
@@ -196,6 +196,7 @@ class RunMap extends Component {
     distanceIncrement() {
         setTimeout(() => {
             this.distanceUpdate();
+            
         }, 1000);
     }
     distanceUpdate() {
@@ -203,6 +204,7 @@ class RunMap extends Component {
             distance: this.state.distance + 0.01
         })
         setTimeout(this.distanceUpdate, 1000);
+        this.postlatestMile();
     }
     postCurrentRun = (elapsed) => {
         const { distance, pace, calories } = this.state;

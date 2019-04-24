@@ -10,7 +10,7 @@ $mileStats = [
 
 $time = (int)$_GET['distance'];
 $mileage = (int)$_GET['mileage'];
-$run_id = (int)$_GET['distance']; //$_SESSION['run_id'];
+$run_id = (int)$_GET['run_id']; //$_SESSION['run_id'];
 
 $perMileQuery = "INSERT INTO `miles` SET `time` = $time, `mileage` = $mileage, `run_id` = $run_id";
 
