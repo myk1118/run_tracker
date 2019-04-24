@@ -25,7 +25,7 @@ class RunMap extends Component {
             status: 'stopped',
             start: null,
             elapsed: 0,
-            distance: 9.9,
+            distance: 0,
             mileCounter: 1,
             pace: 100,
             calories: 100,
@@ -34,7 +34,7 @@ class RunMap extends Component {
             previousTime: 0,
             distanceTraveled: 0,
             distanceDisplay: 0,
-            coordinateArray: [],
+            coordinateArray: []
 
         }
 
@@ -71,18 +71,14 @@ class RunMap extends Component {
 
     componentDidMount() {
         this.getGeoLocation();
+        this.getMileData();
     }
 
-    postlatestMile(){
-        const {distance} = this.state;
-        if(distance && distance - Math.floor(distance) === 0){
-            let{distance, mileage, time, runId} = this.state;
-            axios.get(`/api/addpermile.php?run_id=${runId}&distance=${distance}&time=${time}&mileage=${mileage}`).then((resp) => {
-                // console.log('this is response:', resp);
-        this.getMileData();
-        })
+
+    postRunResults(){
+
     }
-}
+
 
     getMileData() {
         axios.get('/api/getpermile.php').then(resp => {
@@ -111,7 +107,7 @@ class RunMap extends Component {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
               },
-              coordinateArray: [...this.state.coordinateArray, {
+              coordinateArray: [...this.state.coordinateArray, { 
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
               }]
@@ -127,7 +123,7 @@ class RunMap extends Component {
     startWatch = () => {
         this.refs.child.start();
     }
-    
+
     geoLocationInterval = () => {
       navigator.geolocation.getCurrentPosition(position => {
          console.log('geolocation coords: ',position.coords);
@@ -224,6 +220,7 @@ class RunMap extends Component {
         setTimeout(() => {
             this.update();
         }, 10);
+        this.distanceIncrement();
     }
     pause() {
         this.setState({
@@ -266,7 +263,6 @@ class RunMap extends Component {
     distanceIncrement() {
         setTimeout(() => {
             this.distanceUpdate();
-            
         }, 1000);
     }
     distanceUpdate() {
@@ -276,33 +272,24 @@ class RunMap extends Component {
         this.setState({
             distance: (parseFloat(distance) + 0.01).toFixed(2) 
         })
-        setTimeout(this.distanceUpdate, 1000);
+        setTimeout(this.distanceUpdate, 200);
         this.postlatestMile();
     }
     postCurrentRun = (elapsed) => {
         const { distance, pace, calories } = this.state;
-        axios.get(`/api/addrun.php?distance=${distance}&time=${elapsed}&pace=${pace}&calories=${calories}`).then((resp) => {
-            // console.log('this is response:', resp);
-        });
+        const data = {
+            distance: distance,
+            time: elapsed,
+            pace: pace,
+            calories: calories,
+            user_id: 1
+        }
+        axios.post(`/api/addrun.php`, data).then((resp) => {
+            console.log('run was successfully recorded!', resp)
+        })
     }
 
-    getMileData() {
-        axios.get('/api/getpermile.php').then(resp => {
-        //   console.log('this is the resp:', resp);
-          const { mileTime } = resp.data;
-          const mileStats = mileTime.map(item => {
-            return (
-              <tr key={item.id}>
-                <td>{item.mile}</td>
-                <td>{item.time}</td>
-              </tr>
-            )
-          })
-          this.setState({
-            mileStats: [...mileStats]
-          })
-        })
-      }
+
 
     renderPage=()=>{
         const { elapsed, distance, status, renderPage } = this.state;
@@ -377,7 +364,7 @@ class RunMap extends Component {
 
     render() {
       console.log('coordinates: ',this.state.coordinateArray)
-      const { elapsed, status, distance, distanceTraveled} = this.state;
+      const {distanceTraveled} = this.state;
         return (
             <div className="mapBody">
                 <MapNav clickMap = {this.clickMap} clickMiles={this.clickMiles} />

@@ -4,17 +4,22 @@
     require_once('mysqlconnect.php');
     set_exception_handler('handleError');
     
+    $json_input = file_get_contents("php://input");
+    $input = json_decode($json_input, true);
+
     $runOutput = [
         "success"=> false,
     ];
 
-    $distance = (int)$_GET['distance'];
-    $time = (int)$_GET['time'];
-    $pace = (int)$_GET['pace'];
-    $calories = (int)$_GET['calories'];
-    $user_id = (int)$_GET['user_id'];
+    $distance = (int)$input['distance'];
+    $time = (int)$input['time'];
+    $pace = (int)$input['pace'];
+    $calories = (int)$input['calories'];
+    $user_id = (int)$input['user_id'];
 
     $addRunQuery = "INSERT INTO `run_stats` SET `distance` = $distance, `time` = $time, `pace` = $pace, `date` = NOW(), `heart_rate` = 0, `calories` = $calories, `user_id` = $user_id";
+
+
     
     $runResult = mysqli_query($conn, $addRunQuery);
 
