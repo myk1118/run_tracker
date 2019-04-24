@@ -4,7 +4,7 @@ require_once('config.php');
 require_once('mysqlconnect.php');
 set_exception_handler('handleError');
 
-$user_id = 1;
+$userid = 1;
 
 $runstats_query = "SELECT
 s.`distance`, s.`time`, s.`pace`, s.`date`

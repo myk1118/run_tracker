@@ -8,7 +8,8 @@ $output = [
   'success'=> false
 ];
 
-$user_id = 1;
+
+$user_id = $_SESSION['user_data']['id'];
 
 $query = "SELECT `id`, `date`, `distance`, `time`, `pace` FROM `run_stats`
   WHERE `user_id` = $user_id

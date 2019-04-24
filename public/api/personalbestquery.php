@@ -8,7 +8,7 @@ $output = [
     'success' => false,
 ];
 
-$userid = 1;
+$userid = $_SESSION['user_data']['id'];
 
 $query = "SELECT
 MAX(s. `distance`), MIN((s.`pace`)/(s.`distance`)), MAX(s.`date`)
