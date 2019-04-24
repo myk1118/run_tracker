@@ -31,7 +31,7 @@ class RunMap extends Component {
             calories: 100,
             renderPage: 'map',
             mileState: [],
-            previousTime: 0
+            previousTime: 0,
             distanceTraveled: 0,
             distanceDisplay: 0,
             coordinateArray: [],
@@ -126,7 +126,8 @@ class RunMap extends Component {
     
     startWatch = () => {
         this.refs.child.start();
-
+    }
+    
     geoLocationInterval = () => {
       navigator.geolocation.getCurrentPosition(position => {
          console.log('geolocation coords: ',position.coords);
@@ -154,8 +155,7 @@ class RunMap extends Component {
 //track distance traveled.  Updates everytime movement is tracked.
     monitorUserDistance = (newLatitude, newLongitude) => {
         const {lat, lng} = this.state.currentLatLng
-        const distanceTraveled =  this.calcDistanceHaversine(lat, lng,
-                                  newLatitude, newLongitude);
+        const distanceTraveled =  this.calcDistanceHaversine(lat, lng, newLatitude, newLongitude);
         console.log('Location is being monitored. distance changed: ', distanceTraveled);
         let newDistance = this.state.distanceTraveled + distanceTraveled;
         console.log('location is being monitored. total distance traveled: ', newDistance);
@@ -181,6 +181,7 @@ class RunMap extends Component {
           })
         }
     }
+    
 
 
 
