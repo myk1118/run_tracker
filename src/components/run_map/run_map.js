@@ -66,8 +66,6 @@ class RunMap extends Component {
             console.log('geolocation coords: ',position.coords);
             this.setState({
               currentLatLng: {
-                // ...prevState.currentLatLng,
-                // ...this.state.currentLatLng,
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
               }
@@ -89,14 +87,7 @@ class RunMap extends Component {
 //when you click the button, start tracking
     startTracking = () => {
       console.log('distance tracked');
-      // const watchId = navigator.geolocation.watchPosition( position => {
-      //   console.log('position changed. position coordinates: ', position.coords)
-      //   this.monitorUserDistance(position);
-      // });
-      // this.setState({
-      //   watchId: watchId
-      // })
-      const watchId = setInterval(this.geoLocationInterval, 5000);
+      const watchId = setInterval(this.geoLocationInterval, 10000);
       this.setState({
         watchId: watchId
       })
@@ -242,7 +233,7 @@ class RunMap extends Component {
                     </div>
                     <div className="statContainer">
                         <div className="statTitle">Distance</div>
-                        <Distance className="statResult" distance={distance} />
+                        <Distance className="statResult" distance={parseFloat(this.state.distanceTraveled).toFixed(2)} />
                         {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
                     </div>
                     <div className="statContainer">
@@ -254,7 +245,7 @@ class RunMap extends Component {
                         <div className="statResult">1,600 cal</div>
                     </div>
                 </div>
-                    <button onClick={this.startTracking}>Start Tracking. distance traveled: {this.state.distanceTraveled}</button>
+                    <button onClick={this.startTracking}>Start Tracking. distance traveled: {parseFloat(this.state.distanceTraveled).toFixed(2)}</button>
                     <button onClick={this.stopTracking}>Stop Tracking</button>
             </div>
         )
