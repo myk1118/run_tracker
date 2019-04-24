@@ -19,17 +19,15 @@ class RunMap extends Component {
         lat: 33.6349179,
         lng: -117.74050049999998
         },
-        startPos: null,
+        coordinateArray: [],
         watchId: null,
         map: null,
-        prevCoords: null,
         status: 'stopped',
         start: null,
         elapsed: 0,
         distance: 0,
         pace: 100,
         calories: 100,
-        watchId: null,
         distanceTraveled: 0,
         distanceDisplay: 0,
         renderPage: 'map',
@@ -84,7 +82,11 @@ class RunMap extends Component {
               currentLatLng: {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
-              }
+              },
+              coordinateArray: [...this.state.coordinateArray, {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              }]
             })
           }
         )
@@ -124,16 +126,29 @@ class RunMap extends Component {
         console.log('Location is being monitored. distance changed: ', distanceTraveled);
         let newDistance = this.state.distanceTraveled + distanceTraveled;
         console.log('location is being monitored. total distance traveled: ', newDistance);
-
-        this.setState({
-          distanceTraveled: newDistance,
-          currentLatLng: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          }
-        })
+        if(distanceTraveled !== 0) {
+          this.setState({
+            coordinateArray: [...this.state.coordinateArray, {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            }],
+            distanceTraveled: newDistance,
+            currentLatLng: {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            }
+          })
+        } else {
+          this.setState({
+            distanceTraveled: newDistance,
+            currentLatLng: {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            }
+          })
+        }
     }
-    
+
 
 
 //convert distance to miles formula
@@ -250,7 +265,7 @@ class RunMap extends Component {
           })
         })
       }
-    
+
     renderPage=()=>{
         const { elapsed, distance, status, renderPage } = this.state;
         if(renderPage === 'map'){
@@ -266,6 +281,7 @@ class RunMap extends Component {
                         containerElement={<div style={{ height: `100%` }} />}
                         mapElement={<div style={{ height: `100%` }} />}
                         currentLocation={this.state.currentLatLng}
+                        coordinateArray = {this.state.coordinateArray}
                     />
                 </div>
                 <div className="buttonsContainer">
@@ -311,7 +327,7 @@ class RunMap extends Component {
                             </thead>
                             <tbody>
                             {this.state.mileStats}
-                            </tbody>    
+                            </tbody>
                         </table>
                 </Fragment>
             )
@@ -322,7 +338,7 @@ class RunMap extends Component {
 
 
     render() {
-const { elapsed, status, distance, distanceTraveled} = this.state;
+      const { elapsed, status, distance, distanceTraveled} = this.state;
         return (
             <div className="mapBody">
                 <MapNav clickMap = {this.clickMap} clickMiles={this.clickMiles} />
