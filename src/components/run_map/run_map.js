@@ -5,12 +5,9 @@ import Stopwatch from './stopwatch';
 import MyMapComponent from './map';
 import apiKey from '../googlemap';
 import Distance from './distance';
-import {NavLink} from 'react-router-dom';
 import WatchBtns from './button.js';
 import './run_map.scss';
 import '../total_stats/total_stats.scss';
-
-
 import haversine from 'haversine';
 
 class RunMap extends Component {
@@ -37,9 +34,7 @@ class RunMap extends Component {
         distanceDisplay: 0,
         renderPage: 'map',
             mileState: []
-
-    }
-
+        }
     this.start = this.start.bind(this);
     this.pause = this.pause.bind(this)
     this.update = this.update.bind(this);
@@ -58,9 +53,10 @@ class RunMap extends Component {
             let{distance, mileage, time, runId} = this.state;
             axios.get(`/api/addpermile.php?run_id=${runId}&distance=${distance}&time=${time}&mileage=${mileage}`).then((resp) => {
                 // console.log('this is response:', resp);
-
         this.getMileData();
+        })
     }
+}
 
     getMileData() {
         axios.get('/api/getpermile.php').then(resp => {
@@ -72,12 +68,12 @@ class RunMap extends Component {
                 <td>{item.time}</td>
               </tr>
             )
-          })
+          });
           this.setState({
             mileStats: [...mileStats]
           })
         })
-      }
+    }
 
 //get the current location
     getGeoLocation = () => {
@@ -136,8 +132,8 @@ class RunMap extends Component {
             lng: position.coords.longitude
           }
         })
-
     }
+    
 
 
 //convert distance to miles formula
@@ -204,7 +200,7 @@ class RunMap extends Component {
         })
     }
 
-    clickMiles(){
+    clickMiles=()=>{
         console.log('WORK DAMM IT')
         this.setState({
             renderPage: 'Miles'
@@ -330,7 +326,7 @@ const { elapsed, status, distance, distanceTraveled} = this.state;
         return (
             <div className="mapBody">
                 <MapNav clickMap = {this.clickMap} clickMiles={this.clickMiles} />
-                    <button onClick={this.startTracking}>Start Tracking. distance traveled: {parseFloat(this.state.distanceTraveled).toFixed(2)}</button>
+                    <button onClick={this.startTracking}>Start Tracking. distance traveled: {parseFloat(distanceTraveled).toFixed(2)}</button>
                     <button onClick={this.stopTracking}>Stop Tracking</button>
                 {this.renderPage()}
             </div>
