@@ -11,7 +11,7 @@ $output = [
     'success' => false,
 ];
 
-$run_stats_id = 3;
+$run_stats_id = 1;
 
 $query = "SELECT `time`, `mileage`, `id` FROM `miles` 
 WHERE `run_id` = $run_stats_id";
