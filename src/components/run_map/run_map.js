@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import MapNav from '../nav_folder/map_nav';
 import Stopwatch from './stopwatch';
@@ -8,6 +8,9 @@ import Distance from './distance';
 import {NavLink} from 'react-router-dom';
 import WatchBtns from './button.js';
 import './run_map.scss';
+import '../total_stats/total_stats.scss';
+
+
 import haversine from 'haversine';
 
 class RunMap extends Component {
@@ -32,7 +35,8 @@ class RunMap extends Component {
         watchId: null,
         distanceTraveled: 0,
         distanceDisplay: 0,
-
+        renderPage: 'map',
+            mileState: []
 
     }
 
@@ -46,7 +50,6 @@ class RunMap extends Component {
 
     componentDidMount() {
         this.getGeoLocation();
-        // this.startTracking();
     }
 
     postlatestMile(){
@@ -55,9 +58,26 @@ class RunMap extends Component {
             let{distance, mileage, time, runId} = this.state;
             axios.get(`/api/addpermile.php?run_id=${runId}&distance=${distance}&time=${time}&mileage=${mileage}`).then((resp) => {
                 // console.log('this is response:', resp);
-            })
-        }
+
+        this.getMileData();
     }
+
+    getMileData() {
+        axios.get('/api/getpermile.php').then(resp => {
+          const { mileTime } = resp.data;
+          const mileStats = mileTime.map(item => {
+            return (
+              <tr key={item.id}>
+                <td>{item.mile}</td>
+                <td>{item.time}</td>
+              </tr>
+            )
+          })
+          this.setState({
+            mileStats: [...mileStats]
+          })
+        })
+      }
 
 //get the current location
     getGeoLocation = () => {
@@ -177,6 +197,19 @@ class RunMap extends Component {
         }
 
     }
+
+    clickMap=()=>{
+        this.setState ({
+            renderPage: 'map'
+        })
+    }
+
+    clickMiles(){
+        console.log('WORK DAMM IT')
+        this.setState({
+            renderPage: 'Miles'
+        })
+    }
     update() {
         const { status, start } = this.state;
         if (status === 'running') {
@@ -203,50 +236,103 @@ class RunMap extends Component {
             // console.log('this is response:', resp);
         });
     }
-    render() {
-        const { elapsed, status, distance, distanceTraveled} = this.state;
 
-        return (
-            <div className="mapBody">
-                <MapNav />
-
-                <div className="h-60 d-inline-block mapContainer">
-                    <div className="map">
+    getMileData() {
+        axios.get('/api/getpermile.php').then(resp => {
+          console.log('this is the resp:', resp);
+          const { mileTime } = resp.data;
+          const mileStats = mileTime.map(item => {
+            return (
+              <tr key={item.id}>
+                <td>{item.mile}</td>
+                <td>{item.time}</td>
+              </tr>
+            )
+          })
+          this.setState({
+            mileStats: [...mileStats]
+          })
+        })
+      }
+    
+    renderPage=()=>{
+        const { elapsed, distance, status, renderPage } = this.state;
+        if(renderPage === 'map'){
+            return(
+                <Fragment>
+                <div className="h-60 mapContainer">
+                <div className="map">
                     <MyMapComponent
                         isMarkerShown
                         // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
                         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
                         loadingElement={<div style={{ height: `100%` }} />}
-                        containerElement={<div style={{ height: `400px` }} />}
+                        containerElement={<div style={{ height: `100%` }} />}
                         mapElement={<div style={{ height: `100%` }} />}
-                        currentLocation = {this.state.currentLatLng}
+                        currentLocation={this.state.currentLatLng}
                     />
-                    </div>
-                        <div className="buttonsContainer">
-                        <WatchBtns status ={status} start={this.start} pause = {this.pause} reset = {this.reset}/>
-                        </div>
                 </div>
-                <div className="mapStatsContainer">
-                    <div className="statContainer">
-                        <div className="statTitle">Time</div>
-                        <Stopwatch className="statResult" elapsed={elapsed} />
-                    </div>
-                    <div className="statContainer">
-                        <div className="statTitle">Distance</div>
-                        <Distance className="statResult" distance={parseFloat(this.state.distanceTraveled).toFixed(2)} />
-                        {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
-                    </div>
-                    <div className="statContainer">
-                        <div className="statTitle">Pace</div>
-                        <div className="statResult">11:44</div>
-                    </div>
-                    <div className="statContainer">
-                        <div className="statTitle">Calories Burned</div>
-                        <div className="statResult">1,600 cal</div>
-                    </div>
+                <div className="buttonsContainer">
+                    <WatchBtns status={status}
+                        start={this.start}
+                        pause={this.pause}
+                        reset={this.reset} />
                 </div>
+            </div>
+            <div className="mapStatsContainer">
+                <div className="statContainer">
+                    <div className="statTitle">Time</div>
+                    <Stopwatch className="statResult" elapsed={elapsed} />
+                </div>
+                <div className="statContainer">
+                    <div className="statTitle">Distance</div>
+                    <Distance className="statResult" distance={distance} />
+                    {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
+                </div>
+                <div className="statContainer">
+                    <div className="statTitle">Pace</div>
+                    <div className="statResult">11:44</div>
+                </div>
+                <div className="statContainer">
+                    <div className="statTitle">Calories Burned</div>
+                    <div className="statResult">1,600 cal</div>
+                </div>
+            </div>
+            </Fragment>
+            )
+        } else{
+            return (
+                <Fragment>
+                    <div className="float-right text-primary pt-3 pb-3">Total | Month | Week </div>
+                        <table className="table table-hover">
+                            <thead>
+                            <tr>
+                                <th className="w-25">Mile</th>
+                                <th className="w-25">Time</th>
+                                {/* <th className="w-25">Heart Rate</th>
+                                <th className="w-25">Calories Burned</th> */}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {this.state.mileStats}
+                            </tbody>    
+                        </table>
+                </Fragment>
+            )
+
+        }
+    }
+
+
+
+    render() {
+const { elapsed, status, distance, distanceTraveled} = this.state;
+        return (
+            <div className="mapBody">
+                <MapNav clickMap = {this.clickMap} clickMiles={this.clickMiles} />
                     <button onClick={this.startTracking}>Start Tracking. distance traveled: {parseFloat(this.state.distanceTraveled).toFixed(2)}</button>
                     <button onClick={this.stopTracking}>Stop Tracking</button>
+                {this.renderPage()}
             </div>
         )
     }
