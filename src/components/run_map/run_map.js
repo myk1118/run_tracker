@@ -123,11 +123,11 @@ class RunMap extends Component {
       }
     }
 
-    
+
     startWatch = () => {
         this.refs.child.start();
     }
-    
+
     geoLocationInterval = () => {
       navigator.geolocation.getCurrentPosition(position => {
          console.log('geolocation coords: ',position.coords);
@@ -139,11 +139,18 @@ class RunMap extends Component {
 //when you click the button, start tracking
     startTracking = () => {
       console.log('distance tracked');
-      const watchId = setInterval(this.geoLocationInterval, 3000);
+      const watchId = setInterval(this.geoLocationInterval, 5000);
       this.setState({
         watchId: watchId
       })
     }
+
+    // startTracking = () => {
+    //   console.log('distance tracked');
+    //   const watchId = navigator.geolocation.watchPosition(position => {
+    //     console.log('geolocation coords: ', position.coords);
+    //   })
+    // }
 //when you click the stop button, stop tracking
     stopTracking = () => {
       console.log('tracking stopped');
@@ -181,7 +188,7 @@ class RunMap extends Component {
           })
         }
     }
-    
+
 
 
 
@@ -266,15 +273,15 @@ class RunMap extends Component {
     distanceIncrement() {
         setTimeout(() => {
             this.distanceUpdate();
-            
+
         }, 1000);
     }
     distanceUpdate() {
         // debugger;
         let {distance} = this.state;
-        // distance = 
+        // distance =
         this.setState({
-            distance: (parseFloat(distance) + 0.01).toFixed(2) 
+            distance: (parseFloat(distance) + 0.01).toFixed(2)
         })
         setTimeout(this.distanceUpdate, 1000);
         this.postlatestMile();
