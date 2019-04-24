@@ -19,7 +19,7 @@ class FormatTime extends Component {
             hour: Math.floor(min / 60),
             min: Math.floor(min % 60),
             sec: Math.floor(sec % 60),
-            ms: Math.floor(elapsed % 100)
+            // ms: Math.floor(elapsed % 100)
         }
     }
     leadingZero(number) {
@@ -29,10 +29,9 @@ class FormatTime extends Component {
         return number < 10 ? `0${number}` : number;
     }
     render() {
-        const { timerStyle, leadingZero, trailingZero } = this;
-        const { hour, min, sec, ms } = this.millisecondsToTime();
+        const { hour, min, sec} = this.millisecondsToTime();
         return (
-            <div style={this.timerStyle}>{this.leadingZero(hour)}:{this.leadingZero(min)}:{this.leadingZero(sec)}.{this.trailingZero(ms)}</div>
+            <div style={this.timerStyle}>{this.leadingZero(hour)}:{this.leadingZero(min)}:{this.leadingZero(sec)}</div>
         )
     }
 }
