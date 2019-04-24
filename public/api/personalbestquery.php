@@ -8,7 +8,6 @@ $output = [
     'success' => false,
 ];
 
-$userid = 5;
 $userid = $_SESSION['user_data']['id'];
 
 $query = "SELECT
