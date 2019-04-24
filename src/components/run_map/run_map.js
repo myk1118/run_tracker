@@ -13,34 +13,58 @@ import haversine from 'haversine';
 class RunMap extends Component {
     constructor(props) {
     super(props);
-
-    this.state = {
-        currentLatLng: {
-        lat: 33.6349179,
-        lng: -117.74050049999998
-        },
-        startPos: null,
-        watchId: null,
-        map: null,
-        prevCoords: null,
-        status: 'stopped',
-        start: null,
-        elapsed: 0,
-        distance: 0,
-        pace: 100,
-        calories: 100,
-        watchId: null,
-        distanceTraveled: 0,
-        distanceDisplay: 0,
-        renderPage: 'map',
-            mileState: []
+        this.state = {
+            currentLatLng: {
+                lat: 33,
+                lng: -117
+            },
+            startPos: null,
+            watchId: null,
+            map: null,
+            prevCoords: null,
+            status: 'stopped',
+            start: null,
+            elapsed: 0,
+            distance: 9.9,
+            mileCounter: 1,
+            pace: 100,
+            calories: 100,
+            renderPage: 'map',
+            mileState: [],
+            previousTime: 0
         }
-    this.start = this.start.bind(this);
-    this.pause = this.pause.bind(this)
-    this.update = this.update.bind(this);
-    this.reset = this.reset.bind(this);
-    this.distanceIncrement = this.distanceIncrement.bind(this);
-    this.distanceUpdate = this.distanceUpdate.bind(this);
+
+        this.start = this.start.bind(this);
+        this.pause = this.pause.bind(this)
+        this.update = this.update.bind(this);
+        this.reset = this.reset.bind(this);
+        this.distanceIncrement = this.distanceIncrement.bind(this);
+        this.distanceUpdate = this.distanceUpdate.bind(this);
+        this.clickMiles = this.clickMiles.bind(this);
+    }
+
+    postlatestMile() {
+        const { distance } = this.state;
+        console.log(distance);
+        if (distance && distance - Math.floor(distance) === 0) {
+            let {previousTime, elapsed, mileCounter} = this.state;
+
+        const data = {
+            run_id: 1,
+            time: elapsed - previousTime,
+            mileage: mileCounter
+        }
+        console.log('time', elapsed, 'previousTime', previousTime, 'mileCounter', mileCounter)
+            axios.post(`/api/addpermile.php`, data).then(() => {
+                console.log('post', data);
+                mileCounter = mileCounter + 1;
+                this.setState({
+                    mileCounter,
+                    previousTime: elapsed
+                })
+            })
+        }
+
     }
 
     componentDidMount() {
@@ -93,11 +117,16 @@ class RunMap extends Component {
       }
     }
 
+    
+    startWatch = () => {
+        this.refs.child.start();
+
     geoLocationInterval = () => {
       navigator.geolocation.getCurrentPosition(position => {
          console.log('geolocation coords: ',position.coords);
          this.monitorUserDistance(position);
       })
+
     }
 
 //when you click the button, start tracking
@@ -200,8 +229,7 @@ class RunMap extends Component {
         })
     }
 
-    clickMiles=()=>{
-        console.log('WORK DAMM IT')
+    clickMiles(){
         this.setState({
             renderPage: 'Miles'
         })
@@ -218,13 +246,18 @@ class RunMap extends Component {
     distanceIncrement() {
         setTimeout(() => {
             this.distanceUpdate();
+            
         }, 1000);
     }
     distanceUpdate() {
+        // debugger;
+        let {distance} = this.state;
+        // distance = 
         this.setState({
-            distance: this.state.distance + 0.01
+            distance: (parseFloat(distance) + 0.01).toFixed(2) 
         })
         setTimeout(this.distanceUpdate, 1000);
+        this.postlatestMile();
     }
     postCurrentRun = (elapsed) => {
         const { distance, pace, calories } = this.state;
@@ -235,7 +268,7 @@ class RunMap extends Component {
 
     getMileData() {
         axios.get('/api/getpermile.php').then(resp => {
-          console.log('this is the resp:', resp);
+        //   console.log('this is the resp:', resp);
           const { mileTime } = resp.data;
           const mileStats = mileTime.map(item => {
             return (
