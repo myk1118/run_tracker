@@ -27,11 +27,13 @@ class RunMap extends Component {
             status: 'stopped',
             start: null,
             elapsed: 0,
-            distance: 0,
+            distance: 9.9,
+            mileCounter: 1,
             pace: 100,
             calories: 100,
             renderPage: 'map',
-            mileState: []
+            mileState: [],
+            previousTime: 0
         }
 
         this.start = this.start.bind(this);
@@ -45,11 +47,23 @@ class RunMap extends Component {
 
     postlatestMile() {
         const { distance } = this.state;
-        console.log('latest mile');
+        console.log(distance);
         if (distance && distance - Math.floor(distance) === 0) {
-            let { distance, mileage, time, runId } = this.state;
-            axios.get(`/api/addpermile.php?run_id=1&distance=${distance}&time=${time}&mileage=${mileage}`).then((resp) => {
-                console.log('this is response:', resp);
+            let {previousTime, elapsed, mileCounter} = this.state;
+
+        const data = {
+            run_id: 1,
+            time: elapsed - previousTime,
+            mileage: mileCounter
+        }
+        console.log('time', elapsed, 'previousTime', previousTime, 'mileCounter', mileCounter)
+            axios.post(`/api/addpermile.php`, data).then(() => {
+                console.log('post', data);
+                mileCounter = mileCounter + 1;
+                this.setState({
+                    mileCounter,
+                    previousTime: elapsed
+                })
             })
         }
     }
@@ -179,7 +193,6 @@ class RunMap extends Component {
     }
 
     clickMiles(){
-        console.log('WORK DAMM IT')
         this.setState({
             renderPage: 'Miles'
         })
@@ -200,8 +213,11 @@ class RunMap extends Component {
         }, 1000);
     }
     distanceUpdate() {
+        // debugger;
+        let {distance} = this.state;
+        // distance = 
         this.setState({
-            distance: this.state.distance + 0.01
+            distance: (parseFloat(distance) + 0.01).toFixed(2) 
         })
         setTimeout(this.distanceUpdate, 1000);
         this.postlatestMile();
@@ -215,7 +231,7 @@ class RunMap extends Component {
 
     getMileData() {
         axios.get('/api/getpermile.php').then(resp => {
-          console.log('this is the resp:', resp);
+        //   console.log('this is the resp:', resp);
           const { mileTime } = resp.data;
           const mileStats = mileTime.map(item => {
             return (
