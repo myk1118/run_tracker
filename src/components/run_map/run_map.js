@@ -15,8 +15,8 @@ class RunMap extends Component {
     super(props);
         this.state = {
             currentLatLng: {
-                lat: 33,
-                lng: -117
+            lat: 33.6349179,
+            lng: -117.74050049999998
             },
             startPos: null,
             watchId: null,
@@ -32,6 +32,10 @@ class RunMap extends Component {
             renderPage: 'map',
             mileState: [],
             previousTime: 0
+            distanceTraveled: 0,
+            distanceDisplay: 0,
+            coordinateArray: [],
+
         }
 
         this.start = this.start.bind(this);
@@ -48,13 +52,11 @@ class RunMap extends Component {
         console.log(distance);
         if (distance && distance - Math.floor(distance) === 0) {
             let {previousTime, elapsed, mileCounter} = this.state;
-
         const data = {
             run_id: 1,
             time: elapsed - previousTime,
             mileage: mileCounter
         }
-        console.log('time', elapsed, 'previousTime', previousTime, 'mileCounter', mileCounter)
             axios.post(`/api/addpermile.php`, data).then(() => {
                 console.log('post', data);
                 mileCounter = mileCounter + 1;
@@ -108,7 +110,11 @@ class RunMap extends Component {
               currentLatLng: {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
-              }
+              },
+              coordinateArray: [...this.state.coordinateArray, {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              }]
             })
           }
         )
@@ -124,7 +130,7 @@ class RunMap extends Component {
     geoLocationInterval = () => {
       navigator.geolocation.getCurrentPosition(position => {
          console.log('geolocation coords: ',position.coords);
-         this.monitorUserDistance(position);
+         this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
       })
 
     }
@@ -132,7 +138,7 @@ class RunMap extends Component {
 //when you click the button, start tracking
     startTracking = () => {
       console.log('distance tracked');
-      const watchId = setInterval(this.geoLocationInterval, 10000);
+      const watchId = setInterval(this.geoLocationInterval, 3000);
       this.setState({
         watchId: watchId
       })
@@ -146,23 +152,36 @@ class RunMap extends Component {
 
 
 //track distance traveled.  Updates everytime movement is tracked.
-    monitorUserDistance = (position) => {
+    monitorUserDistance = (newLatitude, newLongitude) => {
         const {lat, lng} = this.state.currentLatLng
         const distanceTraveled =  this.calcDistanceHaversine(lat, lng,
-                                  position.coords.latitude, position.coords.longitude);
+                                  newLatitude, newLongitude);
         console.log('Location is being monitored. distance changed: ', distanceTraveled);
         let newDistance = this.state.distanceTraveled + distanceTraveled;
         console.log('location is being monitored. total distance traveled: ', newDistance);
-
-        this.setState({
-          distanceTraveled: newDistance,
-          currentLatLng: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          }
-        })
+        if(distanceTraveled !== 0) {
+          this.setState({
+            coordinateArray: [...this.state.coordinateArray, {
+              lat: newLatitude,
+              lng: newLongitude
+            }],
+            distanceTraveled: newDistance,
+            currentLatLng: {
+              lat: newLatitude,
+              lng: newLongitude
+            }
+          })
+        } else {
+          this.setState({
+            distanceTraveled: newDistance,
+            currentLatLng: {
+              lat: newLatitude,
+              lng: newLongitude
+            }
+          })
+        }
     }
-    
+
 
 
 //convert distance to miles formula
@@ -283,7 +302,7 @@ class RunMap extends Component {
           })
         })
       }
-    
+
     renderPage=()=>{
         const { elapsed, distance, status, renderPage } = this.state;
         if(renderPage === 'map'){
@@ -299,6 +318,7 @@ class RunMap extends Component {
                         containerElement={<div style={{ height: `100%` }} />}
                         mapElement={<div style={{ height: `100%` }} />}
                         currentLocation={this.state.currentLatLng}
+                        coordinateArray = {this.state.coordinateArray}
                     />
                 </div>
                 <div className="buttonsContainer">
@@ -344,7 +364,7 @@ class RunMap extends Component {
                             </thead>
                             <tbody>
                             {this.state.mileStats}
-                            </tbody>    
+                            </tbody>
                         </table>
                 </Fragment>
             )
@@ -355,7 +375,8 @@ class RunMap extends Component {
 
 
     render() {
-const { elapsed, status, distance, distanceTraveled} = this.state;
+      console.log('coordinates: ',this.state.coordinateArray)
+      const { elapsed, status, distance, distanceTraveled} = this.state;
         return (
             <div className="mapBody">
                 <MapNav clickMap = {this.clickMap} clickMiles={this.clickMiles} />
