@@ -98,14 +98,14 @@ class RunMap extends Component {
     geoLocationInterval = () => {
       navigator.geolocation.getCurrentPosition(position => {
          console.log('geolocation coords: ',position.coords);
-         this.monitorUserDistance(position);
+         this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
       })
     }
 
 //when you click the button, start tracking
     startTracking = () => {
       console.log('distance tracked');
-      const watchId = setInterval(this.geoLocationInterval, 10000);
+      const watchId = setInterval(this.geoLocationInterval, 3000);
       this.setState({
         watchId: watchId
       })
@@ -119,31 +119,31 @@ class RunMap extends Component {
 
 
 //track distance traveled.  Updates everytime movement is tracked.
-    monitorUserDistance = (position) => {
+    monitorUserDistance = (newLatitude, newLongitude) => {
         const {lat, lng} = this.state.currentLatLng
         const distanceTraveled =  this.calcDistanceHaversine(lat, lng,
-                                  position.coords.latitude, position.coords.longitude);
+                                  newLatitude, newLongitude);
         console.log('Location is being monitored. distance changed: ', distanceTraveled);
         let newDistance = this.state.distanceTraveled + distanceTraveled;
         console.log('location is being monitored. total distance traveled: ', newDistance);
         if(distanceTraveled !== 0) {
           this.setState({
             coordinateArray: [...this.state.coordinateArray, {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
+              lat: newLatitude,
+              lng: newLongitude
             }],
             distanceTraveled: newDistance,
             currentLatLng: {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
+              lat: newLatitude,
+              lng: newLongitude
             }
           })
         } else {
           this.setState({
             distanceTraveled: newDistance,
             currentLatLng: {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
+              lat: newLatitude,
+              lng: newLongitude
             }
           })
         }
@@ -338,6 +338,7 @@ class RunMap extends Component {
 
 
     render() {
+      console.log('coordinates: ',this.state.coordinateArray)
       const { elapsed, status, distance, distanceTraveled} = this.state;
         return (
             <div className="mapBody">

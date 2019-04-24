@@ -5,7 +5,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) => {
   const { lat, lng } = props.currentLocation
   return (
     <GoogleMap
-      defaultZoom={20}
+      defaultZoom={18}
       center={{ lat: lat, lng: lng }}
     >
       {props.isMarkerShown && <Marker animation={google.maps.Animation.DROP} position={{ lat: lat, lng: lng }} />}
@@ -17,6 +17,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) => {
           // {lat: 33.467, lng: -117.727}]
         }
         strokeColor="#FF0000"
+        strokeOpacity="0.8"
       />
     </GoogleMap>
   )
