@@ -4,13 +4,17 @@ require_once('config.php');
 require_once('mysqlconnect.php');
 set_exception_handler('handleError');
 
+
+$json_input = file_get_contents("php://input");
+$input = json_decode($json_input, true);
+
 $mileStats = [
     "success"=> false,
 ];
 
-$time = (int)$_GET['distance'];
-$mileage = (int)$_GET['mileage'];
-$run_id = (int)$_GET['distance']; //$_SESSION['run_id'];
+$time = (int)$input['time'];
+$mileage = (int)$input['mileage'];
+$run_id = (int)$input['run_id']; //$_SESSION['run_id'];
 
 $perMileQuery = "INSERT INTO `miles` SET `time` = $time, `mileage` = $mileage, `run_id` = $run_id";
 
