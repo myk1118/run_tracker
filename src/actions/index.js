@@ -14,3 +14,11 @@ export function logOut(){
         type: types.LOG_OUT
     }
 }
+
+export function signUp(user){
+    return{
+        type: types.SIGN_UP,
+        email: user.email
+    }
+}
+

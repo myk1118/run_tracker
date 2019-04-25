@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import SignUpForm from './signup_form';
-import axios from 'axios';
+// import React, { Component } from 'react';
+// import SignUpForm from './signup_form';
 
 
-class SignUp extends Component {
-    handleSignUp(values) {
-        console.log('Form Values:', values);
-    }
+// class SignUp extends Component {
+//     handleSignUp(values) {
+//         console.log('Form Values:', values);
+//     }
 
-    render() {
-        return (
-            <div>
-                <h1 className="center">Sign Up</h1>
-                <SignUpForm signUp={this.handleSignUp} />
-            </div>
-        );
-    }
-}
+//     render() {
+//         return (
+//             <div>
+//                 <h1 className="center">Sign Up</h1>
+//                 <SignUpForm signUp={this.handleSignUp} />
+//             </div>
+//         );
+//     }
+// }
 
-export default SignUp;
+// export default SignUp;
