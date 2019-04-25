@@ -41,6 +41,7 @@ class LogIn extends Component {
   }
 
   handleSignUp = (values) => {
+    debugger;
     this.props.signUp(values);
     axios.post('/api/signup.php', values).then(resp => {
       console.log('response: ', resp);
@@ -97,7 +98,7 @@ class LogIn extends Component {
     else {
       return (
         <div className="loginPage">
-          <div className="loginPageLogo">RunBuddyRun</div>
+          <div className="loginPageLogo">RunBuddy</div>
           <div className="carouselContainer">
             <Carousel />
           </div>

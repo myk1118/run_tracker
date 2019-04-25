@@ -9,7 +9,10 @@ class RunHeader extends Component {
   render() {
     return (
       <div className="headerContainer">
-        <div className="mapHeaderContainer">RunBuddyRun
+        <div className="mapHeaderContainer">
+          <div className="navLogo">RunBuddy</div>
+          <NavLink className="nav-link-aboutus" to="/aboutus">About Us</NavLink>
+          <NavLink className="nav-link-logout" to="/login">Log Out</NavLink>
         </div>
         <nav className="navbar navbar-expand navbar-custom navbar-center py-0 ">
           <div className="container-fluid ">

@@ -1,53 +1,53 @@
 .runs {
-  height:100vh;
-
-  background-image: url('./images/background.jpg');
-  background-repeat: no-repeat;
-  background-position: 0% 0%;
-  background-size: 100% 100%;
+  height: 90%;
 }
 
+.backgroundImage {
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  opacity: 0.75;
+}
 
-.imgContainer{
-  height: 20%;
-  margin-top: 5%;
-  button{
+.runButtonsContainer {
+  top: 10%;
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.imgContainer {
+  height: 22.5vh;
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .bigSquareButton {
     opacity: 0.8;
-    height: 100%;
-    width: 100%;
+    height: 18vh;
+    width: 18vh;
   }
 }
 
-
-
-
-.runImg{
+.runImg {
   background-image: url('./images/running-icon.png');
   background-size: contain;
-
 }
-.plusImg{
+
+.plusImg {
   background-image: url('./images/plus.png');
-  background-position: center; 
+  background-position: center;
   background-size: 50% 50%;
 }
 
-
-.runImg, .plusImg {
-  background-repeat: no-repeat;  
-
-}
-
-
-
-
-
-
-.plus-img, .run-img{
+.runImg,
+.plusImg {
+  background-repeat: no-repeat;
   width: 50%;
-  height:100%;
-  opacity:1.0;
-
+  height: 100%;
+  opacity: 1.0;
 }
 
 .run-time {
