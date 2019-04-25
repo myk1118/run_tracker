@@ -11,14 +11,14 @@ class RunRoute extends Component {
 
     render() {
         const { url, path, params, isExact } = this.props.match;
-        console.log('url: ', url)
-        console.log('path: ', path)
-        console.log(this.props.match)
+        // console.log('url: ', url)
+        // console.log('path: ', path)
+        // console.log(this.props.match)
 
         return (
             <Fragment>
                 <Route path="/runmap" exact component={RunMap} />
-                <Route path="/runmap/results" component={RunResult} />
+                <Route path="/runmap/results/:id" component={RunResult} />
                 <Route path="/runmap/stats" component={RunStats} />
             </Fragment>
         )

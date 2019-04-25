@@ -12,71 +12,50 @@ $json_input = file_get_contents("php://input");
 
 $input = json_decode($json_input, true);
 
+if(empty($input['first_name'])){
+    throw new Exception('First name is required');
+}
+
+if(empty($input['last_name'])){
+    throw new Exception('Last name is required');
+}
+
 if(empty($input['email'])){
-    throw new Exception('email is a required value');
+    throw new Exception('Email is a required value');
 }
 
 if(empty($input['password'])){
-    throw new Exception('password is a required value');
+    throw new Exception('Password is a required value');
 }
 
+$firstname = $input['first_name'];
+$lastname = $input['last_name'];
 $email = $input['email'];
 $password = $input['password'];
 
 $email = addslashes($email);
-
-
-
 $hashedPassword = sha1($password);
 
 unset($input['password']);
 
-$firstname = "Johnny";
-$lastname = "Pham";
-
-
 $query = "INSERT INTO `users` SET
-  `email` = '$email',
-  `password` = '$hashedPassword',
-  `first_name` = '$firstname',
-  `last_name` = '$lastname',
-   `date` = NOW(),
-   `id` = DEFAULT
+`email` = '$email',
+`password` = '$hashedPassword',
+`first_name` = '$firstname',
+`last_name` = '$lastname',
+`date` = NOW(),
+`id` = DEFAULT
 ";
 
-
-$connect_result = mysqli_query($conn, $query);
-
-
-if(!$connect_result){
-    throw new Exception(mysqli_error($conn) );
-};
-
-if(mysqli_affected_rows($conn) !== 1){
-    throw new Exception('could not log you in: connection not saved');
-};
-
-$selectquery = "SELECT `id`, `first_name`, `last_name` FROM `users`
-    WHERE `email` = '$email' AND `password` = '$hashedPassword'
-";
-
-
-$result = mysqli_query($conn, $selectquery);
+$result = mysqli_query($conn, $query);
 
 if(!$result){
     throw new Exception(mysqli_error($conn) );
 };
 
-if(mysqli_num_rows($result) !== 1){
-    throw new Exception('invalid username or password');
+if(mysqli_affected_rows($conn) !== 1){
+    throw new Exception('Could not sign up! You are not registered!');
 };
-
-
-
-$data = mysqli_fetch_assoc($result);
-
-$token = $email.$data['id'].microtime(); //microtime gives time in micro seconds, puts it after the pw so that it hashes
-$token = sha1($token);
 
 $connect_query = "INSERT INTO `user_connections` SET
     `token` = '$token',
@@ -95,25 +74,8 @@ if(mysqli_affected_rows($conn) !== 1){
     throw new Exception('could not log you in: connection not saved');
 };
 
-$firstname = $data['first_name'];
-$lastname = $data['last_name'];
-$_SESSION['user_data'] = [
-    'id' => $data['id'],
-    'username' => $firstname . ' ' . $lastname,
-    'token' => $token
-];
-
-
-$output['success'] = true;
-$output['username'] = $firstname . ' ' . $lastname;
-$output['token'] = $token;
-
 $json_output = json_encode($output);
 
 print($json_output);
 
-
-
-
-
- ?>
+?>

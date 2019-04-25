@@ -5,7 +5,7 @@ require_once('mysqlconnect.php');
 set_exception_handler('handleError');
 
 
-$user_id = 1;
+$user_id = $_SESSION['user_data']['id'];
 
 $query = "SELECT `date`, `id` FROM `run_stats`
   WHERE `user_id` = $user_id

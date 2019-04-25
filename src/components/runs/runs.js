@@ -25,8 +25,8 @@ class Runs extends React.Component {
     console.log(dates);
     const date_buttons = dates.map((item) => {
       return (
-        <div key={item.id} className="imgContainer text-center">
-          <NavLink to="/runmap/results">
+        <div key={item.id} className="imgContainer col-6 col-md-6 col-sm-6 col-lg-6 text-center d-inline-block">
+          <NavLink to={`/runmap/results/${item.id}`}>
             <button className="bigSquareButton runImg btn btn-dark btn-lg">
               <div>{item.date}</div>
               <div className="run-time">{item.time}
