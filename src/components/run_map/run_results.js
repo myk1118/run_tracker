@@ -26,8 +26,9 @@ class RunResult extends Component {
   }
 
   async getChartData() {
-
-    const resp = await axios.get('/api/get_runsession_results.php');
+    const {id} = this.props.match.params;
+    console.log('params: ',id)
+    const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
     const { sessionData } = resp.data;
     // console.log(sessionData)
     const miles = sessionData.map(mile => mile.currentMile);
@@ -51,7 +52,7 @@ class RunResult extends Component {
   }
 
   render() {
-
+    console.log('results: ', this.props.match.params)
     return(
     <div className="postRunBody">
       <RunHeader />
@@ -137,7 +138,7 @@ class RunResult extends Component {
             </div>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>
