@@ -15,21 +15,34 @@ $input = json_decode($json_input, true);
 if(empty($input['first_name'])){
     throw new Exception('First name is required');
 }
-
 if(empty($input['last_name'])){
     throw new Exception('Last name is required');
 }
-
+if(empty($input['gender'])){
+    throw new Exception('Gender is required');
+}
+if(empty($input['age'])){
+    throw new Exception('Age is required');
+}
+if(empty($input['height'])){
+    throw new Exception('Height is required');
+}
+if(empty($input['weight'])){
+    throw new Exception('Weight is required');
+}
 if(empty($input['email'])){
     throw new Exception('Email is a required value');
 }
-
 if(empty($input['password'])){
     throw new Exception('Password is a required value');
 }
 
 $firstname = $input['first_name'];
 $lastname = $input['last_name'];
+$gender = $input['gender'];
+$age = $input['age'];
+$height = $input['height'];
+$weight = $input['weight'];
 $email = $input['email'];
 $password = $input['password'];
 
@@ -43,6 +56,10 @@ $query = "INSERT INTO `users` SET
 `password` = '$hashedPassword',
 `first_name` = '$firstname',
 `last_name` = '$lastname',
+`gender` = '$gender',
+`age` = '$age',
+`height` = '$height',
+`weight` = '$weight',
 `date` = NOW(),
 `id` = DEFAULT
 ";
