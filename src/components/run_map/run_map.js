@@ -127,7 +127,7 @@ class RunMap extends Component {
     geoLocationInterval = () => {
       navigator.geolocation.getCurrentPosition(position => {
          console.log('geolocation coords: ',position.coords);
-         this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length/10000), position.coords.longitude + (this.state.coordinateArray.length/10000));
+         this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
       })
 
     }
@@ -135,7 +135,7 @@ class RunMap extends Component {
 //when you click the button, start tracking
     startTracking = () => {
       console.log('distance tracked');
-      const watchId = setInterval(this.geoLocationInterval, 500);
+      const watchId = setInterval(this.geoLocationInterval, 5000);
       this.setState({
         watchId: watchId
       })
@@ -231,6 +231,7 @@ class RunMap extends Component {
         // this.distanceIncrement();
     }
     pause() {
+        this.stopTracking();
         this.setState({
             status: 'paused'
         })
@@ -300,7 +301,8 @@ class RunMap extends Component {
 
 
     renderPage=()=>{
-        const { elapsed, distanceTraveled, status, renderPage } = this.state;
+        const { elapsed, distanceTraveled, status, renderPage, pace } = this.state;
+
         if(renderPage === 'map'){
             return(
                 <Fragment>
