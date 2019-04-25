@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logIn } from '../../../actions';
+import { logIn, signUp } from '../../../actions';
 import axios from 'axios';
 import LogInForm from './login_form';
 import SignUpForm from '../sign_up/signup_form';
 import Carousel from './carousel';
 import './login.scss';
 import { Redirect } from 'react-router-dom';
-import SignUp from '../sign_up';
+// import SignUp from '../sign_up';
 
 class LogIn extends Component {
   constructor(props) {
@@ -39,6 +39,7 @@ class LogIn extends Component {
       }
     })
   }
+
   handleSignUp = (values) => {
     this.props.signUp(values);
     axios.post('/api/signup.php', values).then(resp => {
@@ -49,7 +50,9 @@ class LogIn extends Component {
         })
       }
     })
+    this.handleLogIn(values);
   }
+
   handleLogInButton() {
     this.setState({
       transition: {
@@ -61,6 +64,7 @@ class LogIn extends Component {
       loginHidden: false
     });
   }
+
   handleSignUpButton() {
     this.setState({
       transition: {
@@ -72,6 +76,7 @@ class LogIn extends Component {
       signupHidden: false
     });
   }
+
   hideTransition() {
     this.setState({
       transition: {
@@ -84,6 +89,7 @@ class LogIn extends Component {
       signupHidden: true
     });
   }
+
   render() {
     if (this.state.loggedIn === true) {
       return (<Redirect to="/" />)
@@ -115,5 +121,6 @@ class LogIn extends Component {
 }
 
 export default connect(null, {
-  logIn: logIn
+  logIn: logIn,
+  signUp: signUp
 })(LogIn);
