@@ -127,7 +127,7 @@ class RunMap extends Component {
     geoLocationInterval = () => {
       navigator.geolocation.getCurrentPosition(position => {
          console.log('geolocation coords: ',position.coords);
-         this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+         this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length/10000), position.coords.longitude + (this.state.coordinateArray.length/10000));
       })
 
     }
@@ -135,7 +135,7 @@ class RunMap extends Component {
 //when you click the button, start tracking
     startTracking = () => {
       console.log('distance tracked');
-      const watchId = setInterval(this.geoLocationInterval, 5000);
+      const watchId = setInterval(this.geoLocationInterval, 500);
       this.setState({
         watchId: watchId
       })
@@ -302,7 +302,8 @@ class RunMap extends Component {
 
     renderPage=()=>{
         const { elapsed, distanceTraveled, status, renderPage, pace } = this.state;
-
+        const paceInMinutes = Math.trunc(elapsed/(60000*distanceTraveled))
+        const paceInSeconds = ((elapsed/(60000*distanceTraveled) - paceInMinutes)*60).toFixed(0);
         if(renderPage === 'map'){
             return(
                 <Fragment>
@@ -337,8 +338,8 @@ class RunMap extends Component {
                     {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
                 </div>
                 <div className="statContainer">
-                    <div className="statTitle">Pace</div>
-                    <div className="statResult">11:44</div>
+                    <div className="statTitle">Averge Pace</div>
+                    <div className="statResult">{paceInMinutes}:{paceInSeconds}</div>
                 </div>
                 <div className="statContainer">
                     <div className="statTitle">Calories Burned</div>
