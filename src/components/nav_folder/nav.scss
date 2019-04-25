@@ -1,27 +1,36 @@
 .headerContainer {
     padding: 0;
     margin: 0;
-    height: 8%;
+    height: 10%;
     width: 100%;
     background-color: #81b3c2;
 
     .mapHeaderContainer {
+        display: flex;
         height: 50%;
+    }
+
+    .navLogo {
         text-align: center;
+        color: white;
+    }
+
+    .nav-link-aboutus,
+    .nav-link-logout {
+        text-align: right;
         color: white;
     }
 }
 
-
-.nav-link,.map-Nav{
+.nav-link,
+.map-Nav {
     font-size: .75rem;
     text-align: center;
 }
 
-.mapNav{
-    height:100%;
+.mapNav {
+    height: 100%;
 }
-
 
 .nav>li>a:hover,
 .nav>li>a:focus {
@@ -30,7 +39,7 @@
 
 .navbar-custom {
     background-color: #586F7C;
-
+height: 50%;
     a {
         color: #F4F4F9;
     }
