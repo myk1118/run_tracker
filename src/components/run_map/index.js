@@ -18,7 +18,7 @@ class RunRoute extends Component {
         return (
             <Fragment>
                 <Route path="/runmap" exact component={RunMap} />
-                <Route path="/runmap/results" component={RunResult} />
+                <Route path="/runmap/results/:id" component={RunResult} />
                 <Route path="/runmap/stats" component={RunStats} />
             </Fragment>
         )

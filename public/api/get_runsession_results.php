@@ -5,7 +5,8 @@ require_once('mysqlconnect.php');
 set_exception_handler('handleError');
 
 // $user_id = 1;
-$run_id = 3;
+$run_id = $_GET['id'];
+$id = $_SESSION['user_data']['id'];
 
 $output = [
   'success'=> false
@@ -13,9 +14,18 @@ $output = [
 $output['sessionData'] = [];
 
 $query = "SELECT `mileage` AS `miles`, `time`, `id`
-  FROM `miles` WHERE `run_id` = $run_id
+  FROM `miles` AS `m`
+  WHERE `run_id` = $run_id
   ORDER BY `id` ASC
   ";
+
+  // $query = "SELECT m.`mileage` AS `miles`, m.`time`, m.`id`
+  //   FROM `miles` AS `m`
+  //   JOIN `run_stats` AS `r` ON m.`run_id` = r.`id`
+  //   WHERE `run_id` = $run_id
+  //   AND r.`user_id` = $id
+  //   ORDER BY `id` ASC
+  //   ";
 
 $result = mysqli_query($conn, $query);
 
