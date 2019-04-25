@@ -107,7 +107,7 @@ class RunMap extends Component {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
               },
-              coordinateArray: [...this.state.coordinateArray, { 
+              coordinateArray: [...this.state.coordinateArray, {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
               }]
@@ -127,7 +127,7 @@ class RunMap extends Component {
     geoLocationInterval = () => {
       navigator.geolocation.getCurrentPosition(position => {
          console.log('geolocation coords: ',position.coords);
-         this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+         this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length/10000), position.coords.longitude + (this.state.coordinateArray.length/10000));
       })
 
     }
@@ -135,7 +135,7 @@ class RunMap extends Component {
 //when you click the button, start tracking
     startTracking = () => {
       console.log('distance tracked');
-      const watchId = setInterval(this.geoLocationInterval, 5000);
+      const watchId = setInterval(this.geoLocationInterval, 500);
       this.setState({
         watchId: watchId
       })
@@ -215,6 +215,7 @@ class RunMap extends Component {
     }
 
     start() {
+      this.startTracking();
         const { start, elapsed } = this.state;
         let newStart = new Date().getTime();
         if (start) {
@@ -227,7 +228,7 @@ class RunMap extends Component {
         setTimeout(() => {
             this.update();
         }, 10);
-        this.distanceIncrement();
+        // this.distanceIncrement();
     }
     pause() {
         this.setState({
@@ -299,7 +300,7 @@ class RunMap extends Component {
 
 
     renderPage=()=>{
-        const { elapsed, distance, status, renderPage } = this.state;
+        const { elapsed, distanceTraveled, status, renderPage } = this.state;
         if(renderPage === 'map'){
             return(
                 <Fragment>
@@ -330,7 +331,7 @@ class RunMap extends Component {
                 </div>
                 <div className="statContainer">
                     <div className="statTitle">Distance</div>
-                    <Distance className="statResult" distance={distance} />
+                    <Distance className="statResult" distance={parseFloat(distanceTraveled).toFixed(2)} />
                     {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
                 </div>
                 <div className="statContainer">
