@@ -6,7 +6,7 @@ set_exception_handler('handleError');
 
 $user_id = 1;
 
-$query = "SELECT `first_name`, `last_name`, `email`, `password` FROM `users` WHERE `id` = $user_id";
+$query = "SELECT `first_name`, `last_name`, `gender`, `age`, `height`, `weight`, `email`, `password` FROM `users` WHERE `id` = $user_id";
 
 $result = mysqli_query($conn, $query);
 
