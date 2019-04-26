@@ -10,9 +10,11 @@ export default props => {
       <article className="graph-container">
       <Line
         data={props.chartData}
+        width={100}
+        height={100}
         // options={props.options}
         options = {{
-          maintainAspectRatio: false,
+          maintainAspectRatio: true,
           title: {
             display: true,
             text: 'Today\'s Run',

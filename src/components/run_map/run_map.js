@@ -25,7 +25,7 @@ class RunMap extends Component {
             status: 'stopped',
             start: null,
             elapsed: 0,
-            distance: 0,
+            distance: 6,
             mileCounter: 1,
             pace: 100,
             calories: 100,
@@ -285,13 +285,12 @@ class RunMap extends Component {
         this.postlatestMile();
     }
     postCurrentRun = (elapsed) => {
-        const { distance, pace, calories } = this.state;
+        const { distanceTraveled, pace, calories, distance } = this.state;
         const data = {
-            distance: distance,
-            time: elapsed,
+            distance: distanceTraveled,
+            time: Math.floor(elapsed/1000),
             pace: pace,
             calories: calories,
-            user_id: 1
         }
         axios.post(`/api/addrun.php`, data).then((resp) => {
             console.log('run was successfully recorded!', resp)
@@ -304,6 +303,7 @@ class RunMap extends Component {
         const { elapsed, distanceTraveled, status, renderPage, pace } = this.state;
         const paceInMinutes = Math.trunc(elapsed/(60000*distanceTraveled))
         const paceInSeconds = ((elapsed/(60000*distanceTraveled) - paceInMinutes)*60).toFixed(0);
+        console.log(elapsed)
         if(renderPage === 'map'){
             return(
                 <Fragment>
@@ -334,7 +334,7 @@ class RunMap extends Component {
                 </div>
                 <div className="statContainer">
                     <div className="statTitle">Distance</div>
-                    <Distance className="statResult" distance={parseFloat(distanceTraveled).toFixed(2)} />
+                    <Distance className="statResult" distance={distanceTraveled.toFixed(2)} />
                     {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
                 </div>
                 <div className="statContainer">
@@ -376,10 +376,11 @@ class RunMap extends Component {
     render() {
       console.log('coordinates: ',this.state.coordinateArray)
       const {distanceTraveled} = this.state;
+      console.log(distanceTraveled)
         return (
             <div className="mapBody">
                 <MapNav clickMap = {this.clickMap} clickMiles={this.clickMiles} />
-                    <button onClick={this.startTracking}>Start Tracking. distance traveled: {parseFloat(distanceTraveled).toFixed(2)}</button>
+                    <button onClick={this.startTracking}>Start Tracking. distance traveled: {distanceTraveled.toFixed(2)}</button>
                     <button onClick={this.stopTracking}>Stop Tracking</button>
                 {this.renderPage()}
             </div>
