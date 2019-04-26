@@ -1,8 +1,6 @@
 import React from 'react';
-import {Bar, Line, Pie} from 'react-chartjs-2';
+import { Bar, Line, Pie } from 'react-chartjs-2';
 // import './total_stats.scss';
-
-
 
 export default props => {
   return (
@@ -29,23 +27,24 @@ export default props => {
               tension: 0
             }
           },
-          scales: {
-            xAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'Mile'
-              },
-            }],
-            yAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'Minutes'
-              }
-            }],
-          }
-        }}
-      />
-    </article>
+
+            scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Mile'
+                },
+              }],
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Minutes'
+                }
+              }],
+            }
+          }}
+        />
+      </article>
     </div>
   )
 }

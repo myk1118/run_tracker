@@ -4,7 +4,7 @@ import RunHeader from '../nav_folder/run_nav';
 import './runs.scss';
 import plus from './images/plus.png';
 import runIcon from './images/running-icon.png';
-import backgroundImage from '../account/login/images/image16.jpeg';
+import backgroundImage from '../account/login/images/image19.jpeg';
 import axios from 'axios';
 
 class Runs extends React.Component {
@@ -25,7 +25,7 @@ class Runs extends React.Component {
     console.log(dates);
     const date_buttons = dates.map((item) => {
       return (
-        <div key={item.id} className="imgContainer col-6 col-md-6 col-sm-6 col-lg-6 text-center d-inline-block">
+        <div key={item.id} className="imgContainer col-6 col-sm-6 col-md-6 col-lg-6 text-center">
           <NavLink to={`/runmap/results/${item.id}`}>
             <button className="bigSquareButton runImg btn btn-dark btn-lg">
               <div>{item.date}</div>
@@ -48,7 +48,7 @@ class Runs extends React.Component {
         <div className="runs">
           <img className="backgroundImage" src={backgroundImage} alt="Background Image" />
           <div className="runButtonsContainer">
-            <div className="imgContainer col-6 col-sm-6 col-md-6 col-lg-6">
+            <div className="imgContainer">
               <NavLink to="/runmap">
                 <button className="bigSquareButton plusImg btn btn-dark btn-lg"></button>
               </NavLink>
