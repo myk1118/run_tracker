@@ -145,6 +145,7 @@ class RunMap extends Component {
     //   console.log('distance tracked');
     //   const watchId = navigator.geolocation.watchPosition(position => {
     //     console.log('geolocation coords: ', position.coords);
+   //     this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
     //   })
     // }
 //when you click the stop button, stop tracking
@@ -380,8 +381,6 @@ class RunMap extends Component {
         return (
             <div className="mapBody">
                 <MapNav clickMap = {this.clickMap} clickMiles={this.clickMiles} />
-                    <button onClick={this.startTracking}>Start Tracking. distance traveled: {distanceTraveled.toFixed(2)}</button>
-                    <button onClick={this.stopTracking}>Stop Tracking</button>
                 {this.renderPage()}
             </div>
         )
