@@ -146,7 +146,9 @@ class RunMap extends Component {
       const watchId = navigator.geolocation.watchPosition(position => {
         console.log('geolocation coords: ', position.coords);
         this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
-      })
+      }, error => {
+        console.log('error')
+      }, {enableHighAccuracy: true})
         this.setState({
           watchId: watchId
         })
@@ -154,8 +156,8 @@ class RunMap extends Component {
 //when you click the stop button, stop tracking
     stopTracking = () => {
       console.log('tracking stopped');
-      // navigator.geolocation.clearWatch(this.state.watchId);
-      clearInterval(this.state.watchId);
+      navigator.geolocation.clearWatch(this.state.watchId);
+      // clearInterval(this.state.watchId);
     }
 
 
