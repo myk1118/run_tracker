@@ -95,57 +95,64 @@ class RunMap extends Component {
 
     //get the current location
     getGeoLocation = () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                console.log('geolocation coords: ', position.coords);
-                this.setState({
-                    currentLatLng: {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    },
-                    coordinateArray: [...this.state.coordinateArray, {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    }]
-                })
-            }
-            )
-        } else {
-            error => console.log(error)
-        }
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition( position => {
+            console.log('geolocation coords: ',position.coords);
+            this.setState({
+              currentLatLng: {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              },
+              coordinateArray: [...this.state.coordinateArray, {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              }]
+            })
+          }
+        )
+      } else {
+        error => console.log(error)
+      }
     }
 
     startWatch = () => {
         this.refs.child.start();
     }
 
-    geoLocationInterval = () => {
-        navigator.geolocation.getCurrentPosition(position => {
-            console.log('geolocation coords: ', position.coords);
-            this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
-        })
-    }
+    // geoLocationInterval = () => {
+    //   navigator.geolocation.getCurrentPosition(position => {
+    //      console.log('geolocation coords: ',position.coords);
+    //      this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+    //   })
+    //
+    // }
 
-    //when you click the button, start tracking
-    startTracking = () => {
-        console.log('distance tracked');
-        const watchId = setInterval(this.geoLocationInterval, 5000);
-        this.setState({
-            watchId: watchId
-        })
-    }
-
+//when you click the button, start tracking
     // startTracking = () => {
     //   console.log('distance tracked');
-    //   const watchId = navigator.geolocation.watchPosition(position => {
-    //     console.log('geolocation coords: ', position.coords);
+    //   const watchId = setInterval(this.geoLocationInterval, 5000);
+    //   this.setState({
+    //     watchId: watchId
     //   })
     // }
-    //when you click the stop button, stop tracking
+
+    startTracking = () => {
+      console.log('distance tracked');
+      const watchId = navigator.geolocation.watchPosition(position => {
+        console.log('geolocation coords: ', position.coords);
+        this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+      }, error => {
+        console.log('error')
+      }, {enableHighAccuracy: true})
+        this.setState({
+          watchId: watchId
+        })
+    }
+//when you click the stop button, stop tracking
     stopTracking = () => {
-        console.log('tracking stopped');
-        // navigator.geolocation.clearWatch(this.state.watchId);
-        clearInterval(this.state.watchId);
+      console.log('tracking stopped');
+      navigator.geolocation.clearWatch(this.state.watchId);
+      // clearInterval(this.state.watchId);
     }
 
     //track distance traveled.  Updates everytime movement is tracked.
@@ -203,6 +210,7 @@ class RunMap extends Component {
     }
 
     start() {
+      this.startTracking();
         const { start, elapsed } = this.state;
         let newStart = new Date().getTime();
         if (start) {
@@ -215,10 +223,11 @@ class RunMap extends Component {
         setTimeout(() => {
             this.update();
         }, 10);
-        this.distanceIncrement();
+        // this.distanceIncrement();
     }
 
     pause() {
+        this.stopTracking();
         this.setState({
             status: 'paused'
         })
@@ -289,51 +298,52 @@ class RunMap extends Component {
         })
     }
 
-    renderPage = () => {
-        const { elapsed, distance, status, renderPage } = this.state;
-        if (renderPage === 'map') {
-            return (
+    renderPage=()=>{
+        const { elapsed, distanceTraveled, status, renderPage, pace } = this.state;
+
+        if(renderPage === 'map'){
+            return(
                 <Fragment>
-                    <div className="mapContainer">
-                        <div className="map">
-                            <MyMapComponent
-                                isMarkerShown
-                                // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
-                                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
-                                loadingElement={<div style={{ height: `100%` }} />}
-                                containerElement={<div style={{ height: `100%` }} />}
-                                mapElement={<div style={{ height: `100%` }} />}
-                                currentLocation={this.state.currentLatLng}
-                                coordinateArray={this.state.coordinateArray}
-                            />
-                        </div>
-                        <div className="buttonsContainer">
-                            <WatchBtns status={status}
-                                start={this.start}
-                                pause={this.pause}
-                                reset={this.reset} />
-                        </div>
-                    </div>
-                    <div className="mapStatsContainer">
-                        <div className="statContainer">
-                            <div className="statTitle">Time</div>
-                            <Stopwatch className="statResult" elapsed={elapsed} />
-                        </div>
-                        <div className="statContainer">
-                            <div className="statTitle">Distance</div>
-                            <Distance className="statResult" distance={distance} />
-                            {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
-                        </div>
-                        <div className="statContainer">
-                            <div className="statTitle">Pace</div>
-                            <div className="statResult">11:44</div>
-                        </div>
-                        <div className="statContainer">
-                            <div className="statTitle">Calories Burned</div>
-                            <div className="statResult">1,600 cal</div>
-                        </div>
-                    </div>
-                </Fragment>
+                <div className="h-60 mapContainer">
+                <div className="map">
+                    <MyMapComponent
+                        isMarkerShown
+                        // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
+                        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
+                        loadingElement={<div style={{ height: `100%` }} />}
+                        containerElement={<div style={{ height: `100%` }} />}
+                        mapElement={<div style={{ height: `100%` }} />}
+                        currentLocation={this.state.currentLatLng}
+                        coordinateArray = {this.state.coordinateArray}
+                    />
+                </div>
+                <div className="buttonsContainer">
+                    <WatchBtns status={status}
+                        start={this.start}
+                        pause={this.pause}
+                        reset={this.reset} />
+                </div>
+            </div>
+            <div className="mapStatsContainer">
+                <div className="statContainer">
+                    <div className="statTitle">Time</div>
+                    <Stopwatch className="statResult" elapsed={elapsed} />
+                </div>
+                <div className="statContainer">
+                    <div className="statTitle">Distance</div>
+                    <Distance className="statResult" distance={parseFloat(distanceTraveled).toFixed(2)} />
+                    {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
+                </div>
+                <div className="statContainer">
+                    <div className="statTitle">Pace</div>
+                    <div className="statResult">11:44</div>
+                </div>
+                <div className="statContainer">
+                    <div className="statTitle">Calories Burned</div>
+                    <div className="statResult">1,600 cal</div>
+                </div>
+            </div>
+            </Fragment>
             )
         } else {
             return (
