@@ -12,11 +12,11 @@ import haversine from 'haversine';
 
 class RunMap extends Component {
     constructor(props) {
-    super(props);
+        super(props);
         this.state = {
             currentLatLng: {
-            lat: 33.6349179,
-            lng: -117.74050049999998
+                lat: 33.6349179,
+                lng: -117.74050049999998
             },
             startPos: null,
             watchId: null,
@@ -35,7 +35,6 @@ class RunMap extends Component {
             distanceTraveled: 0,
             distanceDisplay: 0,
             coordinateArray: []
-
         }
 
         this.start = this.start.bind(this);
@@ -51,12 +50,12 @@ class RunMap extends Component {
         const { distance } = this.state;
         console.log(distance);
         if (distance && distance - Math.floor(distance) === 0) {
-            let {previousTime, elapsed, mileCounter} = this.state;
-        const data = {
-            run_id: 1,
-            time: elapsed - previousTime,
-            mileage: mileCounter
-        }
+            let { previousTime, elapsed, mileCounter } = this.state;
+            const data = {
+                run_id: 1,
+                time: elapsed - previousTime,
+                mileage: mileCounter
+            }
             axios.post(`/api/addpermile.php`, data).then(() => {
                 console.log('post', data);
                 mileCounter = mileCounter + 1;
@@ -66,7 +65,6 @@ class RunMap extends Component {
                 })
             })
         }
-
     }
 
     componentDidMount() {
@@ -74,71 +72,67 @@ class RunMap extends Component {
         this.getMileData();
     }
 
-
-    postRunResults(){
+    postRunResults() {
 
     }
-
 
     getMileData() {
         axios.get('/api/getpermile.php').then(resp => {
-          const { mileTime } = resp.data;
-          const mileStats = mileTime.map(item => {
-            return (
-              <tr key={item.id}>
-                <td>{item.mile}</td>
-                <td>{item.time}</td>
-              </tr>
-            )
-          });
-          this.setState({
-            mileStats: [...mileStats]
-          })
+            const { mileTime } = resp.data;
+            const mileStats = mileTime.map(item => {
+                return (
+                    <tr key={item.id}>
+                        <td>{item.mile}</td>
+                        <td>{item.time}</td>
+                    </tr>
+                )
+            });
+            this.setState({
+                mileStats: [...mileStats]
+            })
         })
     }
 
-//get the current location
+    //get the current location
     getGeoLocation = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition( position => {
-            console.log('geolocation coords: ',position.coords);
-            this.setState({
-              currentLatLng: {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-              },
-              coordinateArray: [...this.state.coordinateArray, { 
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-              }]
-            })
-          }
-        )
-      } else {
-        error => console.log(error)
-      }
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                console.log('geolocation coords: ', position.coords);
+                this.setState({
+                    currentLatLng: {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    },
+                    coordinateArray: [...this.state.coordinateArray, {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    }]
+                })
+            }
+            )
+        } else {
+            error => console.log(error)
+        }
     }
-
 
     startWatch = () => {
         this.refs.child.start();
     }
 
     geoLocationInterval = () => {
-      navigator.geolocation.getCurrentPosition(position => {
-         console.log('geolocation coords: ',position.coords);
-         this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
-      })
-
+        navigator.geolocation.getCurrentPosition(position => {
+            console.log('geolocation coords: ', position.coords);
+            this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+        })
     }
 
-//when you click the button, start tracking
+    //when you click the button, start tracking
     startTracking = () => {
-      console.log('distance tracked');
-      const watchId = setInterval(this.geoLocationInterval, 5000);
-      this.setState({
-        watchId: watchId
-      })
+        console.log('distance tracked');
+        const watchId = setInterval(this.geoLocationInterval, 5000);
+        this.setState({
+            watchId: watchId
+        })
     }
 
     // startTracking = () => {
@@ -147,52 +141,48 @@ class RunMap extends Component {
     //     console.log('geolocation coords: ', position.coords);
     //   })
     // }
-//when you click the stop button, stop tracking
+    //when you click the stop button, stop tracking
     stopTracking = () => {
-      console.log('tracking stopped');
-      // navigator.geolocation.clearWatch(this.state.watchId);
-      clearInterval(this.state.watchId);
+        console.log('tracking stopped');
+        // navigator.geolocation.clearWatch(this.state.watchId);
+        clearInterval(this.state.watchId);
     }
 
-
-//track distance traveled.  Updates everytime movement is tracked.
+    //track distance traveled.  Updates everytime movement is tracked.
     monitorUserDistance = (newLatitude, newLongitude) => {
-        const {lat, lng} = this.state.currentLatLng
-        const distanceTraveled =  this.calcDistanceHaversine(lat, lng, newLatitude, newLongitude);
+        const { lat, lng } = this.state.currentLatLng
+        const distanceTraveled = this.calcDistanceHaversine(lat, lng, newLatitude, newLongitude);
         console.log('Location is being monitored. distance changed: ', distanceTraveled);
         let newDistance = this.state.distanceTraveled + distanceTraveled;
         console.log('location is being monitored. total distance traveled: ', newDistance);
-        if(distanceTraveled !== 0) {
-          this.setState({
-            coordinateArray: [...this.state.coordinateArray, {
-              lat: newLatitude,
-              lng: newLongitude
-            }],
-            distanceTraveled: newDistance,
-            currentLatLng: {
-              lat: newLatitude,
-              lng: newLongitude
-            }
-          })
+        if (distanceTraveled !== 0) {
+            this.setState({
+                coordinateArray: [...this.state.coordinateArray, {
+                    lat: newLatitude,
+                    lng: newLongitude
+                }],
+                distanceTraveled: newDistance,
+                currentLatLng: {
+                    lat: newLatitude,
+                    lng: newLongitude
+                }
+            })
         } else {
-          this.setState({
-            distanceTraveled: newDistance,
-            currentLatLng: {
-              lat: newLatitude,
-              lng: newLongitude
-            }
-          })
+            this.setState({
+                distanceTraveled: newDistance,
+                currentLatLng: {
+                    lat: newLatitude,
+                    lng: newLongitude
+                }
+            })
         }
     }
 
-
-
-
-//convert distance to miles formula
+    //convert distance to miles formula
     calcDistanceHaversine(lat1, lon1, lat2, lon2) {
-      const start = {latitude: lat1, longitude: lon1};
-      const end = {latitude: lat2, longitude: lon2};
-      return haversine(start, end, {unit: 'mile'});
+        const start = { latitude: lat1, longitude: lon1 };
+        const end = { latitude: lat2, longitude: lon2 };
+        return haversine(start, end, { unit: 'mile' });
     }
 
     // calculateDistance(lat1, lon1, lat2, lon2) {
@@ -206,8 +196,6 @@ class RunMap extends Component {
     //       let d = R * c;
     //     return d;
     //   }
-
-
 
     startWatch = () => {
         this.postlatestMile();
@@ -229,11 +217,13 @@ class RunMap extends Component {
         }, 10);
         this.distanceIncrement();
     }
+
     pause() {
         this.setState({
             status: 'paused'
         })
     }
+
     reset() {
         const { elapsed } = this.state;
         if (this.state.status === 'paused') {
@@ -244,20 +234,20 @@ class RunMap extends Component {
                 elapsed: 0
             });
         }
-
     }
 
-    clickMap=()=>{
-        this.setState ({
+    clickMap = () => {
+        this.setState({
             renderPage: 'map'
         })
     }
 
-    clickMiles(){
+    clickMiles() {
         this.setState({
             renderPage: 'Miles'
         })
     }
+
     update() {
         const { status, start } = this.state;
         if (status === 'running') {
@@ -267,14 +257,16 @@ class RunMap extends Component {
             setTimeout(this.update, 10);
         }
     }
+
     distanceIncrement() {
         setTimeout(() => {
             this.distanceUpdate();
         }, 1000);
     }
+
     distanceUpdate() {
         // debugger;
-        let {distance} = this.state;
+        let { distance } = this.state;
         // distance =
         this.setState({
             distance: (parseFloat(distance) + 0.01).toFixed(2)
@@ -282,6 +274,7 @@ class RunMap extends Component {
         setTimeout(this.distanceUpdate, 200);
         this.postlatestMile();
     }
+
     postCurrentRun = (elapsed) => {
         const { distance, pace, calories } = this.state;
         const data = {
@@ -296,87 +289,82 @@ class RunMap extends Component {
         })
     }
 
-
-
-    renderPage=()=>{
+    renderPage = () => {
         const { elapsed, distance, status, renderPage } = this.state;
-        if(renderPage === 'map'){
-            return(
+        if (renderPage === 'map') {
+            return (
                 <Fragment>
-                <div className="h-60 mapContainer">
-                <div className="map">
-                    <MyMapComponent
-                        isMarkerShown
-                        // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
-                        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
-                        loadingElement={<div style={{ height: `100%` }} />}
-                        containerElement={<div style={{ height: `100%` }} />}
-                        mapElement={<div style={{ height: `100%` }} />}
-                        currentLocation={this.state.currentLatLng}
-                        coordinateArray = {this.state.coordinateArray}
-                    />
-                </div>
-                <div className="buttonsContainer">
-                    <WatchBtns status={status}
-                        start={this.start}
-                        pause={this.pause}
-                        reset={this.reset} />
-                </div>
-            </div>
-            <div className="mapStatsContainer">
-                <div className="statContainer">
-                    <div className="statTitle">Time</div>
-                    <Stopwatch className="statResult" elapsed={elapsed} />
-                </div>
-                <div className="statContainer">
-                    <div className="statTitle">Distance</div>
-                    <Distance className="statResult" distance={distance} />
-                    {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
-                </div>
-                <div className="statContainer">
-                    <div className="statTitle">Pace</div>
-                    <div className="statResult">11:44</div>
-                </div>
-                <div className="statContainer">
-                    <div className="statTitle">Calories Burned</div>
-                    <div className="statResult">1,600 cal</div>
-                </div>
-            </div>
-            </Fragment>
+                    <div className="mapContainer">
+                        <div className="map">
+                            <MyMapComponent
+                                isMarkerShown
+                                // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
+                                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
+                                loadingElement={<div style={{ height: `100%` }} />}
+                                containerElement={<div style={{ height: `100%` }} />}
+                                mapElement={<div style={{ height: `100%` }} />}
+                                currentLocation={this.state.currentLatLng}
+                                coordinateArray={this.state.coordinateArray}
+                            />
+                        </div>
+                        <div className="buttonsContainer">
+                            <WatchBtns status={status}
+                                start={this.start}
+                                pause={this.pause}
+                                reset={this.reset} />
+                        </div>
+                    </div>
+                    <div className="mapStatsContainer">
+                        <div className="statContainer">
+                            <div className="statTitle">Time</div>
+                            <Stopwatch className="statResult" elapsed={elapsed} />
+                        </div>
+                        <div className="statContainer">
+                            <div className="statTitle">Distance</div>
+                            <Distance className="statResult" distance={distance} />
+                            {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
+                        </div>
+                        <div className="statContainer">
+                            <div className="statTitle">Pace</div>
+                            <div className="statResult">11:44</div>
+                        </div>
+                        <div className="statContainer">
+                            <div className="statTitle">Calories Burned</div>
+                            <div className="statResult">1,600 cal</div>
+                        </div>
+                    </div>
+                </Fragment>
             )
-        } else{
+        } else {
             return (
                 <Fragment>
                     <div className="float-right text-primary pt-3 pb-3">Total | Month | Week </div>
-                        <table className="table table-hover">
-                            <thead>
+                    <table className="table table-hover">
+                        <thead>
                             <tr>
                                 <th className="w-25">Mile</th>
                                 <th className="w-25">Time</th>
                                 {/* <th className="w-25">Heart Rate</th>
                                 <th className="w-25">Calories Burned</th> */}
                             </tr>
-                            </thead>
-                            <tbody>
+                        </thead>
+                        <tbody>
                             {this.state.mileStats}
-                            </tbody>
-                        </table>
+                        </tbody>
+                    </table>
                 </Fragment>
             )
-
         }
     }
 
-
-
     render() {
-      console.log('coordinates: ',this.state.coordinateArray)
-      const {distanceTraveled} = this.state;
+        console.log('coordinates: ', this.state.coordinateArray)
+        const { distanceTraveled } = this.state;
         return (
             <div className="mapBody">
-                <MapNav clickMap = {this.clickMap} clickMiles={this.clickMiles} />
-                    <button onClick={this.startTracking}>Start Tracking. distance traveled: {parseFloat(distanceTraveled).toFixed(2)}</button>
-                    <button onClick={this.stopTracking}>Stop Tracking</button>
+                <MapNav clickMap={this.clickMap} clickMiles={this.clickMiles} />
+                {/* <button onClick={this.startTracking}>Start Tracking. Distance Traveled: {parseFloat(distanceTraveled).toFixed(2)}</button>
+                <button onClick={this.stopTracking}>Stop Tracking</button> */}
                 {this.renderPage()}
             </div>
         )

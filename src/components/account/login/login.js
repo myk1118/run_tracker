@@ -28,6 +28,7 @@ class LogIn extends Component {
     this.handleSignUpButton = this.handleSignUpButton.bind(this);
     this.hideTransition = this.hideTransition.bind(this);
   }
+
   handleLogIn = (values) => {
     this.props.logIn(values);
     axios.post('/api/login.php', values).then(resp => {
@@ -98,7 +99,9 @@ class LogIn extends Component {
     else {
       return (
         <div className="loginPage">
-          <div className="loginPageLogo">RunBuddy</div>
+          <div className="loginPageLogo">RUN
+          TRACKER
+          </div>
           <div className="carouselContainer">
             <Carousel />
           </div>
