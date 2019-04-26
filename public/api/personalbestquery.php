@@ -12,7 +12,7 @@ $output = [
 $userid = $_SESSION['user_data']['id'];
 
 $query = "SELECT
-MAX(s. `distance`), MIN((s.`pace`)/(s.`distance`)), MAX(s.`date`)
+MAX(s. `distance`), MIN((s.`time`)/(60 * s.`distance`)) AS `pace`, MAX(s.`date`)
 FROM `run_stats` AS `s`
 JOIN `users` ON users.`id` = s.`user_id`
 WHERE users.`id` = $userid";
@@ -32,7 +32,7 @@ $date = new DateTime($data['MAX(s.`date`)']);
 
 $output = [];
 $output['longestRun'] = $data['MAX(s. `distance`)'] . " miles";
-$output['fastestpace'] = round($data['MIN((s.`pace`)/(s.`distance`))'], 2) . " minutes per mile";
+$output['fastestpace'] = round($data['pace'], 2) . " minutes per mile";
 // $output['lastRunDate'] = $data['MAX(s.`date`)'];
 $output['lastRunDate'] = $date->format('m-d-Y');
 

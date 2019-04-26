@@ -44,7 +44,7 @@ class Chart extends Component {
             <tr>
               <th scope="col">Date</th>
               <th scope="col">Distance (mi)</th>
-              <th scope="col">Time</th>
+              <th scope="col">Time (h:m:s)</th>
             </tr>
           </thead>
           <tbody>
