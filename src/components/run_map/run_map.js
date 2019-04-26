@@ -124,29 +124,33 @@ class RunMap extends Component {
         this.refs.child.start();
     }
 
-    geoLocationInterval = () => {
-      navigator.geolocation.getCurrentPosition(position => {
-         console.log('geolocation coords: ',position.coords);
-         this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
-      })
-
-    }
+    // geoLocationInterval = () => {
+    //   navigator.geolocation.getCurrentPosition(position => {
+    //      console.log('geolocation coords: ',position.coords);
+    //      this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+    //   })
+    //
+    // }
 
 //when you click the button, start tracking
-    startTracking = () => {
-      console.log('distance tracked');
-      const watchId = setInterval(this.geoLocationInterval, 5000);
-      this.setState({
-        watchId: watchId
-      })
-    }
-
     // startTracking = () => {
     //   console.log('distance tracked');
-    //   const watchId = navigator.geolocation.watchPosition(position => {
-    //     console.log('geolocation coords: ', position.coords);
+    //   const watchId = setInterval(this.geoLocationInterval, 5000);
+    //   this.setState({
+    //     watchId: watchId
     //   })
     // }
+
+    startTracking = () => {
+      console.log('distance tracked');
+      const watchId = navigator.geolocation.watchPosition(position => {
+        console.log('geolocation coords: ', position.coords);
+        this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+      })
+        this.setState({
+          watchId: watchId
+        })
+    }
 //when you click the stop button, stop tracking
     stopTracking = () => {
       console.log('tracking stopped');
