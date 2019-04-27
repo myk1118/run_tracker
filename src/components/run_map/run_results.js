@@ -11,6 +11,10 @@ class RunResult extends Component {
     super(props);
 
     this.state = {
+      time: 0,
+      distance: 0,
+      calories: 0,
+      pace: 0,
       id: 0,
       chartData: {},
       options: {},
@@ -21,36 +25,41 @@ class RunResult extends Component {
     }
   }
 
-  async componentDidMount() {
-    this.getId();
-    await this.getChartData();
+  componentDidMount() {
+    this.getChartData();
   }
 
-  getId(){
-    let {id} = this.state;
-    if(this.props.match.params){
-      id = this.props.match.params;
-      console.log('this.props.match.params', id);
-    }else{
-      axios.get(`/api/get_last_runsession_results.php`).then((resp) => {
-          console.log('getID', resp);
-          id = resp['sessionData']['id']['id'];
-      })
-    }
-    this.setState({
-      id
-    })
-  }
+  // getId(){
+  //   let {id} = this.state;
+  //   if(this.props.match.params){
+  //     id = this.props.match.params;
+  //     console.log('this.props.match.params', id);
+  //   }else{
+  //     axios.get(`/api/get_last_runsession_results.php`).then((resp) => {
+  //         console.log('getID', resp);
+  //         id = resp['sessionData']['id']['id'];
+  //     })
+  //   }
+  //   this.setState({
+  //     id
+  //   })
+  // }
 
   async getChartData() {
-    const {id} = this.state;
+    this.props.match.params
+    const {id} = this.props.match.params
     console.log('params: ',id)
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
     const { sessionData } = resp.data;
+    console.log('session resp', resp)
     const miles = sessionData.map(mile => mile.currentMile);
     const time = sessionData.map(minutes => minutes.time)
 
     this.setState({
+      time: 0,
+      distance: 0,
+      calories: 0,
+      pace: 0,
       chartData: {
         labels: [0, ...miles],
         datasets: [
@@ -83,7 +92,7 @@ class RunResult extends Component {
         />
       </div>
     <div className="progressContainer">
-    <div className="graphContainer">
+      <div className="graphContainer">
         <div className="graph">
           <ResultsChart  chartData={this.state.chartData}/>
         </div>
