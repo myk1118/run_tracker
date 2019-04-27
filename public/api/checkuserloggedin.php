@@ -35,12 +35,15 @@ $output['success'] = true;
 
 if (!empty($_SESSION['user_data'])) {
     $_SESSION['user_data'] = [
-        'users_id' => $data['users_id'],
+        'id' => $data['users_id'],
         'token' => $token
     ];
 }
 // print_r($_SESSION);
 
 $json_output = json_encode($output);
-
+//
 // print($json_output);
+
+?>
+

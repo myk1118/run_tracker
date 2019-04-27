@@ -5,13 +5,13 @@ import ResultsChart from './results_chart';
 import MyMapComponent from './map';
 import apiKey from '../googlemap';
 import './run_results.scss';
-import RunResults from './run_results';
 
 class RunResult extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      id: 0,
       chartData: {},
       options: {},
       currentLatLng: {
@@ -21,20 +21,34 @@ class RunResult extends Component {
     }
   }
 
-  componentDidMount() {
-    this.getChartData();
+  async componentDidMount() {
+    this.getId();
+    await this.getChartData();
+  }
+
+  getId(){
+    let {id} = this.state;
+    if(this.props.match.params){
+      id = this.props.match.params;
+      console.log('this.props.match.params', id);
+    }else{
+      axios.get(`/api/get_last_runsession_results.php`).then((resp) => {
+          console.log('getID', resp);
+          id = resp['sessionData']['id']['id'];
+      })
+    }
+    this.setState({
+      id
+    })
   }
 
   async getChartData() {
-    const {id} = this.props.match.params;
+    const {id} = this.state;
     console.log('params: ',id)
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
     const { sessionData } = resp.data;
-    // console.log(sessionData)
     const miles = sessionData.map(mile => mile.currentMile);
     const time = sessionData.map(minutes => minutes.time)
-    console.log('miles: ', miles);
-    console.log('time: ', time);
 
     this.setState({
       chartData: {
@@ -52,7 +66,8 @@ class RunResult extends Component {
   }
 
   render() {
-    console.log('results: ', this.props.match.params)
+    console.log('results state: ', this.state);
+    console.log('this.props: ', this.props);
     return(
     <div className="postRunBody">
       <RunHeader />
