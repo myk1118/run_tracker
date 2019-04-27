@@ -300,8 +300,8 @@ class RunMap extends Component {
 
     renderPage=()=>{
         const { elapsed, distanceTraveled, status, renderPage, pace } = this.state;
-        const paceInMinutes = Math.trunc(elapsed/(60000*distanceTraveled))
-        const paceInSeconds = ((elapsed/(60000*distanceTraveled) - paceInMinutes)*60).toFixed(0);
+        const paceInMinutes = isNaN(Math.trunc(elapsed/(60000*distanceTraveled))) ? 0 : Math.trunc(elapsed/(60000*distanceTraveled))
+        const paceInSeconds = isNaN(((elapsed/(60000*distanceTraveled) - paceInMinutes)*60).toFixed(0)) ? '00' : ((elapsed/(60000*distanceTraveled) - paceInMinutes)*60).toFixed(0);
         console.log(elapsed)
         if(renderPage === 'map'){
             return(
