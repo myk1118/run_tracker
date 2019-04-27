@@ -115,8 +115,8 @@ class RunResult extends Component {
             </div>
         </div>
         <div className="row">
-            <div className="pieContainer col-6 col-md-6 col-lg-6">
-                <div className="offset-2 col-2 col-sm-3 col-md-6">
+            <div className="pieContainer col-6 col-md-3 col-lg-3">
+                <div className="offset-2 col-2 col-sm-3 col-md-3">
                 <div className="progress" data-percentage="100">
                     <span className="progress-left">
                         <span className="progress-bar1"></span>
@@ -134,8 +134,8 @@ class RunResult extends Component {
             </div>
             </div>
 
-            <div className="pieContainer col-6 col-md-6 col-lg-6">
-                <div className="offset-1 col-2 col-sm-3 col-md-6">
+            <div className="pieContainer col-6 col-md-3 col-lg-3">
+                <div className="col-2 col-sm-3 col-md-3">
                 <div className="progress" data-percentage="100">
                     <span className="progress-left">
                         <span className="progress-bar2"></span>
@@ -144,7 +144,7 @@ class RunResult extends Component {
                     <span className="progress-bar2"></span>
                     </span>
                 <div className="text-container">
-                    <div className="col-6 progress-value">
+                    <div className="offset-2 col-6 progress-value">
                     Time
                         <div className="col-6 progress-text">{this.state.time}</div>
                     </div>
@@ -154,8 +154,8 @@ class RunResult extends Component {
             </div>
         
 
-            <div className="pieContainer col-6 col-md-6 col-lg-6">
-                <div className="offset-2 col-2 col-sm-3 col-md-2">
+            <div className="pieContainer col-6 col-md-3 col-lg-3">
+                <div className="offset-2 col-2 col-sm-3 col-md-3">
                     <div className="progress" data-percentage="100">
                         <span className="progress-left">
                             <span className="progress-bar3"></span>
@@ -173,8 +173,8 @@ class RunResult extends Component {
             </div>
           </div>
 
-          <div className="pieContainer col-6 col-md-6 col-lg-6">
-          <div className="offset-1 col-2 col-sm-3 col-md-2">
+          <div className="pieContainer col-6 col-md-3 col-lg-">
+          <div className="col-2 col-sm-3 col-md-3">
             <div className="progress" data-percentage="100">
               <span className="progress-left">
                 <span className="progress-bar4"></span>
@@ -183,9 +183,9 @@ class RunResult extends Component {
                 <span className="progress-bar4"></span>
               </span>
               <div className="text-container">
-              <div className="col-6 progress-value">
+              <div className="offset-2 col-6 progress-value">
             Pace
-            <div className="col-6 progress-text">{this.state.pace}</div>
+            <div className="progress-text">{this.state.pace}</div>
             </div>
             </div>
             </div>
