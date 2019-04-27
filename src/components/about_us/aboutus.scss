@@ -10,6 +10,21 @@
         left: 50%;
         transform: translate(-50%, 0%);
     }
+
+    .nav-link-logout,
+    .nav-link-home {
+        color: white;
+    }
+}
+
+.nav-link-home {
+    position: absolute;
+    right: 18%;
+}
+
+.nav-link-logout {
+    position: absolute;
+    right: 6%;
 }
 
 .meetTheTeam {
