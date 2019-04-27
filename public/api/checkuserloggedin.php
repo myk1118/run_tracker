@@ -10,8 +10,8 @@ $output['success'] = false;
 if(!empty($_SESSION['user_data'])){
     $token = $_SESSION['user_data']['token'];
 } else {
-    $json_input = file_get_contents("php://input"); 
-    $input = json_decode($json_input, true); 
+    $json_input = file_get_contents("php://input");
+    $input = json_decode($json_input, true);
     if(empty($input['token'])){
         throw new Exception('token is required');
     }
@@ -35,13 +35,13 @@ $output['success']=true;
 
 if(!empty($_SESSION['user_data'])){
     $_SESSION['user_data'] = [
-        'id' => $data['id'],
+        'id' => $data['users_id'],
         'token' => $token
     ];
 }
 
 $json_output = json_encode($output);
-
-print($json_output);
+//
+// print($json_output);
 
 ?>
