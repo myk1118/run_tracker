@@ -5,9 +5,9 @@ require_once('mysqlconnect.php');
 require_once('checkuserloggedin.php');
 set_exception_handler('handleError');
 
-$user_id = 1;
+$users_id = $_SESSION['users_id'];
 
-$query = "SELECT `first_name`, `last_name`, `gender`, `age`, `height`, `weight`, `email`, `password` FROM `users` WHERE `id` = $user_id";
+$query = "SELECT `first_name`, `last_name`, `gender`, `age`, `height`, `weight`, `email`, `password` FROM `users` WHERE `users_id` = $users_id";
 
 $result = mysqli_query($conn, $query);
 
@@ -22,5 +22,3 @@ if (mysqli_num_rows($result) === 0) {
 $data = mysqli_fetch_assoc($result);
 
 print_r(json_encode($data));
-
-?>
