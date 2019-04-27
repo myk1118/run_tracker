@@ -46,6 +46,7 @@ class RunResult extends Component {
     const {id} = this.state;
     console.log('params: ',id)
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
+    console.log('resp: ', resp)
     const { sessionData } = resp.data;
     const miles = sessionData.map(mile => mile.currentMile);
     const time = sessionData.map(minutes => minutes.time)
@@ -66,7 +67,7 @@ class RunResult extends Component {
   }
 
   render() {
-    console.log('results state: ', this.state);
+    // console.log('results state: ', this.state);
     console.log('this.props: ', this.props);
     return(
     <div className="postRunBody">

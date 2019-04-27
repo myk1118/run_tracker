@@ -7,6 +7,7 @@ set_exception_handler('handleError');
 
 // $user_id = 1;
 $run_id = $_GET['id'];
+// $run_id = 3;
 $id = $_SESSION['user_data']['id'];
 
 $output = [
