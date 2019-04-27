@@ -20,7 +20,7 @@ class RunRoute extends Component {
             <Fragment>
                 <Route path="/runmap" exact component={RunMap} />
                 <Route path="/runmap/results/:id" component={RunResult} />
-                <Route path="/runmap/results/" component={LastRunResult} />
+                <Route exact path="/runmap/results/" component={LastRunResult} />
                 <Route path="/runmap/stats" component={RunStats} />
             </Fragment>
         )

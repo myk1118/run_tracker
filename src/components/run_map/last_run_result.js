@@ -27,8 +27,8 @@ class RunResult extends Component {
   }
 
   async componentDidMount() {
-    this.getRunInfo();
-    await this.getPersonalBest();
+    await this.getRunInfo();
+    // await this.getPersonalBest();
     this.getChartData();
   }
 
@@ -47,47 +47,43 @@ class RunResult extends Component {
       })
     } 
 
-    // async getPersonalBest(){
+    async getPersonalBest(){
 
-    //     await axios.get('/api/personalbestquery.php').then((resp)=>{
-    //         let {distance, calories, pace, time} = this.state;
-    //         let {fastestPace, longestRun, longestTime, mostCalories} = resp.data;
-    //         debugger;
-    //         let newDistance = ((distance/longestRun)/10)*100;
-    //         let newTime = Math.round((time/longestTime)/10)*10;
-    //         let newCalories = Math.round((calories/mostCalories))*100;
-    //         let newPace = Math.round(((fastestPace/pace)/100));
-    //         this.setState({
-    //                 bestDistance: newDistance,
-    //                 bestCalories: newCalories,
-    //                 bestPace: newPace,
-    //                 bestTime: newTime,
-    //         });
-    //     })
-    // }
+        await axios.get('/api/personalbestquery.php').then((resp)=>{
+            let {distance, calories, pace, time} = this.state;
+            let {fastestPace, longestRun, longestTime, mostCalories} = resp.data;
 
-//   getChartData() {
-//     const {id} = this.state;
-//     console.log('params: ',id)
-//     const resp = axios.get(`/api/get_runsession_results.php?id=${id}`);
-//     const { sessionData } = resp.data;
-//     const miles = sessionData.map(mile => mile.currentMile);
-//     const time = sessionData.map(minutes => minutes.time)
+            this.setState({
+                    bestDistance: longestRun,
+                    bestCalories: mostCalories,
+                    bestPace: fastestPace,
+                    bestTime: longestTime,
+            });
+        })
+    }
 
-//     this.setState({
-//       chartData: {
-//         labels: [0, ...miles],
-//         datasets: [
-//           {
-//             label: 'Time',
-//             fill: false,
-//             data: [0, ...time],
-//             borderColor: 'blue',
-//           }
-//         ]
-//       },
-//     })
-//   }
+  getChartData() {
+    const {id} = this.state;
+    console.log('params: ',id)
+    const resp = axios.get(`/api/get_last_runsession_results.php?id=${id}`);
+    const { sessionData } = resp.data;
+    const miles = sessionData.map(mile => mile.currentMile);
+    const time = sessionData.map(minutes => minutes.time)
+
+    this.setState({
+      chartData: {
+        labels: [0, ...miles],
+        datasets: [
+          {
+            label: 'Time',
+            fill: false,
+            data: [0, ...time],
+            borderColor: 'blue',
+          }
+        ]
+      },
+    })
+  }
 
 
 
