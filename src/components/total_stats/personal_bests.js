@@ -19,7 +19,7 @@ class PersonalBests extends Component {
   async getPersonalBests() {
     const bests = await axios.get('/api/personalbestquery.php');
     const {longestRun, fastestpace, lastRunDate} = bests.data;
-    console.log(bests);
+    console.log('bests: ',bests);
     this.setState({
       longestRun: longestRun,
       fastestPace: fastestpace,
