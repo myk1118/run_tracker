@@ -120,40 +120,40 @@ class RunMap extends Component {
     }
 
 
-    // geoLocationInterval = () => {
-    //   navigator.geolocation.getCurrentPosition(position => {
-    //      console.log('geolocation coords: ',position.coords);
-    //      this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
-    //   })
-    //
-    // }
+    geoLocationInterval = () => {
+      navigator.geolocation.getCurrentPosition(position => {
+         console.log('geolocation coords: ',position.coords);
+         this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length/20000), position.coords.longitude + (this.state.coordinateArray.length/20000));
+      })
+
+    }
 
 //when you click the button, start tracking
-    // startTracking = () => {
-    //   console.log('distance tracked');
-    //   const watchId = setInterval(this.geoLocationInterval, 5000);
-    //   this.setState({
-    //     watchId: watchId
-    //   })
-    // }
-
     startTracking = () => {
       console.log('distance tracked');
-      const watchId = navigator.geolocation.watchPosition(position => {
-        console.log('geolocation coords: ', position.coords);
-        this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
-      }, error => {
-        console.log('error')
-      }, {enableHighAccuracy: true})
-        this.setState({
-          watchId: watchId
-        })
+      const watchId = setInterval(this.geoLocationInterval, 500);
+      this.setState({
+        watchId: watchId
+      })
     }
+    //
+    // startTracking = () => {
+    //   console.log('distance tracked');
+    //   const watchId = navigator.geolocation.watchPosition(position => {
+    //     console.log('geolocation coords: ', position.coords);
+    //     this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+    //   }, error => {
+    //     console.log('error')
+    //   }, {enableHighAccuracy: true})
+    //     this.setState({
+    //       watchId: watchId
+    //     })
+    // }
 //when you click the stop button, stop tracking
     stopTracking = () => {
       console.log('tracking stopped');
-      navigator.geolocation.clearWatch(this.state.watchId);
-      // clearInterval(this.state.watchId);
+      // navigator.geolocation.clearWatch(this.state.watchId);
+      clearInterval(this.state.watchId);
     }
 
     //track distance traveled.  Updates everytime movement is tracked.

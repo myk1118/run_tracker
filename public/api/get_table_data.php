@@ -28,7 +28,7 @@ while($row = mysqli_fetch_assoc($result)) {
 
   $output['tableItems'][] = [
   'date' => ltrim($date->format('m-d-Y'), '0'),
-  'distance' => round((int)$row['distance'],2),
+  'distance' => $row['distance'],
   'time' => gmdate('H:i:s', $row['time']),
   'pace' => (int)$row['pace'],
   'id' => (int)$row['id']
