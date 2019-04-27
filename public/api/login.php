@@ -39,7 +39,7 @@ if (!$result) {
 };
 
 if (mysqli_num_rows($result) !== 1) {
-    throw new Exception('invalid username or password');
+    throw new Exception('Invalid username or password');
 };
 
 //no error

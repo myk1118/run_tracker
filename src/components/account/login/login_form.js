@@ -12,14 +12,9 @@ const LoginForm = props => {
                 <Field id="email" name="email" component={Input} type="email" placeholder="Email" />
                 <Field id="password" name="password" component={Input} type="password" placeholder="Password" />
             </div>
-            {/* <div className="row"> */}
-            <div
-                // className="col s12 center"
-                className="buttonsContainer">
+            <div className="buttonsContainer">
                 <button className="btn btn-info">Log In</button>
-                {/* <button className="btn btn-info">Sign Up</button> */}
             </div>
-            {/* </div> */}
         </form>
     )
 }
