@@ -4,7 +4,6 @@ set_exception_handler('handleError');
 require_once('config.php');
 require_once('mysqlconnect.php');
 
-
 $output = [
     'success' => false,
 ];
@@ -69,8 +68,9 @@ if (mysqli_affected_rows($conn) !== 1) {
 
 $firstname = $data['first_name'];
 $lastname = $data['last_name'];
+
 $_SESSION['user_data'] = [
-    'id' => $data['id'],
+    'users_id' => $data['id'],
     'username' => $firstname . ' ' . $lastname,
     'token' => $token
 ];

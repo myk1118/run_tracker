@@ -31,7 +31,7 @@ function validate({ email, password }) {
     }
     if (!password) {
         errors.password = 'Please enter your password';
-    } 
+    }
     return errors;
 }
 

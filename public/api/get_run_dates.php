@@ -5,8 +5,7 @@ require_once('mysqlconnect.php');
 require_once('checkuserloggedin.php');
 set_exception_handler('handleError');
 
-
-$user_id = $_SESSION['user_data']['id'];
+$user_id = $_SESSION['user_data']['users_id'];
 
 $query = "SELECT `date`, `id` FROM `run_stats`
   WHERE `user_id` = $user_id
@@ -16,13 +15,13 @@ $query = "SELECT `date`, `id` FROM `run_stats`
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
-    throw new Exception('invalid query: ' . mysqli_error($conn));
+  throw new Exception('invalid query: ' . mysqli_error($conn));
 }
 
 $output['success'] = true;
 $output['dates'] = [];
 
-while($row = mysqli_fetch_assoc($result)) {
+while ($row = mysqli_fetch_assoc($result)) {
   $parent = $row['date'];
   $timestamp = strtotime($parent);
 
@@ -34,9 +33,6 @@ while($row = mysqli_fetch_assoc($result)) {
     'time' => ltrim($time, '0'),
     'id' => $row['id']
   ];
-
-
 };
-
 
 print_r(json_encode($output));
