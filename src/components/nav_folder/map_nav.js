@@ -6,7 +6,7 @@ export default props => {
   return (
     <div className="headerContainer">
       <div className="mapHeaderContainer">
-        <div className="navLogo">RunBuddy</div>
+        <div className="navLogo">Run-Tracker</div>
         <NavLink className="nav-link-aboutus" to="/aboutus">About Us</NavLink>
         <NavLink className="nav-link-logout" to="/login">Log Out</NavLink>
       </div>

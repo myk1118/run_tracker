@@ -13,7 +13,7 @@ export default props => {
         <Switch>
             <Route path={`${match.path}/login`} component={LogIn} />
             <Route path={`${match.path}/logout`} component={LogOut} />
-           <Route path={`${match.path}/sign-up`} component={SignUp} />
+            <Route path={`${match.path}/sign-up`} component={SignUp} />
             {/* <Route component={NotFound} /> */}
         </Switch>
     )

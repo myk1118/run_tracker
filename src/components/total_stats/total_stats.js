@@ -27,12 +27,12 @@ class TotalStats extends React.Component {
 
       this.setState({
         chartData: {
-          labels: [...dates],
+          labels: [0,...dates],
           datasets: [
             {
               label: 'miles',
               fill: false,
-              data: [...distances],
+              data: [0,...distances],
               borderColor: 'blue',
             }
           ]

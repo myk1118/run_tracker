@@ -10,9 +10,13 @@ class RunHeader extends Component {
     return (
       <div className="headerContainer">
         <div className="mapHeaderContainer">
-          <div className="navLogo">RunBuddy</div>
-          <NavLink className="nav-link-aboutus" to="/aboutus">About Us</NavLink>
-          <NavLink className="nav-link-logout" to="/login">Log Out</NavLink>
+          <div className="navLogo">Run-Tracker</div>
+          <NavLink className="nav-link-aboutus" to="/aboutus">
+            <span class="oi" data-glyph="people"></span>
+          </NavLink>
+          <NavLink className="nav-link-logout" to="/login">
+            <span class="oi" data-glyph="account-logout"></span>
+          </NavLink>
         </div>
         <nav className="navbar navbar-expand navbar-custom navbar-center py-0 ">
           <div className="container-fluid ">

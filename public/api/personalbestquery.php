@@ -2,6 +2,7 @@
 require_once('functions.php');
 require_once('config.php');
 require_once('mysqlconnect.php');
+require_once('checkuserloggedin.php');
 set_exception_handler('handleError');
 
 $output = [
@@ -12,6 +13,7 @@ $userid = $_SESSION['user_data']['id'];
 
 $query = "SELECT
 MAX(s. `distance`) AS `longestDistance`, MIN((s.`pace`)/(s.`distance`)) AS `maxDistance`, MAX(s.`date`) AS `lastDate`, MAX(s.`calories`) as `maxCalories`, MAX(s.`time`) as longestTime
+MAX(s. `distance`), MIN((s.`time`)/(60 * s.`distance`)) AS `pace`, MAX(s.`date`)
 FROM `run_stats` AS `s`
 JOIN `users` ON users.`id` = s.`user_id`
 WHERE users.`id` = $userid";
@@ -30,6 +32,7 @@ $data = mysqli_fetch_assoc($result);
 $date = new DateTime($data['lastDate']);
 
 $output = [];
+
 $output['longestRun'] = (int)$data['longestDistance'];
 $output['fastestPace'] = (int)$data['maxDistance'];
 // $output['lastRunDate'] = $data['MAX(s.`date`)'];

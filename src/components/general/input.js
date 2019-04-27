@@ -9,7 +9,7 @@ export default ({ input, id, label, meta: { error, touched }, type = 'text',
             className={`input-field col ${col}`}
         >
             <input {...input} id={id} type={type} placeholder={placeholder} />
-            {/* <label htmlFor={id}>{label}</label> */}
+            <label htmlFor={id}>{label}</label>
             <p className="red-text text-darken-2">{touched && error}</p>
         </div>
     );
