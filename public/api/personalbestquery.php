@@ -12,6 +12,7 @@ $output = [
 $userid = $_SESSION['user_data']['id'];
 
 $query = "SELECT
+MAX(s. `distance`) AS `longestDistance`, MIN((s.`pace`)/(s.`distance`)) AS `maxDistance`, MAX(s.`date`) AS `lastDate`, MAX(s.`calories`) as `maxCalories`, MAX(s.`time`) as longestTime
 MAX(s. `distance`), MIN((s.`time`)/(60 * s.`distance`)) AS `pace`, MAX(s.`date`)
 FROM `run_stats` AS `s`
 JOIN `users` ON users.`id` = s.`user_id`
@@ -28,13 +29,16 @@ if(mysqli_num_rows($result) === 0){
 }
 
 $data = mysqli_fetch_assoc($result);
-$date = new DateTime($data['MAX(s.`date`)']);
+$date = new DateTime($data['lastDate']);
 
 $output = [];
-$output['longestRun'] = $data['MAX(s. `distance`)'] . " miles";
-$output['fastestpace'] = round($data['pace'], 2) . " minutes per mile";
+
+$output['longestRun'] = (int)$data['longestDistance'];
+$output['fastestPace'] = (int)$data['maxDistance'];
 // $output['lastRunDate'] = $data['MAX(s.`date`)'];
 $output['lastRunDate'] = $date->format('m-d-Y');
+$output['mostCalories'] = (int)$data['maxCalories'];
+$output['longestTime'] = (int)$data['longestTime'];
 
 
 
