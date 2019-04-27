@@ -17,7 +17,8 @@ $query = "SELECT r.`id`, r.`distance`, r.`time`, r.`calories`, r.`pace`, m.`mile
 FROM `run_stats` AS r
 JOIN `miles` as m
 ON r.`id` = m.`run_id`
-WHERE `user_id` = $id
+WHERE `user_id` = $id 
+ORDER BY r.`id` DESC
   ";
 
 
