@@ -52,8 +52,8 @@ class RunResult extends Component {
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
     console.log('resp: ', resp)
     const { sessionData } = resp.data;
-    console.log('session resp', resp)
-    const miles = sessionData.map(mile => mile.currentMile);
+    console.log('session data:', sessionData)
+    const miles = sessionData.map(mile => mile.perMile.currentMile);
     const time = sessionData.map(minutes => minutes.time)
 
     this.setState({
