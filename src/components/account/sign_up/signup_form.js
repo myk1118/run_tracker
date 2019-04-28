@@ -15,8 +15,8 @@ const SignUpForm = props => {
                 <Field col="s12" id="age" name="age" component={Input} placeholder="Age" />
                 <Field col="s12" id="height" name="height" component={Input} placeholder="Height" />
                 <Field col="s12" id="weight" name="weight" component={Input} placeholder="Weight" />
-                <Field col="s12" id="email" name="email" component={Input} placeholder="Email" />
-                <Field col="s12" id="password" name="password" component={Input} type="password" placeholder="Password" />
+                <Field col="s12" id="signupEmail" name="email" component={Input} placeholder="Email" />
+                <Field col="s12" id="signupPassword" name="password" component={Input} type="password" placeholder="Password" />
                 <Field col="s12" id="confirmpassword" name="confirmpassword" component={Input} type="password" placeholder="Confirm Password" />
             </div>
             {/* <div className="row"> */}

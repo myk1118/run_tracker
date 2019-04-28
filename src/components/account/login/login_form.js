@@ -9,8 +9,8 @@ const LoginForm = props => {
             <div
                 // className="row"
                 className="inputFields">
-                <Field id="email" name="email" component={Input} type="email" placeholder="Email" />
-                <Field id="password" name="password" component={Input} type="password" placeholder="Password" />
+                <Field id="loginEmail" name="email" component={Input} type="email" placeholder="Email" />
+                <Field id="loginPassword" name="password" component={Input} type="password" placeholder="Password" />
             </div>
             <div className="buttonsContainer">
                 <button className="btn btn-info">Log In</button>

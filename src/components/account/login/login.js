@@ -15,9 +15,9 @@ class LogIn extends Component {
     this.state = {
       loggedIn: false,
       signedUp: false,
-      rememberMe: false,
-      email: '',
-      password: '',
+      // rememberMe: false,
+      // email: '',
+      // password: '',
       message: '',
       transition: {
         height: '0px'
@@ -33,11 +33,11 @@ class LogIn extends Component {
     this.hideTransition = this.hideTransition.bind(this);
   }
 
-  handleChange = (event) => {
-    const input = event.target;
-    const value = input.type === 'checkbox' ? input.checked : input.value;
-    this.setState({ [input.name]: value });
-  };
+  // handleChange = (event) => {
+  //   const input = event.target;
+  //   const value = input.type === 'checkbox' ? input.checked : input.value;
+  //   this.setState({ [input.name]: value });
+  // };
 
   handleLogIn = (values) => {
     this.props.logIn(values);
@@ -46,7 +46,7 @@ class LogIn extends Component {
       if (resp.data.success) {
         this.setState({
           loggedIn: true
-        })
+        });
       } else {
         this.setState({
           message: resp.data.error
@@ -56,7 +56,6 @@ class LogIn extends Component {
   }
 
   handleSignUp = (values) => {
-    debugger;
     this.props.signUp(values);
     axios.post('/api/signup.php', values).then(resp => {
       console.log('response: ', resp);
@@ -113,8 +112,8 @@ class LogIn extends Component {
     else {
       return (
         <div className="loginPage">
-          <div className="loginPageLogo">
-          RUN TRACKER
+          <div className="loginPageLogo">RUN
+          TRACKER
           </div>
           <div className="carouselContainer">
             <Carousel />
