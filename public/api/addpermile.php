@@ -14,10 +14,10 @@ $mileStats = [
 ];
 
 $time = (int)$input['time'];
-$mileage = (int)$input['mileage'];
+$mileage = (float)$input['mileage'];
 $run_id = (int)$input['run_id']; //$_SESSION['run_id'];
 
-$perMileQuery = "INSERT INTO `miles` SET `time` = $time, `mileage` = $mileage, `run_id` = $run_id";
+$perMileQuery = "INSERT INTO `miles` SET `time` = $time, `mileage` = ROUND($mileage,2), `run_id` = $run_id";
 
 $perMileResult = mysqli_query($conn, $perMileQuery);
 

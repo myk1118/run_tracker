@@ -48,7 +48,7 @@ class TotalStats extends React.Component {
         <Chart options={this.state.options} chartData={this.state.chartData} />
         <div className="d-flex chart-container">
           <div className="col-6  text-center">
-            <PieChart options={this.state.options} chartData={this.state.chartData} />
+            {/* <PieChart options={this.state.options} chartData={this.state.chartData} /> */}
           </div>
           <div className="col-4">
           <div className="col-sm-3 col-md-2">

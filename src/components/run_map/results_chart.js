@@ -36,6 +36,11 @@ export default props => {
                 },
               }],
               yAxes: [{
+                // ticks: {
+                //   callback: label => {
+                //     return '$' + label;
+                //   }
+                // },
                 scaleLabel: {
                   display: true,
                   labelString: 'Pace(min/mile)'
