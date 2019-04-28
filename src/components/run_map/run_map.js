@@ -319,7 +319,7 @@ class RunMap extends Component {
                         coordinateArray = {this.state.coordinateArray}
                     />
                 </div>
-                <div className="buttonsContainer">
+                <div className="runmapButtonsContainer">
                     <WatchBtns status={status}
                         start={this.start}
                         pause={this.pause}

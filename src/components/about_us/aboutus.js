@@ -4,12 +4,19 @@ import David from '../../../public/dist/images/avocadodavid.jpg';
 import Johnny from '../../../public/dist/images/avocadobackend.jpg';
 import Alice from '../../../public/dist/images/avocadoalice.jpg';
 import Jaime from '../../../public/dist/images/avocadojaime.jpg';
+import { NavLink } from 'react-router-dom';
 
 export default props => {
     return (
         <div>
             <div className="aboutUsNav">
                 <div className="navLogo">Run-Tracker</div>
+                <NavLink className="nav-link-home" to="/">
+                    <span className="oi" data-glyph="home"></span>
+                </NavLink>
+                <NavLink className="nav-link-logout" to="/login">
+                    <span className="oi" data-glyph="account-logout"></span>
+                </NavLink>
             </div>
             <div className="container">
                 <div className="meetTheTeam">Meet the Team</div>
