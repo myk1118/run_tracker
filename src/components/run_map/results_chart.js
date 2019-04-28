@@ -6,7 +6,7 @@ export default props => {
   return (
     <div>
       <article className="graph-container">
-      <Line
+      <Bar
         data={props.chartData}
         width={100}
         height={100}
@@ -38,7 +38,7 @@ export default props => {
               yAxes: [{
                 scaleLabel: {
                   display: true,
-                  labelString: 'Minutes'
+                  labelString: 'Pace(min/mile)'
                 }
               }],
             }

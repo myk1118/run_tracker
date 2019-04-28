@@ -35,7 +35,7 @@ class RunMap extends Component {
             distanceTraveled: 0,
             distanceDisplay: 0,
             coordinateArray: [],
-            currentId: null
+            run_id: null
         }
 
         this.start = this.start.bind(this);
@@ -47,18 +47,36 @@ class RunMap extends Component {
         this.clickMiles = this.clickMiles.bind(this);
     }
 
+
+    componentDidMount() {
+        this.getGeoLocation();
+        // this.getMileData();
+    }
+
+    createId = () => {
+      axios.get('/api/create_new_id.php').then(resp => {
+        this.setState({
+          run_id: resp.data.id
+        })
+      })
+    }
+
+//get the per mile data, send it to database, and set the state
     postlatestMile() {
-        const { distance, distanceTraveled } = this.state;
-        // console.log(distanceTraveled);
-        if (distanceTraveled && distanceTraveled - Math.floor(distanceTraveled) === 0) {
-            let { previousTime, elapsed, mileCounter } = this.state;
+        const { distance, distanceTraveled, mileCounter } = this.state;
+        console.log(distanceTraveled);
+        // if (distanceTraveled && distanceTraveled - Math.floor(distanceTraveled) === 0) {
+        if (distanceTraveled && distanceTraveled - mileCounter >= 0) {
+          console.log('sdfljsd;lfjl;dksjfkl;dsjf')
+            let { previousTime, elapsed, mileCounter, run_id } = this.state;
             const data = {
-                run_id: 105,
-                time: elapsed - previousTime,
+                run_id,
+                time: Math.round((elapsed - previousTime)/1000),
                 mileage: mileCounter
             }
-            axios.post(`/api/addpermile.php`, data).then(() => {
+            axios.post(`/api/addpermile.php`, data).then((resp) => {
                 console.log('post', data);
+                console.log('response: ', resp)
                 mileCounter = mileCounter + 1;
                 this.setState({
                     mileCounter,
@@ -68,26 +86,11 @@ class RunMap extends Component {
         }
     }
 
-    componentDidMount() {
-        this.getGeoLocation();
-        this.getMileData();
-    }
-
-    createId = () => {
-      axios.get('/api/create_new_id.php').then(resp => {
-        console.log('response!: ',resp.data.id);
-        this.setState({
-          currentId: resp.data.id
-        })
-      })
-    }
-
-    // postRunResults() {
-    //
-    // }
-
+//display per mile data to the table
     getMileData() {
-        axios.get('/api/getpermile.php').then(resp => {
+      const {run_id} = this.state;
+      if(run_id){
+        axios.post('/api/getpermile.php', {run_id}).then(resp => {
           console.log('get mile data: ',resp)
             const { mileTime } = resp.data;
             const mileStats = mileTime.map(item => {
@@ -101,6 +104,22 @@ class RunMap extends Component {
             this.setState({
                 mileStats: [...mileStats]
             })
+        })
+      }
+    }
+
+    postCurrentRun = (elapsed) => {
+        const { distanceTraveled, pace, calories, distance, run_id } = this.state;
+        const data = {
+            distance: distanceTraveled,
+            time: Math.floor(elapsed/1000),
+            pace: pace,
+            calories: calories,
+            run_id
+        }
+        console.log('DATA: ', data)
+        axios.post(`/api/addrun.php`, data).then((resp) => {
+            console.log('run was successfully recorded!', resp)
         })
     }
 
@@ -134,7 +153,7 @@ class RunMap extends Component {
     geoLocationInterval = () => {
       navigator.geolocation.getCurrentPosition(position => {
          // console.log('geolocation coords: ',position.coords);
-         this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length/1000), position.coords.longitude + (this.state.coordinateArray.length/1000));
+         this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length/20000), position.coords.longitude + (this.state.coordinateArray.length/20000));
       })
 
     }
@@ -142,7 +161,7 @@ class RunMap extends Component {
 //when you click the button, start tracking
     startTracking = () => {
       console.log('distance tracked');
-      const watchId = setInterval(this.geoLocationInterval, 500);
+      const watchId = setInterval(this.geoLocationInterval, 200);
       this.setState({
         watchId: watchId
       })
@@ -167,13 +186,15 @@ class RunMap extends Component {
       clearInterval(this.state.watchId);
     }
 
+
     //track distance traveled.  Updates everytime movement is tracked.
     monitorUserDistance = (newLatitude, newLongitude) => {
         const { lat, lng } = this.state.currentLatLng
         const distanceTraveled = this.calcDistanceHaversine(lat, lng, newLatitude, newLongitude);
         // console.log('Location is being monitored. distance changed: ', distanceTraveled);
         let newDistance = this.state.distanceTraveled + distanceTraveled;
-        // console.log('location is being monitored. total distance traveled: ', newDistance);
+        this.postlatestMile();
+        console.log('location is being monitored. total distance traveled: ', newDistance);
         if (distanceTraveled !== 0) {
             this.setState({
                 coordinateArray: [...this.state.coordinateArray, {
@@ -212,7 +233,7 @@ class RunMap extends Component {
     }
 
     start() {
-      if(!this.state.currentId)
+      if(!this.state.run_id)
         {this.createId()
       }
       this.startTracking();
@@ -281,7 +302,7 @@ class RunMap extends Component {
     distanceUpdate() {
         // debugger;
         let { distance } = this.state;
-        // distance =
+        // // distance =
         this.setState({
             distance: (parseFloat(distance) + 0.01).toFixed(2)
         })
@@ -289,19 +310,7 @@ class RunMap extends Component {
         this.postlatestMile();
     }
 
-    postCurrentRun = (elapsed) => {
-        const { distanceTraveled, pace, calories, distance } = this.state;
-        const data = {
-            distance: distanceTraveled,
-            time: Math.floor(elapsed/1000),
-            pace: pace,
-            calories: calories,
-            run_id: this.state.currentId
-        }
-        axios.post(`/api/addrun.php`, data).then((resp) => {
-            console.log('run was successfully recorded!', resp)
-        })
-    }
+
 
     renderPage=()=>{
         const { elapsed, distanceTraveled, status, renderPage, pace } = this.state;

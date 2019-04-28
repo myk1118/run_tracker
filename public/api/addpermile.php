@@ -29,7 +29,7 @@ if(mysqli_affected_rows($conn)===0)
     throw new Exception('Failed to add mile');
 }
 
-$mile_id = mysqli_insert_id($conn);
+// $mile_id = mysqli_insert_id($conn);
 
 $mileStats['success'] = true;
 

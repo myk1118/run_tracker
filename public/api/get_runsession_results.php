@@ -23,7 +23,7 @@ WHERE `user_id` = $id AND
 r.`id` = $run_id
   -- ORDER BY m.`id` ASC
   ";
-  
+
 
   // $query = "SELECT m.`mileage` AS `miles`, m.`time`, m.`id`
   //   FROM `miles` AS `m`
@@ -53,6 +53,7 @@ while($row = mysqli_fetch_assoc($result)) {
       'perMile'=> [
           'currentMile' => (int)$row['miles'],
           'perMileTime' => (int)$row['permiletime']
+          // 'perMileTime' => gmdate("i:s", (int)$row['permiletime'])
       ]
   ];
 };

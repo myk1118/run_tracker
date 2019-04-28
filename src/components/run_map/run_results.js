@@ -54,7 +54,7 @@ class RunResult extends Component {
     const { sessionData } = resp.data;
     console.log('session data:', sessionData)
     const miles = sessionData.map(mile => mile.perMile.currentMile);
-    const time = sessionData.map(minutes => minutes.time)
+    const time = sessionData.map(minutes => minutes.perMile.perMileTime);
 
     this.setState({
       time: 0,
@@ -62,12 +62,12 @@ class RunResult extends Component {
       calories: 0,
       pace: 0,
       chartData: {
-        labels: [0, ...miles],
+        labels: [...miles],
         datasets: [
           {
             label: 'Time',
             fill: false,
-            data: [0, ...time],
+            data: [...time],
             borderColor: 'blue',
           }
         ]

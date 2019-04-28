@@ -12,7 +12,14 @@ $output = [
     'success' => false,
 ];
 
-$run_stats_id = 3;
+// $run_stats_id = $_POST['run_id'];
+// $run_stats_id = 3;
+
+$json_input = file_get_contents("php://input");
+$input = json_decode($json_input, true);
+
+$run_stats_id = (int)$input['run_id'];
+
 
 $query = "SELECT `time`, `mileage`, `id` FROM `miles`
 WHERE `run_id` = $run_stats_id
