@@ -5,7 +5,7 @@ require_once('mysqlconnect.php');
 require_once('checkuserloggedin.php');
 set_exception_handler('handleError');
 
-$user_id = $_SESSION['user_data']['users_id'];
+$user_id = $_SESSION['user_data']['id'];
 
 $query = "SELECT `date`, `id` FROM `run_stats`
   WHERE `user_id` = $user_id

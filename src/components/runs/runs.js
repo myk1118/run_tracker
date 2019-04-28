@@ -22,7 +22,7 @@ class Runs extends React.Component {
   async getDates() {
     const run_dates = await axios.get('/api/get_run_dates.php');
     const dates = run_dates.data.dates;
-    console.log(dates);
+    console.log('dates: ', dates);
     const date_buttons = dates.map((item) => {
       return (
         <div key={item.id} className="imgContainer col-6 col-sm-6 col-md-6 col-lg-6 text-center">

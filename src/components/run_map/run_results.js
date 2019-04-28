@@ -11,6 +11,10 @@ class RunResult extends Component {
     super(props);
 
     this.state = {
+      time: 0,
+      distance: 0,
+      calories: 0,
+      pace: 0,
       id: 0,
       chartData: {},
       options: {},
@@ -21,36 +25,42 @@ class RunResult extends Component {
     }
   }
 
-  async componentDidMount() {
-    this.getId();
-    await this.getChartData();
+  componentDidMount() {
+    this.getChartData();
   }
 
-  getId(){
-    let {id} = this.state;
-    if(this.props.match.params){
-      id = this.props.match.params;
-      console.log('this.props.match.params', id);
-    }else{
-      axios.get(`/api/get_last_runsession_results.php`).then((resp) => {
-          console.log('getID', resp);
-          id = resp['sessionData']['id']['id'];
-      })
-    }
-    this.setState({
-      id
-    })
-  }
+  // getId(){
+  //   let {id} = this.state;
+  //   if(this.props.match.params){
+  //     id = this.props.match.params;
+  //     console.log('this.props.match.params', id);
+  //   }else{
+  //     axios.get(`/api/get_last_runsession_results.php`).then((resp) => {
+  //         console.log('getID', resp);
+  //         id = resp['sessionData']['id']['id'];
+  //     })
+  //   }
+  //   this.setState({
+  //     id
+  //   })
+  // }
 
   async getChartData() {
-    const {id} = this.state;
+    this.props.match.params
+    const {id} = this.props.match.params
     console.log('params: ',id)
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
+    console.log('resp: ', resp)
     const { sessionData } = resp.data;
-    const miles = sessionData.map(mile => mile.currentMile);
+    console.log('session data:', sessionData)
+    const miles = sessionData.map(mile => mile.perMile.currentMile);
     const time = sessionData.map(minutes => minutes.time)
 
     this.setState({
+      time: 0,
+      distance: 0,
+      calories: 0,
+      pace: 0,
       chartData: {
         labels: [0, ...miles],
         datasets: [
@@ -66,7 +76,7 @@ class RunResult extends Component {
   }
 
   render() {
-    console.log('results state: ', this.state);
+    // console.log('results state: ', this.state);
     console.log('this.props: ', this.props);
     return(
     <div className="postRunBody">
@@ -83,7 +93,7 @@ class RunResult extends Component {
         />
       </div>
     <div className="progressContainer">
-    <div className="graphContainer">
+      <div className="graphContainer">
         <div className="graph">
           <ResultsChart  chartData={this.state.chartData}/>
         </div>
@@ -91,7 +101,7 @@ class RunResult extends Component {
       <div className="row">
         <div className="pieContainer col-md-6">
           <div className="offset-3 col-2 col-sm-3 col-md-6">
-            <div className="progress" data-percentage="40">
+            <div className="progress" data-percentage="100">
               <span className="progress-left">
                 <span className="progress-bar1"></span>
               </span>
@@ -107,7 +117,7 @@ class RunResult extends Component {
           </div>
           <div className="pieContainer col-md-6">
           <div className="offset-2 col-2 col-sm-3 col-md-2">
-            <div className="progress" data-percentage="60">
+            <div className="progress" data-percentage="100">
               <span className="progress-left">
                 <span className="progress-bar2"></span>
               </span>
@@ -122,7 +132,7 @@ class RunResult extends Component {
           </div>
           <div className="pieContainer col-md-6">
           <div className="offset-3 col-2 col-sm-3 col-md-2">
-            <div className="progress" data-percentage="60">
+            <div className="progress" data-percentage="100">
               <span className="progress-left">
                 <span className="progress-bar3"></span>
               </span>
@@ -137,7 +147,7 @@ class RunResult extends Component {
           </div>
           <div className="pieContainer col-md-6">
           <div className="offset-2 col-2 col-sm-3 col-md-2">
-            <div className="progress" data-percentage="60">
+            <div className="progress" data-percentage="100">
               <span className="progress-left">
                 <span className="progress-bar4"></span>
               </span>
