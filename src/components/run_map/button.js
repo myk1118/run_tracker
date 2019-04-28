@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default props => {
-    const { status, start, pause, reset } = props;
+    const { status, start, pause, reset} = props;
     switch (status) {
         case 'stopped':
             return (<button onClick={start} className="btn btn-info btn-lg">Start</button>);

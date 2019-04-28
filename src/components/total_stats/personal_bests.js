@@ -33,7 +33,7 @@ class PersonalBests extends Component {
     return (
       <div className="personal-bests">
         <p><b>Fastest Pace: </b> <u>{fastestPace}</u></p>
-        <p><b>Longest Run: </b><u>{longestRun}</u></p>
+        <p><b>Longest Run: </b><u>{longestRun} miles</u></p>
         {/* <p>Most Calories Burned:</p> */}
         <p><b>Last Run: </b><u>{lastRunDate}</u></p>
       </div>
