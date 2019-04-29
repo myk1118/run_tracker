@@ -7,7 +7,6 @@ set_exception_handler('handleError');
 
 // $user_id = 1;
 $run_id = $_GET['id'];
-// $run_id = 3;
 $id = $_SESSION['user_data']['id'];
 
 $output = [
@@ -45,7 +44,7 @@ while($row = mysqli_fetch_assoc($result)) {
   $minutes = round((int)$row['time']/60 , 2);
 
   $output['sessionData'][] = [
-    'id' => (int)$row['id'],
+    // 'id' => (int)$row['id'],
     'time' => (int)$minutes,
     'distance' => (int)$row['distance'],
     'calories' => (int)$row['calories'],
