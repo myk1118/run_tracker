@@ -97,6 +97,7 @@ class RunResult extends Component {
           mapElement={<div style={{ height: `100%` }} />}
           currentLocation = {this.state.currentLatLng}
           />
+          {/* <img src={`https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=15&size=640x400&markers=color:blue%7Clabel:S%7C40.714728,-73.998672&key=${apiKey}&`}/> */}
       </div>
     <div className="progressContainer">
       <div className="graphContainer">
