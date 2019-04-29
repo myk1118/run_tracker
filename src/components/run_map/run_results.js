@@ -21,8 +21,8 @@ class RunResult extends Component {
       chartData: {},
       options: {},
       currentLatLng: {
-        lat: 33,
-        lng: -117
+        // lat: 33,
+        // lng: -117
       },
     }
   }
@@ -50,10 +50,9 @@ class RunResult extends Component {
   async getChartData() {
     const {id} = this.props.match.params
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
-    console.log('resp: ', resp)
-    const { sessionData, date, distance } = resp.data;
+    console.log('resp!!!: ', resp)
+    const { sessionData, date, distance, coordinates } = resp.data;
     const{ calories, pace, time} = sessionData['0'];
-    console.log('session data:', sessionData)
     const miles = sessionData.map(mile => mile.perMile.currentMile);
     const time2 = sessionData.map(minutes => (minutes.perMile.perMileTime/60).toFixed(2));
 
@@ -63,6 +62,10 @@ class RunResult extends Component {
       calories,
       pace,
       date,
+      currentLatLng: {
+        lat: coordinates.lat,
+        lng: coordinates.lng
+      },
       totalDistance: distance,
       chartData: {
         labels: [...miles],
