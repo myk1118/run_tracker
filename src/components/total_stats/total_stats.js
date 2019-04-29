@@ -11,12 +11,28 @@ class TotalStats extends React.Component {
     super(props);
 
     this.state = {
-      chartData: {}
+      chartData: {},
+      totalRunCount: 0,
+      monthlyRunCount: 0,
+      weeklyRunCount: 0
     }
   }
 
   componentDidMount() {
     this.getChartData();
+    this.getRunCount();
+  }
+
+  getRunCount(){
+    axios.get('/api/run-count.php').then(resp => {
+      console.log('run count resp', resp);
+      const {totalCount, monthCount, weekCount} = resp.data;
+      this.setState ({
+        totalRunCount: totalCount,
+        monthlyRunCount: monthCount,
+        weeklyRunCount: weekCount
+      })
+    })
   }
 
   getChartData() {
@@ -48,9 +64,14 @@ class TotalStats extends React.Component {
         <Chart options={this.state.options} chartData={this.state.chartData} />
         <div className="d-flex chart-container">
           <div className="col-6  text-center">
+          <div className="runCount">
+          <div>Total Runs: {this.state.totalRunCount}</div>
+          <div>Last 30 Days: {this.state.monthlyRunCount}</div>
+          <div>Last Week: {this.state.weeklyRunCount}</div></div>
+
             {/* <PieChart options={this.state.options} chartData={this.state.chartData} /> */}
           </div>
-          <div className="col-4">
+          <div className="offset-2 col-4">
           <div className="col-sm-3 col-md-2">
             <div className="eventProgress" data-percentage="90">
               <span className="eventProgress-left">

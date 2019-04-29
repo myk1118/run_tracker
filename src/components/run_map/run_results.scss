@@ -38,12 +38,15 @@
 
 
 div.row{
-    margin-top:5%;
+    margin-top:2%;
+    height:100%;
 }
 .pieContainer{
     // width:50%;
     height:20%;
-    margin-top: 2%;
+}
+.pieContainer2{
+  margin-top: 20%;
 }
 
 $borderWidth: 7px;
@@ -53,7 +56,7 @@ $border-color-fill1: #432ff8;
 $border-color-fill2: #cc48dd;
 $border-color-fill3: #fd5650;
 $border-color-fill4: #6fffe7;
-$size: 150px;
+$size: 175px;
 $howManySteps: 10;
 
 

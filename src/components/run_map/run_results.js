@@ -109,8 +109,8 @@ class RunResult extends Component {
 
       </div>
       <div className="row col-6 inline-block">
-          <div className="pieContainer col-6 col-md-3 col-lg-3">
-              <div className="col-2 col-sm-3 col-md-3">
+          <div className="offset-2 pieContainer col-4 col-md-4 col-lg-4">
+              <div className="col-6 col-sm-6 col-md-6">
               <div className="progress" data-percentage="100">
                   <span className="progress-left">
                       <span className="progress-bar1"></span>
@@ -128,8 +128,8 @@ class RunResult extends Component {
           </div>
           </div>
 
-          <div className="pieContainer col-6 col-md-3 col-lg-3">
-              <div className="col-2 col-sm-3 col-md-3">
+          <div className="offset-1 pieContainer col-5 col-md-5 col-lg-5">
+              <div className="col-6 col-sm-6 col-md-6">
               <div className="progress" data-percentage="100">
                   <span className="progress-left">
                       <span className="progress-bar2"></span>
@@ -138,7 +138,7 @@ class RunResult extends Component {
                   <span className="progress-bar2"></span>
                   </span>
               <div className="text-container">
-                  <div className="offset-2 col-6 progress-value">
+                  <div className="col-6 progress-value">
                   Time
                       <div className="col-6 progress-text">{this.state.time}</div>
                   </div>
@@ -146,9 +146,9 @@ class RunResult extends Component {
               </div>
           </div>
           </div>
+        
       
-
-          <div className="pieContainer col-6 col-md-3 col-lg-3">
+          <div className="offset-2 pieContainer col-4 col-md-4 col-lg-4">
               <div className=" col-2 col-sm-3 col-md-3">
                   <div className="progress" data-percentage="100">
                       <span className="progress-left">
@@ -167,7 +167,7 @@ class RunResult extends Component {
           </div>
         </div>
 
-        <div className="pieContainer col-6 col-md-3 col-lg-">
+        <div className="offset-1 pieContainer col-5 col-md-5 col-lg-5">
         <div className="col-2 col-sm-3 col-md-3">
           <div className="progress" data-percentage="100">
             <span className="progress-left">

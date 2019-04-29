@@ -14,6 +14,11 @@
   }
 }
 
+.runCount {
+  height:100%;
+  background-color: rgb(140, 255, 125);
+}
+
 .tableContainer {
   height: 100%;
 
@@ -86,7 +91,7 @@ $borderWidth: 7px;
 $animationTime: 1.5s;
 $border-color-default: #eee;
 $border-color-fill:rgb(250, 69, 56);
-$size: 150px;
+$size: 180px;
 $howManySteps: 10;
 
 
