@@ -83,9 +83,10 @@ class RunMap extends Component {
                     mileCounter,
                     previousTime: elapsed
                 })
+            }).then(() => {
+              this.getMileData();
             })
         // }
-        // this.getMileData();
     }
 
 //display per mile data to the table
