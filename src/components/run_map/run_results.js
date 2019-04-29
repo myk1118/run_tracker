@@ -21,8 +21,8 @@ class RunResult extends Component {
       chartData: {},
       options: {},
       currentLatLng: {
-        // lat: 33,
-        // lng: -117
+         lat: 0,
+         lng: 0
       },
     }
   }
@@ -63,6 +63,7 @@ class RunResult extends Component {
       pace,
       date,
       currentLatLng: {
+        ...this.state.currentLatLng,
         lat: coordinates.lat,
         lng: coordinates.lng
       },
