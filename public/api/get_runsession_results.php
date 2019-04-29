@@ -14,7 +14,8 @@ $output = [
 ];
 $output['sessionData'] = [];
 
-$query = "SELECT r.`id`, r.`distance`, r.`time`, r. `date`, r.`calories`, r.`pace`, m.`mileage` AS `miles`, m.`time` AS `permiletime`
+$query = "SELECT r.`id`, r.`distance`, r.`time`, r. `date`, r.`calories`,
+r.`lat`, r.`lng`, r.`pace`, m.`mileage` AS `miles`, m.`time` AS `permiletime`
 FROM `run_stats` AS r
 JOIN `miles` as m
 ON r.`id` = m.`run_id`
@@ -56,6 +57,10 @@ while($row = mysqli_fetch_assoc($result)) {
   $output['date'] = [
     'date' => $date,
     'time' => ltrim($time, '0')
+  ];
+  $output['coordinates'] = [
+    'lat' => (float)$row['lat'],
+    'lng' => (float)$row['lng']
   ];
   $output['distance'] = $row['distance'];
   $output['sessionData'][] = [

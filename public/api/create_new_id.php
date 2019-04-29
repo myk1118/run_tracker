@@ -8,15 +8,22 @@ set_exception_handler('handleError');
 // if(empty($_SESSION['user_id'])){
 //     throw new Exception ('Missing user id');
 // }
+
+$json_input = file_get_contents("php://input");
+$input = json_decode($json_input, true);
+
 $output = [
     'success' => false,
 ];
+
+$lat= (float)$input['lat'];
+$lng = (float)$input['lng'];
 
 $user_id = $_SESSION['user_data']['id'];
 
 $id_query = "INSERT INTO `run_stats` SET `distance` = 0,
               `time` = 0, `pace` = 0, `date` = NOW(),
-              `heart_rate` = 0, `calories` = 0, `user_id` = $user_id
+              `heart_rate` = 0, `calories` = 0, `lat` = $lat, `lng` = $lng, `user_id` = $user_id
 ";
 
 $run_result = mysqli_query($conn, $id_query);
