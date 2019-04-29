@@ -7,7 +7,7 @@
         height:40%;
     }
     .graphContainer{
-        width: 90%;
+        width: 60%;
         height: 100%;
         display:inline-block;
         .graph {
@@ -24,14 +24,26 @@
     }
 }
 
+.text-container {
+  position: relative;
+  display: block;
+  left:30%;
+
+  .progress-text{
+    position:relative;
+    top:20%;
+    right:120%;
+  }
+}
+
 
 div.row{
-    display:flex;
-  
+    margin-top:5%;
 }
 .pieContainer{
     // width:50%;
-    height:50%;
+    height:20%;
+    margin-top: 2%;
 }
 
 $borderWidth: 7px;
@@ -117,16 +129,10 @@ $howManySteps: 10;
       //animation: loading-1 1.8s linear forwards;
     }
   }
-  .text-container {
-    display: inline-block;
-    position:relative;
-    top:10%;
-
-  }
   .progress-value {
-    display: inline-block;
+    display: flex;
     border-radius: 50%;
-    font-size: 1.5rem;
+    font-size: 2em;
     text-align: center;
     line-height: 20px;
     align-items: center;

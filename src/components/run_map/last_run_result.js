@@ -27,16 +27,16 @@ class RunResult extends Component {
   }
 
   async componentDidMount() {
-    await this.getRunInfo();
+    this.getRunInfo();
     // await this.getPersonalBest();
-    this.getChartData();
+    await this.getChartData();
   }
 
 
   getRunInfo(){
       axios.get('/api/get_last_runsession_results.php').then((resp) => {
           console.log('api resp', resp);
-        const {id, distance, calories, pace, time} = resp.data['0'];
+        const {id, distance, calories, pace, time} = resp.data.sessionData['0'];
           this.setState  ({
             id: id,
             distance: distance,
@@ -50,8 +50,8 @@ class RunResult extends Component {
     async getPersonalBest(){
 
         await axios.get('/api/personalbestquery.php').then((resp)=>{
-            let {distance, calories, pace, time} = this.state;
-            let {fastestPace, longestRun, longestTime, mostCalories} = resp.data;
+            // let {distance, calories, pace, time} = this.state;
+            let {fastestPace, longestRun, longestTime, mostCalories} = resp.sessionData.data;
 
             this.setState({
                     bestDistance: longestRun,
@@ -64,24 +64,23 @@ class RunResult extends Component {
 
   getChartData() {
     const {id} = this.state;
-    console.log('params: ',id)
-    const resp = axios.get(`/api/get_last_runsession_results.php?id=${id}`);
-    const { sessionData } = resp.data;
-    const miles = sessionData.map(mile => mile.currentMile);
-    const time = sessionData.map(minutes => minutes.time)
-
-    this.setState({
-      chartData: {
-        labels: [0, ...miles],
-        datasets: [
-          {
-            label: 'Time',
-            fill: false,
-            data: [0, ...time],
-            borderColor: 'blue',
-          }
-        ]
-      },
+    axios.get(`/api/get_last_runsession_results.php?id=${id}`).then(resp =>{
+        const { sessionData } = resp.data;
+        const miles = sessionData.map(mile => mile.perMile.currentMile);
+        const time = sessionData.map(minutes => minutes.time)
+        this.setState({
+          chartData: {
+            labels: [0, ...miles],
+            datasets: [
+              {
+                label: 'Time',
+                fill: false,
+                data: [0, ...time],
+                borderColor: 'blue',
+              }
+            ]
+          },
+        })
     })
   }
 
@@ -90,106 +89,106 @@ class RunResult extends Component {
   render() {
       console.log('new state', this.state)
     return(
-    <div className="postRunBody"> 
-        <RunHeader />
-        <div className="postRunMap">
-            <MyMapComponent
-            isMarkerShown
-            // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: `100%` }} />}
-            mapElement={<div style={{ height: `100%` }} />}
-            currentLocation = {this.state.currentLatLng}
-            />
-        </div>
-        <div className="progressContainer">
-            <div className="graphContainer">
-                <div className="graph">
-                    <ResultsChart  chartData={this.state.chartData}/>
-                </div>
-            </div>
-        </div>
-        <div className="row">
-            <div className="pieContainer col-6 col-md-3 col-lg-3">
-                <div className="offset-2 col-2 col-sm-3 col-md-3">
-                <div className="progress" data-percentage="100">
-                    <span className="progress-left">
-                        <span className="progress-bar1"></span>
-                    </span>
-                    <span className="progress-right">
-                    <span className="progress-bar1"></span>
-                    </span>
-                <div className="text-container">
-                    <div className="col-6 progress-value">
-                    Distance
-                        <div className="col-6 progress-text">{this.state.distance}</div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
+      <div className="postRunBody"> 
+      <RunHeader />
+      <div className="postRunMap">
+          <MyMapComponent
+          isMarkerShown
+          // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `100%` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          currentLocation = {this.state.currentLatLng}
+          />
+      </div>
+      <div className="progressContainer col-12 inline-block">
+          <div className="graphContainer">
+              <div className="graph">
+                  <ResultsChart  chartData={this.state.chartData}/>
+              </div>
 
-            <div className="pieContainer col-6 col-md-3 col-lg-3">
-                <div className="col-2 col-sm-3 col-md-3">
-                <div className="progress" data-percentage="100">
-                    <span className="progress-left">
-                        <span className="progress-bar2"></span>
-                    </span>
-                    <span className="progress-right">
-                    <span className="progress-bar2"></span>
-                    </span>
-                <div className="text-container">
-                    <div className="offset-2 col-6 progress-value">
-                    Time
-                        <div className="col-6 progress-text">{this.state.time}</div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        
-
-            <div className="pieContainer col-6 col-md-3 col-lg-3">
-                <div className="offset-2 col-2 col-sm-3 col-md-3">
-                    <div className="progress" data-percentage="100">
-                        <span className="progress-left">
-                            <span className="progress-bar3"></span>
-                        </span>
-                        <span className="progress-right">
-                            <span className="progress-bar3"></span>
-                        </span>
-                        <div className="text-container">
-                        <div className="col-6 progress-value">
-                        Calories
-                        <div className="col-6 progress-text">{this.state.calories}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
-
-          <div className="pieContainer col-6 col-md-3 col-lg-">
-          <div className="col-2 col-sm-3 col-md-3">
-            <div className="progress" data-percentage="100">
-              <span className="progress-left">
-                <span className="progress-bar4"></span>
-              </span>
-              <span className="progress-right">
-                <span className="progress-bar4"></span>
-              </span>
+      </div>
+      <div className="row col-6 inline-block">
+          <div className="pieContainer col-6 col-md-3 col-lg-3">
+              <div className="col-2 col-sm-3 col-md-3">
+              <div className="progress" data-percentage="100">
+                  <span className="progress-left">
+                      <span className="progress-bar1"></span>
+                  </span>
+                  <span className="progress-right">
+                  <span className="progress-bar1"></span>
+                  </span>
               <div className="text-container">
-              <div className="offset-2 col-6 progress-value">
-            Pace
-            <div className="progress-text">{this.state.pace}</div>
-            </div>
-            </div>
-            </div>
-            </div>
+                  <div className="col-6 progress-value">
+                  Distance
+                      <div className="col-6 progress-text">{this.state.distance}</div>
+                  </div>
+              </div>
+              </div>
+          </div>
+          </div>
+
+          <div className="pieContainer col-6 col-md-3 col-lg-3">
+              <div className="col-2 col-sm-3 col-md-3">
+              <div className="progress" data-percentage="100">
+                  <span className="progress-left">
+                      <span className="progress-bar2"></span>
+                  </span>
+                  <span className="progress-right">
+                  <span className="progress-bar2"></span>
+                  </span>
+              <div className="text-container">
+                  <div className="offset-2 col-6 progress-value">
+                  Time
+                      <div className="col-6 progress-text">{this.state.time}</div>
+                  </div>
+              </div>
+              </div>
+          </div>
+          </div>
+      
+
+          <div className="pieContainer col-6 col-md-3 col-lg-3">
+              <div className=" col-2 col-sm-3 col-md-3">
+                  <div className="progress" data-percentage="100">
+                      <span className="progress-left">
+                          <span className="progress-bar3"></span>
+                      </span>
+                      <span className="progress-right">
+                          <span className="progress-bar3"></span>
+                      </span>
+                      <div className="text-container">
+                      <div className="col-6 progress-value">
+                      Calories
+                      <div className="col-6 progress-text">{this.state.calories}</div>
+                      </div>
+                  </div>
+              </div>
           </div>
         </div>
+
+        <div className="pieContainer col-6 col-md-3 col-lg-">
+        <div className="col-2 col-sm-3 col-md-3">
+          <div className="progress" data-percentage="100">
+            <span className="progress-left">
+              <span className="progress-bar4"></span>
+            </span>
+            <span className="progress-right">
+              <span className="progress-bar4"></span>
+            </span>
+            <div className="text-container">
+            <div className="col-6 progress-value">
+          Pace
+          <div className="progress-text">{this.state.pace}</div>
+          </div>
+          </div>
+          </div>
+          </div>
         </div>
-        
+      </div>
+      </div>
+      </div>
         )
     }
 }

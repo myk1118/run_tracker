@@ -52,15 +52,16 @@ class RunResult extends Component {
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
     console.log('resp: ', resp)
     const { sessionData, date, distance } = resp.data;
+    const{ calories, pace, time} = sessionData['0'];
     console.log('session data:', sessionData)
     const miles = sessionData.map(mile => mile.perMile.currentMile);
-    const time = sessionData.map(minutes => (minutes.perMile.perMileTime/60).toFixed(2));
+    const time2 = sessionData.map(minutes => (minutes.perMile.perMileTime/60).toFixed(2));
 
     this.setState({
-      time: 0,
-      distance: 0,
-      calories: 0,
-      pace: 0,
+      time,
+      distance,
+      calories,
+      pace,
       date,
       totalDistance: distance,
       chartData: {
@@ -69,7 +70,7 @@ class RunResult extends Component {
           {
             label: 'Time',
             fill: false,
-            data: [...time],
+            data: [0, ...time2],
             borderColor: 'blue',
             backgroundColor: '#1E90FF',
 
@@ -80,23 +81,22 @@ class RunResult extends Component {
   }
 
   render() {
-
     return(
-    <div className="postRunBody">
+      <div className="postRunBody"> 
       <RunHeader />
       <div>
         {this.state.date.date} at {this.state.date.time}
       </div>
       <div className="postRunMap">
-        <MyMapComponent
-        isMarkerShown
-        // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `100%` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-        currentLocation = {this.state.currentLatLng}
-        />
+          <MyMapComponent
+          isMarkerShown
+          // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `100%` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          currentLocation = {this.state.currentLatLng}
+          />
       </div>
     <div className="progressContainer">
       <div className="graphContainer">
@@ -106,72 +106,88 @@ class RunResult extends Component {
             distance={this.state.totalDistance}
           />
         </div>
+
       </div>
-      <div className="row">
-        <div className="pieContainer col-md-6">
-          <div className="offset-3 col-2 col-sm-3 col-md-6">
-            <div className="progress" data-percentage="100">
-              <span className="progress-left">
-                <span className="progress-bar1"></span>
-              </span>
-              <span className="progress-right">
-                <span className="progress-bar1"></span>
-              </span>
-            <div className="col-12 progress-value">
-            Distance
-              {/* <span>completed</span> */}
-            </div>
-            </div>
-            </div>
+      <div className="row col-6 inline-block">
+          <div className="pieContainer col-6 col-md-3 col-lg-3">
+              <div className="col-2 col-sm-3 col-md-3">
+              <div className="progress" data-percentage="100">
+                  <span className="progress-left">
+                      <span className="progress-bar1"></span>
+                  </span>
+                  <span className="progress-right">
+                  <span className="progress-bar1"></span>
+                  </span>
+              <div className="text-container">
+                  <div className="col-6 progress-value">
+                  Distance
+                      <div className="col-6 progress-text">{this.state.distance}</div>
+                  </div>
+              </div>
+              </div>
           </div>
-          <div className="pieContainer col-md-6">
-          <div className="offset-2 col-2 col-sm-3 col-md-2">
-            <div className="progress" data-percentage="100">
-              <span className="progress-left">
-                <span className="progress-bar2"></span>
-              </span>
-              <span className="progress-right">
-                <span className="progress-bar2"></span>
-              </span>
-            <div className="col-12 progress-value">
-            Time
-            </div>
-            </div>
-            </div>
           </div>
-          <div className="pieContainer col-md-6">
-          <div className="offset-3 col-2 col-sm-3 col-md-2">
-            <div className="progress" data-percentage="100">
-              <span className="progress-left">
-                <span className="progress-bar3"></span>
-              </span>
-              <span className="progress-right">
-                <span className="progress-bar3"></span>
-              </span>
-            <div className="col-12 progress-value">
-            Calories
-            </div>
-            </div>
-            </div>
+
+          <div className="pieContainer col-6 col-md-3 col-lg-3">
+              <div className="col-2 col-sm-3 col-md-3">
+              <div className="progress" data-percentage="100">
+                  <span className="progress-left">
+                      <span className="progress-bar2"></span>
+                  </span>
+                  <span className="progress-right">
+                  <span className="progress-bar2"></span>
+                  </span>
+              <div className="text-container">
+                  <div className="offset-2 col-6 progress-value">
+                  Time
+                      <div className="col-6 progress-text">{this.state.time}</div>
+                  </div>
+              </div>
+              </div>
           </div>
-          <div className="pieContainer col-md-6">
-          <div className="offset-2 col-2 col-sm-3 col-md-2">
-            <div className="progress" data-percentage="100">
-              <span className="progress-left">
-                <span className="progress-bar4"></span>
-              </span>
-              <span className="progress-right">
-                <span className="progress-bar4"></span>
-              </span>
-            <div className="col-12 progress-value">
-            Pace
-            </div>
-            </div>
-            </div>
+          </div>
+      
+
+          <div className="pieContainer col-6 col-md-3 col-lg-3">
+              <div className=" col-2 col-sm-3 col-md-3">
+                  <div className="progress" data-percentage="100">
+                      <span className="progress-left">
+                          <span className="progress-bar3"></span>
+                      </span>
+                      <span className="progress-right">
+                          <span className="progress-bar3"></span>
+                      </span>
+                      <div className="text-container">
+                      <div className="col-6 progress-value">
+                      Calories
+                      <div className="col-6 progress-text">{this.state.calories}</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div className="pieContainer col-6 col-md-3 col-lg-">
+        <div className="col-2 col-sm-3 col-md-3">
+          <div className="progress" data-percentage="100">
+            <span className="progress-left">
+              <span className="progress-bar4"></span>
+            </span>
+            <span className="progress-right">
+              <span className="progress-bar4"></span>
+            </span>
+            <div className="text-container">
+            <div className="col-6 progress-value">
+          Pace
+          <div className="progress-text">{this.state.pace}</div>
+          </div>
+          </div>
+          </div>
           </div>
         </div>
       </div>
-    </div>
+      </div>
+      </div>
 
     )
   }
