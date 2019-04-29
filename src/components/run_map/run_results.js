@@ -70,7 +70,7 @@ class RunResult extends Component {
           {
             label: 'Time',
             fill: false,
-            data: [0, ...time2],
+            data: [...time2],
             borderColor: 'blue',
             backgroundColor: '#1E90FF',
 
@@ -82,7 +82,7 @@ class RunResult extends Component {
 
   render() {
     return(
-      <div className="postRunBody"> 
+      <div className="postRunBody">
       <RunHeader />
       <div>
         {this.state.date.date} at {this.state.date.time}
@@ -146,7 +146,7 @@ class RunResult extends Component {
               </div>
           </div>
           </div>
-      
+
 
           <div className="pieContainer col-6 col-md-3 col-lg-3">
               <div className=" col-2 col-sm-3 col-md-3">
