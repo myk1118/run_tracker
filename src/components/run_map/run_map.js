@@ -40,8 +40,8 @@ class RunMap extends Component {
         this.pause = this.pause.bind(this)
         this.update = this.update.bind(this);
         this.reset = this.reset.bind(this);
-        this.distanceIncrement = this.distanceIncrement.bind(this);
-        this.distanceUpdate = this.distanceUpdate.bind(this);
+        // this.distanceIncrement = this.distanceIncrement.bind(this);
+        // this.distanceUpdate = this.distanceUpdate.bind(this);
         this.clickMiles = this.clickMiles.bind(this);
     }
 
@@ -343,8 +343,8 @@ class RunMap extends Component {
                 </div>
                 <div className="buttonsContainer">
                     <WatchBtns status={status}
+                        run_id={this.state.run_id}
                         start={this.start}
-                        createId={this.createId}
                         pause={this.pause}
                         reset={this.reset} />
                 </div>
