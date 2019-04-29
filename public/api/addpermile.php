@@ -14,10 +14,10 @@ $mileStats = [
 ];
 
 $time = (int)$input['time'];
-$mileage = (int)$input['mileage'];
+$mileage = (float)$input['mileage'];
 $run_id = (int)$input['run_id']; //$_SESSION['run_id'];
 
-$perMileQuery = "INSERT INTO `miles` SET `time` = $time, `mileage` = $mileage, `run_id` = $run_id";
+$perMileQuery = "INSERT INTO `miles` SET `time` = $time, `mileage` = ROUND($mileage,2), `run_id` = $run_id";
 
 $perMileResult = mysqli_query($conn, $perMileQuery);
 
@@ -29,7 +29,7 @@ if(mysqli_affected_rows($conn)===0)
     throw new Exception('Failed to add mile');
 }
 
-$mile_id = mysqli_insert_id($conn);
+// $mile_id = mysqli_insert_id($conn);
 
 $mileStats['success'] = true;
 

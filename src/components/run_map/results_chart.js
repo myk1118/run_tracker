@@ -3,10 +3,12 @@ import { Bar, Line, Pie } from 'react-chartjs-2';
 // import './total_stats.scss';
 
 export default props => {
+
+const distance = props.distance;
   return (
     <div>
       <article className="graph-container">
-      <Line
+      <Bar
         data={props.chartData}
         width={100}
         height={100}
@@ -15,12 +17,13 @@ export default props => {
           maintainAspectRatio: true,
           title: {
             display: true,
-            text: 'Today\'s Run',
+            // text: 'Today\'s Run',
+            text: `${distance} Mile Run`,
             fontSize: 25
           },
           legend: {
-            display: true,
-            position: 'bottom',
+            display: false,
+            // position: 'bottom',
           },
           elements: {
             line: {
@@ -36,9 +39,15 @@ export default props => {
                 },
               }],
               yAxes: [{
+                ticks: {
+                  // callback: label => {
+                  //   return '$' + label;
+                  // },
+                  beginAtZero: true
+                },
                 scaleLabel: {
                   display: true,
-                  labelString: 'Minutes'
+                  labelString: 'Pace(min/mile)'
                 }
               }],
             }

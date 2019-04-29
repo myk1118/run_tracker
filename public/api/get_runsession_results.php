@@ -15,7 +15,7 @@ $output = [
 ];
 $output['sessionData'] = [];
 
-$query = "SELECT r.`id`, r.`distance`, r.`time`, r.`calories`, r.`pace`, m.`mileage` AS `miles`, m.`time` AS `permiletime`
+$query = "SELECT r.`id`, r.`distance`, r.`time`, r. `date`, r.`calories`, r.`pace`, m.`mileage` AS `miles`, m.`time` AS `permiletime`
 FROM `run_stats` AS r
 JOIN `miles` as m
 ON r.`id` = m.`run_id`
@@ -23,7 +23,7 @@ WHERE `user_id` = $id AND
 r.`id` = $run_id
   -- ORDER BY m.`id` ASC
   ";
-  
+
 
   // $query = "SELECT m.`mileage` AS `miles`, m.`time`, m.`id`
   //   FROM `miles` AS `m`
@@ -39,11 +39,26 @@ if (!$result) {
     throw new Exception('invalid query: ' . mysqli_error($conn));
 }
 
-$output['success'] = true;
 
 while($row = mysqli_fetch_assoc($result)) {
   $minutes = round((int)$row['time']/60 , 2);
 
+  if(floor((float)$row['miles']) === (float)$row['miles']) {
+    $pace = (int)$row['permiletime'];
+  } else {
+    $pace = (int)$row['permiletime']/((float)$row['miles'] - floor((float)$row['miles']));
+  };
+  $parent = $row['date'];
+  $timestamp = strtotime($parent);
+
+  $date = date('l, M j, Y', $timestamp);
+  $time = date('h:i a', $timestamp);
+
+  $output['date'] = [
+    'date' => $date,
+    'time' => ltrim($time, '0')
+  ];
+  $output['distance'] = $row['distance'];
   $output['sessionData'][] = [
     'id' => (int)$row['id'],
     'time' => (int)$minutes,
@@ -51,11 +66,16 @@ while($row = mysqli_fetch_assoc($result)) {
     'calories' => (int)$row['calories'],
     'pace' => (int)$row['pace'],
       'perMile'=> [
-          'currentMile' => (int)$row['miles'],
-          'perMileTime' => (int)$row['permiletime']
+          'currentMile' => (float)$row['miles'],
+          // 'perMileTime' => (int)$row['permiletime']
+          // 'perMileTime' => gmdate("i:s", (int)$row['permiletime'])
+          'perMileTime' => (int)$pace
       ]
   ];
 };
+
+$output['success'] = true;
+
 print(json_encode($output));
 
 ?>

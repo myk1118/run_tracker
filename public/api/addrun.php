@@ -17,12 +17,18 @@
     $pace = (int)$input['pace'];
     $calories = (int)$input['calories'];
     $user_id = $_SESSION['user_data']['id'];
+    $run_id = (int)$input['run_id'];
 
-    $addRunQuery = "INSERT INTO `run_stats` SET `distance` = ROUND($distance,2), `time` = $time, `pace` = $pace, `date` = NOW(), `heart_rate` = 0, `calories` = $calories, `user_id` = $user_id";
+    // $addRunQuery = "INSERT INTO `run_stats` SET `distance` = ROUND($distance,2), `time` = $time, `pace` = $pace, `date` = NOW(), `heart_rate` = 0, `calories` = $calories, `user_id` = $user_id";
 
-
+    $addRunQuery = "UPDATE `run_stats` SET `distance` = ROUND($distance,2), `time` = $time, `pace` = $pace, `date` = NOW(), `heart_rate` = 0,
+                    `calories` = $calories, `user_id` = $user_id
+                    WHERE `id` = $run_id
+    ";
 
     $runResult = mysqli_query($conn, $addRunQuery);
+
+
 
     if(!$runResult){
         throw new Exception(mysqli_error($conn));
@@ -31,7 +37,7 @@
         {
             throw new Exception('Run was not added to the table');
         }
-    $run_id = mysqli_insert_id($conn);
+    // $run_id = mysqli_insert_id($conn);
 
     $runOutput['success'] = true;
 

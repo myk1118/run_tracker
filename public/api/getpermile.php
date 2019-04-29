@@ -12,10 +12,19 @@ $output = [
     'success' => false,
 ];
 
-$run_stats_id = 1;
+// $run_stats_id = $_POST['run_id'];
+// $run_stats_id = 150;
 
-$query = "SELECT `time`, `mileage`, `id` FROM `miles` 
-WHERE `run_id` = $run_stats_id";
+$json_input = file_get_contents("php://input");
+$input = json_decode($json_input, true);
+
+$run_stats_id = (int)$input['run_id'];
+
+
+$query = "SELECT `time`, `mileage`, `id` FROM `miles`
+WHERE `run_id` = $run_stats_id
+";
+
 
 $result = mysqli_query($conn, $query);
 
@@ -28,12 +37,14 @@ if (mysqli_num_rows($result) === 0) {
 };
 
 
+
+
 $data['mileTime'] = [];
 while($row = mysqli_fetch_assoc($result)){
     $data['mileTime'][] = [
         'mile' => (int)$row['mileage'],
         'time' => gmdate('H:i:s', $row['time']),
-        'id' => (int)$row['id']
+        'id' => (int)$row['id'],
     ];
 }
 
