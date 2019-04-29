@@ -18,7 +18,7 @@ class RunMap extends Component {
                 // lat: 33.6349179,
                 // lng: -117.74050049999998
             },
-            startPos: null,
+            startingCoords: {},
             watchId: null,
             map: null,
             status: 'stopped',
@@ -52,8 +52,14 @@ class RunMap extends Component {
     }
 
 //create a new run_id when the start button is clicked
-    createId = () => {
-      axios.get('/api/create_new_id.php').then(resp => {
+    createNewRun = () => {
+      const {lat, lng} = this.state.startingCoords;
+      const data = {
+        lat,
+        lng
+      };
+      console.log('data: ', data);
+      axios.post('/api/create_new_id.php', data).then(resp => {
         this.setState({
           run_id: resp.data.id
         })
@@ -141,7 +147,11 @@ class RunMap extends Component {
               coordinateArray: [...this.state.coordinateArray, {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
-              }]
+              }],
+              startingCoords: {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              }
             })
           }
         )
@@ -241,8 +251,8 @@ class RunMap extends Component {
     }
 
     start() {
-      if(!this.state.run_id)
-        {this.createId()
+      if(!this.state.run_id){
+        this.createNewRun()
       }
       this.startTracking();
       const { start, elapsed } = this.state;
@@ -394,6 +404,7 @@ class RunMap extends Component {
     }
 
     render() {
+      console.log('asdfdsa: ',this.state.coordinateArray[0]);
       // console.log('coordinates: ',this.state.coordinateArray)
       const {distanceTraveled} = this.state;
       // console.log(distanceTraveled)

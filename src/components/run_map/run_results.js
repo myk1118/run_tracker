@@ -21,8 +21,8 @@ class RunResult extends Component {
       chartData: {},
       options: {},
       currentLatLng: {
-        lat: 33,
-        lng: -117
+         lat: 0,
+         lng: 0
       },
     }
   }
@@ -50,10 +50,9 @@ class RunResult extends Component {
   async getChartData() {
     const {id} = this.props.match.params
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
-    console.log('resp: ', resp)
-    const { sessionData, date, distance } = resp.data;
+    console.log('resp!!!: ', resp)
+    const { sessionData, date, distance, coordinates } = resp.data;
     const{ calories, pace, time} = sessionData['0'];
-    console.log('session data:', sessionData)
     const miles = sessionData.map(mile => mile.perMile.currentMile);
     const time2 = sessionData.map(minutes => (minutes.perMile.perMileTime/60).toFixed(2));
 
@@ -63,6 +62,11 @@ class RunResult extends Component {
       calories,
       pace,
       date,
+      currentLatLng: {
+        ...this.state.currentLatLng,
+        lat: coordinates.lat,
+        lng: coordinates.lng
+      },
       totalDistance: distance,
       chartData: {
         labels: [...miles],
@@ -70,7 +74,7 @@ class RunResult extends Component {
           {
             label: 'Time',
             fill: false,
-            data: [0, ...time2],
+            data: [...time2],
             borderColor: 'blue',
             backgroundColor: '#1E90FF',
 
@@ -82,7 +86,7 @@ class RunResult extends Component {
 
   render() {
     return(
-      <div className="postRunBody"> 
+      <div className="postRunBody">
       <RunHeader />
       <div>
         {this.state.date.date} at {this.state.date.time}
@@ -97,6 +101,7 @@ class RunResult extends Component {
           mapElement={<div style={{ height: `100%` }} />}
           currentLocation = {this.state.currentLatLng}
           />
+          {/* <img src={`https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=15&size=640x400&markers=color:blue%7Clabel:S%7C40.714728,-73.998672&key=${apiKey}&`}/> */}
       </div>
     <div className="progressContainer">
       <div className="graphContainer">
@@ -146,7 +151,7 @@ class RunResult extends Component {
               </div>
           </div>
           </div>
-      
+
 
           <div className="pieContainer col-6 col-md-3 col-lg-3">
               <div className=" col-2 col-sm-3 col-md-3">
