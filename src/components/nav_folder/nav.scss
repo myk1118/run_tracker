@@ -20,14 +20,20 @@
     }
 
     .nav-link-aboutus,
-    .nav-link-logout {
+    .nav-link-logout,
+    .nav-link-home {
         color: white;
     }
 }
 
+.nav-link-home {
+    position: absolute;
+    right: 18%;
+}
+
 .nav-link-aboutus {
     position: absolute;
-    right: 14%;
+    right: 12%;
 }
 
 .nav-link-logout {
@@ -77,18 +83,15 @@
 }
 
 .navbar {
-    .navbar-inner {
-        padding: 0;
-    }
+    padding: 0;
 
     .nav {
-        margin: 0;
         display: table;
         width: 100%;
 
         li {
             display: table-cell;
-            width: 1%;
+            width: 33.33%;
             float: none;
 
             a {

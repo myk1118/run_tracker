@@ -16,6 +16,8 @@ class RunResult extends Component {
       calories: 0,
       pace: 0,
       id: 0,
+      date: '',
+      totalDistance: 0,
       chartData: {},
       options: {},
       currentLatLng: {
@@ -46,30 +48,32 @@ class RunResult extends Component {
   // }
 
   async getChartData() {
-    this.props.match.params
     const {id} = this.props.match.params
-    console.log('params: ',id)
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
     console.log('resp: ', resp)
-    const { sessionData } = resp.data;
-    const{ calories, distance, pace, time} = sessionData['0'];
+    const { sessionData, date, distance } = resp.data;
+    const{ calories, pace, time} = sessionData['0'];
     console.log('session data:', sessionData)
     const miles = sessionData.map(mile => mile.perMile.currentMile);
-    const time2 = sessionData.map(minutes => minutes.time)
+    const time2 = sessionData.map(minutes => (minutes.perMile.perMileTime/60).toFixed(2));
 
     this.setState({
       time,
       distance,
       calories,
       pace,
+      date,
+      totalDistance: distance,
       chartData: {
-        labels: [0, ...miles],
+        labels: [...miles],
         datasets: [
           {
             label: 'Time',
             fill: false,
             data: [0, ...time2],
             borderColor: 'blue',
+            backgroundColor: '#1E90FF',
+
           }
         ]
       },
@@ -77,11 +81,12 @@ class RunResult extends Component {
   }
 
   render() {
-    // console.log('results state: ', this.state);
-    console.log('this.props: ', this.props);
     return(
       <div className="postRunBody"> 
       <RunHeader />
+      <div>
+        {this.state.date.date} at {this.state.date.time}
+      </div>
       <div className="postRunMap">
           <MyMapComponent
           isMarkerShown
@@ -93,11 +98,14 @@ class RunResult extends Component {
           currentLocation = {this.state.currentLatLng}
           />
       </div>
-      <div className="progressContainer col-12 inline-block">
-          <div className="graphContainer">
-              <div className="graph">
-                  <ResultsChart  chartData={this.state.chartData}/>
-              </div>
+    <div className="progressContainer">
+      <div className="graphContainer">
+        <div className="graph">
+          <ResultsChart
+            chartData={this.state.chartData}
+            distance={this.state.totalDistance}
+          />
+        </div>
 
       </div>
       <div className="row col-6 inline-block">

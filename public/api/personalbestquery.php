@@ -13,7 +13,8 @@ $userid = $_SESSION['user_data']['id'];
 
 $query = "SELECT
 MAX(s. `distance`) AS `longestDistance`, MIN((s.`pace`)/(s.`distance`)) AS `maxDistance`, MAX(s.`date`) AS `lastDate`, MAX(s.`calories`) as `maxCalories`, MAX(s.`time`) as `longestTime`,
-MIN(s. `pace`) AS `fastestpace`
+MIN(s. `time` / s. `distance`) AS `fastestpace`,
+SUM(s.`distance`) AS `totalDistance`, SUM(`time`) AS `totalTime`
 FROM `run_stats` AS `s`
 JOIN `users` ON users.`id` = s.`user_id`
 WHERE users.`id` = $userid";
@@ -33,13 +34,16 @@ $date = new DateTime($data['lastDate']);
 
 $output = [];
 
-$output['longestRun'] = (int)$data['longestDistance'];
+$output['longestRun'] = (float)$data['longestDistance'];
 $output['fastestPace'] = (int)$data['maxDistance'];
 // $output['lastRunDate'] = $data['MAX(s.`date`)'];
 $output['lastRunDate'] = $date->format('m-d-Y');
 $output['mostCalories'] = (int)$data['maxCalories'];
 $output['longestTime'] = (int)$data['longestTime'];
-$output['fastestpace'] = gmdate("i:s", (int)$data['fastestpace']);
+$output['fastestpace'] = gmdate("i:s", round((int)$data['fastestpace'],0));
+
+$pace_in_seconds = round((int)$data['totalTime'] / (int)$data['totalDistance']);
+$output['averagePace'] = gmdate("i:s", $pace_in_seconds);
 
 
 

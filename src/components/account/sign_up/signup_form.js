@@ -9,15 +9,15 @@ const SignUpForm = props => {
             <div
                 // className="row"
                 className="inputFields">
-                <Field col="s12" id="first_name" name="first_name" component={Input} label="First Name" placeholder="First Name" />
-                <Field col="s12" id="last_name" name="last_name" component={Input} label="Last Name" placeholder="Last Name" />
-                <Field col="s12" id="gender" name="gender" component={Input} label="Gender" placeholder="Gender" />
-                <Field col="s12" id="age" name="age" component={Input} label="Age" placeholder="Age" />
-                <Field col="s12" id="height" name="height" component={Input} label="Height" placeholder="Height" />
-                <Field col="s12" id="weight" name="weight" component={Input} label="Weight" placeholder="Weight" />
-                <Field col="s12" id="email" name="email" component={Input} label="Email" placeholder="Email" />
-                <Field col="s12" id="password" name="password" component={Input} type="password" label="Password" placeholder="Password" />
-                <Field col="s12" id="confirmpassword" name="confirmpassword" component={Input} type="password" label="Confirm Password" placeholder="Confirm Password" />
+                <Field col="s12" id="first_name" name="first_name" component={Input} placeholder="First Name" />
+                <Field col="s12" id="last_name" name="last_name" component={Input} placeholder="Last Name" />
+                <Field col="s12" id="gender" name="gender" component={Input} placeholder="Gender" />
+                <Field col="s12" id="age" name="age" component={Input} placeholder="Age" />
+                <Field col="s12" id="height" name="height" component={Input} placeholder="Height" />
+                <Field col="s12" id="weight" name="weight" component={Input} placeholder="Weight" />
+                <Field col="s12" id="email" name="email" component={Input} placeholder="Email" />
+                <Field col="s12" id="password" name="password" component={Input} type="password" placeholder="Password" />
+                <Field col="s12" id="confirmpassword" name="confirmpassword" component={Input} type="password" placeholder="Confirm Password" />
             </div>
             {/* <div className="row"> */}
             <div
