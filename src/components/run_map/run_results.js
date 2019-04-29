@@ -16,6 +16,8 @@ class RunResult extends Component {
       calories: 0,
       pace: 0,
       id: 0,
+      date: '',
+      totalDistance: 0,
       chartData: {},
       options: {},
       currentLatLng: {
@@ -49,7 +51,7 @@ class RunResult extends Component {
     const {id} = this.props.match.params
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
     console.log('resp: ', resp)
-    const { sessionData } = resp.data;
+    const { sessionData, date, distance } = resp.data;
     console.log('session data:', sessionData)
     const miles = sessionData.map(mile => mile.perMile.currentMile);
     const time = sessionData.map(minutes => (minutes.perMile.perMileTime/60).toFixed(2));
@@ -59,6 +61,8 @@ class RunResult extends Component {
       distance: 0,
       calories: 0,
       pace: 0,
+      date,
+      totalDistance: distance,
       chartData: {
         labels: [...miles],
         datasets: [
@@ -67,6 +71,8 @@ class RunResult extends Component {
             fill: false,
             data: [...time],
             borderColor: 'blue',
+            backgroundColor: '#1E90FF',
+
           }
         ]
       },
@@ -74,11 +80,13 @@ class RunResult extends Component {
   }
 
   render() {
-    // console.log('results state: ', this.state);
-    console.log('this.props: ', this.props);
+
     return(
     <div className="postRunBody">
       <RunHeader />
+      <div>
+        {this.state.date.date} at {this.state.date.time}
+      </div>
       <div className="postRunMap">
         <MyMapComponent
         isMarkerShown
@@ -93,7 +101,10 @@ class RunResult extends Component {
     <div className="progressContainer">
       <div className="graphContainer">
         <div className="graph">
-          <ResultsChart  chartData={this.state.chartData}/>
+          <ResultsChart
+            chartData={this.state.chartData}
+            distance={this.state.totalDistance}
+          />
         </div>
       </div>
       <div className="row">

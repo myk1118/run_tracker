@@ -3,6 +3,8 @@ import { Bar, Line, Pie } from 'react-chartjs-2';
 // import './total_stats.scss';
 
 export default props => {
+
+const distance = props.distance;
   return (
     <div>
       <article className="graph-container">
@@ -15,12 +17,13 @@ export default props => {
           maintainAspectRatio: true,
           title: {
             display: true,
-            text: 'Today\'s Run',
+            // text: 'Today\'s Run',
+            text: `${distance} Mile Run`,
             fontSize: 25
           },
           legend: {
-            display: true,
-            position: 'bottom',
+            display: false,
+            // position: 'bottom',
           },
           elements: {
             line: {

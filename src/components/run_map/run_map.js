@@ -15,8 +15,8 @@ class RunMap extends Component {
         super(props);
         this.state = {
             currentLatLng: {
-                lat: 33.6349179,
-                lng: -117.74050049999998
+                // lat: 33.6349179,
+                // lng: -117.74050049999998
             },
             startPos: null,
             watchId: null,
@@ -361,7 +361,7 @@ class RunMap extends Component {
                     {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
                 </div>
                 <div className="statContainer">
-                    <div className="statTitle">Averge Pace</div>
+                    <div className="statTitle">Averge Pace (min/mi)</div>
                     <div className="statResult">{paceInMinutes}:{paceInSeconds}</div>
                 </div>
                 <div className="statContainer">
