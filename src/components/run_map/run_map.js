@@ -71,6 +71,7 @@ class RunMap extends Component {
             const data = {
                 run_id,
                 time: Math.round((elapsed - previousTime)/1000),
+                // time: Math.round((elapsed/1000)),
                 mileage: miles,
                 // miles_remaining: distanceTraveled - mileCounter - 1
             }
@@ -267,9 +268,9 @@ class RunMap extends Component {
 
     reset() {
         const { elapsed, distanceTraveled, mileCounter } = this.state;
-        const remainingDistance = distanceTraveled - (mileCounter - 1);
+        // const remainingDistance = distanceTraveled - (mileCounter - 1);
         if (this.state.status === 'paused') {
-            this.postlatestMile(remainingDistance);
+            this.postlatestMile(distanceTraveled);
             this.postCurrentRun(elapsed);
             this.setState({
                 status: 'stopped',
@@ -301,22 +302,22 @@ class RunMap extends Component {
         }
     }
 
-    distanceIncrement() {
-        setTimeout(() => {
-            this.distanceUpdate();
-        }, 1000);
-    }
-
-    distanceUpdate() {
-        // debugger;
-        let { distance } = this.state;
-        // // distance =
-        this.setState({
-            distance: (parseFloat(distance) + 0.01).toFixed(2)
-        })
-        setTimeout(this.distanceUpdate, 200);
-        this.postlatestMile();
-    }
+    // distanceIncrement() {
+    //     setTimeout(() => {
+    //         this.distanceUpdate();
+    //     }, 1000);
+    // }
+    //
+    // distanceUpdate() {
+    //     // debugger;
+    //     let { distance } = this.state;
+    //     // // distance =
+    //     this.setState({
+    //         distance: (parseFloat(distance) + 0.01).toFixed(2)
+    //     })
+    //     setTimeout(this.distanceUpdate, 200);
+    //     this.postlatestMile();
+    // }
 
 
 

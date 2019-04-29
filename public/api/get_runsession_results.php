@@ -44,6 +44,12 @@ $output['success'] = true;
 while($row = mysqli_fetch_assoc($result)) {
   $minutes = round((int)$row['time']/60 , 2);
 
+  if(floor((float)$row['miles']) === (float)$row['miles']) {
+    $pace = (int)$row['permiletime'];
+  } else {
+    $pace = (int)$row['permiletime']/((float)$row['miles'] - floor((float)$row['miles']));
+  };
+
   $output['sessionData'][] = [
     'id' => (int)$row['id'],
     'time' => (int)$minutes,
@@ -51,9 +57,10 @@ while($row = mysqli_fetch_assoc($result)) {
     'calories' => (int)$row['calories'],
     'pace' => (int)$row['pace'],
       'perMile'=> [
-          'currentMile' => (int)$row['miles'],
-          'perMileTime' => (int)$row['permiletime']
+          'currentMile' => (float)$row['miles'],
+          // 'perMileTime' => (int)$row['permiletime']
           // 'perMileTime' => gmdate("i:s", (int)$row['permiletime'])
+          'perMileTime' => (int)$pace
       ]
   ];
 };

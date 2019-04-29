@@ -46,15 +46,13 @@ class RunResult extends Component {
   // }
 
   async getChartData() {
-    this.props.match.params
     const {id} = this.props.match.params
-    console.log('params: ',id)
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
     console.log('resp: ', resp)
     const { sessionData } = resp.data;
     console.log('session data:', sessionData)
     const miles = sessionData.map(mile => mile.perMile.currentMile);
-    const time = sessionData.map(minutes => minutes.perMile.perMileTime);
+    const time = sessionData.map(minutes => (minutes.perMile.perMileTime/60).toFixed(2));
 
     this.setState({
       time: 0,
