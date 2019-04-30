@@ -7,6 +7,7 @@ import SignUpForm from '../sign_up/signup_form';
 import Carousel from './carousel';
 import './login.scss';
 import { Redirect } from 'react-router-dom';
+import Logo from '../../../../public/dist/images/runtracker-logo.png';
 // import SignUp from '../sign_up';
 
 class LogIn extends Component {
@@ -104,8 +105,8 @@ class LogIn extends Component {
     else {
       return (
         <div className="loginPage">
-          <div className="loginPageLogo">RUN
-          TRACKER
+          <div className="loginPageLogo">
+            <img src={Logo} className="logo" alt="..." />
           </div>
           <div className="carouselContainer">
             <Carousel />
