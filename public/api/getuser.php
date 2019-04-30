@@ -1,13 +1,15 @@
 <?php
+
 require_once('functions.php');
 require_once('config.php');
 require_once('mysqlconnect.php');
 require_once('checkuserloggedin.php');
 set_exception_handler('handleError');
 
-$users_id = $_SESSION['users_id'];
+// $users_id = 3;
+$id = $_SESSION['user_data']['id'];
 
-$query = "SELECT `first_name`, `last_name`, `gender`, `age`, `height`, `weight`, `email`, `password` FROM `users` WHERE `users_id` = $users_id";
+$query = "SELECT `first_name`, `last_name`, `gender`, `age`, `height`, `weight`, `email`, `password` FROM `users` WHERE `id` = $id";
 
 $result = mysqli_query($conn, $query);
 
