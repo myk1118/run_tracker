@@ -12,10 +12,10 @@ class Chart extends Component {
   }
 
   componentDidMount() {
-    this.getActivityLogData();
+    this.displayActivityLogData();
   }
 
-  getActivityLogData = () => {
+  displayActivityLogData = () => {
     axios.get('/api/get_table_data.php').then(resp => {
       const { tableItems } = resp.data;
       const stats = tableItems.map(row => {
@@ -24,13 +24,20 @@ class Chart extends Component {
             <td>{row.date}</td>
             <td>{row.distance}</td>
             <td>{row.time}</td>
-            <td><button className="btn btn-sm btn-outline-danger">x</button></td>
+            <td><button onClick={() => this.deleteRow(row.id)}className="btn btn-sm btn-outline-danger">x</button></td>
           </tr>
         )
       })
       this.setState({
         stats: [...stats],
       })
+    })
+  }
+
+  deleteRow = (id) => {
+    console.log('deleted', id);
+    axios.post('api/deleterun.php', {id: id}).then(() => {
+      this.displayActivityLogData();
     })
   }
 
@@ -87,8 +94,8 @@ class Chart extends Component {
       <div className="tableContainer">
         <RunHeader />
         <div className="float-right text-primary pt-3 pb-3">
-          <span onClick={this.getActivityLogData} className="total">Total | </span>
-          <span onClick={this.filterByMonth} className="month">Last 30 Days | </span> 
+          <span onClick={this.displayActivityLogData} className="total">Total | </span>
+          <span onClick={this.filterByMonth} className="month">Last 30 Days | </span>
           <span onClick={this.filterByWeek} className="week">Last 10 days</span>
         </div>
         <table className="table table-hover">
