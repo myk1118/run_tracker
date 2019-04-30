@@ -11,8 +11,9 @@
         transform: translate(-50%, 0%);
     }
 
-    .nav-link-logout,
-    .nav-link-home {
+    .nav-link-home,
+    .nav-link-aboutus,
+    .nav-link-logout {
         color: white;
     }
 }
@@ -20,6 +21,11 @@
 .nav-link-home {
     position: absolute;
     right: 18%;
+}
+
+.nav-link-aboutus {
+    position: absolute;
+    right: 12%;
 }
 
 .nav-link-logout {

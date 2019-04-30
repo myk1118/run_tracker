@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logIn, signUp } from '../../../actions';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import LogInForm from './login_form';
 import SignUpForm from '../sign_up/signup_form';
 import Carousel from './carousel';
-import './login.scss';
-import { Redirect } from 'react-router-dom';
+import Logo from '../../../../public/dist/images/logo_white.png';
 import Logo from '../../../../public/dist/images/runtracker-logo.png';
+import './login.scss';
 // import SignUp from '../sign_up';
 
 class LogIn extends Component {
@@ -106,6 +107,7 @@ class LogIn extends Component {
       return (
         <div className="loginPage">
           <div className="loginPageLogo">
+            <img className="loginLogo" src={Logo} alt="Logo" />
             <img src={Logo} className="logo" alt="..." />
           </div>
           <div className="carouselContainer">
