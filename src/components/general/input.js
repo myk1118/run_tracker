@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ input, id, meta: { error, touched }, type = 'text',
+export default ({ input, id, label, meta: { error, touched }, type = 'text',
     col = 'sm-12',
     placeholder }) => {
 
