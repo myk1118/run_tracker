@@ -3,12 +3,11 @@ import { Bar, Line, Pie } from 'react-chartjs-2';
 // import './total_stats.scss';
 
 export default props => {
-
 const {distance, secondsRan} = props;
 const minutes = Math.floor(secondsRan / 60);
 const seconds = secondsRan - minutes * 60;
 const oneOrMoreMinutes = minutes > 1 ? 'minutes' : 'minute';
-const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrMoreMinutes} and ${seconds} Seconds`
+const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrMoreMinutes} and ${seconds} Seconds`;
 
   return (
     <div>
@@ -25,15 +24,7 @@ const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrM
                   let date = new Date(null);
                   date.setSeconds(tooltipItem.yLabel*60);
                   return `Pace: ${date.toISOString().slice(14,19)} min/mile`;
-
-                //   if (label) {
-                //       label += ': ';
-                //   }
-                //   label += Math.round(tooltipItem.yLabel * 100) / 100;
-                //
-                //   return label;
                 }
-
             }
           },
           maintainAspectRatio: true,
@@ -55,7 +46,8 @@ const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrM
 
             scales: {
               xAxes: [{
-                barPercentage: 1,
+                barPercentage: distance <= 1 ? 0.2 : 1,
+                categoryPercentage: 0.8,
                 scaleLabel: {
                   display: true,
                   labelString: 'Mile'
