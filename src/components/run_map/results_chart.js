@@ -4,7 +4,12 @@ import { Bar, Line, Pie } from 'react-chartjs-2';
 
 export default props => {
 
-const distance = props.distance;
+const {distance, secondsRan} = props;
+const minutes = Math.floor(secondsRan / 60);
+const seconds = secondsRan - minutes * 60;
+const oneOrMoreMinutes = minutes > 1 ? 'minutes' : 'minute';
+const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrMoreMinutes} and ${seconds} Seconds`
+
   return (
     <div>
       <article className="graph-container">
@@ -18,7 +23,7 @@ const distance = props.distance;
           title: {
             display: true,
             // text: 'Today\'s Run',
-            text: `${distance} Mile Run`,
+            text: `${distance} Mile Run in ${timeRan}`,
             fontSize: 25
           },
           legend: {
@@ -33,6 +38,7 @@ const distance = props.distance;
 
             scales: {
               xAxes: [{
+                barPercentage: 1,
                 scaleLabel: {
                   display: true,
                   labelString: 'Mile'
@@ -40,9 +46,11 @@ const distance = props.distance;
               }],
               yAxes: [{
                 ticks: {
-                  // callback: label => {
-                  //   return '$' + label;
-                  // },
+                  callback: label => {
+                    var date = new Date(null);
+                    date.setSeconds(label*60); // specify value for SECONDS here
+                    return date.toISOString().slice(14,19);
+                  },
                   beginAtZero: true
                 },
                 scaleLabel: {

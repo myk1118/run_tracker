@@ -62,6 +62,7 @@ while($row = mysqli_fetch_assoc($result)) {
     'lat' => (float)$row['lat'],
     'lng' => (float)$row['lng']
   ];
+  $output['secondsRan'] = (int)$row['time'];
   $output['distance'] = $row['distance'];
   $output['sessionData'][] = [
     // 'id' => (int)$row['id'],

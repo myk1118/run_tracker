@@ -11,6 +11,7 @@ class RunResult extends Component {
     super(props);
 
     this.state = {
+      first_name: null,
       time: 0,
       distance: 0,
       calories: 0,
@@ -29,35 +30,30 @@ class RunResult extends Component {
 
   componentDidMount() {
     this.getChartData();
+    this.getUserName();
   }
 
+  async getUserName() {
+    const resp = await axios.get('/api/get_current_user.php');
+    const {first_name} = resp.data;
 
-  // getId(){
-  //   let {id} = this.state;
-  //   if(this.props.match.params){
-  //     id = this.props.match.params;
-  //     console.log('this.props.match.params', id);
-  //   }else{
-  //     axios.get(`/api/get_last_runsession_results.php`).then((resp) => {
-  //         console.log('getID', resp);
-  //         id = resp['sessionData']['id']['id'];
-  //     })
-  //   }
-  //   this.setState({
-  //     id
-  //   })
-  // }
+    this.setState({
+      first_name
+    })
+  }
+
 
   async getChartData() {
     const {id} = this.props.match.params
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
     console.log('resp!!!: ', resp)
-    const { sessionData, date, distance, coordinates } = resp.data;
+    const { sessionData, date, distance, coordinates, secondsRan } = resp.data;
     const{ calories, pace, time} = sessionData['0'];
     const miles = sessionData.map(mile => mile.perMile.currentMile);
     const time2 = sessionData.map(minutes => (minutes.perMile.perMileTime/60).toFixed(2));
 
     this.setState({
+      secondsRan,
       time,
       distance,
       calories,
@@ -73,7 +69,7 @@ class RunResult extends Component {
         labels: [...miles],
         datasets: [
           {
-            label: 'Time',
+            label: 'Pace',
             data: [...time2],
             borderColor: 'blue',
             backgroundColor: '#1E90FF',
@@ -88,11 +84,12 @@ class RunResult extends Component {
   }
 
   render() {
+    const {date, first_name} = this.state;
     return(
       <div className="postRunBody">
       <RunHeader />
-      <div>
-        {this.state.date.date} at {this.state.date.time}
+      <div className="text-center">
+        {first_name}, here are your run results from {date.date} at {date.time}
       </div>
       <div className="postRunMap">
           <MyMapComponent
@@ -112,6 +109,7 @@ class RunResult extends Component {
           <ResultsChart
             chartData={this.state.chartData}
             distance={this.state.totalDistance}
+            secondsRan={this.state.secondsRan}
           />
         </div>
 
