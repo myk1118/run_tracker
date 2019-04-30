@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-export default function (WrappedComponent, to = '/login', requireAuth = true) {
+export default function (WrappedComponent, to = '/account/login', requireAuth = true) {
     class Auth extends Component {
         componentDidMount() {
             this.checkAuth();

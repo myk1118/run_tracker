@@ -15,17 +15,18 @@ import Signup from './account/sign_up/sign_up';
 import AboutUs from './about_us/aboutus';
 // import Tutorial from './tutorial';
 import MapNav from './nav_folder/map_nav';
+import auth from '../hoc/auth';
 
 const App = (props) => {
   return (
     <Fragment>
       <Switch>
-        <Route exact path="/" component={Runs} />
+        <Route exact path="/" component={auth(Runs)} />
         <Route path="/runmap" component={RunRoute} />
         <Route path="/totalstats" component={TotalStats} />
         <Route path="/table" component={Table} />
-        <Route path="/login" component={Login} />
-        {/* <Route path="/logout" component={Logout} />
+        {/* <Route path="/login" component={Login} />
+        <Route path="/logout" component={Logout} />
         <Route path="/sign_up" component={Signup} /> */}
         <Route path="/aboutus" component={AboutUs} />
         <Route path="/account" component={AccountRoutes} />

@@ -13,11 +13,11 @@ $json_input = file_get_contents("php://input");
 $input = json_decode($json_input, true);
 
 if (empty($input['email'])) {
-    throw new Exception('email is a required value');
+    throw new Exception('Email is a required value');
 }
 
 if (empty($input['password'])) {
-    throw new Exception('password is a required value');
+    throw new Exception('Password is a required value');
 }
 
 $email = $input['email'];
@@ -63,7 +63,7 @@ if (!$connect_result) {
 };
 
 if (mysqli_affected_rows($conn) !== 1) {
-    throw new Exception('could not log you in: connection not saved');
+    throw new Exception('Could not log you in: connection not saved');
 };
 
 $firstname = $data['first_name'];

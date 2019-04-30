@@ -13,7 +13,7 @@ export default props => {
         <NavLink className="nav-link-aboutus" to="/aboutus">
           <span className="oi" data-glyph="people"></span>
         </NavLink>
-        <NavLink className="nav-link-logout" to="/login">
+        <NavLink className="nav-link-logout" to="/account/login">
           <span className="oi" data-glyph="account-logout"></span>
         </NavLink>
       </div>

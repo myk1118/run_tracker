@@ -6,7 +6,7 @@ $output = [
     'success' => false
 ];
 
-if (!empty($_SESSION['user'])) {
+if (!empty($_SESSION['user_data'])) {
     $output['success'] = true;
     $output['email'] = $_SESSION['user'];
 }
