@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './nav.scss';
 import { NavLink } from 'react-router-dom';
+import Logout from '../account/logout';
 
 class RunHeader extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
       <div className="headerContainer">
@@ -17,7 +19,7 @@ class RunHeader extends Component {
           <NavLink className="nav-link-aboutus" to="/aboutus">
             <span className="oi" data-glyph="people"></span>
           </NavLink>
-          <NavLink className="nav-link-logout" to="/login">
+          <NavLink className="nav-link-logout" to="/account/logout">
             <span className="oi" data-glyph="account-logout"></span>
           </NavLink>
         </div>

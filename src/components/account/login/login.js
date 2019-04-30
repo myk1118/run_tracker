@@ -13,11 +13,8 @@ class LogIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: false,
-      signedUp: false,
-      rememberMe: false,
-      email: '',
-      password: '',
+      // loggedIn: false,
+      // signedUp: false,
       message: '',
       transition: {
         height: '0px'
@@ -33,30 +30,17 @@ class LogIn extends Component {
     this.hideTransition = this.hideTransition.bind(this);
   }
 
-  handleChange = (event) => {
-    const input = event.target;
-    const value = input.type === 'checkbox' ? input.checked : input.value;
-    this.setState({ [input.name]: value });
-  };
+  // handleChange = (event) => {
+  //   const input = event.target;
+  //   const value = input.type === 'checkbox' ? input.checked : input.value;
+  //   this.setState({ [input.name]: value });
+  // };
 
   handleLogIn = (values) => {
     this.props.logIn(values);
-    axios.post('/api/login.php', values).then(resp => {
-      console.log('response: ', resp);
-      if (resp.data.success) {
-        this.setState({
-          loggedIn: true
-        })
-      } else {
-        this.setState({
-          message: resp.data.error
-        })
-      }
-    })
   }
 
   handleSignUp = (values) => {
-    debugger;
     this.props.signUp(values);
     axios.post('/api/signup.php', values).then(resp => {
       console.log('response: ', resp);
@@ -107,14 +91,14 @@ class LogIn extends Component {
   }
 
   render() {
-    if (this.state.loggedIn === true) {
+    if (this.props.auth === true) {
       return (<Redirect to="/" />)
     }
     else {
       return (
         <div className="loginPage">
-          <div className="loginPageLogo">
-          RUN TRACKER
+          <div className="loginPageLogo">RUN
+          TRACKER
           </div>
           <div className="carouselContainer">
             <Carousel />
@@ -139,7 +123,13 @@ class LogIn extends Component {
   }
 }
 
-export default connect(null, {
+function mapStateToProps(state) {
+  return {
+    auth: state.user.auth
+  }
+}
+
+export default connect(mapStateToProps, {
   logIn: logIn,
   signUp: signUp
 })(LogIn);
