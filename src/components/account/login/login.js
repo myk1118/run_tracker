@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logIn, signUp } from '../../../actions';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import LogInForm from './login_form';
 import SignUpForm from '../sign_up/signup_form';
 import Carousel from './carousel';
+import Logo from '../../../../public/dist/images/logo_white.png'
 import './login.scss';
-import { Redirect } from 'react-router-dom';
 // import SignUp from '../sign_up';
 
 class LogIn extends Component {
@@ -104,8 +105,8 @@ class LogIn extends Component {
     else {
       return (
         <div className="loginPage">
-          <div className="loginPageLogo">RUN
-          TRACKER
+          <div className="loginPageLogo">
+            <img className="loginLogo" src={Logo} alt="Logo" />
           </div>
           <div className="carouselContainer">
             <Carousel />

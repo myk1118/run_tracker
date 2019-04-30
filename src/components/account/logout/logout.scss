@@ -1,0 +1,27 @@
+.logoutContainer {
+    display: flex;
+}
+
+.background {
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.7;
+}
+
+.logoutLogo {
+    width: 65vh;
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.thankYou {
+    position: absolute;
+    top: 64%;
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+    font-size: 1.8em;
+    // color: white;
+}
