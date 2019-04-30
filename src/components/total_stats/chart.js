@@ -4,7 +4,7 @@ import './total_stats.scss';
 class Chart extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       chartData: {},
     }

@@ -31,6 +31,7 @@ class RunResult extends Component {
     this.getChartData();
   }
 
+
   // getId(){
   //   let {id} = this.state;
   //   if(this.props.match.params){
@@ -73,11 +74,13 @@ class RunResult extends Component {
         datasets: [
           {
             label: 'Time',
-            fill: false,
             data: [...time2],
             borderColor: 'blue',
             backgroundColor: '#1E90FF',
-
+            borderWidth: 1,
+            borderColor: '#777',
+            hoverBorderWidth: 3,
+            hoverBorderColor: '#000',
           }
         ]
       },
@@ -151,8 +154,8 @@ class RunResult extends Component {
               </div>
           </div>
           </div>
-        
-      
+
+
           <div className="offset-2 pieContainer col-4 col-md-4 col-lg-4">
               <div className=" col-2 col-sm-3 col-md-3">
                   <div className="progress" data-percentage="100">

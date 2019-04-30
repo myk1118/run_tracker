@@ -47,7 +47,7 @@ class TotalStats extends React.Component {
           datasets: [
             {
               label: 'miles',
-              fill: false,
+              fill: true,
               data: [0,...distances],
               borderColor: 'blue',
             }
