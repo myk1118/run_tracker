@@ -47,7 +47,13 @@
     display: flex;
     flex-direction: column;
     width: 80vw;
-    max-width: 400px;
+    max-width: 300px;
+
+    input{
+        border: 1px solid transparent;
+        border-bottom: 1px solid blue;
+        border-radius: 5px;
+    }
 }
 
 .buttonsContainer {

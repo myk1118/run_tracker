@@ -11,6 +11,19 @@ class Chart extends Component {
     }
   }
 
+  // delete(item){
+  //   const stats = this.state.stats.filter(i => i.id !== item.id)
+  //   this.setState({stats})
+  // }
+
+  delete(item){
+    const newState = this.state.stats.slice();
+      if(newState.indexOf(item)> -1){
+        newState.splice(newState.indexOf(item), 1);
+        this.setState({stats: newState})
+      }
+    }
+
   componentDidMount() {
     this.getActivityLogData();
   }
