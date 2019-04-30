@@ -19,6 +19,23 @@ const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrM
         height={100}
         // options={props.options}
         options = {{
+          tooltips: {
+            callbacks: {
+                label: function(tooltipItem, data) {
+                  let date = new Date(null);
+                  date.setSeconds(tooltipItem.yLabel*60);
+                  return `Pace: ${date.toISOString().slice(14,19)} min/mile`;
+
+                //   if (label) {
+                //       label += ': ';
+                //   }
+                //   label += Math.round(tooltipItem.yLabel * 100) / 100;
+                //
+                //   return label;
+                }
+
+            }
+          },
           maintainAspectRatio: true,
           title: {
             display: true,
@@ -47,7 +64,7 @@ const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrM
               yAxes: [{
                 ticks: {
                   callback: label => {
-                    var date = new Date(null);
+                    let date = new Date(null);
                     date.setSeconds(label*60); // specify value for SECONDS here
                     return date.toISOString().slice(14,19);
                   },

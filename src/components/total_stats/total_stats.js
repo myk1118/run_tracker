@@ -12,6 +12,7 @@ class TotalStats extends React.Component {
 
     this.state = {
       chartData: {},
+      pieChartData: {},
       totalRunCount: 0,
       monthlyRunCount: 0,
       weeklyRunCount: 0
@@ -30,7 +31,20 @@ class TotalStats extends React.Component {
       this.setState ({
         totalRunCount: totalCount,
         monthlyRunCount: monthCount,
-        weeklyRunCount: weekCount
+        weeklyRunCount: weekCount,
+        pieChartData: {
+          // labels: ['Last 7 Days', 'Last 30 Days', 'Total Runs'],
+             labels: ['Runs in the Last 7 Days', 'Runs in the Last 30 Days'],
+          datasets: [
+            {
+              label: 'miles',
+              fill: true,
+              // data: [weekCount, monthCount, totalCount],
+              data: [90, 10],
+              borderColor: 'blue',
+            }
+          ]
+        },
       })
     })
   }
@@ -47,7 +61,6 @@ class TotalStats extends React.Component {
           datasets: [
             {
               label: 'miles',
-              fill: true,
               data: [...distances],
               borderColor: 'blue',
             }
@@ -58,10 +71,11 @@ class TotalStats extends React.Component {
   }
 
   render() {
+    const {totalRunCount, monthlyRunCount, weeklyRunCount, chartData, options, pieChartData} = this.state;
     return (
       <div className="total-stats">
         <RunHeader />
-        <Chart options={this.state.options} chartData={this.state.chartData} />
+        <Chart options={options} chartData={chartData} />
         <div className="d-flex chart-container">
           <div className="col-6  text-center">
           <div className="runCount">
@@ -69,7 +83,7 @@ class TotalStats extends React.Component {
           <div>Last 30 Days: {this.state.monthlyRunCount}</div>
           <div>Last Week: {this.state.weeklyRunCount}</div></div>
 
-            {/* <PieChart options={this.state.options} chartData={this.state.chartData} /> */}
+            {/* <PieChart pieChartData={pieChartData} /> */}
           </div>
           <div className="offset-2 col-4">
           <div className="col-sm-3 col-md-2">
