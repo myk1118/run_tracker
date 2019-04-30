@@ -17,7 +17,6 @@ export const checkAuth = () => async dispatch => {
 export function logIn(user) {
     return function (dispatch) {
         axios.post('/api/login.php', user).then(resp => {
-            console.log('Log In Resp:', resp);
             if (resp.data.success) {
                 localStorage.setItem('loggedIn', 'true');
                 dispatch({
