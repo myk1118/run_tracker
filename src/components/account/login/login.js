@@ -38,6 +38,13 @@ class LogIn extends Component {
 
   handleLogIn = (values) => {
     this.props.logIn(values);
+    axios.post('/api/login.php', values).then(resp => {
+      if (resp.data.error) {
+        this.setState({
+          message: resp.data.error
+        })
+      }
+    })
   }
 
   handleSignUp = (values) => {
