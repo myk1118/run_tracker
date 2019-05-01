@@ -84,7 +84,7 @@ class RunResult extends Component {
   }
 
   render() {
-    const {date, first_name} = this.state;
+    const {date, first_name, currentLatLng} = this.state;
     return(
       <div className="postRunBody">
       <RunHeader />
@@ -92,16 +92,17 @@ class RunResult extends Component {
         {first_name}, here are your run results from {date.date} at {date.time}
       </div>
       <div className="postRunMap">
-          <MyMapComponent
+          {/* <MyMapComponent
           isMarkerShown
           // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `100%` }} />}
           mapElement={<div style={{ height: `100%` }} />}
-          currentLocation = {this.state.currentLatLng}
-          />
-          {/* <img src={`https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=15&size=640x400&markers=color:blue%7Clabel:S%7C40.714728,-73.998672&key=${apiKey}&`}/> */}
+          currentLocation = {currentLatLng}
+          zoom={15}
+          /> */}
+          <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${currentLatLng.lat},${currentLatLng.lng}&zoom=15&size=640x400&markers=color:red%7C%7C${currentLatLng.lat},${currentLatLng.lng}&key=${apiKey}&`}/>
       </div>
     <div className="progressContainer">
       <div className="graphContainer">

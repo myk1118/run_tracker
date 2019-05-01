@@ -7,9 +7,9 @@ class PersonalBests extends Component {
 
     this.state = {
       longestRun: null,
-      fastestPace: null,
       lastRunDate: null,
-      averagePace: null
+      averagePace: null,
+      mostCalories: null,
     }
   }
 
@@ -19,19 +19,20 @@ class PersonalBests extends Component {
 
   async getPersonalBests() {
     const bests = await axios.get('/api/personalbestquery.php');
-    const {longestRun, fastestpace, lastRunDate, averagePace} = bests.data;
+    console.log('bests: ', bests)
+    const {longestRun, lastRunDate, averagePace, mostCalories} = bests.data;
     console.log('bests: ',bests);
     this.setState({
       longestRun: longestRun,
-      fastestPace: fastestpace,
       lastRunDate: lastRunDate,
-      averagePace
+      mostCalories: mostCalories,
+      averagePace,
     })
   }
 
 
   render() {
-    const {longestRun, fastestPace, lastRunDate, averagePace} = this.state;
+    const {longestRun, lastRunDate, averagePace, mostCalories} = this.state;
     return (
       <div className="personal-bests">
       {/* <div className="personal-bests">
@@ -93,7 +94,7 @@ class PersonalBests extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>???<span> calories</span></td>
+                  <td>{mostCalories}<span> calories</span></td>
                 </tr>
               </tbody>
             </table>
