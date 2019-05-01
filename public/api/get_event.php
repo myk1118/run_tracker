@@ -7,9 +7,8 @@ set_exception_handler('handleError');
 
 $user_id = $_SESSION['user_data']['id'];
 
-$query = "SELECT `date`, `id` FROM `run_stats`
-  WHERE `user_id` = $user_id
-  ORDER BY `date` DESC
+$query = "SELECT `eventName`, `eventDate` FROM `event`
+  WHERE `id` = $user_id
   ";
 
 $result = mysqli_query($conn, $query);
@@ -19,20 +18,17 @@ if (!$result) {
 }
 
 $output['success'] = true;
-$output['dates'] = [];
+$output[] = [];
 
-while ($row = mysqli_fetch_assoc($result)) {
-  $parent = $row['date'];
-  $timestamp = strtotime($parent);
+$row = mysqli_fetch_assoc($result);
+$current = new DateTime();
+$eventDate = new DateTime($row['eventDate']);
+$days = $eventDate->diff($current)->format('%a');
 
-  $date = date('n/j', $timestamp);
-  $time = date('h:i a', $timestamp);
-
-  $output['dates'][] = [
-    'date' => $date,
-    'time' => ltrim($time, '0'),
-    'id' => $row['id']
+  $output[] = [
+    'eventDay' => $days,
+    'eventName'=> $row['eventName']
   ];
-};
+
 
 print_r(json_encode($output));

@@ -183,7 +183,7 @@ class RunMap extends Component {
         watchId: watchId
       })
     }
-    //
+
     // startTracking = () => {
     //   const watchId = navigator.geolocation.watchPosition(position => {
     //     this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
@@ -305,7 +305,7 @@ class RunMap extends Component {
         })
     }
 
-    clickMiles() {
+    clickMiles = () => {
         this.setState({
             renderPage: 'Miles'
         })
@@ -358,7 +358,7 @@ class RunMap extends Component {
         }
     }
 
- 
+
 
     // distanceIncrement() {
     //     setTimeout(() => {
@@ -392,7 +392,7 @@ class RunMap extends Component {
                         isMarkerShown
                         // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
                         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
-                        loadingElement={<div style={{ height: `100%` }} />}
+                        loadingElement={<div className="loading-element" style={{ height: `100%` }} />}
                         containerElement={<div style={{ height: `100%` }} />}
                         mapElement={<div style={{ height: `100%` }} />}
                         currentLocation={this.state.currentLatLng}

@@ -37,7 +37,7 @@ class Chart extends Component {
             <td>{row.date}</td>
             <td>{row.distance}</td>
             <td>{row.time}</td>
-            <td><button onClick={() => this.deleteRow(row.id)}className="btn btn-sm btn-outline-danger">x</button></td>
+            <td><button onClick={() => this.deleteRow(row.id)} className="btn btn-sm btn-outline-danger">x</button></td>
           </tr>
         )
       })

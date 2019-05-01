@@ -7,9 +7,9 @@ class PersonalBests extends Component {
 
     this.state = {
       longestRun: null,
-      fastestPace: null,
       lastRunDate: null,
-      averagePace: null
+      averagePace: null,
+      mostCalories: null,
     }
   }
 
@@ -19,19 +19,20 @@ class PersonalBests extends Component {
 
   async getPersonalBests() {
     const bests = await axios.get('/api/personalbestquery.php');
-    const {longestRun, fastestpace, lastRunDate, averagePace} = bests.data;
+    console.log('bests: ', bests)
+    const {longestRun, lastRunDate, averagePace, mostCalories} = bests.data;
     console.log('bests: ',bests);
     this.setState({
       longestRun: longestRun,
-      fastestPace: fastestpace,
       lastRunDate: lastRunDate,
-      averagePace
+      mostCalories: mostCalories,
+      averagePace,
     })
   }
 
 
   render() {
-    const {longestRun, fastestPace, lastRunDate, averagePace} = this.state;
+    const {longestRun, lastRunDate, averagePace, mostCalories} = this.state;
     return (
       <div className="personal-bests">
       {/* <div className="personal-bests">
@@ -49,7 +50,7 @@ class PersonalBests extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>{longestRun} <span>miles</span></td>
+                  <td className="best">{longestRun} <span>miles</span></td>
                 </tr>
               </tbody>
             </table>
@@ -63,7 +64,7 @@ class PersonalBests extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>{averagePace}<span> minutes per mile</span></td>
+                  <td className="best">{averagePace}<span> min per mile</span></td>
                 </tr>
               </tbody>
             </table>
@@ -79,7 +80,7 @@ class PersonalBests extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>{lastRunDate}</td>
+                  <td className="best">{lastRunDate}</td>
                 </tr>
               </tbody>
             </table>
@@ -88,12 +89,12 @@ class PersonalBests extends Component {
             <table className="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">Calories Burned:</th>
+                  <th scope="col">Most Calories Burned:</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>???<span> calories</span></td>
+                  <td className="best">{mostCalories}<span> calories</span></td>
                 </tr>
               </tbody>
             </table>

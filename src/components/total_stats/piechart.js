@@ -19,27 +19,13 @@ export default props => {
           },
           legend: {
             display: true,
-            position: 'bottom',
+            position: 'right',
           },
           // elements: {
           //   line: {
           //     tension: 0
           //   }
           // },
-          // scales: {
-          //   xAxes: [{
-          //     scaleLabel: {
-          //       display: true,
-          //       labelString: 'Date'
-          //     },
-          //   }],
-          //   yAxes: [{
-          //     scaleLabel: {
-          //       display: false,
-          //       labelString: 'Distance (mi)'
-          //     }
-          //   }],
-          // }
         }}
       />
     </article>
