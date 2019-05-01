@@ -11,8 +11,6 @@ const SignUpForm = props => {
                 className="inputFields">
                 <Field col="s12" id="first_name" name="first_name" component={Input} placeholder="First Name" />
                 <Field col="s12" id="last_name" name="last_name" component={Input} placeholder="Last Name" />
-                <Field col="s12" id="gender" name="gender" component={Input} placeholder="Gender" />
-                <Field col="s12" id="age" name="age" component={Input} placeholder="Age" />
                 <Field col="s12" id="height" name="height" component={Input} placeholder="Height" />
                 <Field col="s12" id="weight" name="weight" component={Input} placeholder="Weight" />
                 <Field col="s12" id="signupEmail" name="email" component={Input} placeholder="Email" />
@@ -30,7 +28,7 @@ const SignUpForm = props => {
     )
 }
 
-function validate({ first_name, last_name, gender, age, height, weight, email, password, confirmpassword }) {
+function validate({ first_name, last_name, height, weight, email, password, confirmpassword }) {
     const errors = {};
     if (!first_name) {
         errors.first_name = 'Please enter first name';
@@ -38,14 +36,8 @@ function validate({ first_name, last_name, gender, age, height, weight, email, p
     if (!last_name) {
         errors.last_name = 'Please enter last name';
     }
-    if (!gender) {
-        errors.gender = 'Please enter your gender';
-    }
-    if (!age) {
-        errors.age = 'Please enter your age';
-    }
     if (!height) {
-        errors.height = 'Please enter your height';
+        errors.gender = 'Please enter your height';
     }
     if (!weight) {
         errors.weight = 'Please enter your weight';

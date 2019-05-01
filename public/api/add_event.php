@@ -19,8 +19,8 @@ $event = 'stuff';
 $date = '2019-04-30';
 // $event= $input['event'];
 // $date = $input['eventDate'];
-$user_id = 3;
-// $user_id = $_SESSION['user_data']['id'];
+// $user_id = 3;
+$user_id = $_SESSION['user_data']['id'];
 
 $id_query = "INSERT INTO `event` 
     (`eventName`, `eventDate`, `id`)

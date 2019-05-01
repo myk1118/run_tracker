@@ -18,12 +18,6 @@ if(empty($input['first_name'])){
 if(empty($input['last_name'])){
     throw new Exception('Last name is required');
 }
-if(empty($input['gender'])){
-    throw new Exception('Gender is required');
-}
-if(empty($input['age'])){
-    throw new Exception('Age is required');
-}
 if(empty($input['height'])){
     throw new Exception('Height is required');
 }
@@ -39,8 +33,6 @@ if(empty($input['password'])){
 
 $firstname = $input['first_name'];
 $lastname = $input['last_name'];
-$gender = $input['gender'];
-$age = $input['age'];
 $height = $input['height'];
 $weight = $input['weight'];
 $email = $input['email'];
@@ -51,13 +43,13 @@ $hashedPassword = sha1($password);
 
 unset($input['password']);
 
+$userid = $_SESSION['user_data']['id'];
+
 $query = "INSERT INTO `users` SET
 `email` = '$email',
 `password` = '$hashedPassword',
 `first_name` = '$firstname',
 `last_name` = '$lastname',
-`gender` = '$gender',
-`age` = '$age',
 `height` = '$height',
 `weight` = '$weight',
 `date` = NOW(),
