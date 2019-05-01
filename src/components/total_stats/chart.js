@@ -17,7 +17,7 @@ class Chart extends Component {
         <Line
           data={this.props.chartData}
           options={{
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             title: {
               display: true,
               text: 'Running Data',
