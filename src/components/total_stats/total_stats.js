@@ -14,6 +14,7 @@ class TotalStats extends React.Component {
     this.state = {
       chartData: {},
       pieChartData: {},
+      runCount: 0,
       // totalRunCount: 0,
       // monthlyRunCount: 0,
       // weeklyRunCount: 0
@@ -72,6 +73,7 @@ class TotalStats extends React.Component {
       })
 
       this.setState({
+        runCount: tableItems.length,
         pieChartData: {
           // labels: ['Last 7 Days', 'Last 30 Days', 'Total Runs'],
              labels: ['Less than 2 mi', '2-4mi', '3-6mi', '6-8mi', '8 or more mi'],
@@ -105,11 +107,11 @@ class TotalStats extends React.Component {
   }
 
   render() {
-    const {totalRunCount, monthlyRunCount, weeklyRunCount, chartData, options, pieChartData} = this.state;
+    const {totalRunCount, monthlyRunCount, weeklyRunCount, chartData, options, pieChartData, runCount} = this.state;
     return (
       <div className="total-stats">
         <RunHeader />
-        <Chart options={options} chartData={chartData} />
+        <Chart runCount={runCount} options={options} chartData={chartData} />
         <div className="d-flex ">
           <div className="col-6  text-center">
             {/* <div className="runCount">

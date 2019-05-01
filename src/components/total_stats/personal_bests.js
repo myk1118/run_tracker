@@ -89,7 +89,7 @@ class PersonalBests extends Component {
             <table className="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">Calories Burned:</th>
+                  <th scope="col">Most Calories Burned:</th>
                 </tr>
               </thead>
               <tbody>
