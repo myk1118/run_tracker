@@ -9,7 +9,7 @@ set_exception_handler('handleError');
 // $users_id = 3;
 $id = $_SESSION['user_data']['id'];
 
-$query = "SELECT `first_name`, `last_name`, `gender`, `age`, `height`, `weight`, `email`, `password` FROM `users` WHERE `id` = $id";
+$query = "SELECT `first_name`, `last_name`, `height`, `weight`, `email`, `password` FROM `users` WHERE `id` = $id";
 
 $result = mysqli_query($conn, $query);
 
