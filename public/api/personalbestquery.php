@@ -32,14 +32,14 @@ if(mysqli_num_rows($result) === 0){
 $data = mysqli_fetch_assoc($result);
 
 
-$datesQuery = "SELECT
-s.`date`
-FROM `run_stats` AS `s`
-JOIN `users` ON users.`id` = s.`user_id`
-WHERE users.`id` = $userid
-AND s.`distance` = MAX(s. `distance`)
-
-";
+// $datesQuery = "SELECT
+// s.`date`
+// FROM `run_stats` AS `s`
+// JOIN `users` ON users.`id` = s.`user_id`
+// WHERE users.`id` = $userid
+// AND s.`distance` = MAX(s. `distance`)
+//
+// ";
 
 
 $date = new DateTime($data['lastDate']);

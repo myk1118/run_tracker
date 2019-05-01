@@ -102,7 +102,7 @@ class RunResult extends Component {
           currentLocation = {currentLatLng}
           zoom={15}
           /> */}
-          <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${currentLatLng.lat},${currentLatLng.lng}&zoom=15&size=640x400&markers=color:red%7C%7C${currentLatLng.lat},${currentLatLng.lng}&key=${apiKey}&`}/>
+          <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${currentLatLng.lat},${currentLatLng.lng}&zoom=14&size=640x200&markers=color:red%7C%7C${currentLatLng.lat},${currentLatLng.lng}&key=${apiKey}&`}/>
       </div>
     <div className="progressContainer">
       <div className="graphContainer">
