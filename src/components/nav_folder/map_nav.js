@@ -13,9 +13,9 @@ export default props => {
         <NavLink className="nav-link-aboutus" to="/aboutus">
           <span className="oi" data-glyph="people"></span>
         </NavLink>
-        <NavLink className="nav-link-logout" to="/account/login">
-          <span className="oi" data-glyph="account-logout"></span>
-        </NavLink>
+        <NavLink className="nav-link-logout" to="/account/logout">
+            <span className="oi" data-glyph="account-logout"></span>
+          </NavLink>
       </div>
       <nav className="navbar navbar-expand navbar-custom navbar-center py-0 ">
         <div className="container-fluid ">
