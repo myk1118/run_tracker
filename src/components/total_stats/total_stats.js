@@ -4,7 +4,7 @@ import RunHeader from '../nav_folder/run_nav';
 import './total_stats.scss';
 import PersonalBests from './personal_bests';
 import axios from 'axios';
-import PieChart from './piechart';
+import EventDate from './event_date';
 
 class TotalStats extends React.Component {
   constructor(props) {
@@ -57,6 +57,10 @@ class TotalStats extends React.Component {
     })
   }
 
+  openModal=()=>{
+    console.log('clicked Modal');
+  }
+
   render() {
     return (
       <div className="total-stats">
@@ -68,25 +72,9 @@ class TotalStats extends React.Component {
           <div>Total Runs: {this.state.totalRunCount}</div>
           <div>Last 30 Days: {this.state.monthlyRunCount}</div>
           <div>Last Week: {this.state.weeklyRunCount}</div></div>
-
             {/* <PieChart options={this.state.options} chartData={this.state.chartData} /> */}
           </div>
-          <div className="offset-2 col-4">
-          <div className="col-sm-3 col-md-2">
-            <div className="eventProgress" data-percentage="90">
-              <span className="eventProgress-left">
-                <span className="eventProgress-bar"></span>
-              </span>
-              <span className="eventProgress-right">
-                <span className="eventProgress-bar"></span>
-              </span>
-            <div className="eventProgress-value">
-            Event Date
-              {/* <span>completed</span> */}
-            </div>
-            </div>
-            </div>
-          </div>
+          <EventDate/>
         </div>
         <PersonalBests />
       </div>
