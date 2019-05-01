@@ -22,6 +22,7 @@ class EventDate extends Component {
               <span className="eventProgress-bar"></span>
             </span>
           <div className="eventProgress-value">
+          Event
           </div>
         </div>
         </div>
