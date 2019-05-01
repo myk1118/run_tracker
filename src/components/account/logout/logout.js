@@ -7,7 +7,7 @@ import './logout.scss';
 
 class LogOut extends Component {
     componentDidMount() {
-        setTimeout(this.props.logOut, 2000);
+        setTimeout(this.props.logOut, 3000);
     }
     render() {
         return (

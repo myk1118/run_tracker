@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import image4 from './images/image4.jpeg';
-import image5 from './images/image5.jpeg';
-import image15 from './images/image15.jpeg';
+import image1 from './images/image4.jpeg';
+import image2 from './images/image15.jpeg';
+import image3 from './images/image11.jpeg';
 
 class Carousel extends Component {
     componentDidMount() {
@@ -19,13 +19,13 @@ class Carousel extends Component {
 
                     <div className="carousel-inner" role="listbox">
                         <div className="carousel-item active">
-                            <img className="image8 d-block" src={image4} alt="First slide" />
+                            <img className="image8 d-block" src={image1} alt="First slide" />
                         </div>
                         <div className="carousel-item">
-                            <img className="image9 d-block" src={image5} alt="Second slide" />
+                            <img className="image9 d-block" src={image2} alt="Second slide" />
                         </div>
                         <div className="carousel-item">
-                            <img className="image10 d-block" src={image15} alt="Third slide" />
+                            <img className="image10 d-block" src={image3} alt="Third slide" />
                         </div>
                     </div>
 
