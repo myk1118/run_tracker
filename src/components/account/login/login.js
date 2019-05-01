@@ -7,7 +7,6 @@ import LogInForm from './login_form';
 import SignUpForm from '../sign_up/signup_form';
 import Carousel from './carousel';
 import Logo from '../../../../public/dist/images/logo_white.png';
-import Logo from '../../../../public/dist/images/runtracker-logo.png';
 import './login.scss';
 // import SignUp from '../sign_up';
 
@@ -106,10 +105,9 @@ class LogIn extends Component {
     else {
       return (
         <div className="loginPage">
-          <div className="loginPageLogo">
+          {/* <div className="loginPageLogo"> */}
             <img className="loginLogo" src={Logo} alt="Logo" />
-            <img src={Logo} className="logo" alt="..." />
-          </div>
+          {/* </div> */}
           <div className="carouselContainer">
             <Carousel />
           </div>
