@@ -5,6 +5,7 @@ import './total_stats.scss';
 import PersonalBests from './personal_bests';
 import axios from 'axios';
 import EventDate from './event_date';
+import PieChart from './piechart';
 
 class TotalStats extends React.Component {
   constructor(props) {
