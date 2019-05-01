@@ -105,10 +105,9 @@ class LogIn extends Component {
     else {
       return (
         <div className="loginPage">
-          <div className="loginPageLogo">
+          {/* <div className="loginPageLogo"> */}
             <img className="loginLogo" src={Logo} alt="Logo" />
-            <img src={Logo} className="logo" alt="..." />
-          </div>
+          {/* </div> */}
           <div className="carouselContainer">
             <Carousel />
           </div>
