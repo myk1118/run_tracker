@@ -11,6 +11,7 @@ class RunResult extends Component {
     super(props);
 
     this.state = {
+      bl: [],
       first_name: null,
       time: 0,
       distance: 0,
@@ -46,7 +47,6 @@ class RunResult extends Component {
   async getChartData() {
     const {id} = this.props.match.params
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
-    console.log('resp!!!: ', resp)
     const { sessionData, date, distance, coordinates, secondsRan } = resp.data;
     const{ calories, pace, time} = sessionData['0'];
     const miles = sessionData.map(mile => mile.perMile.currentMile);
@@ -74,7 +74,7 @@ class RunResult extends Component {
             borderColor: 'blue',
             backgroundColor: '#1E90FF',
             borderWidth: 1,
-            borderColor: '#777',
+            borderColor: 'white',
             hoverBorderWidth: 3,
             hoverBorderColor: '#000',
           }
