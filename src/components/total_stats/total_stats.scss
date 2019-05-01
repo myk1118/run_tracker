@@ -9,6 +9,10 @@
     }
   }
 
+  .test1{
+    width:50%;
+  }
+
   .chart-container {
     height: 25%;
   }
@@ -228,3 +232,27 @@ Due to the split circle of eventProgress-left and eventProgress right, we must u
 .eventProgress {
 		margin-bottom: 1em;
 	}
+
+  @media (max-width: 600px) {
+
+    .tableContainer {
+      .total, .month, .week {
+        font-size: 0.8rem;
+      }
+    }
+
+    .personal-bests {
+      .table-hover {
+        th {
+          font-size: 0.7rem;
+        }
+        .best {
+          font-size: 1rem;
+          span {
+            font-size: 0.7rem;
+          }
+        }
+
+      }
+    }
+  }

@@ -11,16 +11,17 @@ class Chart extends Component {
 
   render() {
     // const title = labels.length > 1 ? 'Running Data' : 'jfdks'
+    const runs = this.props.runCount > 1 ? `${this.props.runCount} Runs` : `${this.props.runCount} Run`;
     return (
       <div className="graph-container">
         <article className="runGraph">
         <Line
           data={this.props.chartData}
           options={{
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             title: {
               display: true,
-              text: 'Running Data',
+              text: `Distances Tracked For Your Last ${runs}`,
               fontSize: 25
             },
             legend: {

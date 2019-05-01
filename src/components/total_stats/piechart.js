@@ -9,38 +9,23 @@ export default props => {
     <div>
       <article className="graph-container">
       <Pie
-        data={props.chartData}
-        // options={props.options}
+        data={props.pieChartData}
         options = {{
-          maintainAspectRatio: false,
+          maintainAspectRatio: true,
           title: {
             display: true,
-            text: 'Running Data',
+            text: 'Distance Comparison',
             fontSize: 25
           },
           legend: {
             display: true,
-            position: 'bottom',
+            position: 'right',
           },
-          elements: {
-            line: {
-              tension: 0
-            }
-          },
-          scales: {
-            xAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'Date'
-              },
-            }],
-            yAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: 'Distance (mi)'
-              }
-            }],
-          }
+          // elements: {
+          //   line: {
+          //     tension: 0
+          //   }
+          // },
         }}
       />
     </article>

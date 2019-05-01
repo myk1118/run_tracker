@@ -11,6 +11,7 @@ class RunResult extends Component {
     super(props);
 
     this.state = {
+      bl: [],
       first_name: null,
       time: 0,
       distance: 0,
@@ -46,7 +47,6 @@ class RunResult extends Component {
   async getChartData() {
     const {id} = this.props.match.params
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
-    console.log('resp!!!: ', resp)
     const { sessionData, date, distance, coordinates, secondsRan } = resp.data;
     const{ calories, pace, time} = sessionData['0'];
     const miles = sessionData.map(mile => mile.perMile.currentMile);
@@ -74,7 +74,7 @@ class RunResult extends Component {
             borderColor: 'blue',
             backgroundColor: '#1E90FF',
             borderWidth: 1,
-            borderColor: '#777',
+            borderColor: 'white',
             hoverBorderWidth: 3,
             hoverBorderColor: '#000',
           }
@@ -84,7 +84,7 @@ class RunResult extends Component {
   }
 
   render() {
-    const {date, first_name} = this.state;
+    const {date, first_name, currentLatLng} = this.state;
     return(
       <div className="postRunBody">
       <RunHeader />
@@ -92,16 +92,17 @@ class RunResult extends Component {
         {first_name}, here are your run results from {date.date} at {date.time}
       </div>
       <div className="postRunMap">
-          <MyMapComponent
+          {/* <MyMapComponent
           isMarkerShown
           // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `100%` }} />}
           mapElement={<div style={{ height: `100%` }} />}
-          currentLocation = {this.state.currentLatLng}
-          />
-          {/* <img src={`https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=15&size=640x400&markers=color:blue%7Clabel:S%7C40.714728,-73.998672&key=${apiKey}&`}/> */}
+          currentLocation = {currentLatLng}
+          zoom={15}
+          /> */}
+          <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${currentLatLng.lat},${currentLatLng.lng}&zoom=14&size=640x200&markers=color:red%7C%7C${currentLatLng.lat},${currentLatLng.lng}&key=${apiKey}&`}/>
       </div>
     <div className="progressContainer">
       <div className="graphContainer">
