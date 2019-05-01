@@ -14,7 +14,7 @@ export default props => {
           maintainAspectRatio: true,
           title: {
             display: true,
-            text: 'Run Frequency Comparison',
+            text: 'Distance Comparison',
             fontSize: 25
           },
           legend: {
