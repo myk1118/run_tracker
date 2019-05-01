@@ -169,34 +169,34 @@ class RunMap extends Component {
     // }
 
 
-//     geoLocationInterval = () => {
-//       navigator.geolocation.getCurrentPosition(position => {
-//          this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length/20000), position.coords.longitude + (this.state.coordinateArray.length/20000));
-//       })
-//
-//     }
-//
-// //when you click the button, start tracking
-//     startTracking = () => {
-//       const watchId = setInterval(this.geoLocationInterval, 200);
-//       this.setState({
-//         watchId: watchId
-//       })
-//     }
+    geoLocationInterval = () => {
+      navigator.geolocation.getCurrentPosition(position => {
+         this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length/20000), position.coords.longitude + (this.state.coordinateArray.length/20000));
+      })
 
-    startTracking = () => {
-      const watchId = navigator.geolocation.watchPosition(position => {
-        this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
-      }, error => {
-      }, {enableHighAccuracy: true})
-        this.setState({
-          watchId: watchId
-        })
     }
+
+//when you click the button, start tracking
+    startTracking = () => {
+      const watchId = setInterval(this.geoLocationInterval, 200);
+      this.setState({
+        watchId: watchId
+      })
+    }
+
+    // startTracking = () => {
+    //   const watchId = navigator.geolocation.watchPosition(position => {
+    //     this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+    //   }, error => {
+    //   }, {enableHighAccuracy: true})
+    //     this.setState({
+    //       watchId: watchId
+    //     })
+    // }
 //when you click the stop button, stop tracking
     stopTracking = () => {
-      navigator.geolocation.clearWatch(this.state.watchId);
-      // clearInterval(this.state.watchId);
+      // navigator.geolocation.clearWatch(this.state.watchId);
+      clearInterval(this.state.watchId);
     }
     stopCalorie = () => {
         clearTimeout(this.countCalories);
@@ -392,7 +392,7 @@ class RunMap extends Component {
                         isMarkerShown
                         // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
                         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
-                        loadingElement={<div style={{ height: `100%` }} />}
+                        loadingElement={<div className="loading-element" style={{ height: `100%` }} />}
                         containerElement={<div style={{ height: `100%` }} />}
                         mapElement={<div style={{ height: `100%` }} />}
                         currentLocation={this.state.currentLatLng}

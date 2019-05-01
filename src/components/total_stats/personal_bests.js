@@ -50,7 +50,7 @@ class PersonalBests extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>{longestRun} <span>miles</span></td>
+                  <td className="best">{longestRun} <span>miles</span></td>
                 </tr>
               </tbody>
             </table>
@@ -64,7 +64,7 @@ class PersonalBests extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>{averagePace}<span> minutes per mile</span></td>
+                  <td className="best">{averagePace}<span> min per mile</span></td>
                 </tr>
               </tbody>
             </table>
@@ -80,7 +80,7 @@ class PersonalBests extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>{lastRunDate}</td>
+                  <td className="best">{lastRunDate}</td>
                 </tr>
               </tbody>
             </table>
@@ -94,7 +94,7 @@ class PersonalBests extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>{mostCalories}<span> calories</span></td>
+                  <td className="best">{mostCalories}<span> calories</span></td>
                 </tr>
               </tbody>
             </table>

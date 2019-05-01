@@ -110,7 +110,7 @@ class TotalStats extends React.Component {
       <div className="total-stats">
         <RunHeader />
         <Chart options={options} chartData={chartData} />
-        <div className="d-flex chart-container">
+        <div className="d-flex ">
           <div className="col-6  text-center">
             {/* <div className="runCount">
               <div>Total Runs: {this.state.totalRunCount}</div>
