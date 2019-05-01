@@ -1,19 +1,19 @@
-@media screen and (max-width: 414px) {
+@media screen and (min-width: 1024px) {
     .loginLogo {
-        width: 40vh;
+        width: 54vh;
         position: absolute;
-        top: 28%;
+        top: 25%;
         left: 50%;
         transform: translate(-50%);
         z-index: 2;
     }
 
     .btn-info {
-        margin: 4px;
-        font-size: 14px;
+        margin: 8px;
+        font-size: 18px;
         line-height: 1.2;
         text-transform: uppercase;
-        padding: 8px 12px;
+        padding: 10px 14px;
     }
 }
 
@@ -36,22 +36,22 @@
     }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (max-width: 414px) {
     .loginLogo {
-        width: 54vh;
+        width: 40vh;
         position: absolute;
-        top: 25%;
+        top: 28%;
         left: 50%;
         transform: translate(-50%);
         z-index: 2;
     }
 
     .btn-info {
-        margin: 8px;
-        font-size: 18px;
+        margin: 4px;
+        font-size: 14px;
         line-height: 1.2;
         text-transform: uppercase;
-        padding: 10px 14px;
+        padding: 8px 12px;
     }
 }
 
