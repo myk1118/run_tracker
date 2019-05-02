@@ -105,8 +105,7 @@ class Chart extends Component {
       this.setState({
         stats: [...stats]
       })
-    })
-  }
+    }
 
   render() {
     return (
