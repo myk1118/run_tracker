@@ -302,30 +302,30 @@ Due to the split circle of eventProgress-left and eventProgress right, we must u
 }
 
 
-// @media (max-width: 1200px) {
-//
-//   .total-stats {
-//     .first-row {
-//     .line-graph-container {
-//         article {
-//         }
-//       }
-//       .personal-bests {
-//         .table {
-//           tr {
-//             th {
-//             }
-//             td {
-//               font-size: 2rem;
-//               span {
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+@media (max-width: 1200px) {
+
+  .total-stats {
+    .first-row {
+    .line-graph-container {
+        article {
+        }
+      }
+      .personal-bests {
+        .table {
+          tr {
+            th {
+            }
+            td {
+              font-size: 2rem;
+              span {
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 @media (max-width: 576px) {
 
