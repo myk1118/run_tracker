@@ -184,3 +184,252 @@
   position: relative;
   top:20px;
 }
+
+.total-stats {
+  height: 75vh;
+
+
+  .first-row {
+    // height: 55%;
+
+    .line-graph-container {
+      // height: 90%;
+      height: 37vh;
+
+      article {
+        height: 100%;
+      }
+    }
+
+
+    .personal-bests {
+      .table {
+        tr {
+          th {
+            text-align: left;
+            font-weight: normal;
+            border-top: none;
+          }
+
+          td {
+            border-top: none;
+            font-size: 2.5rem;
+            font-weight: bold;
+
+            span {
+              font-weight: normal;
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  .second-row {
+    // height: 40vh;
+
+    .pie-chart-container {
+      height: 80%;
+      height: 40vh;
+
+      .graph-container {
+        height: 100%;
+        border-top: dotted lightgrey;
+        border-bottom: dotted lightgrey;
+      }
+    }
+  }
+
+
+}
+
+.runCount {
+  height: 100%;
+  background-color: rgb(140, 255, 125);
+}
+
+.tableContainer {
+  height: 100%;
+
+  .total,
+  .month,
+  .week {
+    cursor: pointer;
+  }
+
+  table {
+    color: rgb(51, 51, 51);
+    font-family: Helvetica, Arial, sans-serif;
+
+    border-collapse:
+      collapse;
+    border-spacing: 0;
+  }
+
+  td,
+  th {
+    border: 1px solid transparent;
+    transition: all 0.3s;
+    text-align: center;
+    width: 25vw;
+  }
+
+  th {
+    background: #DFDFDF;
+    font-weight: bold;
+  }
+
+  td {
+    background: #FAFAFA;
+  }
+
+  tr:nth-child(even) td {
+    background: #F1F1F1;
+  }
+
+  tr:nth-child(odd) td {
+    background: #FEFEFE;
+  }
+
+  tbody tr:hover {
+    color: rgb(50, 50, 255);
+  }
+}
+
+.App-logo {
+  height: 80px;
+}
+
+.App-header {
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  color: white;
+  
+}
+
+.title {
+  border-bottom: dotted lightgrey;
+  padding-top: 2%;
+  font-size: 2.5rem;
+}
+
+.App-header .title{
+  margin-top: 40px;
+  
+}
+
+.App-header a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: .2s all;
+}
+.App-header a:hover{
+  opacity: .7;
+}
+
+.githubIcon{
+  height: 30px;
+  margin-right: 5px;
+}
+
+.Countdown{
+  margin: 10px auto;
+  padding-bottom: 20px;
+  text-align: center;
+	background: rgb(255, 255, 255);
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+.Countdown-col{
+  display: inline-block;
+}
+
+.Countdown-col-element{
+  display: inline-block;
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.Countdown-col-element strong{
+  font-size: 50px;
+  padding: 10px;
+	border-radius: 3px;
+	background: #81b3c2;
+  display: inline-block;
+  color: rgb(238, 238, 238);
+  border-radius: 15px;
+}
+
+.btnPosition{
+  position: relative;
+  top:20px;
+}
+
+@media(max-width: 1200px) {
+  .total-stats {
+    .first-row {
+
+      .personal-bests {
+        .table {
+          tr {
+            td {
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+
+  //Activity Log
+  .tableContainer {
+
+    .total,
+    .month,
+    .week {
+      font-size: 0.8rem;
+    }
+  }
+
+  //Total Stats
+  .total-stats {
+    .first-row {
+      .line-graph-container {
+        height: 50vh;
+
+        article {
+
+        }
+      }
+
+      .personal-bests {
+        .table {
+          tr {
+            th {
+              font-size: 0.7rem;
+            }
+
+            td {
+              font-size: 1rem;
+
+              span {
+                font-size: 0.7rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
