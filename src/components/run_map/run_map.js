@@ -418,7 +418,6 @@ class RunMap extends Component {
         } else {
             return (
                 <Fragment>
-                    <div className="totalMonthWeek float-right text-primary pt-3 pb-3">Total | Month | Week </div>
                     <table className="table table-hover">
                         <thead>
                             <tr>

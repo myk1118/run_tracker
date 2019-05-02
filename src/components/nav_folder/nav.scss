@@ -46,6 +46,17 @@
     text-align: center;
     padding: 0;
 }
+.textContainer{
+    position:relative;
+    top:7px;
+}
+
+.navHeight {
+    height:100%;
+    .navbar-nav{
+        height:100%;
+    }
+}
 
 .navbar-custom {
     background-color: #586F7C;
@@ -84,6 +95,7 @@
     .nav {
         display: table;
         width: 100%;
+        height:100%;
 
         li {
             display: table-cell;
@@ -91,6 +103,7 @@
             // float: none;
 
             a {
+                height:100%;
                 border-left: 1px solid rgb(255, 255, 255);
             }
         }
