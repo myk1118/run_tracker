@@ -48,17 +48,18 @@ class RunResult extends Component {
     const {id} = this.props.match.params
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
     console.log('response', resp);
-    const { sessionData, date, distance, coordinates, secondsRan } = resp.data;
+    const { sessionData, date, distance, coordinates, secondsRan, minutesSecondsRan } = resp.data;
     const{ calories, pace, time} = sessionData['0'];
     const miles = sessionData.map(mile => mile.perMile.currentMile);
     const time2 = sessionData.map(minutes => (minutes.perMile.perMileTime/60).toFixed(2));
 
     this.setState({
+      minutesSecondsRan,
       secondsRan,
       time,
       distance,
       calories,
-      pace,
+      pace: this.secondsToPaceConverter(secondsRan),
       date,
       currentLatLng: {
         ...this.state.currentLatLng,
@@ -84,15 +85,20 @@ class RunResult extends Component {
     })
   }
 
+  secondsToPaceConverter(time) {
+    const minutes = Math.floor(time / 60);
+    const secondsRemaining = time - minutes * 60
+    const seconds = secondsRemaining > 9 ? secondsRemaining : `0${secondsRemaining}`;
+
+    return `${minutes}:${seconds}`
+  }
+
   render() {
-    const {date, first_name, currentLatLng} = this.state;
+    const {date, first_name, currentLatLng, distance, minutesSecondsRan, calories, pace} = this.state;
     return(
       <div className="postRunBody">
-      <RunHeader />
-      <div className="text-center">
-        {first_name}, here are your run results from {date.date} at {date.time}
-      </div>
-      <div className="postRunMap">
+        <RunHeader />
+        <div className="postRunMap">
           {/* <MyMapComponent
           isMarkerShown
           // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
@@ -105,18 +111,44 @@ class RunResult extends Component {
           /> */}
           <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${currentLatLng.lat},${currentLatLng.lng}&zoom=14&size=640x200&markers=color:red%7C%7C${currentLatLng.lat},${currentLatLng.lng}&key=${apiKey}&`}/>
       </div>
-    <div className="progressContainer">
-      <div className="graphContainer">
-        <div className="graph">
+      <div className="text-center">
+        {first_name}, here are your run results from {date.date} at {date.time}
+      </div>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-lg-6 col-12">
           <ResultsChart
             chartData={this.state.chartData}
             distance={this.state.totalDistance}
             secondsRan={this.state.secondsRan}
           />
         </div>
+        <div className="col-lg-6 col-12 text-center run-data">
+          <div className="row">
+            <div className="col-6">
+              <p className="run-title">Duration (min:sec)</p>
+              <p>{minutesSecondsRan}</p>
+            </div>
+            <div className="col-6">
+              <p className="run-title">Distance</p>
+              <p>{distance} miles</p>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <p className="run-title">Avg Pace (min/mile)</p>
+              <p>{pace}</p>
+            </div>
+            <div className="col-6">
+              <p className="run-title">Calories</p>
+              <p>{calories}</p>
+            </div>
+          </div>
+
+        </div>
 
       </div>
-      <div className="row col-6 inline-block">
+      {/* <div className="row col-6 inline-block">
           <div className="offset-2 pieContainer col-4 col-md-4 col-lg-4">
               <div className="col-6 col-sm-6 col-md-6">
               <div className="progress" data-percentage="100">
@@ -129,7 +161,7 @@ class RunResult extends Component {
               <div className="text-container">
                   <div className="col-6 progress-value">
                   Distance
-                      <div className="col-6 progress-text">{this.state.distance}</div>
+                      <div className="col-6 progress-text">{distance}</div>
                   </div>
               </div>
               </div>
@@ -147,8 +179,8 @@ class RunResult extends Component {
                   </span>
               <div className="text-container">
                   <div className="col-6 progress-value">
-                  Time
-                      <div className="col-6 progress-text">{this.state.time}</div>
+                  Duration
+                      <div className="col-6 progress-text">{minutesSecondsRan}</div>
                   </div>
               </div>
               </div>
@@ -168,7 +200,7 @@ class RunResult extends Component {
                       <div className="text-container">
                       <div className="col-6 progress-value">
                       Calories
-                      <div className="col-6 progress-text">{this.state.calories}</div>
+                      <div className="col-6 progress-text">{calories}</div>
                       </div>
                   </div>
               </div>
@@ -187,13 +219,13 @@ class RunResult extends Component {
             <div className="text-container">
             <div className="col-6 progress-value">
           Pace
-          <div className="progress-text">{this.state.pace}</div>
+          <div className="progress-text">{pace}</div>
           </div>
           </div>
           </div>
           </div>
         </div>
-      </div>
+      </div> */}
       </div>
       </div>
 

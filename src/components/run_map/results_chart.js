@@ -10,8 +10,8 @@ const oneOrMoreMinutes = minutes > 1 ? 'minutes' : 'minute';
 const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrMoreMinutes} and ${seconds} Seconds`;
 
   return (
-    <div>
-      <article className="graph-container">
+    <div className="bar-graph-container">
+      <article >
       <Bar
         data={props.chartData}
         width={100}
@@ -46,7 +46,8 @@ const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrM
                 }
             }
           },
-          maintainAspectRatio: true,
+          maintainAspectRatio: false,
+          responsive: true,
           title: {
             display: true,
             // text: 'Today\'s Run',

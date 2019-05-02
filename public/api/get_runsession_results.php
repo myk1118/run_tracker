@@ -54,6 +54,14 @@ while($row = mysqli_fetch_assoc($result)) {
   $date = date('l, M j, Y', $timestamp);
   $time = date('h:i a', $timestamp);
 
+  if((int)$row['time'] < 3600) {
+    $hrs_min_sec = "i:s";
+  } else {
+    $hrs_min_sec = "H:i:s";
+  }
+
+
+
   $output['date'] = [
     'date' => $date,
     'time' => ltrim($time, '0')
@@ -63,6 +71,7 @@ while($row = mysqli_fetch_assoc($result)) {
     'lng' => (float)$row['lng']
   ];
   $output['secondsRan'] = (int)$row['time'];
+  $output['minutesSecondsRan'] = gmdate($hrs_min_sec, (int)$row['time']);
   $output['distance'] = $row['distance'];
   $output['sessionData'][] = [
     // 'id' => (int)$row['id'],

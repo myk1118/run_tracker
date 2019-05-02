@@ -4,26 +4,46 @@
 
     .postRunMap{
         width:100%;
-        height:40%;
+        height:30%;
         img {
-          // height: 100%;
+          height: 100%;
+          // width: 100%;
           display: block;
           margin: 0 auto;
-          // width: 100%;
         }
     }
-    .graphContainer{
-        width: 60%;
+
+    .bar-graph-container {
+      height: 40vh;
+
+      article {
         height: 100%;
-        display:inline-block;
-        .graph {
-            height: 100%;
-            width: 100%;
-            .graph-container {
-              height: 100%;
-            }
-        }
+      }
     }
+
+    .run-data {
+      height: 40%;
+      .run-title {
+        border-bottom: solid black 1px;
+        padding-top: 12%;
+      }
+      .run-title + p {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+    }
+    // .graphContainer{
+    //     width: 60%;
+    //     height: 100%;
+    //     display:inline-block;
+    //     .graph {
+    //         height: 100%;
+    //         width: 100%;
+    //         .graph-container {
+    //           height: 100%;
+    //         }
+    //     }
+    // }
     .progressContainer{
         width:100%;
         display:flex;
@@ -43,17 +63,17 @@
 }
 
 
-div.row{
-    margin-top:2%;
-    height:100%;
-}
-.pieContainer{
-    // width:50%;
-    height:20%;
-}
-.pieContainer2{
-  margin-top: 20%;
-}
+// div.row{
+//     margin-top:2%;
+//     height:100%;
+// }
+// .pieContainer{
+//     // width:50%;
+//     height:20%;
+// }
+// .pieContainer2{
+//   margin-top: 20%;
+// }
 
 $borderWidth: 7px;
 $animationTime: 1.5s;
