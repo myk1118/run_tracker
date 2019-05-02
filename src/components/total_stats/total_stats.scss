@@ -1,21 +1,59 @@
+
 .total-stats {
-  height: 100%;
+  height: 75vh;
 
-  .graph-container {
-    height: 50%;
 
-    article {
-      height: 100%;
+  .first-row {
+    // height: 55%;
+
+  .line-graph-container {
+      // height: 90%;
+      height: 37vh;
+
+      article {
+        height: 100%;
+      }
+    }
+
+
+    .personal-bests {
+      .table {
+        tr {
+          th {
+            text-align: left;
+            font-weight: normal;
+            border-top: none;
+          }
+          td {
+            border-top: none;
+            font-size: 2.5rem;
+            font-weight: bold;
+            span {
+              font-weight: normal;
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+
+  }
+  .second-row {
+    // height: 40vh;
+
+    .pie-chart-container {
+      height: 80%;
+      height: 40vh;
+
+      .graph-container {
+        height: 100%;
+        border-top: dotted lightgrey;
+        border-bottom: dotted lightgrey;
+      }
     }
   }
 
-  .test1 {
-    width: 50%;
-  }
 
-  .chart-container {
-    height: 25%;
-  }
 }
 
 .runCount {
@@ -79,28 +117,28 @@
   text-align: center;
 }
 
-.personal-bests {
-  .table {
-    tr {
-      th {
-        text-align: left;
-        font-weight: normal;
-        border-top: none;
-      }
+// .personal-bests {
+//
+//   .table {
+//     tr {
+//       th {
+//         text-align: left;
+//         font-weight: normal;
+//         border-top: none;
+//       }
+//       td {
+//         border-top: none;
+//         font-size: 2.5rem;
+//         font-weight: bold;
+//         span {
+//           font-weight: normal;
+//           font-size: 1rem;
+//         }
+//       }
+//     }
+//   }
+// }
 
-      td {
-        border-top: none;
-        font-size: 2.5rem;
-        font-weight: bold;
-
-        span {
-          font-weight: normal;
-          font-size: 1rem;
-        }
-      }
-    }
-  }
-}
 
 $borderWidth: 7px;
 $animationTime: 1.5s;
@@ -261,14 +299,40 @@ Due to the split circle of eventProgress-left and eventProgress right, we must u
   margin-bottom: 1em;
 }
 
-@media (max-width: 600px) {
 
-  .tableContainer {
+// @media (max-width: 1200px) {
+//
+//   .total-stats {
+//     .first-row {
+//     .line-graph-container {
+//         article {
+//         }
+//       }
+//       .personal-bests {
+//         .table {
+//           tr {
+//             th {
+//             }
+//             td {
+//               font-size: 2rem;
+//               span {
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
-    .total,
-    .month,
-    .week {
-      font-size: 0.8rem;
+@media (max-width: 576px) {
+
+//Activity Log
+    .tableContainer {
+      .total, .month, .week {
+        font-size: 0.8rem;
+      }
+
     }
   }
 
@@ -281,11 +345,33 @@ Due to the split circle of eventProgress-left and eventProgress right, we must u
       .best {
         font-size: 1rem;
 
-        span {
-          font-size: 0.7rem;
+
+//Total Stats
+.total-stats {
+  .first-row {
+  .line-graph-container {
+      height: 50vh;
+      article {
+      }
+    }
+    .personal-bests {
+      .table {
+        tr {
+          th {
+            font-size: 0.7rem;
+          }
+          td {
+            font-size: 1rem;
+            span {
+              font-size: 0.7rem;
+            }
+          }
+
         }
       }
 
     }
   }
 }
+}
+
