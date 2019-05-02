@@ -301,24 +301,15 @@ Due to the split circle of eventProgress-left and eventProgress right, we must u
   margin-bottom: 1em;
 }
 
-
-@media (max-width: 1200px) {
-
+@media(max-width: 1200px) {
   .total-stats {
     .first-row {
-    .line-graph-container {
-        article {
-        }
-      }
+
       .personal-bests {
         .table {
           tr {
-            th {
-            }
             td {
-              font-size: 2rem;
-              span {
-              }
+              font-size: 1.5rem;
             }
           }
         }
@@ -329,57 +320,36 @@ Due to the split circle of eventProgress-left and eventProgress right, we must u
 
 @media (max-width: 576px) {
 
-  //Activity Log
-  .tableContainer {
-
-    .total,
-    .month,
-    .week {
-      font-size: 0.8rem;
+//Activity Log
+    .tableContainer {
+      .total, .month, .week {
+        font-size: 0.8rem;
+      }
     }
 
-  }
-}
-
-.personal-bests {
-  .table-hover {
-    th {
-      font-size: 0.7rem;
+//Total Stats
+.total-stats {
+  .first-row {
+  .line-graph-container {
+      height: 50vh;
+      article {
+      }
     }
-
-    .best {
-      font-size: 1rem;
-
-
-      //Total Stats
-      .total-stats {
-        .first-row {
-          .line-graph-container {
-            height: 50vh;
-
-            article {}
+    .personal-bests {
+      .table {
+        tr {
+          th {
+            font-size: 0.7rem;
           }
-
-          .personal-bests {
-            .table {
-              tr {
-                th {
-                  font-size: 0.7rem;
-                }
-
-                td {
-                  font-size: 1rem;
-
-                  span {
-                    font-size: 0.7rem;
-                  }
-                }
-              }
-              }
+          td {
+            font-size: 1rem;
+            span {
+              font-size: 0.7rem;
             }
-
           }
         }
       }
     }
   }
+}
+}
