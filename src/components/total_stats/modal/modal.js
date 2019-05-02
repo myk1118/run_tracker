@@ -31,14 +31,12 @@ class EventModal extends Component {
       }
 
       postEvent=()=>{
-        debugger;
         const {event, date} = this.state;
         const data = {
           event: event,
           eventDate: date
         };
         axios.post('/api/add_event.php', data).then(() => {
-          debugger;
           console.log('posted event', data);
           
           this.handleClose();
