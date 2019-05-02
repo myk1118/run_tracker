@@ -243,3 +243,59 @@ Due to the split circle of progress-left and progress right, we must use the ani
 .progress {
 		margin-bottom: 1em;
 	}
+
+@media (max-width: 576px) {
+
+  .postRunBody{
+      height:100vh;
+
+      .postRunMap{
+          // width:100%;
+          height: 30%;
+          .col-12, .col-md-6, .col-lg-6 {
+            padding-left: 0;
+            padding-right: 0;
+
+            img {
+              height: 100%;
+              width: 100%;
+              // display: block;
+              // margin: 0 auto;
+            }
+          }
+      }
+
+      .run-message {
+        .first-description {
+          font-size: 1.2rem;
+        }
+        .second-description, .location {
+          font-size: 1.0rem;
+        }
+      }
+
+      .bar-graph-container {
+        height: 55vh;
+
+        article {
+          height: 100%;
+        }
+      }
+
+      .run-data {
+        height: 50%;
+        .run-title {
+          border-bottom: solid navy 1px;
+          padding-top: 12%;
+          font-size: 1rem;
+          color: #708090;
+        }
+        .run-title + p {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: navy
+        }
+      }
+    }
+
+}

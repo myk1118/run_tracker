@@ -194,35 +194,42 @@ class RunResult extends Component {
           <span className="border-bottom">{first_name}, here are your run results from {date.date} at {date.time}</span>
         </div> */}
         <div className="row">
+          {/* <div className="col-lg-6 col-12">
+            <ResultsChart
+              chartData={this.state.chartData}
+              distance={this.state.totalDistance}
+              secondsRan={this.state.secondsRan}
+            />
+          </div> */}
+          <div className="col-lg-6 col-12 text-center run-data">
+            <div className="row">
+              <div className="col-6 ">
+                <p className="run-title">Duration (min:sec)</p>
+                <p>{minutesSecondsRan}</p>
+              </div>
+              <div className="col-6 ">
+                <p className="run-title">Distance</p>
+                <p>{distance} miles</p>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-6 ">
+                <p className="run-title">Avg Pace (min/mile)</p>
+                <p>{pace}</p>
+              </div>
+              <div className="col-6 ">
+                <p className="run-title">Calories</p>
+                <p>{calories}</p>
+              </div>
+            </div>
+
+          </div>
           <div className="col-lg-6 col-12">
             <ResultsChart
               chartData={this.state.chartData}
               distance={this.state.totalDistance}
               secondsRan={this.state.secondsRan}
             />
-          </div>
-          <div className="col-lg-6 col-12 text-center run-data">
-            <div className="row">
-              <div className="col-6">
-                <p className="run-title">Duration (min:sec)</p>
-                <p>{minutesSecondsRan}</p>
-              </div>
-              <div className="col-6">
-                <p className="run-title">Distance</p>
-                <p>{distance} miles</p>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-6">
-                <p className="run-title">Avg Pace (min/mile)</p>
-                <p>{pace}</p>
-              </div>
-              <div className="col-6">
-                <p className="run-title">Calories</p>
-                <p>{calories}</p>
-              </div>
-            </div>
-
           </div>
 
         </div>
