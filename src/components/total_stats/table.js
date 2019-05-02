@@ -79,22 +79,28 @@ class Chart extends Component {
   }
 
   filterByWeek = () => {
-    axios.get('/api/get_table_data.php').then(resp => {
-      const { tableItems } = resp.data;
-      const stats = tableItems.filter(row => {
-        const currentDateTime = new Date().getTime();
-        const runDateTime = new Date(row.date).getTime();
-        const daysInMilliseconds = 10 * 86400000;
-        return currentDateTime - runDateTime <= daysInMilliseconds
-      }).map(row => {
-        return (
-          <tr key={row.id}>
-            <td>{row.date}</td>
-            <td>{row.distance}</td>
-            <td>{row.time}</td>
-            <td><button className="btn btn-sm btn-outline-danger">Delete</button></td>
-          </tr>
-        )
+
+      axios.get('/api/get_table_data.php').then(resp => {
+        console.log(resp.data)
+        const { tableItems } = resp.data;
+        const stats = tableItems.filter(row => {
+          const currentDateTime = new Date().getTime();
+          const runDateTime = new Date(row.date).getTime();
+          const daysInMilliseconds = 10 * 86400000;
+          return currentDateTime - runDateTime <= daysInMilliseconds
+        }).map(row => {
+          return (
+            <tr key={row.id}>
+              <td>{row.date}</td>
+              <td>{row.distance}</td>
+              <td>{row.time}</td>
+              <td><button className="btn btn-sm btn-outline-danger">Delete</button></td>
+            </tr>
+          )
+        })
+        this.setState({
+          stats: [...stats]
+        })
       })
       this.setState({
         stats: [...stats]

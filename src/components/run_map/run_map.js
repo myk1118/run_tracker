@@ -242,28 +242,30 @@ class RunMap extends Component {
     }
 
     start() {
-        console.log('calories')
-        if (!this.state.run_id) {
-            this.createNewRun()
+      if(this.state.coordinateArray.length > 0) {
+
+        if(!this.state.run_id){
+          this.createNewRun()
         }
         this.startTracking();
         const { start, elapsed, calories, weight } = this.state;
         let newStart = new Date().getTime();
         let newCalories = calories;
         if (start) {
-            newStart -= elapsed;
+          newStart -= elapsed;
         }
         this.setState({
-            status: 'running',
-            start: newStart,
+          status: 'running',
+          start: newStart,
         });
         setTimeout(() => {
-            this.update();
+          this.update();
         }, 10);
         setTimeout(() => {
-            this.countCalories();
+          this.countCalories();
         }, 1000);
         // this.distanceIncrement();
+      }
     }
 
     pause() {
