@@ -2,11 +2,11 @@ import types from './types';
 import axios from 'axios';
 
 export const checkAuth = () => async dispatch => {
-    const { data: { success, email } } = await axios.get('/api/check_auth.php');
+    const { data: { success } } = await axios.get('/api/check_auth.php');
+
     if (success) {
         return dispatch({
-            type: types.LOG_IN,
-            email
+            type: types.LOG_IN
         });
     }
     return dispatch({
