@@ -126,7 +126,7 @@ class TotalStats extends React.Component {
             <PieChart pieChartData={pieChartData} />
           </div>
           <div className="col-lg-6 col-12 text-center">
-            {/* <EventDate/> */}
+            <EventDate/>
             {/* <EventModal /> */}
           </div>
         </div>
