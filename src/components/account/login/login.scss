@@ -1,63 +1,3 @@
-@media screen and (min-width: 1024px) {
-    .loginLogo {
-        width: 54vh;
-        position: absolute;
-        top: 25%;
-        left: 50%;
-        transform: translate(-50%);
-        z-index: 2;
-    }
-
-    .btn-info {
-        margin: 8px;
-        font-size: 18px;
-        line-height: 1.2;
-        text-transform: uppercase;
-        padding: 10px 14px;
-        width: 6vw;
-    }
-}
-
-@media screen and (min-width: 415px) and (max-width: 1023px) {
-    .loginLogo {
-        width: 54vh;
-        position: absolute;
-        top: 22%;
-        left: 50%;
-        transform: translate(-50%);
-        z-index: 2;
-    }
-
-    .btn-info {
-        margin: 8px;
-        font-size: 18px;
-        line-height: 1.2;
-        text-transform: uppercase;
-        padding: 10px 14px;
-        width: 12vw;
-    }
-}
-
-@media screen and (max-width: 414px) {
-    .loginLogo {
-        width: 40vh;
-        position: absolute;
-        top: 28%;
-        left: 50%;
-        transform: translate(-50%);
-        z-index: 2;
-    }
-
-    .btn-info {
-        margin: 4px;
-        font-size: 14px;
-        line-height: 1.2;
-        text-transform: uppercase;
-        padding: 8px 12px;
-        width: 20vw;
-    }
-}
-
 .loginButtonsContainer {
     position: absolute;
     z-index: 2;
@@ -93,6 +33,15 @@
     width: 100vw;
     object-fit: cover;
     opacity: 0.85;
+}
+
+.transitionBackground {
+    width: 100vw;
+    background: black;
+    opacity: 0.5;
+    z-index: 2;
+    position: absolute;
+    bottom: 0%;
 }
 
 .errorMessage {
@@ -136,7 +85,45 @@
     }
 }
 
+@media screen and (min-width: 1281px) {
+    .loginLogo {
+        width: 54vh;
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%);
+        z-index: 2;
+    }
+
+    .loginButton {
+        margin: 8px;
+        font-size: 18px;
+        line-height: 1.2;
+        text-transform: uppercase;
+        padding: 10px 14px;
+        width: 6vw;
+    }
+}
+
 @media screen and (max-width: 1280px) {
+    .loginLogo {
+        width: 54vh;
+        position: absolute;
+        top: 22%;
+        left: 50%;
+        transform: translate(-50%);
+        z-index: 2;
+    }
+
+    .loginButton {
+        margin: 8px;
+        font-size: 18px;
+        line-height: 1.2;
+        text-transform: uppercase;
+        padding: 10px 14px;
+        width: 8vw;
+    }
+
     .transition {
         width: 40vw;
         height: 60vh;
@@ -156,7 +143,25 @@
     }
 }
 
-@media screen and (max-width: 575.98px) {
+@media screen and (max-width: 414px) {
+    .loginLogo {
+        width: 40vh;
+        position: absolute;
+        top: 28%;
+        left: 50%;
+        transform: translate(-50%);
+        z-index: 2;
+    }
+
+    .loginButton {
+        margin: 4px;
+        font-size: 14px;
+        line-height: 1.2;
+        text-transform: uppercase;
+        padding: 8px 12px;
+        width: 22vw;
+    }
+
     .transition {
         width: 75vw;
         height: 50vh;
@@ -188,13 +193,4 @@
             padding: 0 8px;
         }
     }
-}
-
-.transitionBackground {
-    width: 100vw;
-    background: black;
-    opacity: 0.5;
-    z-index: 2;
-    position: absolute;
-    bottom: 0%;
 }

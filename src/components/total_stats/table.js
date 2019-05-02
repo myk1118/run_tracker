@@ -16,13 +16,13 @@ class Chart extends Component {
   //   this.setState({stats})
   // }
 
-  delete(item){
+  delete(item) {
     const newState = this.state.stats.slice();
-      if(newState.indexOf(item)> -1){
-        newState.splice(newState.indexOf(item), 1);
-        this.setState({stats: newState})
-      }
+    if (newState.indexOf(item) > -1) {
+      newState.splice(newState.indexOf(item), 1);
+      this.setState({ stats: newState })
     }
+  }
 
   componentDidMount() {
     this.displayActivityLogData();
@@ -49,7 +49,7 @@ class Chart extends Component {
 
   deleteRow = (id) => {
     console.log('deleted', id);
-    axios.post('api/deleterun.php', {id: id}).then(() => {
+    axios.post('api/deleterun.php', { id: id }).then(() => {
       this.displayActivityLogData();
     })
   }
@@ -68,7 +68,7 @@ class Chart extends Component {
             <td>{row.date}</td>
             <td>{row.distance}</td>
             <td>{row.time}</td>
-            <td><button className="btn btn-sm btn-outline-danger">x</button></td>
+            <td><button className="btn btn-sm btn-outline-danger">Delete</button></td>
           </tr>
         )
       })
@@ -79,27 +79,27 @@ class Chart extends Component {
   }
 
   filterByWeek = () => {
-      axios.get('/api/get_table_data.php').then(resp => {
-        const { tableItems } = resp.data;
-        const stats = tableItems.filter(row => {
-          const currentDateTime = new Date().getTime();
-          const runDateTime = new Date(row.date).getTime();
-          const daysInMilliseconds = 10 * 86400000;
-          return currentDateTime - runDateTime <= daysInMilliseconds
-        }).map(row => {
-          return (
-            <tr key={row.id}>
-              <td>{row.date}</td>
-              <td>{row.distance}</td>
-              <td>{row.time}</td>
-              <td><button className="btn btn-sm btn-outline-danger">x</button></td>
-            </tr>
-          )
-        })
-        this.setState({
-          stats: [...stats]
-        })
+    axios.get('/api/get_table_data.php').then(resp => {
+      const { tableItems } = resp.data;
+      const stats = tableItems.filter(row => {
+        const currentDateTime = new Date().getTime();
+        const runDateTime = new Date(row.date).getTime();
+        const daysInMilliseconds = 10 * 86400000;
+        return currentDateTime - runDateTime <= daysInMilliseconds
+      }).map(row => {
+        return (
+          <tr key={row.id}>
+            <td>{row.date}</td>
+            <td>{row.distance}</td>
+            <td>{row.time}</td>
+            <td><button className="btn btn-sm btn-outline-danger">Delete</button></td>
+          </tr>
+        )
       })
+      this.setState({
+        stats: [...stats]
+      })
+    })
   }
 
   render() {

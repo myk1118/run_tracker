@@ -114,11 +114,11 @@ class LogIn extends Component {
             <Carousel />
           </div>
           <div className="loginButtonsContainer">
+            <button onClick={this.handleLogInButton} className="loginButton btn btn-info">Log In</button>
+            <button onClick={this.handleSignUpButton} className="loginButton btn btn-info">Sign Up</button>
             <NavLink className="guest" to="/runmap">
-              <button className="btn btn-info">Guest</button>
+              <button className="loginButton btn btn-info">Guest</button>
             </NavLink>
-            <button onClick={this.handleLogInButton} className="btn btn-info">Log In</button>
-            <button onClick={this.handleSignUpButton} className="btn btn-info">Sign Up</button>
           </div>
           <div className="transition" style={this.state.transition}>
             <div className={this.state.loginHidden ? 'hidden' : 'loginFormContainer'}>
