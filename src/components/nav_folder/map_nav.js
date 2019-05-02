@@ -41,7 +41,7 @@ class MapNav extends Component {
         </div>
         <nav className="navbar navbar-custom">
           <ul className="nav navbar-nav abc">
-            <li onClick={this.handleClickMap} className="selectMap" className={this.state.mapClicked ? 'nav-link selected' : 'nav-link'}>Map</li>
+            <li onClick={this.handleClickMap} className={this.state.mapClicked ? 'nav-link selected' : 'nav-link'}>Map</li>
             <li onClick={this.handleClickMiles} className={this.state.milesClicked ? 'nav-link selected' : 'nav-link'}>Miles Run </li>
           </ul>
         </nav>
