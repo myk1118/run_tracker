@@ -9,6 +9,13 @@
   background-position: center bottom;
   object-fit: cover;
   opacity: 0.75;
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  position:fixed;
+  height: auto;
+  top: 0;
+  left: 0;
 }
 
 .runButtonsContainer {
@@ -66,7 +73,10 @@
       font-size: 0.7rem;
     }
   }
+}
 
-
-
+@media screen and (max-width: 1024px){
+  .backgroundImage {
+  left: 50%;
+  margin-left: -512px; }
 }

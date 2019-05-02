@@ -242,28 +242,30 @@ class RunMap extends Component {
     }
 
     start() {
-        console.log('calories')
-        if (!this.state.run_id) {
-            this.createNewRun()
+      if(this.state.coordinateArray.length > 0) {
+
+        if(!this.state.run_id){
+          this.createNewRun()
         }
         this.startTracking();
         const { start, elapsed, calories, weight } = this.state;
         let newStart = new Date().getTime();
         let newCalories = calories;
         if (start) {
-            newStart -= elapsed;
+          newStart -= elapsed;
         }
         this.setState({
-            status: 'running',
-            start: newStart,
+          status: 'running',
+          start: newStart,
         });
         setTimeout(() => {
-            this.update();
+          this.update();
         }, 10);
         setTimeout(() => {
-            this.countCalories();
+          this.countCalories();
         }, 1000);
         // this.distanceIncrement();
+      }
     }
 
     pause() {
@@ -320,7 +322,9 @@ class RunMap extends Component {
             const paceInMinutes = isNaN(Math.trunc(elapsed / (60000 * distanceTraveled))) ? 0 : Math.trunc(elapsed / (60000 * distanceTraveled));
             console.log('pace in minutes', paceInMinutes)
             let metBurn = 0;
-            if (paceInMinutes >= 15) {
+            if (paceInMinutes >= 20) {
+                metBurn = 0
+            }else if (paceInMinutes >= 15) {
                 metBurn = 6
             } else if (paceInMinutes >= 12) {
                 metBurn = 8.3
@@ -418,7 +422,6 @@ class RunMap extends Component {
         } else {
             return (
                 <Fragment>
-                    <div className="totalMonthWeek float-right text-primary pt-3 pb-3">Total | Month | Week </div>
                     <table className="table table-hover">
                         <thead>
                             <tr>

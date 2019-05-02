@@ -78,8 +78,8 @@ class LogIn extends Component {
   handleSignUpButton() {
     this.setState({
       transition: {
-        height: '100vh',
-        bottom: '0',
+        height: '80vh',
+        bottom: '10vh',
       },
       transitionBackground: {
         height: '100vh'
