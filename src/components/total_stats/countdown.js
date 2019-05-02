@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import './total_stats.scss';
 
 class Countdown extends Component {
     state = {
@@ -72,7 +73,7 @@ class Countdown extends Component {
 
     return (
       <div className="Countdown">
-        <span className="Countdown-col">
+        <span className="Countdown-col">`
           <span className="Countdown-col-element">
               <strong>{this.addLeadingZeros(countDown.days)}</strong>
               <span>{countDown.days === 1 ? 'Day' : 'Days'}</span>

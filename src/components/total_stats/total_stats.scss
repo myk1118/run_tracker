@@ -116,13 +116,19 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: rgb(255, 255, 255);
   padding: 20px;
   color: white;
+  
+}
+
+.title {
+  border-bottom: dotted lightgrey;
 }
 
 .App-header .title{
   margin-top: 40px;
+  
 }
 
 .App-header a{
@@ -144,6 +150,10 @@
 .Countdown{
   margin: 10px auto;
   padding-bottom: 20px;
+  text-align: center;
+	background: rgb(255, 255, 255);
+  font-family: sans-serif;
+  font-weight: 100;
 }
 
 .Countdown-col{
@@ -155,10 +165,17 @@
   margin: 0 20px;
   display: flex;
   flex-direction: column;
+  
 }
 
 .Countdown-col-element strong{
   font-size: 50px;
+  padding: 10px;
+	border-radius: 3px;
+	background: #81b3c2;
+  display: inline-block;
+  color: rgb(238, 238, 238);
+  border-radius: 15px;
 }
 
 .btnPosition{
