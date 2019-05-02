@@ -1,36 +1,49 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import './total_stats.scss';
-import { Modal, Button } from 'react-bootstrap';
+// import { Modal, Button } from 'react-bootstrap';
 import EventModal from './modal/modal';
+import Countdown from './countdown.js';
+import axios from 'axios';
 
 
 class EventDate extends Component {
-
-    render(){
-    return(
+  state = {
+    eventName: '',
+    eventDate: ''
+  }
+  
+  componentDidMount(){
+    this.getEvent();
+  }
+  getEvent=()=>{
+    axios.get('/api/get_event.php').then(resp=>{
+      console.log('event resp', resp);
+      const {eventDay, eventName} = resp.data['1'];
+      let {date} = eventDay;
+      let newDate = new Date(date);
+      this.setState({
+        eventName,
+        eventDate: newDate
+      })
+    })
+  }
+  
+  render() {
+    // debugger;
+    console.log('state', this.state);
+    const {eventName, eventDate} = this.state;
+    return (
+      
       <Fragment>
-      <div className="h-100 text-center align-self-center offset-2 col-1">
-        <EventModal/>
-      </div>
-        <div className="col-1">
-          <div className="col-sm-3 col-md-2">
-          <div className="eventProgress" data-percentage="90">
-            <span className="eventProgress-left">
-              <span className="eventProgress-bar"></span>
-            </span>
-            <span className="eventProgress-right">
-              <span className="eventProgress-bar"></span>
-            </span>
-          <div className="eventProgress-value">
-          Event
-          </div>
+        <div className="col-8 text-center align-self-center offset-2">
+          <EventModal />
         </div>
-        </div>
-        </div>
-
+        <h3 className="title">{eventName}</h3>
+        <Countdown date={`${eventDate}`} />
       </Fragment>
 
-    )}
+    )
+  }
 }
 
 export default EventDate;

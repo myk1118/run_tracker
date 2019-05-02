@@ -9,25 +9,28 @@ set_exception_handler('handleError');
 //     throw new Exception ('Missing user id');
 // }
 
-// $json_input = file_get_contents("php://input");
-// $input = json_decode($json_input, true);
+$json_input = file_get_contents("php://input");
+$input = json_decode($json_input, true);
 
 $output = [
     'success' => false,
 ];
-$event = 'stuff';
-$date = '2019-04-30';
-// $event= $input['event'];
-// $date = $input['eventDate'];
+// $event = 'stuff';
+// $date = '2019-04-30';
+$event= $input['event'];
+$date = $input['eventDate'];
+
+
 // $user_id = 3;
 $user_id = $_SESSION['user_data']['id'];
 
 $id_query = "INSERT INTO `event` 
     (`eventName`, `eventDate`, `id`)
     VALUES
-    ($event, $date, $user_id)  
-    ON DUPLICATE KEY UPDATE `eventName` = $event, `eventDate` = $date
+    ('$event', '$date', '$user_id')  
+    ON DUPLICATE KEY UPDATE `eventName` = '$event', `eventDate` = '$date'
 ";
+
 
 $result = mysqli_query($conn, $id_query);
 

@@ -21,14 +21,14 @@ $output['success'] = true;
 $output[] = [];
 
 $row = mysqli_fetch_assoc($result);
-$current = new DateTime();
+// $current = new DateTime();
 $eventDate = new DateTime($row['eventDate']);
-$days = $eventDate->diff($current)->format('%a');
+// $days = $eventDate->diff($current)->format('%a');
 
   $output[] = [
-    'eventDay' => $days,
+    'eventDay' => $eventDate,
     'eventName'=> $row['eventName']
   ];
 
 
-print_r(json_encode($output));
+print(json_encode($output));
