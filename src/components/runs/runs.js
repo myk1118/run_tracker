@@ -25,7 +25,7 @@ class Runs extends React.Component {
     console.log('dates: ', dates);
     const date_buttons = dates.map((item) => {
       return (
-        <div key={item.id} className="imgContainer col-6 col-sm-6 col-md-6 col-lg-6 text-center">
+        <div key={item.id} className="imgContainer col-6 col-sm-6 col-md-6 col-lg-4">
           <NavLink to={`/runmap/results/${item.id}`}>
             <button className="bigSquareButton runImg btn btn-dark btn-lg">
               <div>{item.date}</div>
@@ -38,7 +38,7 @@ class Runs extends React.Component {
     })
     this.setState({
       date_buttons: [...date_buttons]
-    }) 
+    })
   }
 
   render() {
@@ -48,7 +48,7 @@ class Runs extends React.Component {
         <div className="runs">
           <img className="backgroundImage" src={backgroundImage} alt="Background Image" />
           <div className="runButtonsContainer">
-            <div className="imgContainer">
+            <div className="imgContainer col-6 col-sm-6 col-md-6 col-lg-4">
               <NavLink to="/runmap">
                 <button className="bigSquareButton plusImg btn btn-dark btn-lg"></button>
               </NavLink>

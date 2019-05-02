@@ -18,7 +18,8 @@ class LogIn extends Component {
       // signedUp: false,
       message: '',
       transition: {
-        height: '0px'
+        height: '0px',
+        bottom: '0'
       },
       transitionBackground: {
         height: '0px'
@@ -64,7 +65,8 @@ class LogIn extends Component {
   handleLogInButton() {
     this.setState({
       transition: {
-        height: '80vh'
+        // height: '80vh',
+        // bottom: '10vh'
       },
       transitionBackground: {
         height: '100vh'
@@ -76,7 +78,8 @@ class LogIn extends Component {
   handleSignUpButton() {
     this.setState({
       transition: {
-        height: '80vh'
+        height: '100vh',
+        bottom: '0',
       },
       transitionBackground: {
         height: '100vh'
@@ -88,7 +91,8 @@ class LogIn extends Component {
   hideTransition() {
     this.setState({
       transition: {
-        height: '0px'
+        height: '0px',
+        bottom: '0'
       },
       transitionBackground: {
         height: '0px'

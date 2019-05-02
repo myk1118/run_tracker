@@ -95,23 +95,8 @@
     opacity: 0.85;
 }
 
-.inputFields {
-    display: flex;
-    flex-direction: column;
-    width: 80vw;
-    max-width: 300px;
-    border-radius: 8px;
-
-    input {
-        font-size: 15px;
-        height: 40px;
-        padding: 0 8px;
-        // color: #0c0c0c;
-        // line-height: 1.2;
-        // display: block;
-        // width: 100%;
-        // background: transparent;
-    }
+.errorMessage {
+    font-size: 0.9em;
 }
 
 .buttonsContainer {
@@ -120,15 +105,88 @@
 }
 
 .transition {
-    width: 100vw;
+    width: 30vw;
+    height: 50vh;
     background: #f8f5f5;
+    border-radius: 10px;
     z-index: 3;
     position: absolute;
-    bottom: 0%;
-    transition: height 1s;
+    bottom: 25vh;
+    left: 50%;
+    transform: translate(-50%);
+    overflow-y: hidden;
+    transition: height 1s, bottom 1.8s;
 
     .hidden {
         display: none;
+    }
+}
+
+.inputFields {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    max-width: 300px;
+    border-radius: 8px;
+
+    input {
+        font-size: 12pt;
+        height: 35px;
+        padding: 0 8px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .transition {
+        width: 40vw;
+        height: 60vh;
+        background: #f8f5f5;
+        border-radius: 10px;
+        z-index: 3;
+        position: absolute;
+        bottom: 20vh;
+        left: 50%;
+        transform: translate(-50%);
+        overflow-y: hidden;
+        transition: height 1s, bottom 1.8s;
+
+        .hidden {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 575.98px) {
+    .transition {
+        width: 75vw;
+        height: 50vh;
+        background: #f8f5f5;
+        border-radius: 10px;
+        z-index: 3;
+        position: absolute;
+        bottom: 25vh;
+        left: 50%;
+        transform: translate(-50%);
+        overflow-y: hidden;
+        transition: height 1s, bottom 1.8s;
+
+        .hidden {
+            display: none;
+        }
+    }
+
+    .inputFields {
+        display: flex;
+        flex-direction: column;
+        width: 60vw;
+        max-width: 300px;
+        border-radius: 8px;
+
+        input {
+            font-size: 12pt;
+            height: 35px;
+            padding: 0 8px;
+        }
     }
 }
 

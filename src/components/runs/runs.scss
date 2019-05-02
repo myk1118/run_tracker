@@ -16,11 +16,13 @@
   position: absolute;
   display: flex;
   flex-wrap: wrap;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .imgContainer {
-  height: 22.5vh;
-  width: 50vw;
+  height: 30vh;
+  width: 80vw;
   display: flex;
   justify-content: center;
   align-items: center;
