@@ -320,7 +320,9 @@ class RunMap extends Component {
             const paceInMinutes = isNaN(Math.trunc(elapsed / (60000 * distanceTraveled))) ? 0 : Math.trunc(elapsed / (60000 * distanceTraveled));
             console.log('pace in minutes', paceInMinutes)
             let metBurn = 0;
-            if (paceInMinutes >= 15) {
+            if (paceInMinutes >= 20) {
+                metBurn = 0
+            }else if (paceInMinutes >= 15) {
                 metBurn = 6
             } else if (paceInMinutes >= 12) {
                 metBurn = 8.3

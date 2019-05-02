@@ -10,6 +10,10 @@
     align-items: center;
 }
 
+.right.carousel-control, .left.carousel-control {
+    display: none;
+}
+
 .loginFormContainer {
     position: absolute;
     z-index: 4;
@@ -26,6 +30,7 @@
 .carousel-control-prev,
 .carousel-control-next {
     opacity: 0;
+    display: none;
 }
 
 .d-block {
