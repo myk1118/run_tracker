@@ -36,7 +36,7 @@ class EventDate extends Component {
       
       <Fragment>
         <div className="col-8 text-center align-self-center offset-2">
-          <EventModal />
+          <EventModal getEvent={this.getEvent} />
         </div>
         <h3 className="title">{eventName}</h3>
         <Countdown date={`${eventDate}`} />

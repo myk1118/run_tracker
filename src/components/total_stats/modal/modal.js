@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import { withRouter } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 import axios from 'axios';
 import '../total_stats.scss';
@@ -14,6 +15,7 @@ class EventModal extends Component {
     
   
     handleClose=()=> {
+      console.log('Close Called');
       this.setState({ show: false });
     }
   
@@ -30,21 +32,25 @@ class EventModal extends Component {
         });
       }
 
-      postEvent=()=>{
+      postEvent=(e)=>{
+        e.preventDefault();
+        
         const {event, date} = this.state;
         const data = {
           event: event,
           eventDate: date
         };
+
         axios.post('/api/add_event.php', data).then(() => {
-          console.log('posted event', data);
-          
           this.handleClose();
+
+          this.props.history.push(`/totalstats?event=${data.event}&date=${data.eventDate}`);
+
+          this.props.getEvent();
         });
   
       }
     render() {
-      console.log('state', this.state);
       return (
         <Fragment>
           <Button variant="primary" onClick={this.handleShow}>
@@ -54,7 +60,7 @@ class EventModal extends Component {
             <Modal.Header closeButton>
               <Modal.Title>Target Event</Modal.Title>
             </Modal.Header>
-            <form>
+            <form onSubmit={this.postEvent}>
             <Modal.Body>
             
             <input
@@ -78,10 +84,10 @@ class EventModal extends Component {
             />
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleClose}>
+              <Button type="button" variant="secondary" onClick={this.handleClose}>
                 Close
               </Button>
-              <Button variant="primary" type="submit" onClick={this.postEvent}>
+              <Button variant="primary" type="submit">
                 Save Changes
               </Button>
             </Modal.Footer>
@@ -91,4 +97,4 @@ class EventModal extends Component {
       );
     }
 }
-export default EventModal;
+export default withRouter(EventModal);

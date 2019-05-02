@@ -14,6 +14,7 @@ import App from './components/app';
 const store = createStore(rootReducer, applyMiddleware(think));
 
 if (localStorage.getItem('loggedIn') === 'true') {
+  console.log('Made it here');
   store.dispatch({
       type: types.LOG_IN,
       email: 'loading'
