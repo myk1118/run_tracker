@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logIn, signUp } from '../../../actions';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import LogInForm from './login_form';
 import SignUpForm from '../sign_up/signup_form';
@@ -105,14 +105,15 @@ class LogIn extends Component {
     else {
       return (
         <div className="loginPage">
-          {/* <div className="loginPageLogo"> */}
-            <img className="loginLogo" src={Logo} alt="Logo" />
-          {/* </div> */}
+          <img className="loginLogo" src={Logo} alt="Logo" />
           <div className="carouselContainer">
             <Carousel />
           </div>
           <div className="loginButtonsContainer">
-            <button onClick={this.handleLogInButton} className="btn btn-info" >Log In</button>
+            <NavLink className="guest" to="/runmap">
+              <button className="btn btn-info">Guest</button>
+            </NavLink>
+            <button onClick={this.handleLogInButton} className="btn btn-info">Log In</button>
             <button onClick={this.handleSignUpButton} className="btn btn-info">Sign Up</button>
           </div>
           <div className="transition" style={this.state.transition}>
