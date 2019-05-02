@@ -3,18 +3,32 @@
     height:100vh;
 
     .postRunMap{
-        width:100%;
-        height:30%;
-        img {
-          height: 100%;
-          // width: 100%;
-          display: block;
-          margin: 0 auto;
+        // width:100%;
+        height: 30%;
+        .col-12, .col-md-6, .col-lg-6 {
+          padding-left: 0;
+          padding-right: 0;
+
+          img {
+            height: 100%;
+            width: 100%;
+            // display: block;
+            // margin: 0 auto;
+          }
         }
     }
 
+    .run-message {
+      .first-description {
+        font-size: 1.4rem;
+      }
+      .second-description, .location {
+        font-size: 1.2rem;
+      }
+    }
+
     .bar-graph-container {
-      height: 40vh;
+      height: 55vh;
 
       article {
         height: 100%;
@@ -22,14 +36,17 @@
     }
 
     .run-data {
-      height: 40%;
+      height: 50%;
       .run-title {
-        border-bottom: solid black 1px;
+        border-bottom: solid navy 1px;
         padding-top: 12%;
+        font-size: 1.3rem;
+        color: #708090;
       }
       .run-title + p {
-        font-size: 2rem;
+        font-size: 2.3rem;
         font-weight: bold;
+        color: navy
       }
     }
     // .graphContainer{

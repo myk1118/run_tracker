@@ -51,7 +51,7 @@ while($row = mysqli_fetch_assoc($result)) {
   $parent = $row['date'];
   $timestamp = strtotime($parent);
 
-  $date = date('l, M j, Y', $timestamp);
+  $date = date('l, M j', $timestamp);
   $time = date('h:i a', $timestamp);
 
   if((int)$row['time'] < 3600) {

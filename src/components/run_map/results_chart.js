@@ -51,7 +51,7 @@ const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrM
           title: {
             display: true,
             // text: 'Today\'s Run',
-            text: `${distance} Mile Run in ${timeRan}`,
+            text: 'Pace per Mile',
             fontSize: 25
           },
           legend: {
