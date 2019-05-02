@@ -47,6 +47,7 @@ class RunResult extends Component {
   async getChartData() {
     const {id} = this.props.match.params
     const resp = await axios.get(`/api/get_runsession_results.php?id=${id}`);
+    console.log('response', resp);
     const { sessionData, date, distance, coordinates, secondsRan } = resp.data;
     const{ calories, pace, time} = sessionData['0'];
     const miles = sessionData.map(mile => mile.perMile.currentMile);
