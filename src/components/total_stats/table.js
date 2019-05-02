@@ -68,7 +68,7 @@ class Chart extends Component {
             <td>{row.date}</td>
             <td>{row.distance}</td>
             <td>{row.time}</td>
-            <td><button className="btn btn-sm btn-outline-danger">x</button></td>
+            <td><button className="btn btn-sm btn-outline-danger">Delete</button></td>
           </tr>
         )
       })
@@ -80,6 +80,7 @@ class Chart extends Component {
 
   filterByWeek = () => {
       axios.get('/api/get_table_data.php').then(resp => {
+        console.log(resp.data)
         const { tableItems } = resp.data;
         const stats = tableItems.filter(row => {
           const currentDateTime = new Date().getTime();
@@ -92,7 +93,7 @@ class Chart extends Component {
               <td>{row.date}</td>
               <td>{row.distance}</td>
               <td>{row.time}</td>
-              <td><button className="btn btn-sm btn-outline-danger">x</button></td>
+              <td><button className="btn btn-sm btn-outline-danger">Delete</button></td>
             </tr>
           )
         })
