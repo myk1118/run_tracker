@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import { Modal, Button } from 'react-bootstrap';
-
+import axios from 'axios';
+import '../total_stats.scss';
 
 
 
@@ -27,6 +28,22 @@ class EventModal extends Component {
         this.setState({
           [name]: value
         });
+      }
+
+      postEvent=()=>{
+        debugger;
+        const {event, date} = this.state;
+        const data = {
+          event: event,
+          eventDate: date
+        };
+        axios.post('/api/add_event.php', data).then(() => {
+          debugger;
+          console.log('posted event', data);
+          
+          this.handleClose();
+        });
+  
       }
     render() {
       console.log('state', this.state);
@@ -56,7 +73,7 @@ class EventModal extends Component {
                 id="date"
                 value={this.state.date}
                 onChange={this.handleInputChange}
-                value="2019-01-01"
+                value={this.state.date}
                 type="date"
                 name="date"
                 required
@@ -66,7 +83,7 @@ class EventModal extends Component {
               <Button variant="secondary" onClick={this.handleClose}>
                 Close
               </Button>
-              <Button variant="primary" type="submit" onClick={this.handleClose}>
+              <Button variant="primary" type="submit" onClick={this.postEvent}>
                 Save Changes
               </Button>
             </Modal.Footer>
