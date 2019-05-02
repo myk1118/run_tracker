@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
-import './nav.scss';
 import { NavLink } from 'react-router-dom';
 import Logout from '../account/logout';
+import './nav.scss';
 
 class RunHeader extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   clicked: false
-    // }
   }
-  // handleClick = () => {
-  //   this.setState({
-  //     clicked: true
-  //   })
-  // }
   render() {
     return (
       <div className="headerContainer">

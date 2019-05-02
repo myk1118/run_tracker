@@ -1,30 +1,53 @@
 import React, { Component } from 'react';
-import './nav.scss';
 import { NavLink } from 'react-router-dom';
+import './nav.scss';
 
-export default props => {
-  return (
-    <div className="headerContainer">
-      <div className="mapHeaderContainer">
-        <div className="navLogo">Run-Tracker</div>
-        <NavLink className="nav-link-home" to="/">
-          <span className="oi" data-glyph="home"></span>
-        </NavLink>
-        <NavLink className="nav-link-aboutus" to="/aboutus">
-          <span className="oi" data-glyph="people"></span>
-        </NavLink>
-        <NavLink className="nav-link-logout" to="/account/logout">
-          <span className="oi" data-glyph="account-logout"></span>
-        </NavLink>
-      </div>
-      <nav className="navbar navbar-expand navbar-custom navbar-center py-0">
-        <div className="container-fluid">
-          <ul className='nav navbar-nav mx-auto py-0'>
-            <li><NavLink onClick={props.clickMap} className="nav-link">Map</NavLink></li>
-            <li><NavLink onClick={props.clickMiles} className="nav-link">Miles Run</NavLink></li>
-          </ul>
+class MapNav extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      mapClicked: false,
+      milesClicked: false
+    }
+  }
+  handleClickMap = () => {
+    this.setState({
+      mapClicked: true,
+      milesClicked: false
+    });
+    this.props.clickMap();
+  }
+  handleClickMiles = () => {
+    this.setState({
+      milesClicked: true,
+      mapClicked: false
+    })
+    this.props.clickMiles();
+  }
+  render() {
+    return (
+      <div className="headerContainer">
+        <div className="mapHeaderContainer">
+          <div className="navLogo">Run-Tracker</div>
+          <NavLink className="nav-link-home" exact to="/">
+            <span className="oi" data-glyph="home"></span>
+          </NavLink>
+          <NavLink className="nav-link-aboutus" to="/aboutus">
+            <span className="oi" data-glyph="people"></span>
+          </NavLink>
+          <NavLink className="nav-link-logout" to="/account/logout">
+            <span className="oi" data-glyph="account-logout"></span>
+          </NavLink>
         </div>
-      </nav>
-    </div>
-  )
+        <nav className="navbar navbar-custom">
+          <ul className="nav navbar-nav abc">
+            <li onClick={this.handleClickMap} className="selectMap" className={this.state.mapClicked ? 'nav-link selected' : 'nav-link'}>Map</li>
+            <li onClick={this.handleClickMiles} className={this.state.milesClicked ? 'nav-link selected' : 'nav-link'}>Miles Run </li>
+          </ul>
+        </nav>
+      </div>
+    )
+  }
 }
+
+export default MapNav;
