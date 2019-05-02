@@ -115,134 +115,144 @@
 .App-logo {
   height: 80px;
 
-.totalMonthWeek {
-  padding-right: 1vw;
-}
+  .totalMonthWeek {
+    padding-right: 1vw;
+  }
 
-.last30days {
-  padding-right: 1vw;
+  .last30days {
+    padding-right: 1vw;
+  }
 
-}
+  .App-header {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    color: white;
 
-.App-header {
-  background-color: rgb(255, 255, 255);
-  padding: 20px;
-  color: white;
-  
-}
+  }
 
-.title {
-  border-bottom: dotted lightgrey;
-  padding-top: 2%;
-  font-size: 2.5rem;
-}
+  .title {
+    border-bottom: dotted lightgrey;
+    padding-top: 2%;
+    font-size: 2.5rem;
+  }
 
-.App-header .title{
-  margin-top: 40px;
-  
-}
+  .App-header .title {
+    margin-top: 40px;
 
-.App-header a{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  transition: .2s all;
-}
-.App-header a:hover{
-  opacity: .7;
-}
+  }
+
+  .App-header a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: .2s all;
+  }
+
+  .App-header a:hover {
+    opacity: .7;
+  }
 
 
-.githubIcon{
-  height: 30px;
-  margin-right: 5px;
-}
+  .githubIcon {
+    height: 30px;
+    margin-right: 5px;
+  }
 
-.Countdown{
-  margin: 10px auto;
-  padding-bottom: 20px;
-  text-align: center;
-	background: rgb(255, 255, 255);
-  font-family: sans-serif;
-  font-weight: 100;
-}
+  .Countdown {
+    margin: 10px auto;
+    padding-bottom: 20px;
+    text-align: center;
+    background: rgb(255, 255, 255);
+    font-family: sans-serif;
+    font-weight: 100;
+  }
 
-.Countdown-col{
-  display: inline-block;
-}
+  .Countdown-col {
+    display: inline-block;
+  }
 
-.Countdown-col-element{
-  display: inline-block;
-  margin: 0 20px;
-  display: flex;
-  flex-direction: column;
-  
-}
+  .Countdown-col-element {
+    display: inline-block;
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
 
-.Countdown-col-element strong{
-  font-size: 50px;
-  padding: 10px;
-	border-radius: 3px;
-	background: #81b3c2;
-  display: inline-block;
-  color: rgb(238, 238, 238);
-  border-radius: 15px;
-}
+  }
 
-.btnPosition{
-  position: relative;
-  top:20px;
+  .Countdown-col-element strong {
+    font-size: 50px;
+    padding: 10px;
+    border-radius: 3px;
+    background: #81b3c2;
+    display: inline-block;
+    color: rgb(238, 238, 238);
+    border-radius: 15px;
+  }
 
-@media(max-width: 1200px) {
-  .total-stats {
-    .first-row {
+  .btnPosition {
+    position: relative;
+    top: 20px;
 
-      .personal-bests {
-        .table {
-          tr {
-            td {
-              font-size: 1.5rem;
+    @media(max-width: 1200px) {
+      .total-stats {
+        .first-row {
+
+          .personal-bests {
+            .table {
+              tr {
+                td {
+                  font-size: 1.5rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: 576px) {
+
+      //Activity Log
+      .tableContainer {
+
+        .total,
+        .month,
+        .week {
+          font-size: 0.8rem;
+        }
+      }
+
+      //Total Stats
+      .total-stats {
+        .first-row {
+          .line-graph-container {
+            height: 50vh;
+
+            article {
+
+            }
+          }
+
+          .personal-bests {
+            .table {
+              tr {
+                th {
+                  font-size: 0.7rem;
+                }
+
+                td {
+                  font-size: 1rem;
+
+                  span {
+                    font-size: 0.7rem;
+                  }
+                }
+              }
             }
           }
         }
       }
     }
   }
-}
-
-@media (max-width: 576px) {
-
-//Activity Log
-    .tableContainer {
-      .total, .month, .week {
-        font-size: 0.8rem;
-      }
-    }
-
-//Total Stats
-.total-stats {
-  .first-row {
-  .line-graph-container {
-      height: 50vh;
-      article {
-      }
-    }
-    .personal-bests {
-      .table {
-        tr {
-          th {
-            font-size: 0.7rem;
-          }
-          td {
-            font-size: 1rem;
-            span {
-              font-size: 0.7rem;
-            }
-          }
-        }
-      }
-    }
-  }
-}
 }
