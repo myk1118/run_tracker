@@ -10,7 +10,7 @@ $output['success'] = false;
 $user_id = $_SESSION['user_data']['id'];
 
 $query = "SELECT `first_name` FROM `users`
-  WHERE `id` = 3
+  WHERE `id` = $user_id
   ";
 
 $result = mysqli_query($conn, $query);

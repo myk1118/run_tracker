@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { logIn, signUp } from '../../../actions';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import LogInForm from './login_form';
 import SignUpForm from '../sign_up/signup_form';
@@ -18,7 +18,8 @@ class LogIn extends Component {
       // signedUp: false,
       message: '',
       transition: {
-        height: '0px'
+        height: '0px',
+        bottom: '0'
       },
       transitionBackground: {
         height: '0px'
@@ -64,7 +65,8 @@ class LogIn extends Component {
   handleLogInButton() {
     this.setState({
       transition: {
-        height: '80vh'
+        // height: '80vh',
+        // bottom: '10vh'
       },
       transitionBackground: {
         height: '100vh'
@@ -76,7 +78,8 @@ class LogIn extends Component {
   handleSignUpButton() {
     this.setState({
       transition: {
-        height: '80vh'
+        height: '100vh',
+        bottom: '0',
       },
       transitionBackground: {
         height: '100vh'
@@ -88,7 +91,8 @@ class LogIn extends Component {
   hideTransition() {
     this.setState({
       transition: {
-        height: '0px'
+        height: '0px',
+        bottom: '0'
       },
       transitionBackground: {
         height: '0px'
@@ -105,15 +109,15 @@ class LogIn extends Component {
     else {
       return (
         <div className="loginPage">
-          <div className="loginPageLogo">
-            <img className="loginLogo" src={Logo} alt="Logo" />
-            <img src={Logo} className="logo" alt="..." />
-          </div>
+          <img className="loginLogo" src={Logo} alt="Logo" />
           <div className="carouselContainer">
             <Carousel />
           </div>
           <div className="loginButtonsContainer">
-            <button onClick={this.handleLogInButton} className="btn btn-info" >Log In</button>
+            <NavLink className="guest" to="/runmap">
+              <button className="btn btn-info">Guest</button>
+            </NavLink>
+            <button onClick={this.handleLogInButton} className="btn btn-info">Log In</button>
             <button onClick={this.handleSignUpButton} className="btn btn-info">Sign Up</button>
           </div>
           <div className="transition" style={this.state.transition}>

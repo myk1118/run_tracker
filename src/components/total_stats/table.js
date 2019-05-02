@@ -37,7 +37,7 @@ class Chart extends Component {
             <td>{row.date}</td>
             <td>{row.distance}</td>
             <td>{row.time}</td>
-            <td><button onClick={() => this.deleteRow(row.id)} className="btn btn-sm btn-outline-danger">x</button></td>
+            <td><button onClick={() => this.deleteRow(row.id)} className="btn btn-sm btn-outline-danger">Delete</button></td>
           </tr>
         )
       })
@@ -106,7 +106,7 @@ class Chart extends Component {
     return (
       <div className="tableContainer">
         <RunHeader />
-        <div className="float-right text-primary pt-3 pb-3">
+        <div className="last30days float-right text-primary pt-3 pb-3">
           <span onClick={this.displayActivityLogData} className="total">Total | </span>
           <span onClick={this.filterByMonth} className="month">Last 30 Days | </span>
           <span onClick={this.filterByWeek} className="week">Last 10 days</span>
