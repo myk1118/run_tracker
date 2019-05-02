@@ -23,8 +23,8 @@ const App = (props) => {
       <Switch>
         <Route exact path="/" component={auth(Runs)} />
         <Route path="/runmap" component={RunRoute} />
-        <Route path="/totalstats" component={TotalStats} />
-        <Route path="/table" component={Table} />
+        <Route path="/totalstats" component={auth(TotalStats)} />
+        <Route path="/table" component={auth(Table)} />
         <Route path="/aboutus" component={AboutUs} />
         <Route path="/account" component={AccountRoutes} />
         {/* <Route path="/login" component={Login} />

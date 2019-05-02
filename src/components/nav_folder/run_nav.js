@@ -6,8 +6,15 @@ import Logout from '../account/logout';
 class RunHeader extends Component {
   constructor(props) {
     super(props);
+    // this.state = {
+    //   clicked: false
+    // }
   }
-
+  // handleClick = () => {
+  //   this.setState({
+  //     clicked: true
+  //   })
+  // }
   render() {
     return (
       <div className="headerContainer">
@@ -25,7 +32,10 @@ class RunHeader extends Component {
         </div>
         <nav className="navbar navbar-custom">
           <ul className="nav navbar-nav">
-            <li><NavLink className="nav-link" to="/">Runs</NavLink></li>
+            <li><NavLink className="nav-link active" to="/">Runs</NavLink></li>
+            {/* <li className={this.state.clicked ? 'highlighted' : 'notHigh'} onClick={this.handleClick}>
+              <NavLink className="nav-link" to="/totalstats">Total Stats</NavLink>
+            </li> */}
             <li><NavLink className="nav-link" to="/totalstats">Total Stats</NavLink></li>
             <li><NavLink className="nav-link" to="/table">Activity Log</NavLink></li>
           </ul>
