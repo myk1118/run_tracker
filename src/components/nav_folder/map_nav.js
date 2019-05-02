@@ -18,10 +18,11 @@ export default props => {
         </NavLink>
       </div>
       <nav className="navbar navbar-expand navbar-custom navbar-center py-0">
-        <div className="container-fluid">
+        <div className="navHeight container-fluid">
           <ul className='nav navbar-nav mx-auto py-0'>
-            <li><NavLink onClick={props.clickMap} className="nav-link">Map</NavLink></li>
-            <li><NavLink onClick={props.clickMiles} className="nav-link">Miles Run</NavLink></li>
+            <li><NavLink onClick={props.clickMap} className="nav-link">
+            <div className="textContainer">Map</div> </NavLink></li>
+            <li><NavLink onClick={props.clickMiles} className="nav-link"><div className="textContainer">Miles Run</div> </NavLink></li>
           </ul>
         </div>
       </nav>

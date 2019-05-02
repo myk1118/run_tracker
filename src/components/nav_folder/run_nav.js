@@ -32,12 +32,13 @@ class RunHeader extends Component {
         </div>
         <nav className="navbar navbar-custom">
           <ul className="nav navbar-nav">
-            <li><NavLink className="nav-link active" to="/">Runs</NavLink></li>
+            <li><NavLink className="nav-link active" to="/">
+            <div className="textContainer">Runs</div> </NavLink></li>
             {/* <li className={this.state.clicked ? 'highlighted' : 'notHigh'} onClick={this.handleClick}>
               <NavLink className="nav-link" to="/totalstats">Total Stats</NavLink>
             </li> */}
-            <li><NavLink className="nav-link" to="/totalstats">Total Stats</NavLink></li>
-            <li><NavLink className="nav-link" to="/table">Activity Log</NavLink></li>
+            <li><NavLink className="nav-link" to="/totalstats"><div className="textContainer">Total Stats</div></NavLink></li>
+            <li><NavLink className="nav-link" to="/table"><div className="textContainer">Activity Log</div></NavLink></li>
           </ul>
         </nav>
       </div>
