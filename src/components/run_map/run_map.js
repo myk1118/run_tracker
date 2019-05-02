@@ -253,7 +253,7 @@ class RunMap extends Component {
 
 
     start() {
-      if(this.state.currentLatLng) {
+      if(this.state.coordinateArray.length > 0) {
 
         if(!this.state.run_id){
           this.createNewRun()
