@@ -47,6 +47,12 @@
     font-size: 1em;
     text-align: center;
     padding: 0;
+    color: white;
+}
+
+.nav-link.selected {
+    background-color: rgb(36, 173, 242);
+    color: white;
 }
 .textContainer{
     position:relative;
@@ -77,32 +83,17 @@
     }
 }
 
-.highlighted {
-    background-color: rgb(36, 173, 242);
-
-}
-
-// .navbar .navbar-nav>li.open>a {
-//     background-color: #586F7C;
-
-//     a:hover,
-//     a:focus {
-//         background-color: #2F4550;
-//     }
-// }
-
 .navbar {
     padding: 0;
 
     .nav {
         display: table;
         width: 100%;
-        height:100%;
+        line-height: 5vh;
 
         li {
             display: table-cell;
             width: 33.33%;
-            // float: none;
 
             a {
                 height:100%;
@@ -113,9 +104,13 @@
         li:first-child a {
             border-left: 0;
         }
-
-        // li:last-child a {
-        //     border-right: 0;
-        // }
     }
+}
+
+li.nav-link {
+    border-left: 1px solid rgb(255, 255, 255);
+}
+
+ul li:first-child {
+    border-left: 0;
 }

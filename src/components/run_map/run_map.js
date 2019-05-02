@@ -371,11 +371,11 @@ class RunMap extends Component {
     renderPage = () => {
         const { elapsed, distanceTraveled, status, renderPage, calories } = this.state;
         // const paceInMinutes = isNaN(Math.trunc(elapsed/(60000*distanceTraveled))) ? 0 : Math.trunc(elapsed/(60000*distanceTraveled));
-        const paceInMinutes = isFinite(Math.trunc(elapsed/(60000*distanceTraveled))) ? Math.trunc(elapsed/(60000*distanceTraveled)) : 0;
+        const paceInMinutes = isFinite(Math.trunc(elapsed / (60000 * distanceTraveled))) ? Math.trunc(elapsed / (60000 * distanceTraveled)) : 0;
         // const paceInSeconds = isNaN(((elapsed/(60000*distanceTraveled) - paceInMinutes)*60).toFixed(0)) ? '00' : ((elapsed/(60000*distanceTraveled) - paceInMinutes)*60).toFixed(0);
-        const paceInSeconds = isFinite(((elapsed/(60000*distanceTraveled) - paceInMinutes)*60).toFixed(0)) ? ((elapsed/(60000*distanceTraveled) - paceInMinutes)*60).toFixed(0) : '00';
-        if(renderPage === 'map'){
-            return(
+        const paceInSeconds = isFinite(((elapsed / (60000 * distanceTraveled) - paceInMinutes) * 60).toFixed(0)) ? ((elapsed / (60000 * distanceTraveled) - paceInMinutes) * 60).toFixed(0) : '00';
+        if (renderPage === 'map') {
+            return (
                 <Fragment>
                     <div className="h-60 mapContainer">
                         <div className="map">
