@@ -16,13 +16,13 @@ class Chart extends Component {
   //   this.setState({stats})
   // }
 
-  delete(item){
+  delete(item) {
     const newState = this.state.stats.slice();
-      if(newState.indexOf(item)> -1){
-        newState.splice(newState.indexOf(item), 1);
-        this.setState({stats: newState})
-      }
+    if (newState.indexOf(item) > -1) {
+      newState.splice(newState.indexOf(item), 1);
+      this.setState({ stats: newState })
     }
+  }
 
   componentDidMount() {
     this.displayActivityLogData();
@@ -49,7 +49,7 @@ class Chart extends Component {
 
   deleteRow = (id) => {
     console.log('deleted', id);
-    axios.post('api/deleterun.php', {id: id}).then(() => {
+    axios.post('api/deleterun.php', { id: id }).then(() => {
       this.displayActivityLogData();
     })
   }
@@ -79,6 +79,7 @@ class Chart extends Component {
   }
 
   filterByWeek = () => {
+
       axios.get('/api/get_table_data.php').then(resp => {
         console.log(resp.data)
         const { tableItems } = resp.data;
@@ -101,6 +102,10 @@ class Chart extends Component {
           stats: [...stats]
         })
       })
+      this.setState({
+        stats: [...stats]
+      })
+    })
   }
 
   render() {

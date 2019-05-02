@@ -28,6 +28,7 @@
     "haversine": "^1.1.1",
     "install": "^0.12.2",
     "npm": "^6.9.0",
+    "prop-types": "^15.7.2",
     "react": "^16.5.2",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-chartjs-2": "^2.7.6",
