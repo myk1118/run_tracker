@@ -6,6 +6,7 @@ import PersonalBests from './personal_bests';
 import axios from 'axios';
 import EventDate from './event_date';
 import PieChart from './piechart';
+import EventModal from './modal/modal';
 
 class TotalStats extends React.Component {
   constructor(props) {
@@ -111,22 +112,26 @@ class TotalStats extends React.Component {
     return (
       <div className="total-stats">
         <RunHeader />
-        <div className="test1">
-        <Chart options={options} chartData={chartData} /></div>
-
-        <div className="d-flex chart-container">
-          <div className="col-6  text-center">
-            {/* <div className="runCount">
-              <div>Total Runs: {this.state.totalRunCount}</div>
-              <div>Last 30 Days: {this.state.monthlyRunCount}</div>
-              <div>Last Week: {this.state.weeklyRunCount}</div>
-            </div> */}
-
+        <div className="container-fluid">
+        <div className="first-row row">
+          <div className="col-lg-6 col-12">
+            <Chart options={options} chartData={chartData} runCount={runCount}/>
+          </div>
+          <div className="col-12 col-lg-6">
+            <PersonalBests />
+          </div>
+        </div>
+        <div className="second-row row">
+          <div className="col-lg-6 col-12 text-center">
             <PieChart pieChartData={pieChartData} />
           </div>
-          <EventDate/>
+          <div className="col-lg-6 col-12 text-center">
+            {/* <EventDate/> */}
+            {/* <EventModal /> */}
+          </div>
         </div>
-        <PersonalBests />
+        {/* <PersonalBests /> */}
+      </div>
       </div>
     )
   }

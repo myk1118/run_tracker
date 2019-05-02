@@ -38,7 +38,7 @@ class Runs extends React.Component {
     })
     this.setState({
       date_buttons: [...date_buttons]
-    }) 
+    })
   }
 
   render() {

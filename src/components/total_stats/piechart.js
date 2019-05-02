@@ -6,12 +6,13 @@ import './total_stats.scss';
 
 export default props => {
   return (
-    <div>
+    <div className="pie-chart-container">
       <article className="graph-container">
       <Pie
         data={props.pieChartData}
         options = {{
-          maintainAspectRatio: true,
+          maintainAspectRatio: false,
+          responsive: true,
           title: {
             display: true,
             text: 'Distance Comparison',
@@ -19,7 +20,7 @@ export default props => {
           },
           legend: {
             display: true,
-            position: 'right',
+            position: 'bottom',
           },
           // elements: {
           //   line: {
