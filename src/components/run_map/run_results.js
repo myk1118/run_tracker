@@ -101,7 +101,7 @@ class RunResult extends Component {
         time,
         distance,
         calories,
-        pace: this.secondsToPaceConverter(secondsRan),
+        pace: this.secondsToPaceConverter(secondsRan, distance),
         date,
         currentLatLng: {
           ...this.state.currentLatLng,
@@ -141,9 +141,11 @@ class RunResult extends Component {
     })
   }
 
-  secondsToPaceConverter(time) {
-    const minutes = Math.floor(time / 60);
-    const secondsRemaining = time - minutes * 60
+  secondsToPaceConverter(time, distance) {
+
+    const paceInSeconds = time/distance;
+    const minutes = Math.floor(paceInSeconds / 60);
+    const secondsRemaining = (paceInSeconds - minutes * 60).toFixed();
     const seconds = secondsRemaining > 9 ? secondsRemaining : `0${secondsRemaining}`;
 
     return `${minutes}:${seconds}`
