@@ -9,6 +9,7 @@ import WatchBtns from './button.js';
 import './run_map.scss';
 import '../total_stats/total_stats.scss';
 import haversine from 'haversine';
+import MapLoader from './maploader';
 
 class RunMap extends Component {
     constructor(props) {
@@ -379,6 +380,7 @@ class RunMap extends Component {
                 <Fragment>
                     <div className="h-60 mapContainer">
                         <div className="map">
+                          {this.state.coordinateArray.length === 0 ? <MapLoader /> :
                             <MyMapComponent
                                 isMarkerShown
                                 // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
@@ -389,6 +391,7 @@ class RunMap extends Component {
                                 currentLocation={this.state.currentLatLng}
                                 coordinateArray={this.state.coordinateArray}
                             />
+                          }
                         </div>
                         <div className="runmapButtonsContainer">
                             <WatchBtns status={status}
