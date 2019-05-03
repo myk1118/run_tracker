@@ -25,8 +25,8 @@ class RunResult extends Component {
       chartData: {},
       options: {},
       currentLatLng: {
-         lat: 0,
-         lng: 0
+        lat: 0,
+        lng: 0
       },
     }
   }
@@ -38,13 +38,12 @@ class RunResult extends Component {
 
   async getUserName() {
     const resp = await axios.get('/api/get_current_user.php');
-    const {first_name} = resp.data;
+    const { first_name } = resp.data;
 
     this.setState({
       first_name
     })
   }
-
 
   // async getChartData() {
   //   const {id} = this.props.match.params
@@ -88,13 +87,13 @@ class RunResult extends Component {
   // }
 
   getChartData() {
-    const {id} = this.props.match.params
+    const { id } = this.props.match.params
     axios.get(`/api/get_runsession_results.php?id=${id}`).then(resp => {
       console.log('response', resp);
       const { sessionData, date, distance, coordinates, secondsRan, minutesSecondsRan } = resp.data;
-      const{ calories, pace, time} = sessionData['0'];
+      const { calories, pace, time } = sessionData['0'];
       const miles = sessionData.map(mile => mile.perMile.currentMile);
-      const time2 = sessionData.map(minutes => (minutes.perMile.perMileTime/60).toFixed(2));
+      const time2 = sessionData.map(minutes => (minutes.perMile.perMileTime / 60).toFixed(2));
       this.getCityName(coordinates.lat, coordinates.lng)
       this.setState({
         minutesSecondsRan,
@@ -129,16 +128,16 @@ class RunResult extends Component {
     })
   }
 
-  getCityName (lat, lng){
+  getCityName(lat, lng) {
     console.log(lat, lng)
     axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${lat}%2C+${lng}&key=76e6a71e44ff40759963af6dacacc318&pretty=1`).then(resp => {
-      if(resp.data) {
+      if (resp.data) {
         console.log(resp.data.results[0].components.city)
         this.setState({
           city: resp.data.results[0].components.city
         })
       }
-    // return cityResponse.data.results[0].components.city;
+      // return cityResponse.data.results[0].components.city;
     })
   }
 
@@ -160,15 +159,15 @@ class RunResult extends Component {
   }
 
   render() {
-    const {date, first_name, currentLatLng, distance, city, minutesSecondsRan, calories, pace, totalDistance, secondsRan} = this.state;
-    return(
+    const { date, first_name, currentLatLng, distance, city, minutesSecondsRan, calories, pace, totalDistance, secondsRan } = this.state;
+    return (
       <div className="postRunBody">
         <RunHeader />
         <div className="container-fluid">
           <div className="postRunMap">
             <div className="row border-bottom">
               <div className="col-12 col-lg-6">
-            {/* <MyMapComponent
+                {/* <MyMapComponent
             isMarkerShown
             // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
             googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
@@ -178,7 +177,7 @@ class RunResult extends Component {
             currentLocation = {currentLatLng}
             zoom={15}
             /> */}
-                <img  src={`https://maps.googleapis.com/maps/api/staticmap?center=${currentLatLng.lat},${currentLatLng.lng}&zoom=14&size=640x200&markers=color:red%7C%7C${currentLatLng.lat},${currentLatLng.lng}&key=${apiKey}&`}/>
+                <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${currentLatLng.lat},${currentLatLng.lng}&zoom=14&size=640x200&markers=color:red%7C%7C${currentLatLng.lat},${currentLatLng.lng}&key=${apiKey}&`} />
               </div>
               <div className="col-12 col-lg-6 ">
                 <div className="run-message">
@@ -187,54 +186,51 @@ class RunResult extends Component {
                   <p className="location">Location: {city}</p>
                 </div>
               </div>
-
             </div>
-        </div>
-        {/* <div className="run-message text-center border-top">
+          </div>
+          {/* <div className="run-message text-center border-top">
           <span className="border-bottom">{first_name}, here are your run results from {date.date} at {date.time}</span>
         </div> */}
-        <div className="row">
-          {/* <div className="col-lg-6 col-12">
+          <div className="row">
+            {/* <div className="col-lg-6 col-12">
             <ResultsChart
               chartData={this.state.chartData}
               distance={this.state.totalDistance}
               secondsRan={this.state.secondsRan}
             />
           </div> */}
-          <div className="col-lg-6 col-12 text-center run-data">
-            <div className="row">
-              <div className="col-6 ">
-                <p className="run-title">Duration (min:sec)</p>
-                <p>{minutesSecondsRan}</p>
+            <div className="col-lg-6 col-12 text-center run-data">
+              <div className="row">
+                <div className="col-6 ">
+                  <p className="run-title">Duration (min:sec)</p>
+                  <p>{minutesSecondsRan}</p>
+                </div>
+                <div className="col-6 ">
+                  <p className="run-title">Distance</p>
+                  <p>{distance} miles</p>
+                </div>
               </div>
-              <div className="col-6 ">
-                <p className="run-title">Distance</p>
-                <p>{distance} miles</p>
+              <div className="row">
+                <div className="col-6 ">
+                  <p className="run-title">Avg Pace (min/mile)</p>
+                  <p>{pace}</p>
+                </div>
+                <div className="col-6 ">
+                  <p className="run-title">Calories</p>
+                  <p>{calories}</p>
+                </div>
               </div>
             </div>
-            <div className="row">
-              <div className="col-6 ">
-                <p className="run-title">Avg Pace (min/mile)</p>
-                <p>{pace}</p>
-              </div>
-              <div className="col-6 ">
-                <p className="run-title">Calories</p>
-                <p>{calories}</p>
-              </div>
+            <div className="col-lg-6 col-12">
+              <ResultsChart
+                chartData={this.state.chartData}
+                distance={this.state.totalDistance}
+                secondsRan={this.state.secondsRan}
+              />
             </div>
-
           </div>
-          <div className="col-lg-6 col-12">
-            <ResultsChart
-              chartData={this.state.chartData}
-              distance={this.state.totalDistance}
-              secondsRan={this.state.secondsRan}
-            />
-          </div>
-
         </div>
-      </div>
-      {/* <div className="row col-6 inline-block">
+        {/* <div className="row col-6 inline-block">
           <div className="offset-2 pieContainer col-4 col-md-4 col-lg-4">
               <div className="col-6 col-sm-6 col-md-6">
               <div className="progress" data-percentage="100">
@@ -312,9 +308,7 @@ class RunResult extends Component {
           </div>
         </div>
       </div> */}
-
       </div>
-
     )
   }
 }
