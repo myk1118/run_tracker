@@ -87,9 +87,7 @@ export default props => {
                     </div>
                     <div className="col-xl-3 col-md-6 mb-4">
                         <div className="card border-0 shadow">
-                            <a className="card border-0" target="_blank" href="https://www.linkedin.com/in/myk1118/">
-                                <img src={Jaime} className="card-img-top" alt="Jaime" />
-                            </a>
+                            <img src={Jaime} className="card-img-top" alt="Jaime" />
                             <div className="card-body text-center">
                                 <h3 className="card-title mb-0">Jaime Kim</h3>
                                 <div className="card-text text-black-50">Web Developer</div>
