@@ -5,15 +5,11 @@ require_once('mysqlconnect.php');
 require_once('checkuserloggedin.php');
 set_exception_handler('handleError');
 
-// if(empty($_SESSION['user_id'])){
-//     throw new Exception ('Missing user id');
-// }
+
 $output = [
     'success' => false,
 ];
 
-// $run_stats_id = $_POST['run_id'];
-// $run_stats_id = 150;
 
 $json_input = file_get_contents("php://input");
 $input = json_decode($json_input, true);

@@ -32,14 +32,6 @@ if(mysqli_num_rows($result) === 0){
 $data = mysqli_fetch_assoc($result);
 
 
-// $datesQuery = "SELECT
-// s.`date`
-// FROM `run_stats` AS `s`
-// JOIN `users` ON users.`id` = s.`user_id`
-// WHERE users.`id` = $userid
-// AND s.`distance` = MAX(s. `distance`)
-//
-// ";
 
 
 $date = new DateTime($data['lastDate']);
@@ -48,7 +40,6 @@ $output = [];
 
 $output['longestRun'] = (float)$data['longestDistance'];
 $output['fastestPace'] = (int)$data['maxDistance'];
-// $output['lastRunDate'] = $data['MAX(s.`date`)'];
 $output['lastRunDate'] = $date->format('m-d-Y');
 $output['mostCalories'] = (int)$data['maxCalories'];
 $output['longestTime'] = (int)$data['longestTime'];

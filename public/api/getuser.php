@@ -6,7 +6,6 @@ require_once('mysqlconnect.php');
 require_once('checkuserloggedin.php');
 set_exception_handler('handleError');
 
-// $users_id = 3;
 $id = $_SESSION['user_data']['id'];
 
 $query = "SELECT `first_name`, `last_name`, `height`, `weight`, `email`, `password` FROM `users` WHERE `id` = $id";
