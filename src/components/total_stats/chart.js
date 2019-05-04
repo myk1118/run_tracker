@@ -4,7 +4,6 @@ import './total_stats.scss';
 
 export default props => {
 
-
     const runs = props.runCount > 1 ? `${props.runCount} Runs` : `${props.runCount} Run`;
     return (
       <div className="line-graph-container">

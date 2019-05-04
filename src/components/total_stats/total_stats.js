@@ -16,11 +16,27 @@ class TotalStats extends React.Component {
       chartData: {},
       pieChartData: {},
       runCount: 0,
+      longestRun: null,
+      lastRunDate: null,
+      averagePace: null,
+      mostCalories: null,
     }
   }
 
   componentDidMount() {
     this.getChartData();
+    this.getPersonalBests();
+  }
+
+  async getPersonalBests() {
+    const bests = await axios.get('/api/personalbestquery.php');
+    const {longestRun, lastRunDate, averagePace, mostCalories} = bests.data;
+    this.setState({
+      longestRun,
+      lastRunDate,
+      mostCalories,
+      averagePace,
+    })
   }
 
 
@@ -76,17 +92,23 @@ class TotalStats extends React.Component {
 
 
   render() {
-    const {totalRunCount, monthlyRunCount, weeklyRunCount, chartData, options, pieChartData, runCount} = this.state;
+    console.log('stasf: ', {...this.state})
+    const {chartData, pieChartData, runCount, longestRun, lastRunDate, averagePace, mostCalories} = this.state;
     return (
       <div className="total-stats">
         <RunHeader />
         <div className="container-fluid">
         <div className="first-row row">
           <div className="col-lg-6 col-12">
-            <Chart options={options} chartData={chartData} runCount={runCount}/>
+            <Chart chartData={chartData} runCount={runCount}/>
           </div>
           <div className="col-12 col-lg-6">
-            <PersonalBests />
+            <PersonalBests
+              longestRun={longestRun}
+              lastRunDate={lastRunDate}
+              averagePace={averagePace}
+              mostCalories={mostCalories}
+            />
           </div>
         </div>
         <div className="second-row row">
