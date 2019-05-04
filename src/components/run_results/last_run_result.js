@@ -45,12 +45,11 @@ class RunResult extends Component {
             time: time
           })
       })
-    } 
+    }
 
     async getPersonalBest(){
 
         await axios.get('/api/personalbestquery.php').then((resp)=>{
-            // let {distance, calories, pace, time} = this.state;
             let {fastestPace, longestRun, longestTime, mostCalories} = resp.sessionData.data;
 
             this.setState({
@@ -89,7 +88,7 @@ class RunResult extends Component {
   render() {
       console.log('new state', this.state)
     return(
-      <div className="postRunBody"> 
+      <div className="postRunBody">
       <RunHeader />
       <div className="postRunMap">
           <MyMapComponent
@@ -147,7 +146,7 @@ class RunResult extends Component {
               </div>
           </div>
           </div>
-      
+
 
           <div className="pieContainer col-6 col-md-3 col-lg-3">
               <div className=" col-2 col-sm-3 col-md-3">

@@ -1,13 +1,12 @@
 import React from 'react';
 import { Bar, Line, Pie } from 'react-chartjs-2';
-// import './total_stats.scss';
 
 export default props => {
-const {distance, secondsRan} = props;
-const minutes = Math.floor(secondsRan / 60);
-const seconds = secondsRan - minutes * 60;
-const oneOrMoreMinutes = minutes > 1 ? 'minutes' : 'minute';
-const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrMoreMinutes} and ${seconds} Seconds`;
+  const {distance, secondsRan} = props;
+  const minutes = Math.floor(secondsRan / 60);
+  const seconds = secondsRan - minutes * 60;
+  const oneOrMoreMinutes = minutes > 1 ? 'minutes' : 'minute';
+  const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrMoreMinutes} and ${seconds} Seconds`;
 
   return (
     <div className="bar-graph-container">
@@ -50,13 +49,11 @@ const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrM
           responsive: true,
           title: {
             display: true,
-            // text: 'Today\'s Run',
             text: 'Pace per Mile',
             fontSize: 25
           },
           legend: {
             display: false,
-            // position: 'bottom',
           },
           elements: {
             line: {

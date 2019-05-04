@@ -13,7 +13,8 @@ import Signup from './account/sign_up/sign_up';
 import AboutUs from './about_us/aboutus';
 import MapNav from './nav_folder/map_nav';
 import auth from '../hoc/auth';
-import RunResult from './run_map/run_results';
+import RunResult from './run_results/run_results';
+
 
 const App = (props) => {
   return (

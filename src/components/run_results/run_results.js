@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import RunHeader from '../nav_folder/run_nav';
 import axios from 'axios';
 import ResultsChart from './results_chart';
-import MyMapComponent from './map';
 import apiKey from '../googlemap';
 import './run_results.scss';
 
