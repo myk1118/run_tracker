@@ -15,10 +15,7 @@ class RunMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentLatLng: {
-                // lat: 33.6349179,
-                // lng: -117.74050049999998
-            },
+            currentLatLng: {},
             startingCoords: {},
             watchId: null,
             map: null,
@@ -42,8 +39,6 @@ class RunMap extends Component {
         this.pause = this.pause.bind(this)
         this.update = this.update.bind(this);
         this.reset = this.reset.bind(this);
-        // this.distanceIncrement = this.distanceIncrement.bind(this);
-        // this.distanceUpdate = this.distanceUpdate.bind(this);
         this.countCalories = this.countCalories.bind(this);
     }
 
@@ -61,7 +56,6 @@ class RunMap extends Component {
     componentDidMount() {
         this.getGeoLocation();
         this.getWeight();
-        // this.getMileData();
     }
 
     //create a new run_id when the start button is clicked
@@ -80,16 +74,11 @@ class RunMap extends Component {
 
     //get the per mile data, send it to database, and set the state
     postlatestMile(miles) {
-        // const { distance, distanceTraveled, mileCounter } = this.state;
-        // if (distanceTraveled && distanceTraveled - mileCounter >= 0) {
-        // if (distanceTraveled && distanceTraveled - Math.floor(distanceTraveled) === 0) {
         let { previousTime, elapsed, mileCounter, run_id, distanceTraveled } = this.state;
         const data = {
             run_id,
             time: Math.round((elapsed - previousTime) / 1000),
-            // time: Math.round((elapsed/1000)),
             mileage: miles,
-            // miles_remaining: distanceTraveled - mileCounter - 1
         }
         axios.post(`/api/addpermile.php`, data).then((resp) => {
             mileCounter = mileCounter + 1;
@@ -100,7 +89,6 @@ class RunMap extends Component {
         }).then(() => {
             this.getMileData();
         })
-        // }
     }
 
     //display per mile data to the table
@@ -162,9 +150,6 @@ class RunMap extends Component {
         }
     }
 
-    // startWatch = () => {
-    //     this.refs.child.start();
-    // }
 
     geoLocationInterval = () => {
         navigator.geolocation.getCurrentPosition(position => {
@@ -265,7 +250,6 @@ class RunMap extends Component {
         setTimeout(() => {
           this.countCalories();
         }, 1000);
-        // this.distanceIncrement();
       }
     }
 
@@ -279,7 +263,6 @@ class RunMap extends Component {
 
     reset() {
         const { elapsed, distanceTraveled, mileCounter } = this.state;
-        // const remainingDistance = distanceTraveled - (mileCounter - 1);
         if (this.state.status === 'paused') {
             this.postlatestMile(distanceTraveled);
             this.postCurrentRun(elapsed);
@@ -352,23 +335,6 @@ class RunMap extends Component {
         }
     }
 
-    // distanceIncrement() {
-    //     setTimeout(() => {
-    //         this.distanceUpdate();
-    //     }, 1000);
-    // }
-    //
-    // distanceUpdate() {
-    //     // debugger;
-    //     let { distance } = this.state;
-    //     // // distance =
-    //     this.setState({
-    //         distance: (parseFloat(distance) + 0.01).toFixed(2)
-    //     })
-    //     setTimeout(this.distanceUpdate, 200);
-    //     this.postlatestMile();
-    // }
-
     renderPage = () => {
         const { elapsed, distanceTraveled, status, renderPage, calories } = this.state;
         // const paceInMinutes = isNaN(Math.trunc(elapsed/(60000*distanceTraveled))) ? 0 : Math.trunc(elapsed/(60000*distanceTraveled));
@@ -383,7 +349,6 @@ class RunMap extends Component {
                           {this.state.coordinateArray.length === 0 ? <MapLoader /> :
                             <MyMapComponent
                                 isMarkerShown
-                                // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
                                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
                                 loadingElement={<div className="loading-element" style={{ height: `100%` }} />}
                                 containerElement={<div style={{ height: `100%` }} />}
@@ -409,7 +374,6 @@ class RunMap extends Component {
                         <div className="statContainer">
                             <div className="statTitle">Distance</div>
                             <Distance className="statResult" distance={distanceTraveled.toFixed(2)} />
-                            {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
                         </div>
                         <div className="statContainer">
                             <div className="statTitle">Average Pace (min/mi)</div>
@@ -430,8 +394,6 @@ class RunMap extends Component {
                             <tr>
                                 <th className="w-25">Mile</th>
                                 <th className="w-25">Time</th>
-                                {/* <th className="w-25">Heart Rate</th>
-                                <th className="w-25">Calories Burned</th> */}
                             </tr>
                         </thead>
                         <tbody>
