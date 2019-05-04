@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import './total_stats.scss';
-// import { Modal, Button } from 'react-bootstrap';
 import EventModal from './modal/modal';
 import Countdown from './countdown.js';
 import axios from 'axios';
@@ -11,13 +10,12 @@ class EventDate extends Component {
     eventName: '',
     eventDate: ''
   }
-  
+
   componentDidMount(){
     this.getEvent();
   }
   getEvent=()=>{
     axios.get('/api/get_event.php').then(resp=>{
-      console.log('event resp', resp);
       const {eventDay, eventName} = resp.data['1'];
       let {date} = eventDay;
       let newDate = new Date(date);
@@ -27,13 +25,11 @@ class EventDate extends Component {
       })
     })
   }
-  
+
   render() {
-    // debugger;
-    console.log('state', this.state);
     const {eventName, eventDate} = this.state;
     return (
-      
+
       <Fragment>
         <div className="col-8 text-center align-self-center offset-2">
           <EventModal getEvent={this.getEvent} />

@@ -7,13 +7,10 @@ import TotalStats from './total_stats';
 import Table from './total_stats/table';
 import ApiTest from './api_test';
 import RunRoute from './run_map';
-// import RunResult from './run_map/run_results';
-// import RunStats from './run_map/run_stats';
 import Login from './account/login/login';
 import Logout from './account/logout/logout';
 import Signup from './account/sign_up/sign_up';
 import AboutUs from './about_us/aboutus';
-// import Tutorial from './tutorial';
 import MapNav from './nav_folder/map_nav';
 import auth from '../hoc/auth';
 
