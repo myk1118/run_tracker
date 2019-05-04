@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { NavLink } from 'react-router-dom';
 import RunHeader from '../nav_folder/run_nav';
 import './runs.scss';
@@ -22,7 +22,6 @@ class Runs extends React.Component {
   async getDates() {
     const run_dates = await axios.get('/api/get_run_dates.php');
     const dates = run_dates.data.dates;
-    console.log('dates: ', dates);
     const date_buttons = dates.map((item) => {
       return (
         <div key={item.id} className="imgContainer col-6 col-sm-6 col-md-6 col-lg-4">
@@ -43,7 +42,7 @@ class Runs extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <RunHeader />
         <div className="runs">
           <img className="backgroundImage" src={backgroundImage} alt="Background Image" />
@@ -56,7 +55,7 @@ class Runs extends React.Component {
             {this.state.date_buttons}
           </div>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

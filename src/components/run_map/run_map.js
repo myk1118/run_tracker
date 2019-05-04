@@ -1,15 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import MapNav from '../nav_folder/map_nav';
-import Stopwatch from './stopwatch';
 import MyMapComponent from './map';
 import apiKey from '../googlemap';
-import Distance from './distance';
 import WatchBtns from './button.js';
 import './run_map.scss';
 import '../total_stats/total_stats.scss';
 import haversine from 'haversine';
 import MapLoader from './maploader';
+import MapStatsContainer from './map_stats_container';
 
 class RunMap extends Component {
     constructor(props) {
@@ -46,7 +45,6 @@ class RunMap extends Component {
         axios.get('/api/getuser.php').then(resp => {
             let { weight } = resp.data;
             weight = (parseFloat(weight) * .4536).toFixed(2);
-            console.log('starting calories', resp);
             this.setState({
                 weight
             });
@@ -304,7 +302,6 @@ class RunMap extends Component {
         const { status, calories, weight, elapsed, distanceTraveled } = this.state;
         if (status === 'running') {
             const paceInMinutes = isNaN(Math.trunc(elapsed / (60000 * distanceTraveled))) ? 0 : Math.trunc(elapsed / (60000 * distanceTraveled));
-            console.log('pace in minutes', paceInMinutes)
             let metBurn = 0;
             if (paceInMinutes >= 20) {
                 metBurn = 0
@@ -337,9 +334,7 @@ class RunMap extends Component {
 
     renderPage = () => {
         const { elapsed, distanceTraveled, status, renderPage, calories } = this.state;
-        // const paceInMinutes = isNaN(Math.trunc(elapsed/(60000*distanceTraveled))) ? 0 : Math.trunc(elapsed/(60000*distanceTraveled));
         const paceInMinutes = isFinite(Math.trunc(elapsed / (60000 * distanceTraveled))) ? Math.trunc(elapsed / (60000 * distanceTraveled)) : 0;
-        // const paceInSeconds = isNaN(((elapsed/(60000*distanceTraveled) - paceInMinutes)*60).toFixed(0)) ? '00' : ((elapsed/(60000*distanceTraveled) - paceInMinutes)*60).toFixed(0);
         const paceInSeconds = isFinite(((elapsed / (60000 * distanceTraveled) - paceInMinutes) * 60).toFixed(0)) ? ((elapsed / (60000 * distanceTraveled) - paceInMinutes) * 60).toFixed(0) : '00';
         if (renderPage === 'map') {
             return (
@@ -367,22 +362,13 @@ class RunMap extends Component {
                         </div>
                     </div>
                     <div className="mapStatsContainer">
-                        <div className="statContainer">
-                            <div className="statTitle">Time</div>
-                            <Stopwatch className="statResult" elapsed={elapsed} />
-                        </div>
-                        <div className="statContainer">
-                            <div className="statTitle">Distance</div>
-                            <Distance className="statResult" distance={distanceTraveled.toFixed(2)} />
-                        </div>
-                        <div className="statContainer">
-                            <div className="statTitle">Average Pace (min/mi)</div>
-                            <div className="statResult">{paceInMinutes}:{paceInSeconds}</div>
-                        </div>
-                        <div className="statContainer">
-                            <div className="statTitle">Calories Burned</div>
-                            <div className="statResult">{calories.toFixed(2)}</div>
-                        </div>
+                        <MapStatsContainer
+                            elapsed={elapsed}
+                            distanceTraveled={distanceTraveled}
+                            paceInMinutes={paceInMinutes}
+                            paceInSeconds={paceInSeconds}
+                            calories={calories}
+                        />
                     </div>
                 </Fragment>
             )
