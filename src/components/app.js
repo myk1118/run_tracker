@@ -27,9 +27,6 @@ const App = (props) => {
         <Route path="/table" component={auth(Table)} />
         <Route path="/aboutus" component={AboutUs} />
         <Route path="/account" component={AccountRoutes} />
-        {/* <Route path="/login" component={Login} />
-        <Route path="/logout" component={Logout} />
-        <Route path="/sign_up" component={Signup} /> */}
       </Switch>
     </Fragment>
   )

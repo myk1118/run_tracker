@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RunHeader from '../nav_folder/run_nav';
 import axios from 'axios';
 import './total_stats.scss';
+import TableData from './tabledata';
 
 class Chart extends Component {
   constructor(props) {
@@ -10,11 +11,6 @@ class Chart extends Component {
       stats: []
     }
   }
-
-  // delete(item){
-  //   const stats = this.state.stats.filter(i => i.id !== item.id)
-  //   this.setState({stats})
-  // }
 
   delete(item) {
     const newState = this.state.stats.slice();
@@ -32,12 +28,10 @@ class Chart extends Component {
     axios.get('/api/get_table_data.php').then(resp => {
       const { tableItems } = resp.data;
       const stats = tableItems.map(row => {
+        const {id, date, time, distance} = row;
         return (
-          <tr key={row.id}>
-            <td>{row.date}</td>
-            <td>{row.distance}</td>
-            <td>{row.time}</td>
-            <td><button onClick={() => this.deleteRow(row.id)} className="btn btn-sm btn-outline-danger">Delete</button></td>
+          <tr key={id}>
+            <TableData  id={id} distance={distance} date={date} time={time} deleteRow={this.deleteRow} />
           </tr>
         )
       })
@@ -48,7 +42,6 @@ class Chart extends Component {
   }
 
   deleteRow = (id) => {
-    console.log('deleted', id);
     axios.post('api/deleterun.php', { id: id }).then(() => {
       this.displayActivityLogData();
     })
@@ -63,12 +56,10 @@ class Chart extends Component {
         const daysInMilliseconds = 30 * 86400000;
         return currentDateTime - runDateTime <= daysInMilliseconds
       }).map(row => {
+        const {id, date, time, distance} = row;
         return (
-          <tr key={row.id}>
-            <td>{row.date}</td>
-            <td>{row.distance}</td>
-            <td>{row.time}</td>
-            <td><button className="btn btn-sm btn-outline-danger">Delete</button></td>
+          <tr key={id}>
+            <TableData  id={id} distance={distance} date={date} time={time} deleteRow={this.deleteRow} />
           </tr>
         )
       })
@@ -81,7 +72,6 @@ class Chart extends Component {
   filterByWeek = () => {
 
       axios.get('/api/get_table_data.php').then(resp => {
-        console.log(resp.data)
         const { tableItems } = resp.data;
         const stats = tableItems.filter(row => {
           const currentDateTime = new Date().getTime();
@@ -89,12 +79,10 @@ class Chart extends Component {
           const daysInMilliseconds = 10 * 86400000;
           return currentDateTime - runDateTime <= daysInMilliseconds
         }).map(row => {
+          const {id, date, time, distance} = row;
           return (
-            <tr key={row.id}>
-              <td>{row.date}</td>
-              <td>{row.distance}</td>
-              <td>{row.time}</td>
-              <td><button className="btn btn-sm btn-outline-danger">Delete</button></td>
+            <tr key={id}>
+              <TableData  id={id} distance={distance} date={date} time={time} deleteRow={this.deleteRow} />
             </tr>
           )
         })
