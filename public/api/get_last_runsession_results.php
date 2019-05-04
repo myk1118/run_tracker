@@ -4,8 +4,7 @@ require_once('config.php');
 require_once('mysqlconnect.php');
 set_exception_handler('handleError');
 
-// $user_id = 1;
-// $run_id = $_GET['id'];
+
 $id = $_SESSION['user_data']['id'];
 
 $output = [
@@ -17,7 +16,7 @@ $query = "SELECT r.`id`, r.`distance`, r.`time`, r.`calories`, r.`pace`, m.`mile
 FROM `run_stats` AS r
 JOIN `miles` as m
 ON r.`id` = m.`run_id`
-WHERE `user_id` = $id 
+WHERE `user_id` = $id
 ORDER BY r.`id` DESC
   ";
 
