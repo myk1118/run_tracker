@@ -13,6 +13,7 @@ import Signup from './account/sign_up/sign_up';
 import AboutUs from './about_us/aboutus';
 import MapNav from './nav_folder/map_nav';
 import auth from '../hoc/auth';
+import RunResult from './run_map/run_results';
 
 const App = (props) => {
   return (
@@ -20,6 +21,7 @@ const App = (props) => {
       <Switch>
         <Route exact path="/" component={auth(Runs)} />
         <Route path="/runmap" component={RunRoute} />
+        <Route path="/results/:id" component={RunResult} />
         <Route path="/totalstats" component={auth(TotalStats)} />
         <Route path="/table" component={auth(Table)} />
         <Route path="/aboutus" component={AboutUs} />
