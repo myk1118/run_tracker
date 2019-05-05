@@ -8,7 +8,8 @@ class Chart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stats: []
+      stats: [],
+      clickedElement: null,
     }
   }
 
@@ -37,6 +38,7 @@ class Chart extends Component {
       })
       this.setState({
         stats: [...stats],
+        clickedElement: 'total',
       })
     })
   }
@@ -64,7 +66,8 @@ class Chart extends Component {
         )
       })
       this.setState({
-        stats: [...stats]
+        stats: [...stats],
+        clickedElement: 'month',
       })
     })
   }
@@ -87,7 +90,8 @@ class Chart extends Component {
           )
         })
         this.setState({
-          stats: [...stats]
+          stats: [...stats],
+          clickedElement: 'week',
         })
       })
     }
@@ -97,9 +101,11 @@ class Chart extends Component {
       <div className="tableContainer">
         <RunHeader />
         <div className="last30days float-right text-primary pt-3 pb-3">
-          <span onClick={this.displayActivityLogData} className="total">Total | </span>
-          <span onClick={this.filterByMonth} className="month">Last 30 Days | </span>
-          <span onClick={this.filterByWeek} className="week">Last 10 days</span>
+          <span onClick={this.displayActivityLogData} className={`total ${this.state.clickedElement === 'total' ? 'bold' : ''}`}>Total </span>
+          <span>|</span>
+          <span onClick={this.filterByMonth} className={`month ${this.state.clickedElement === 'month' ? 'bold' : ''}`}> Last 30 Days </span>
+          <span>|</span>
+          <span onClick={this.filterByWeek} className={`week ${this.state.clickedElement === 'week'? 'bold' : ''}`}> Last 10 days</span>
         </div>
         <table className="table table-hover">
           <thead>

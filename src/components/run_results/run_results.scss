@@ -28,6 +28,9 @@
     .second-description,
     .location {
       font-size: 1.2rem;
+      span {
+        color: red;
+      }
     }
   }
 
@@ -44,7 +47,7 @@
 
     .run-title {
       border-bottom: solid navy 1px;
-      padding-top: 12%;
+      padding-top: 20%;
       font-size: 1.3rem;
       color: #708090;
     }

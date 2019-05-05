@@ -58,11 +58,17 @@
 .tableContainer {
   height: 100%;
 
+  .bold {
+    font-weight: bold;
+  }
+
   .total,
   .month,
   .week {
     cursor: pointer;
   }
+
+
 
   table {
     color: rgb(51, 51, 51);

@@ -49,7 +49,6 @@ class RunResult extends Component {
     const { id } = this.props.match.params
     axios.get(`/api/get_runsession_results.php?id=${id}`).then(resp => {
       const { sessionData, date, distance, coordinates, secondsRan, minutesSecondsRan } = resp.data;
-      console.log(resp.data)
       const { calories, pace, time } = sessionData['0'];
       const miles = sessionData.map(mile => mile.perMile.currentMile);
       const time2 = sessionData.map(seconds => (seconds.perMile.perMileTime));
@@ -132,7 +131,7 @@ class RunResult extends Component {
                 <div className="run-message">
                   <p className="first-description text-center">{first_name}, here are your run results from {date.date} at {date.time}</p>
                   <p className="second-description">{this.runDescription(secondsRan, totalDistance)} </p>
-                  <p className="location">Location: {city}</p>
+                  <p className="location"><span className="oi" data-glyph="map-marker"></span> {city}</p>
                 </div>
               </div>
             </div>
