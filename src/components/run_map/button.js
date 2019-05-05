@@ -13,7 +13,7 @@ export default props => {
         case 'paused':
             return (
                 <Fragment>
-                    <button onClick={start} className="btn btn-info btn-lg">Resume Run</button>}
+                    <button onClick={start} className="btn btn-info btn-lg">Resume Run</button>
                     <NavLink to={`/results/${run_id}`}><button onClick={reset} className="btn btn-danger btn-lg">End Run</button></NavLink>
                 </Fragment>
             );
