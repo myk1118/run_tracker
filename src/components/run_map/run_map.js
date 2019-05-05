@@ -75,7 +75,7 @@ class RunMap extends Component {
         let { previousTime, elapsed, mileCounter, run_id, distanceTraveled } = this.state;
         const data = {
             run_id,
-            time: Math.round((elapsed - previousTime) / 1000),
+            time: Math.floor((elapsed - previousTime) / 1000),
             mileage: miles,
         }
         axios.post(`/api/addpermile.php`, data).then((resp) => {
@@ -155,7 +155,7 @@ class RunMap extends Component {
 
     geoLocationInterval = () => {
         navigator.geolocation.getCurrentPosition(position => {
-            this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length / 20000), position.coords.longitude + (this.state.coordinateArray.length / 20000));
+            this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length / 40000), position.coords.longitude + (this.state.coordinateArray.length / 40000));
         })
     }
 
@@ -335,6 +335,16 @@ class RunMap extends Component {
             clearTimeout(this.countCalories);
         }
     }
+
+    // secondsToPaceConverter(time, distance) {
+    //
+    //   const paceInSeconds = time/distance;
+    //   const minutes = Math.floor(paceInSeconds / 60);
+    //   const secondsRemaining = (paceInSeconds - minutes * 60).toFixed();
+    //   const seconds = secondsRemaining > 9 ? secondsRemaining : `0${secondsRemaining}`;
+    //
+    //   return `${minutes}:${seconds}`
+    // }
 
     renderPage = () => {
         const { elapsed, distanceTraveled, status, renderPage, calories } = this.state;

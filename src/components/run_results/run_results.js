@@ -4,6 +4,7 @@ import axios from 'axios';
 import ResultsChart from './results_chart';
 import apiKey from '../googlemap';
 import './run_results.scss';
+import ResultsDisplay from './results_display';
 
 class RunResult extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class RunResult extends Component {
       const { sessionData, date, distance, coordinates, secondsRan, minutesSecondsRan } = resp.data;
       const { calories, pace, time } = sessionData['0'];
       const miles = sessionData.map(mile => mile.perMile.currentMile);
-      const time2 = sessionData.map(minutes => (minutes.perMile.perMileTime / 60).toFixed(2));
+      const time2 = sessionData.map(seconds => (seconds.perMile.perMileTime));
       this.getCityName(coordinates.lat, coordinates.lng)
       this.setState({
         minutesSecondsRan,
@@ -96,10 +97,10 @@ class RunResult extends Component {
   }
 
   secondsToPaceConverter(time, distance) {
-
+    console.log(time)
     const paceInSeconds = time/distance;
     const minutes = Math.floor(paceInSeconds / 60);
-    const secondsRemaining = (paceInSeconds - minutes * 60).toFixed();
+    const secondsRemaining = Math.floor((paceInSeconds - minutes * 60));
     const seconds = secondsRemaining > 9 ? secondsRemaining : `0${secondsRemaining}`;
 
     return `${minutes}:${seconds}`
@@ -109,7 +110,9 @@ class RunResult extends Component {
     const minutes = Math.floor(secondsRan / 60);
     const seconds = secondsRan - minutes * 60;
     const oneOrMoreMinutes = minutes > 1 ? 'minutes' : 'minute';
-    const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrMoreMinutes} and ${seconds} Seconds`;
+    const oneOrMoreSeconds = seconds > 1 | seconds === 0 ? 'seconds' : 'second';
+
+    const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrMoreMinutes} and ${seconds} ${oneOrMoreSeconds}`;
 
     return `${totalDistance} Mile Run in ${timeRan}`
   }
@@ -136,26 +139,12 @@ class RunResult extends Component {
           </div>
           <div className="row">
             <div className="col-lg-6 col-12 text-center run-data">
-              <div className="row">
-                <div className="col-6 ">
-                  <p className="run-title">Duration (min:sec)</p>
-                  <p>{minutesSecondsRan}</p>
-                </div>
-                <div className="col-6 ">
-                  <p className="run-title">Distance</p>
-                  <p>{distance} miles</p>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-6 ">
-                  <p className="run-title">Avg Pace (min/mile)</p>
-                  <p>{pace}</p>
-                </div>
-                <div className="col-6 ">
-                  <p className="run-title">Calories</p>
-                  <p>{calories}</p>
-                </div>
-              </div>
+              <ResultsDisplay
+                minutesSecondsRan={minutesSecondsRan}
+                distance={distance}
+                pace={pace}
+                calories={calories}
+              />
             </div>
             <div className="col-lg-6 col-12">
               <ResultsChart

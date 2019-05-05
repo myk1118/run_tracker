@@ -15,7 +15,6 @@ export default props => {
         data={props.chartData}
         width={100}
         height={100}
-        // options={props.options}
         options = {{
  //          "animation": {
  //   "duration": 1,
@@ -40,7 +39,7 @@ export default props => {
             callbacks: {
                 label: function(tooltipItem, data) {
                   let date = new Date(null);
-                  date.setSeconds(tooltipItem.yLabel*60);
+                  date.setSeconds(tooltipItem.yLabel);
                   return `Pace: ${date.toISOString().slice(14,19)} min/mile`;
                 }
             }
@@ -74,7 +73,7 @@ export default props => {
                 ticks: {
                   callback: label => {
                     let date = new Date(null);
-                    date.setSeconds(label*60); // specify value for SECONDS here
+                    date.setSeconds(label); // specify value for SECONDS here
                     return date.toISOString().slice(14,19);
                   },
                   beginAtZero: true
