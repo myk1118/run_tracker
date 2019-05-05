@@ -92,7 +92,6 @@ class TotalStats extends React.Component {
 
 
   render() {
-    console.log('stasf: ', {...this.state})
     const {chartData, pieChartData, runCount, longestRun, lastRunDate, averagePace, mostCalories} = this.state;
     return (
       <div className="total-stats">

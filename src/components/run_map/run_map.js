@@ -80,12 +80,16 @@ class RunMap extends Component {
         }
         axios.post(`/api/addpermile.php`, data).then((resp) => {
             mileCounter = mileCounter + 1;
-            this.setState({
-                mileCounter,
-                previousTime: elapsed
-            })
+            if(this.state.status != 'paused') {
+                this.setState({
+                    mileCounter,
+                    previousTime: elapsed
+                })
+            }
         }).then(() => {
-            this.getMileData();
+            if(this.state.status != 'paused') {
+                this.getMileData();
+            }
         })
     }
 
@@ -268,7 +272,7 @@ class RunMap extends Component {
                 status: 'stopped',
                 start: null,
                 elapsed: 0
-            });
+            })
         }
     }
 
@@ -393,6 +397,7 @@ class RunMap extends Component {
 
     render() {
         const { distanceTraveled } = this.state;
+
         return (
             <div className="mapBody">
                 <MapNav clickMap={this.clickMap} clickMiles={this.clickMiles} />
