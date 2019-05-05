@@ -70,7 +70,7 @@ while($row = mysqli_fetch_assoc($result)) {
     'pace' => (int)$row['pace'],
       'perMile'=> [
           'currentMile' => (float)$row['miles'],
-          'perMileTime' => (int)$pace
+          'perMileTime' => round((float)$pace, 0)
       ]
   ];
 };
