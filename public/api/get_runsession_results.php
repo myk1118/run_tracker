@@ -33,7 +33,9 @@ if (!$result) {
 while($row = mysqli_fetch_assoc($result)) {
   $minutes = round((int)$row['time']/60 , 2);
 
-  if(floor((float)$row['miles']) === (float)$row['miles']) {
+  if((float)$row['miles'] === 0.00) {
+    $pace = 0;
+  } else if(floor((float)$row['miles']) === (float)$row['miles']) {
     $pace = (int)$row['permiletime'];
   } else {
     $pace = (int)$row['permiletime']/((float)$row['miles'] - floor((float)$row['miles']));
