@@ -1,24 +1,20 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import MapNav from '../nav_folder/map_nav';
-import Stopwatch from './stopwatch';
 import MyMapComponent from './map';
 import apiKey from '../googlemap';
-import Distance from './distance';
 import WatchBtns from './button.js';
 import './run_map.scss';
 import '../total_stats/total_stats.scss';
 import haversine from 'haversine';
 import MapLoader from './maploader';
+import MapStatsContainer from './map_stats_container';
 
 class RunMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentLatLng: {
-                // lat: 33.6349179,
-                // lng: -117.74050049999998
-            },
+            currentLatLng: {},
             startingCoords: {},
             watchId: null,
             map: null,
@@ -42,8 +38,6 @@ class RunMap extends Component {
         this.pause = this.pause.bind(this)
         this.update = this.update.bind(this);
         this.reset = this.reset.bind(this);
-        // this.distanceIncrement = this.distanceIncrement.bind(this);
-        // this.distanceUpdate = this.distanceUpdate.bind(this);
         this.countCalories = this.countCalories.bind(this);
     }
 
@@ -51,7 +45,6 @@ class RunMap extends Component {
         axios.get('/api/getuser.php').then(resp => {
             let { weight } = resp.data;
             weight = (parseFloat(weight) * .4536).toFixed(2);
-            console.log('starting calories', resp);
             this.setState({
                 weight
             });
@@ -61,7 +54,6 @@ class RunMap extends Component {
     componentDidMount() {
         this.getGeoLocation();
         this.getWeight();
-        // this.getMileData();
     }
 
     //create a new run_id when the start button is clicked
@@ -80,27 +72,25 @@ class RunMap extends Component {
 
     //get the per mile data, send it to database, and set the state
     postlatestMile(miles) {
-        // const { distance, distanceTraveled, mileCounter } = this.state;
-        // if (distanceTraveled && distanceTraveled - mileCounter >= 0) {
-        // if (distanceTraveled && distanceTraveled - Math.floor(distanceTraveled) === 0) {
         let { previousTime, elapsed, mileCounter, run_id, distanceTraveled } = this.state;
         const data = {
             run_id,
-            time: Math.round((elapsed - previousTime) / 1000),
-            // time: Math.round((elapsed/1000)),
+            time: Math.floor((elapsed - previousTime) / 1000),
             mileage: miles,
-            // miles_remaining: distanceTraveled - mileCounter - 1
         }
         axios.post(`/api/addpermile.php`, data).then((resp) => {
             mileCounter = mileCounter + 1;
-            this.setState({
-                mileCounter,
-                previousTime: elapsed
-            })
+            if(this.state.status != 'paused') {
+                this.setState({
+                    mileCounter,
+                    previousTime: elapsed
+                })
+            }
         }).then(() => {
-            this.getMileData();
+            if(this.state.status != 'paused') {
+                this.getMileData();
+            }
         })
-        // }
     }
 
     //display per mile data to the table
@@ -162,13 +152,10 @@ class RunMap extends Component {
         }
     }
 
-    // startWatch = () => {
-    //     this.refs.child.start();
-    // }
 
     geoLocationInterval = () => {
         navigator.geolocation.getCurrentPosition(position => {
-            this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length / 20000), position.coords.longitude + (this.state.coordinateArray.length / 20000));
+            this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length / 40000), position.coords.longitude + (this.state.coordinateArray.length / 40000));
         })
     }
 
@@ -265,7 +252,6 @@ class RunMap extends Component {
         setTimeout(() => {
           this.countCalories();
         }, 1000);
-        // this.distanceIncrement();
       }
     }
 
@@ -279,7 +265,6 @@ class RunMap extends Component {
 
     reset() {
         const { elapsed, distanceTraveled, mileCounter } = this.state;
-        // const remainingDistance = distanceTraveled - (mileCounter - 1);
         if (this.state.status === 'paused') {
             this.postlatestMile(distanceTraveled);
             this.postCurrentRun(elapsed);
@@ -287,7 +272,7 @@ class RunMap extends Component {
                 status: 'stopped',
                 start: null,
                 elapsed: 0
-            });
+            })
         }
     }
 
@@ -321,7 +306,6 @@ class RunMap extends Component {
         const { status, calories, weight, elapsed, distanceTraveled } = this.state;
         if (status === 'running') {
             const paceInMinutes = isNaN(Math.trunc(elapsed / (60000 * distanceTraveled))) ? 0 : Math.trunc(elapsed / (60000 * distanceTraveled));
-            console.log('pace in minutes', paceInMinutes)
             let metBurn = 0;
             if (paceInMinutes >= 20) {
                 metBurn = 0
@@ -352,28 +336,19 @@ class RunMap extends Component {
         }
     }
 
-    // distanceIncrement() {
-    //     setTimeout(() => {
-    //         this.distanceUpdate();
-    //     }, 1000);
-    // }
+    // secondsToPaceConverter(time, distance) {
     //
-    // distanceUpdate() {
-    //     // debugger;
-    //     let { distance } = this.state;
-    //     // // distance =
-    //     this.setState({
-    //         distance: (parseFloat(distance) + 0.01).toFixed(2)
-    //     })
-    //     setTimeout(this.distanceUpdate, 200);
-    //     this.postlatestMile();
+    //   const paceInSeconds = time/distance;
+    //   const minutes = Math.floor(paceInSeconds / 60);
+    //   const secondsRemaining = (paceInSeconds - minutes * 60).toFixed();
+    //   const seconds = secondsRemaining > 9 ? secondsRemaining : `0${secondsRemaining}`;
+    //
+    //   return `${minutes}:${seconds}`
     // }
 
     renderPage = () => {
         const { elapsed, distanceTraveled, status, renderPage, calories } = this.state;
-        // const paceInMinutes = isNaN(Math.trunc(elapsed/(60000*distanceTraveled))) ? 0 : Math.trunc(elapsed/(60000*distanceTraveled));
         const paceInMinutes = isFinite(Math.trunc(elapsed / (60000 * distanceTraveled))) ? Math.trunc(elapsed / (60000 * distanceTraveled)) : 0;
-        // const paceInSeconds = isNaN(((elapsed/(60000*distanceTraveled) - paceInMinutes)*60).toFixed(0)) ? '00' : ((elapsed/(60000*distanceTraveled) - paceInMinutes)*60).toFixed(0);
         const paceInSeconds = isFinite(((elapsed / (60000 * distanceTraveled) - paceInMinutes) * 60).toFixed(0)) ? ((elapsed / (60000 * distanceTraveled) - paceInMinutes) * 60).toFixed(0) : '00';
         if (renderPage === 'map') {
             return (
@@ -383,7 +358,6 @@ class RunMap extends Component {
                           {this.state.coordinateArray.length === 0 ? <MapLoader /> :
                             <MyMapComponent
                                 isMarkerShown
-                                // googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtWT-ZM2l21GJnuT7cjNZYmbQa0flwL6c&v=3.exp&libraries=geometry,drawing,places"
                                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
                                 loadingElement={<div className="loading-element" style={{ height: `100%` }} />}
                                 containerElement={<div style={{ height: `100%` }} />}
@@ -402,23 +376,13 @@ class RunMap extends Component {
                         </div>
                     </div>
                     <div className="mapStatsContainer">
-                        <div className="statContainer">
-                            <div className="statTitle">Time</div>
-                            <Stopwatch className="statResult" elapsed={elapsed} />
-                        </div>
-                        <div className="statContainer">
-                            <div className="statTitle">Distance</div>
-                            <Distance className="statResult" distance={distanceTraveled.toFixed(2)} />
-                            {/* <button onClick={this.distanceIncrement} className="btn btn-info btn-sm">Increment</button> */}
-                        </div>
-                        <div className="statContainer">
-                            <div className="statTitle">Average Pace (min/mi)</div>
-                            <div className="statResult">{paceInMinutes}:{paceInSeconds}</div>
-                        </div>
-                        <div className="statContainer">
-                            <div className="statTitle">Calories Burned</div>
-                            <div className="statResult">{calories.toFixed(2)}</div>
-                        </div>
+                        <MapStatsContainer
+                            elapsed={elapsed}
+                            distanceTraveled={distanceTraveled}
+                            paceInMinutes={paceInMinutes}
+                            paceInSeconds={paceInSeconds}
+                            calories={calories}
+                        />
                     </div>
                 </Fragment>
             )
@@ -430,8 +394,6 @@ class RunMap extends Component {
                             <tr>
                                 <th className="w-25">Mile</th>
                                 <th className="w-25">Time</th>
-                                {/* <th className="w-25">Heart Rate</th>
-                                <th className="w-25">Calories Burned</th> */}
                             </tr>
                         </thead>
                         <tbody>
@@ -445,6 +407,7 @@ class RunMap extends Component {
 
     render() {
         const { distanceTraveled } = this.state;
+
         return (
             <div className="mapBody">
                 <MapNav clickMap={this.clickMap} clickMiles={this.clickMiles} />

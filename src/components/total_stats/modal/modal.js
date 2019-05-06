@@ -12,13 +12,12 @@ class EventModal extends Component {
         event: '',
         date: ''
       };
-    
-  
+
+
     handleClose=()=> {
-      console.log('Close Called');
       this.setState({ show: false });
     }
-  
+
     handleShow=()=> {
       this.setState({ show: true });
     }
@@ -34,7 +33,7 @@ class EventModal extends Component {
 
       postEvent=(e)=>{
         e.preventDefault();
-        
+
         const {event, date} = this.state;
         const data = {
           event: event,
@@ -48,7 +47,7 @@ class EventModal extends Component {
 
           this.props.getEvent();
         });
-  
+
       }
     render() {
       return (
@@ -62,7 +61,7 @@ class EventModal extends Component {
             </Modal.Header>
             <form onSubmit={this.postEvent}>
             <Modal.Body>
-            
+
             <input
                 value={this.state.event}
                 onChange={this.handleInputChange}

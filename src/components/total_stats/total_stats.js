@@ -16,40 +16,29 @@ class TotalStats extends React.Component {
       chartData: {},
       pieChartData: {},
       runCount: 0,
-      // totalRunCount: 0,
-      // monthlyRunCount: 0,
-      // weeklyRunCount: 0
+      longestRun: null,
+      lastRunDate: null,
+      averagePace: null,
+      mostCalories: null,
     }
   }
 
   componentDidMount() {
     this.getChartData();
-    this.getRunCount();
+    this.getPersonalBests();
   }
 
-  getRunCount(){
-    axios.get('/api/run-count.php').then(resp => {
-      const {totalCount, monthCount, weekCount} = resp.data;
-      this.setState ({
-        // totalRunCount: totalCount,
-        // monthlyRunCount: monthCount,
-        // weeklyRunCount: weekCount,
-        // pieChartData: {
-        //   // labels: ['Last 7 Days', 'Last 30 Days', 'Total Runs'],
-        //      labels: ['Less than 2 mi', '2-4mi', '3-6mi', '6-8mi', '8 or more mi'],
-        //   datasets: [
-        //     {
-        //       label: 'miles',
-        //       fill: true,
-        //       // data: [weekCount, monthCount, totalCount],
-        //       data: [90, 10],
-        //       borderColor: 'blue',
-        //     }
-        //   ]
-        // },
-      })
+  async getPersonalBests() {
+    const bests = await axios.get('/api/personalbestquery.php');
+    const {longestRun, lastRunDate, averagePace, mostCalories} = bests.data;
+    this.setState({
+      longestRun,
+      lastRunDate,
+      mostCalories,
+      averagePace,
     })
   }
+
 
   getChartData() {
     axios.get('/api/get_table_data.php').then(resp => {
@@ -76,13 +65,11 @@ class TotalStats extends React.Component {
       this.setState({
         runCount: tableItems.length,
         pieChartData: {
-          // labels: ['Last 7 Days', 'Last 30 Days', 'Total Runs'],
              labels: ['Less than 2 mi', '2-4mi', '3-6mi', '6-8mi', '8 or more mi'],
           datasets: [
             {
               label: 'miles',
               fill: true,
-              // data: [weekCount, monthCount, totalCount],
               data: [...dataArray],
               borderColor: 'blue',
               backgroundColor: ['#e4cc31', '#8a1181', '#cce787', 'dodgerblue', '#36122e'],
@@ -103,22 +90,24 @@ class TotalStats extends React.Component {
     })
   }
 
-  openModal=()=>{
-    console.log('clicked Modal');
-  }
 
   render() {
-    const {totalRunCount, monthlyRunCount, weeklyRunCount, chartData, options, pieChartData, runCount} = this.state;
+    const {chartData, pieChartData, runCount, longestRun, lastRunDate, averagePace, mostCalories} = this.state;
     return (
       <div className="total-stats">
         <RunHeader />
         <div className="container-fluid">
         <div className="first-row row">
           <div className="col-lg-6 col-12">
-            <Chart options={options} chartData={chartData} runCount={runCount}/>
+            <Chart chartData={chartData} runCount={runCount}/>
           </div>
           <div className="col-12 col-lg-6">
-            <PersonalBests />
+            <PersonalBests
+              longestRun={longestRun}
+              lastRunDate={lastRunDate}
+              averagePace={averagePace}
+              mostCalories={mostCalories}
+            />
           </div>
         </div>
         <div className="second-row row">
@@ -127,10 +116,8 @@ class TotalStats extends React.Component {
           </div>
           <div className="col-lg-6 col-12 text-center">
             <EventDate/>
-            {/* <EventModal /> */}
           </div>
         </div>
-        {/* <PersonalBests /> */}
       </div>
       </div>
     )

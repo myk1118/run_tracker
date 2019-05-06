@@ -5,7 +5,6 @@ require_once('mysqlconnect.php');
 require_once('checkuserloggedin.php');
 set_exception_handler('handleError');
 
-// $user_id = 1;
 $run_id = $_GET['id'];
 $id = $_SESSION['user_data']['id'];
 
@@ -21,17 +20,8 @@ JOIN `miles` as m
 ON r.`id` = m.`run_id`
 WHERE `user_id` = $id AND
 r.`id` = $run_id
-  -- ORDER BY m.`id` ASC
   ";
 
-
-  // $query = "SELECT m.`mileage` AS `miles`, m.`time`, m.`id`
-  //   FROM `miles` AS `m`
-  //   JOIN `run_stats` AS `r` ON m.`run_id` = r.`id`
-  //   WHERE `run_id` = $run_id
-  //   AND r.`user_id` = $id
-  //   ORDER BY `id` ASC
-  //   ";
 
 $result = mysqli_query($conn, $query);
 
@@ -74,16 +64,13 @@ while($row = mysqli_fetch_assoc($result)) {
   $output['minutesSecondsRan'] = gmdate($hrs_min_sec, (int)$row['time']);
   $output['distance'] = $row['distance'];
   $output['sessionData'][] = [
-    // 'id' => (int)$row['id'],
     'time' => (int)$minutes,
     'distance' => (int)$row['distance'],
     'calories' => (int)$row['calories'],
     'pace' => (int)$row['pace'],
       'perMile'=> [
           'currentMile' => (float)$row['miles'],
-          // 'perMileTime' => (int)$row['permiletime']
-          // 'perMileTime' => gmdate("i:s", (int)$row['permiletime'])
-          'perMileTime' => (int)$pace
+          'perMileTime' => round((float)$pace, 0)
       ]
   ];
 };

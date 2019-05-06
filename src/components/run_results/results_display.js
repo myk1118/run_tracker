@@ -1,0 +1,32 @@
+import React, {Fragment} from 'react';
+import './run_results.scss';
+
+export default props => {
+
+  const {minutesSecondsRan, distance, pace, calories} = props;
+
+  return (
+    <Fragment>
+      <div className="row">
+        <div className="col-6 ">
+          <p className="run-title">Duration (min:sec)</p>
+          <p>{minutesSecondsRan}</p>
+        </div>
+        <div className="col-6 ">
+          <p className="run-title">Distance</p>
+          <p>{distance} miles</p>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-6 ">
+          <p className="run-title">Avg Pace (min/mile)</p>
+          <p>{pace}</p>
+        </div>
+        <div className="col-6 ">
+          <p className="run-title">Calories</p>
+          <p>{calories}</p>
+        </div>
+      </div>
+    </Fragment>
+  )
+}

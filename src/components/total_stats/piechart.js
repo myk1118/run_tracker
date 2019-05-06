@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {Bar, Line, Pie} from 'react-chartjs-2';
 import './total_stats.scss';
 
-
-
 export default props => {
   return (
     <div className="pie-chart-container">
@@ -22,11 +20,6 @@ export default props => {
             display: true,
             position: 'bottom',
           },
-          // elements: {
-          //   line: {
-          //     tension: 0
-          //   }
-          // },
         }}
       />
     </article>

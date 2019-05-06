@@ -1,45 +1,11 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-class PersonalBests extends Component {
-  constructor(props) {
-    super(props);
+export default props => {
 
-    this.state = {
-      longestRun: null,
-      lastRunDate: null,
-      averagePace: null,
-      mostCalories: null,
-    }
-  }
-
-  componentDidMount() {
-    this.getPersonalBests();
-  }
-
-  async getPersonalBests() {
-    const bests = await axios.get('/api/personalbestquery.php');
-    console.log('bests: ', bests)
-    const {longestRun, lastRunDate, averagePace, mostCalories} = bests.data;
-    console.log('bests: ',bests);
-    this.setState({
-      longestRun: longestRun,
-      lastRunDate: lastRunDate,
-      mostCalories: mostCalories,
-      averagePace,
-    })
-  }
-
-
-  render() {
-    const {longestRun, lastRunDate, averagePace, mostCalories} = this.state;
+    const {longestRun, lastRunDate, averagePace, mostCalories} = props;
     return (
       <div className="personal-bests">
-      {/* <div className="personal-bests">
-        <p><b>Fastest Pace: </b> <u>{fastestPace}</u></p>
-        <p><b>Longest Run: </b><u>{longestRun} miles</u></p>
-        <p><b>Last Run: </b><u>{lastRunDate}</u></p>
-      </div> */}
         <div className="row">
           <div className="col-6">
             <table className="table table-hover">
@@ -102,7 +68,4 @@ class PersonalBests extends Component {
         </div>
       </div>
     )
-  }
 }
-
-export default PersonalBests;

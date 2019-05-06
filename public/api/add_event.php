@@ -5,9 +5,6 @@ require_once('mysqlconnect.php');
 require_once('checkuserloggedin.php');
 set_exception_handler('handleError');
 
-// if(empty($_SESSION['user_id'])){
-//     throw new Exception ('Missing user id');
-// }
 
 $json_input = file_get_contents("php://input");
 $input = json_decode($json_input, true);
@@ -15,19 +12,18 @@ $input = json_decode($json_input, true);
 $output = [
     'success' => false,
 ];
-// $event = 'stuff';
-// $date = '2019-04-30';
+
 $event= $input['event'];
 $date = $input['eventDate'];
 
 
-// $user_id = 3;
+
 $user_id = $_SESSION['user_data']['id'];
 
-$id_query = "INSERT INTO `event` 
+$id_query = "INSERT INTO `event`
     (`eventName`, `eventDate`, `id`)
     VALUES
-    ('$event', '$date', '$user_id')  
+    ('$event', '$date', '$user_id')
     ON DUPLICATE KEY UPDATE `eventName` = '$event', `eventDate` = '$date'
 ";
 

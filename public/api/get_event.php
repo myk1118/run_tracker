@@ -21,9 +21,7 @@ $output['success'] = true;
 $output[] = [];
 
 $row = mysqli_fetch_assoc($result);
-// $current = new DateTime();
 $eventDate = new DateTime($row['eventDate']);
-// $days = $eventDate->diff($current)->format('%a');
 
   $output[] = [
     'eventDay' => $eventDate,

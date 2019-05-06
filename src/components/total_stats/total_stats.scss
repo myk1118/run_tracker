@@ -3,9 +3,7 @@
 
   .first-row {
 
-    // height: 55%;
     .line-graph-container {
-      // height: 90%;
       height: 37vh;
 
       article {
@@ -39,7 +37,6 @@
 
   .second-row {
 
-    // height: 40vh;
     .pie-chart-container {
       height: 80%;
       height: 40vh;
@@ -61,11 +58,17 @@
 .tableContainer {
   height: 100%;
 
+  .bold {
+    font-weight: bold;
+  }
+
   .total,
   .month,
   .week {
     cursor: pointer;
   }
+
+
 
   table {
     color: rgb(51, 51, 51);
@@ -180,9 +183,7 @@
 
   .first-row {
 
-    // height: 55%;
     .line-graph-container {
-      // height: 90%;
       height: 37vh;
 
       article {
@@ -216,7 +217,6 @@
 
   .second-row {
 
-    // height: 40vh;
     .pie-chart-container {
       height: 80%;
       height: 40vh;
