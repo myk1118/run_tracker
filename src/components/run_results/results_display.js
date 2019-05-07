@@ -4,7 +4,8 @@ import './run_results.scss';
 export default props => {
 
   const {minutesSecondsRan, distance, pace, calories} = props;
-
+  const paceWithInfinityCheck = /^Infinity/.test(pace) ? pace.replace('Infinity', '0') : pace;
+  const paceWithNaNCheck = /NaN/.test(pace) ? paceWithInfinityCheck.replace('NaN', '0') : pace;
   return (
     <Fragment>
       <div className="row">
@@ -20,7 +21,7 @@ export default props => {
       <div className="row">
         <div className="col-6 ">
           <p className="run-title">Avg Pace (min/mile)</p>
-          <p>{pace}</p>
+          <p>{paceWithNaNCheck}</p>
         </div>
         <div className="col-6 ">
           <p className="run-title">Calories</p>

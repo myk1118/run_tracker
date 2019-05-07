@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bar, Line, Pie } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 export default props => {
   const {distance, secondsRan} = props;
@@ -16,6 +17,19 @@ export default props => {
         width={100}
         height={100}
         options = {{
+          plugins: {
+            datalabels: {
+              formatter: function(value, context) {
+                let date = new Date(null);
+                date.setSeconds(value);
+                return date.toISOString().slice(14,19);
+              },
+              color: 'white',
+              font: {
+                weight: 'bold',
+              }
+            },
+          },
  //          "animation": {
  //   "duration": 1,
  //   "onComplete": function() {

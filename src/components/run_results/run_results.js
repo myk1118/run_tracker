@@ -49,6 +49,7 @@ class RunResult extends Component {
     const { id } = this.props.match.params
     axios.get(`/api/get_runsession_results.php?id=${id}`).then(resp => {
       const { sessionData, date, distance, coordinates, secondsRan, minutesSecondsRan } = resp.data;
+      console.log(resp.data)
       const { calories, pace, time } = sessionData['0'];
       const miles = sessionData.map(mile => mile.perMile.currentMile);
       const time2 = sessionData.map(seconds => (seconds.perMile.perMileTime));

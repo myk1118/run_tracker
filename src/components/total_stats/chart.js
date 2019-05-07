@@ -1,6 +1,7 @@
 import React from 'react';
 import {Bar, Line, Pie} from 'react-chartjs-2';
 import './total_stats.scss';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 export default props => {
 
@@ -11,6 +12,11 @@ export default props => {
         <Line
           data={props.chartData}
           options={{
+            plugins: {
+              datalabels: {
+                 display: false,
+              }
+            },
             maintainAspectRatio: false,
             responsive: true,
             title: {

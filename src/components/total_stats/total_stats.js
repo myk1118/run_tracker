@@ -65,7 +65,7 @@ class TotalStats extends React.Component {
       this.setState({
         runCount: tableItems.length,
         pieChartData: {
-             labels: ['Less than 2 mi', '2-4mi', '3-6mi', '6-8mi', '8 or more mi'],
+          labels: ['Less than 2 mi', '2-4mi', '3-6mi', '6-8mi', '8 or more mi'],
           datasets: [
             {
               label: 'miles',
