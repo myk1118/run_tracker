@@ -100,7 +100,7 @@ class Chart extends Component {
     return (
       <div className="tableContainer">
         <RunHeader />
-        <div className="last30days float-right text-primary pt-3 pb-3">
+        <div className="filterByDays float-right text-primary pt-3 pb-3">
           <span onClick={this.displayActivityLogData} className={`total ${this.state.clickedElement === 'total' ? 'bold' : ''}`}>Total </span>
           <span>|</span>
           <span onClick={this.filterByMonth} className={`month ${this.state.clickedElement === 'month' ? 'bold' : ''}`}> Last 30 Days </span>
