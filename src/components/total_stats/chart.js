@@ -22,7 +22,8 @@ export default props => {
             title: {
               display: true,
               text: `Distances Tracked For Your Last ${runs}`,
-              fontSize: 25
+              fontSize: 25,
+              fontColor: 'black',
             },
             legend: {
               display: true,

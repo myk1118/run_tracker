@@ -15,12 +15,14 @@ $output = [
 
 $lat= (float)$input['lat'];
 $lng = (float)$input['lng'];
+$city = $input['city'];
 
 $user_id = $_SESSION['user_data']['id'];
 
 $id_query = "INSERT INTO `run_stats` SET `distance` = 0,
               `time` = 0, `pace` = 0, `date` = NOW(),
-              `heart_rate` = 0, `calories` = 0, `lat` = $lat, `lng` = $lng, `user_id` = $user_id
+              `heart_rate` = 0, `calories` = 0, `lat` = $lat, `lng` = $lng,
+              `city` = '$city', `user_id` = $user_id
 ";
 
 $run_result = mysqli_query($conn, $id_query);

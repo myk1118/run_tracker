@@ -4,8 +4,8 @@ import './run_results.scss';
 export default props => {
 
   const {minutesSecondsRan, distance, pace, calories} = props;
-  const paceWithInfinityCheck = /^Infinity/.test(pace) ? pace.replace('Infinity', '0') : pace;
-  const paceWithNaNCheck = /NaN/.test(pace) ? paceWithInfinityCheck.replace('NaN', '0') : pace;
+  const paceWithInfinityCheck = /Infinity/.test(pace) ? pace.replace(/Infinity/gi, '0') : pace;
+  const paceWithNaNCheck = /NaN/.test(pace) ? paceWithInfinityCheck.replace(/NaN/gi, '0') : pace;
   return (
     <Fragment>
       <div className="row">

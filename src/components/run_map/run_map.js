@@ -32,6 +32,7 @@ class RunMap extends Component {
             coordinateArray: [],
             run_id: null,
             weight: 0,
+            city: null
         }
 
         this.start = this.start.bind(this);
@@ -56,12 +57,39 @@ class RunMap extends Component {
         this.getWeight();
     }
 
+    // componentWillUnmount() {
+    //   this.deleteCurentRun();
+    // }
+
+    // deleteCurrentRun = () => {
+    //   const data = {
+    //     run_id: this.state.run_id
+    //   }
+    //   console.log('deleted')
+    //   axios.post('/api/deleterun.php', data).then(resp => {
+    //     console.log(resp)
+    //   })
+    // }
+    getCityName(lat, lng) {
+      axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${lat}%2C+${lng}&key=76e6a71e44ff40759963af6dacacc318&pretty=1`).then(resp => {
+        if (resp.data) {
+            console.log('city: ',resp.data.results[0].components.city)
+            this.setState({
+              city: resp.data.results[0].components.city
+            })
+        }
+      }).catch(error => {
+        console.log(error.response)
+      })
+    }
+
     //create a new run_id when the start button is clicked
     createNewRun = () => {
         const { lat, lng } = this.state.startingCoords;
         const data = {
             lat,
-            lng
+            lng,
+            city: this.state.city,
         };
         axios.post('/api/create_new_id.php', data).then(resp => {
             this.setState({
@@ -116,13 +144,13 @@ class RunMap extends Component {
 
     //current run data is sent to database when the user ends the run
     postCurrentRun = (elapsed) => {
-        const { distanceTraveled, pace, calories, run_id } = this.state;
+        const { distanceTraveled, pace, calories, run_id, city } = this.state;
         const data = {
             distance: distanceTraveled,
             time: Math.floor(elapsed / 1000),
             pace: pace,
             calories: calories,
-            run_id
+            run_id,
         }
         axios.post(`/api/addrun.php`, data);
     }
@@ -131,6 +159,7 @@ class RunMap extends Component {
     getGeoLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
+                this.getCityName(position.coords.latitude, position.coords.longitude);
                 this.setState({
                     currentLatLng: {
                         lat: position.coords.latitude,

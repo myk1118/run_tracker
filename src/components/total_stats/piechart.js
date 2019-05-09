@@ -38,7 +38,8 @@ export default props => {
           title: {
             display: true,
             text: 'Run Session Comparisons',
-            fontSize: 25
+            fontSize: 25,
+            fontColor: 'black',
           },
           legend: {
             display: true,

@@ -14,7 +14,7 @@ $output = [
 $output['sessionData'] = [];
 
 $query = "SELECT r.`id`, r.`distance`, r.`time`, r. `date`, r.`calories`,
-r.`lat`, r.`lng`, r.`pace`, m.`mileage` AS `miles`, m.`time` AS `permiletime`
+r.`lat`, r.`lng`, r.`pace`, r.`city`, m.`mileage` AS `miles`, m.`time` AS `permiletime`
 FROM `run_stats` AS r
 JOIN `miles` as m
 ON r.`id` = m.`run_id`
@@ -52,7 +52,7 @@ while($row = mysqli_fetch_assoc($result)) {
     $hrs_min_sec = "H:i:s";
   }
 
-
+  $output['city'] = $row['city'];
 
   $output['date'] = [
     'date' => $date,

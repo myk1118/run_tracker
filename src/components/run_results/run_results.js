@@ -34,6 +34,19 @@ class RunResult extends Component {
   componentDidMount() {
     this.getChartData();
     this.getUserName();
+
+  }
+
+  getCityName(lat, lng) {
+    axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${lat}%2C+${lng}&key=76e6a71e44ff40759963af6dacacc318&pretty=1`).then(resp => {
+      if (resp.data) {
+          this.setState({
+            city: resp.data.results[0].components.city
+          })
+      }
+    }).catch(error => {
+      console.log(error.response)
+    })
   }
 
   async getUserName() {
@@ -48,12 +61,15 @@ class RunResult extends Component {
   getChartData() {
     const { id } = this.props.match.params
     axios.get(`/api/get_runsession_results.php?id=${id}`).then(resp => {
-      const { sessionData, date, distance, coordinates, secondsRan, minutesSecondsRan } = resp.data;
-      console.log(resp.data)
+      const { sessionData, date, distance, coordinates, secondsRan, minutesSecondsRan, city } = resp.data;
       const { calories, pace, time } = sessionData['0'];
       const miles = sessionData.map(mile => mile.perMile.currentMile);
       const time2 = sessionData.map(seconds => (seconds.perMile.perMileTime));
-      this.getCityName(coordinates.lat, coordinates.lng)
+
+      if(!city) {
+        this.getCityName(coordinates.lat, coordinates.lng)
+      }
+
       this.setState({
         minutesSecondsRan,
         secondsRan,
@@ -62,6 +78,7 @@ class RunResult extends Component {
         calories,
         pace: this.secondsToPaceConverter(secondsRan, distance),
         date,
+        city,
         currentLatLng: {
           ...this.state.currentLatLng,
           lat: coordinates.lat,
@@ -87,16 +104,6 @@ class RunResult extends Component {
     })
   }
 
-  getCityName(lat, lng) {
-    axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${lat}%2C+${lng}&key=76e6a71e44ff40759963af6dacacc318&pretty=1`).then(resp => {
-      if (resp.data) {
-        this.setState({
-          city: resp.data.results[0].components.city
-        })
-      }
-    })
-  }
-
   secondsToPaceConverter(time, distance) {
     const paceInSeconds = (time/distance).toFixed(0);
     const minutes = Math.floor(paceInSeconds / 60);
@@ -119,6 +126,7 @@ class RunResult extends Component {
 
   render() {
     const { date, first_name, currentLatLng, distance, city, minutesSecondsRan, calories, pace, totalDistance, secondsRan } = this.state;
+    console.log('pace: ', pace)
     return (
       <div className="postRunBody">
         <RunHeader />
@@ -132,7 +140,7 @@ class RunResult extends Component {
                 <div className="run-message">
                   <p className="first-description text-center">{first_name}, here are your run results from {date.date} at {date.time}</p>
                   <p className="second-description">{this.runDescription(secondsRan, totalDistance)} </p>
-                  <p className="location"><span className="oi" data-glyph="map-marker"></span> {city}</p>
+                  <p className="location">{city ? <span className="oi" data-glyph="map-marker"></span> : ''} {city}</p>
                 </div>
               </div>
             </div>
