@@ -126,6 +126,7 @@ class RunResult extends Component {
 
   render() {
     const { date, first_name, currentLatLng, distance, city, minutesSecondsRan, calories, pace, totalDistance, secondsRan } = this.state;
+    console.log('pace: ', pace)
     return (
       <div className="postRunBody">
         <RunHeader />
