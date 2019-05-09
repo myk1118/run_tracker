@@ -7,7 +7,7 @@ set_exception_handler('handleError');
 
 $user_id = $_SESSION['user_data']['id'];
 
-$query = "SELECT `date`, `id` FROM `run_stats`
+$query = "SELECT `date`, `id`, `distance` FROM `run_stats`
   WHERE `user_id` = $user_id
   ORDER BY `date` DESC
   ";
@@ -31,8 +31,10 @@ while ($row = mysqli_fetch_assoc($result)) {
   $output['dates'][] = [
     'date' => $date,
     'time' => ltrim($time, '0'),
+    'miles' => $row['distance'],
     'id' => $row['id']
   ];
+
 };
 
 print_r(json_encode($output));
