@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import Logout from '../account/logout';
 import './nav.scss';
 
 class RunHeader extends Component {
