@@ -21,7 +21,6 @@ class Runs extends React.Component {
 
   async getRunData() {
     const run_dates = await axios.get('/api/get_run_dates.php');
-    console.log(run_dates)
     const dates = run_dates.data.dates;
     const date_buttons = dates.map((item) => {
       return (
@@ -30,6 +29,7 @@ class Runs extends React.Component {
             <button className="bigSquareButton runImg btn btn-dark btn-lg">
               <div>{item.date}</div>
               <div className="run-time">{item.miles} miles</div>
+              <div className="run-time">{item.city}</div>
             </button>
           </NavLink>
         </div>
