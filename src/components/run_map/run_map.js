@@ -56,6 +56,20 @@ class RunMap extends Component {
         this.getWeight();
     }
 
+    // componentWillUnmount() {
+    //   this.deleteCurentRun();
+    // }
+
+    deleteCurrentRun = () => {
+      const data = {
+        run_id: this.state.run_id
+      }
+      console.log('deleted')
+      // axios.post('/api/deleterun.php', data).then(resp => {
+      //   console.log(resp)
+      // })
+    }
+
     //create a new run_id when the start button is clicked
     createNewRun = () => {
         const { lat, lng } = this.state.startingCoords;
