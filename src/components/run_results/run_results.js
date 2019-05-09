@@ -34,6 +34,19 @@ class RunResult extends Component {
   componentDidMount() {
     this.getChartData();
     this.getUserName();
+
+  }
+
+  getCityName(lat, lng) {
+    axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${lat}%2C+${lng}&key=76e6a71e44ff40759963af6dacacc318&pretty=1`).then(resp => {
+      if (resp.data) {
+          this.setState({
+            city: resp.data.results[0].components.city
+          })
+      }
+    }).catch(error => {
+      console.log(error.response)
+    })
   }
 
   async getUserName() {
@@ -52,6 +65,11 @@ class RunResult extends Component {
       const { calories, pace, time } = sessionData['0'];
       const miles = sessionData.map(mile => mile.perMile.currentMile);
       const time2 = sessionData.map(seconds => (seconds.perMile.perMileTime));
+
+      if(!city) {
+        this.getCityName(coordinates.lat, coordinates.lng)
+      }
+
       this.setState({
         minutesSecondsRan,
         secondsRan,
