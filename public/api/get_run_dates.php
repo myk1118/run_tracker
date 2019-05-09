@@ -25,7 +25,7 @@ while ($row = mysqli_fetch_assoc($result)) {
   $parent = $row['date'];
   $timestamp = strtotime($parent);
 
-  $date = date('n/j', $timestamp);
+  $date = date('n/j/y', $timestamp);
   $time = date('h:i a', $timestamp);
 
   $output['dates'][] = [
