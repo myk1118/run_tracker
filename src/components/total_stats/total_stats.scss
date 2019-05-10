@@ -152,11 +152,13 @@
     }
 
     .personal-bests {
+      // .row {
       width: 100%;
       box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
       background: rgb(255, 255, 255);
       border-radius: 4px;
       margin-top: 5%;
+    // }
 
       .table {
         tr {

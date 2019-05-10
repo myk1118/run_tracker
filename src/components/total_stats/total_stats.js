@@ -72,7 +72,8 @@ class TotalStats extends React.Component {
               fill: true,
               data: [...dataArray],
               borderColor: 'blue',
-              backgroundColor: ['#e4cc31', '#8a1181', '#cce787', 'dodgerblue', '#36122e'],
+              backgroundColor: ['rgba(228,204,49,0.6)', 'rgba(138,17,129,0.6)', 'rgba(204,231,135,0.6)',
+               'rgba(30,144,255, 0.6)', 'rgba(54,18,46,0.6)'],
             }
           ]
         },
@@ -94,6 +95,7 @@ class TotalStats extends React.Component {
 
   render() {
     const {chartData, pieChartData, runCount, longestRun, lastRunDate, averagePace, mostCalories} = this.state;
+    console.log(this.state)
     return (
       <div className="total-stats">
         <RunHeader />

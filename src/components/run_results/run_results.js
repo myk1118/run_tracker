@@ -7,6 +7,7 @@ import './run_results.scss';
 import ResultsDisplay from './results_display';
 
 
+
 class RunResult extends Component {
   constructor(props) {
     super(props);
@@ -128,7 +129,6 @@ class RunResult extends Component {
 
   render() {
     const { date, first_name, currentLatLng, distance, city, minutesSecondsRan, calories, pace, totalDistance, secondsRan } = this.state;
-    console.log('pace: ', pace)
     return (
       <div className="postRunBody">
         <RunHeader />

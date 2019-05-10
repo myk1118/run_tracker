@@ -45,8 +45,8 @@ $output['mostCalories'] = (int)$data['maxCalories'];
 $output['longestTime'] = (int)$data['longestTime'];
 $output['fastestpace'] = gmdate("i:s", round((int)$data['fastestpace'],0));
 
-$pace_in_seconds = round((int)$data['totalTime'] / (int)$data['totalDistance']);
-$output['averagePace'] = gmdate("i:s", $pace_in_seconds);
+$pace_in_seconds = round((int)$data['totalTime'] / (float)$data['totalDistance']);
+$output['averagePace'] = gmdate("i:s", (int)$pace_in_seconds);
 
 
 

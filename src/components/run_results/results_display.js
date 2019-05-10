@@ -9,8 +9,9 @@ export default props => {
   return (
     <Fragment>
       <div className="row">
-        <div className="col-6 ">
-          <p className="run-title">Duration (min:sec)</p>
+        <div className="col-6 border">
+          <p>Duration (min:sec)</p>
+          {/* <p className="run-title">Duration (min:sec)</p> */}
           <p>{minutesSecondsRan}</p>
         </div>
         <div className="col-6 ">
