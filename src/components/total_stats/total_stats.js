@@ -30,12 +30,16 @@ class TotalStats extends React.Component {
 
   async getPersonalBests() {
     const bests = await axios.get('/api/personalbestquery.php');
-    const { longestRun, lastRunDate, averagePace, mostCalories } = bests.data;
+    console.log('bests: ',bests.data)
+    const { longestRun, lastRunDate, averagePace, mostCalories, totalCalories, totalDistance, totalTime } = bests.data;
     this.setState({
       longestRun,
       lastRunDate,
       mostCalories,
       averagePace,
+      totalCalories,
+      totalDistance,
+      totalTime
     })
   }
 
@@ -92,7 +96,7 @@ class TotalStats extends React.Component {
   }
 
   render() {
-    const {chartData, pieChartData, runCount, longestRun, lastRunDate, averagePace, mostCalories} = this.state;
+    const {chartData, pieChartData, runCount, longestRun, lastRunDate, averagePace, mostCalories, totalCalories, totalDistance, totalTime} = this.state;
     console.log(this.state)
     return (
       <div className="total-stats">
@@ -108,6 +112,9 @@ class TotalStats extends React.Component {
               lastRunDate={lastRunDate}
               averagePace={averagePace}
               mostCalories={mostCalories}
+              totalCalories={totalCalories}
+              totalDistance={totalDistance}
+              totalTime={totalTime}
             />
           </div>
         </div>
