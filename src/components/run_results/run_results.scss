@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 .postRunBody {
-  height: 100vh;
+  // height: 100vh;
+    background-color: rgb(245, 245, 245);
+    font-family: 'Open Sans', sans-serif;
 
   .postRunMap {
     height: 30%;
@@ -19,9 +23,10 @@
 
   .run-message {
     text-align: center;
+    margin-bottom: 4%;
 
     .first-description {
-      font-size: 1.4rem;
+      font-size: 2rem;
       font-weight: bold;
     }
 
@@ -36,6 +41,11 @@
 
   .bar-graph-container {
     height: 55vh;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+    background: rgb(255, 255, 255);
+    border-radius: 4px;
+    margin-top: 5%;
 
     article {
       height: 100%;
@@ -45,17 +55,25 @@
   .run-data {
     height: 50%;
 
-    .run-title {
-      border-bottom: solid navy 1px;
-      padding-top: 20%;
-      font-size: 1.3rem;
-      color: #708090;
+    .results-display-container{
+      // border: 1px solid grey;
+      border-top: 4px solid #81b3c2;
+      width: 100%;
+      box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+      background: rgb(255, 255, 255);
+      border-radius: 4px 4px 2px 2px;
+      height: 95%;
     }
 
-    .run-title+p {
+    .runtitle {
+      text-align: left;
+      padding-left: 2%;
+      font-size: 1.3rem;
+    }
+    .runtitle+p {
       font-size: 2.3rem;
       font-weight: bold;
-      color: navy
+      color: navy;
     }
   }
 
@@ -71,6 +89,13 @@
   display: block;
   left: 30%;
 
+}
+
+.results-display {
+  // width: 100%;
+  // box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+  // background: rgb(255, 255, 255);
+  // border-radius: 4px;
 }
 
 
@@ -109,6 +134,7 @@
     .bar-graph-container {
       height: 55vh;
 
+
       article {
         height: 100%;
       }
@@ -117,14 +143,16 @@
     .run-data {
       height: 50%;
 
-      .run-title {
-        border-bottom: solid navy 1px;
-        padding-top: 12%;
-        font-size: 1rem;
-        color: #708090;
+      .col-6 {
+        padding-left: 5px;
+        padding-right: 5px;
       }
 
-      .run-title+p {
+      .runtitle {
+        font-size: 1rem;
+      }
+
+      .runtitle+p {
         font-size: 1.5rem;
         font-weight: bold;
         color: navy

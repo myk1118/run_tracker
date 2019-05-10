@@ -16,7 +16,7 @@ export default props => {
               </thead>
               <tbody>
                 <tr>
-                  <td className="best">{longestRun} <span>miles</span></td>
+                  <td className="best">{longestRun} <span>{longestRun ? 'miles' : ''}</span></td>
                 </tr>
               </tbody>
             </table>
@@ -30,7 +30,7 @@ export default props => {
               </thead>
               <tbody>
                 <tr>
-                  <td className="best">{averagePace}<span> min per mile</span></td>
+                  <td className="best">{averagePace}<span> {averagePace ? 'min/mile' : ''}</span></td>
                 </tr>
               </tbody>
             </table>
@@ -55,12 +55,12 @@ export default props => {
             <table className="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">Most Calories Burned:</th>
+                  <th scope="col">Calories Burned:</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="best">{mostCalories}<span> calories</span></td>
+                  <td className="best">{mostCalories}<span> {mostCalories ? 'calories' : ''}</span></td>
                 </tr>
               </tbody>
             </table>

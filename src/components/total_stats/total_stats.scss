@@ -1,54 +1,4 @@
-.total-stats {
-  height: 75vh;
-
-  .first-row {
-
-    .line-graph-container {
-      height: 37vh;
-
-      article {
-        height: 100%;
-      }
-    }
-
-    .personal-bests {
-      .table {
-        tr {
-          th {
-            text-align: left;
-            font-weight: normal;
-            border-top: none;
-          }
-
-          td {
-            border-top: none;
-            font-size: 2.5rem;
-            font-weight: bold;
-
-            span {
-              font-weight: normal;
-              font-size: 1rem;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .second-row {
-
-    .pie-chart-container {
-      height: 80%;
-      height: 40vh;
-
-      .graph-container {
-        height: 100%;
-        border-top: dotted lightgrey;
-        border-bottom: dotted lightgrey;
-      }
-    }
-  }
-}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 .runCount {
   height: 100%;
@@ -60,6 +10,7 @@
 
   .bold {
     font-weight: bold;
+    color: darkblue;
   }
 
   .filterByDays {
@@ -183,12 +134,18 @@
 }
 
 .total-stats {
-  height: 75vh;
+  background-color: rgb(245, 245, 245);
+  font-family: 'Open Sans', sans-serif;
 
   .first-row {
 
     .line-graph-container {
-      height: 37vh;
+      height: 55vh;
+      // background-color: rgba(135,206,250,0.3);
+      background-color: white;
+      width: 100%;
+      box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+      border-radius: 4px;
 
       article {
         height: 100%;
@@ -196,6 +153,14 @@
     }
 
     .personal-bests {
+      // .row {
+      width: 100%;
+      box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+      background: rgb(255, 255, 255);
+      border-radius: 4px;
+      margin-top: 5%;
+    // }
+
       .table {
         tr {
           th {
@@ -206,7 +171,7 @@
 
           td {
             border-top: none;
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
 
             span {
@@ -227,8 +192,13 @@
 
       .graph-container {
         height: 100%;
-        border-top: dotted lightgrey;
-        border-bottom: dotted lightgrey;
+        // border-top: dotted lightgrey;
+        // border-bottom: dotted lightgrey;
+        width: 100%;
+        box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+        background: rgb(255, 255, 255);
+        border-radius: 4px;
+        margin-top: 5%;
       }
     }
   }
@@ -241,6 +211,7 @@
 
 .tableContainer {
   height: 100%;
+  font-family: 'Open Sans', sans-serif;
 
   .total,
   .month,

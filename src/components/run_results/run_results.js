@@ -6,6 +6,8 @@ import apiKey from '../googlemap';
 import './run_results.scss';
 import ResultsDisplay from './results_display';
 
+
+
 class RunResult extends Component {
   constructor(props) {
     super(props);
@@ -61,6 +63,7 @@ class RunResult extends Component {
   getChartData() {
     const { id } = this.props.match.params
     axios.get(`/api/get_runsession_results.php?id=${id}`).then(resp => {
+      console.log('response: ', resp)
       const { sessionData, date, distance, coordinates, secondsRan, minutesSecondsRan, city } = resp.data;
       const { calories, pace, time } = sessionData['0'];
       const miles = sessionData.map(mile => mile.perMile.currentMile);
@@ -92,7 +95,7 @@ class RunResult extends Component {
               label: 'Pace',
               data: [...time2],
               borderColor: 'blue',
-              backgroundColor: '#1E90FF',
+              backgroundColor: 'rgba(30, 144, 255, 0.7)',
               borderWidth: 1,
               borderColor: 'white',
               hoverBorderWidth: 3,
@@ -126,17 +129,16 @@ class RunResult extends Component {
 
   render() {
     const { date, first_name, currentLatLng, distance, city, minutesSecondsRan, calories, pace, totalDistance, secondsRan } = this.state;
-    console.log('pace: ', pace)
     return (
       <div className="postRunBody">
         <RunHeader />
         <div className="container-fluid">
           <div className="postRunMap">
-            <div className="row border-bottom">
-              <div className="col-12 col-lg-6">
+            <div className="row">
+              {/* <div className="col-12 col-lg-6">
                 <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${currentLatLng.lat},${currentLatLng.lng}&zoom=14&size=640x200&markers=color:red%7C%7C${currentLatLng.lat},${currentLatLng.lng}&key=${apiKey}&`} />
-              </div>
-              <div className="col-12 col-lg-6 ">
+              </div> */}
+              <div className="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
                 <div className="run-message">
                   <p className="first-description text-center">{first_name}, here are your run results from {date.date} at {date.time}</p>
                   <p className="second-description">{this.runDescription(secondsRan, totalDistance)} </p>
@@ -146,7 +148,7 @@ class RunResult extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-6 col-12 text-center run-data">
+            <div className="results-display col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12 text-center run-data">
               <ResultsDisplay
                 minutesSecondsRan={minutesSecondsRan}
                 distance={distance}
@@ -154,7 +156,7 @@ class RunResult extends Component {
                 calories={calories}
               />
             </div>
-            <div className="col-lg-6 col-12">
+            <div className="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12">
               <ResultsChart
                 chartData={this.state.chartData}
                 distance={this.state.totalDistance}

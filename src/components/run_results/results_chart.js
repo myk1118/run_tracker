@@ -63,7 +63,9 @@ export default props => {
           title: {
             display: true,
             text: 'Pace per Mile',
-            fontSize: 25
+            fontSize: 25,
+            fontColor: 'black',
+            padding: 10,
           },
           legend: {
             display: false,
@@ -80,7 +82,8 @@ export default props => {
                 categoryPercentage: 0.8,
                 scaleLabel: {
                   display: true,
-                  labelString: 'Mile'
+                  labelString: 'Mile',
+                  fontColor: 'black',
                 },
               }],
               yAxes: [{
@@ -94,7 +97,8 @@ export default props => {
                 },
                 scaleLabel: {
                   display: true,
-                  labelString: 'Pace(min/mile)'
+                  labelString: 'Pace(min/mile)',
+                  fontColor: 'black',
                 }
               }],
             }

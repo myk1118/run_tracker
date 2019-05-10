@@ -57,19 +57,28 @@ class RunMap extends Component {
         this.getWeight();
     }
 
-    // componentWillUnmount() {
-    //   this.deleteCurentRun();
-    // }
+    componentWillUnmount() {
+      if(this.state.status === 'running') {
+        clearInterval(this.state.watchId);
+        clearTimeout(this.calorieTimeout)
+        clearTimeout(this.timeout);
+        this.deleteCurrentRun();
+      } else {
+        this.postlatestMile(this.state.distanceTraveled);
+        this.postCurrentRun(this.state.elapsed);
+      }
+    }
 
-    // deleteCurrentRun = () => {
-    //   const data = {
-    //     run_id: this.state.run_id
-    //   }
-    //   console.log('deleted')
-    //   axios.post('/api/deleterun.php', data).then(resp => {
-    //     console.log(resp)
-    //   })
-    // }
+    deleteCurrentRun = () => {
+      const data = {
+        id: this.state.run_id
+      }
+      axios.post('/api/deleterun.php', data).then(resp => {
+        console.log(resp)
+      })
+    }
+
+
     getCityName(lat, lng) {
       axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${lat}%2C+${lng}&key=76e6a71e44ff40759963af6dacacc318&pretty=1`).then(resp => {
         if (resp.data) {
@@ -182,33 +191,33 @@ class RunMap extends Component {
     }
 
 
-    // geoLocationInterval = () => {
-    //     navigator.geolocation.getCurrentPosition(position => {
-    //         this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length / 40000), position.coords.longitude + (this.state.coordinateArray.length / 40000));
-    //     })
-    // }
-    //
-    // //when you click the button, start tracking
-    // startTracking = () => {
-    //     const watchId = setInterval(this.geoLocationInterval, 200);
-    //     this.setState({
-    //         watchId: watchId
-    //     })
-    // }
-
-    startTracking = () => {
-      const watchId = navigator.geolocation.watchPosition(position => {
-        this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
-      }, error => {
-      }, {enableHighAccuracy: true})
-        this.setState({
-          watchId: watchId
+    geoLocationInterval = () => {
+        navigator.geolocation.getCurrentPosition(position => {
+            this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length / 40000), position.coords.longitude + (this.state.coordinateArray.length / 40000));
         })
     }
+    //
+    // //when you click the button, start tracking
+    startTracking = () => {
+        const watchId = setInterval(this.geoLocationInterval, 200);
+        this.setState({
+            watchId: watchId
+        })
+    }
+
+    // startTracking = () => {
+    //   const watchId = navigator.geolocation.watchPosition(position => {
+    //     this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+    //   }, error => {
+    //   }, {enableHighAccuracy: true})
+    //     this.setState({
+    //       watchId: watchId
+    //     })
+    // }
     //when you click the stop button, stop tracking
     stopTracking = () => {
-        navigator.geolocation.clearWatch(this.state.watchId);
-        // clearInterval(this.state.watchId);
+        // navigator.geolocation.clearWatch(this.state.watchId);
+        clearInterval(this.state.watchId);
     }
     stopCalorie = () => {
         clearTimeout(this.countCalories);
@@ -295,8 +304,8 @@ class RunMap extends Component {
     reset() {
         const { elapsed, distanceTraveled, mileCounter } = this.state;
         if (this.state.status === 'paused') {
-            this.postlatestMile(distanceTraveled);
-            this.postCurrentRun(elapsed);
+            // this.postlatestMile(distanceTraveled);
+            // this.postCurrentRun(elapsed);
             this.setState({
                 status: 'stopped',
                 start: null,
@@ -323,7 +332,7 @@ class RunMap extends Component {
             this.setState({
                 elapsed: new Date().getTime() - start,
             })
-            setTimeout(this.update, 10);
+            this.timeout = setTimeout(this.update, 10);
         }
     }
 
@@ -358,7 +367,7 @@ class RunMap extends Component {
             this.setState({
                 calories: updateCalories
             })
-            setTimeout(this.countCalories, 1000);
+            this.calorieTimeout = setTimeout(this.countCalories, 1000);
         }
         if (status === 'paused') {
             clearTimeout(this.countCalories);

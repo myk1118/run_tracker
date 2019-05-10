@@ -12,14 +12,13 @@ export default props => {
         options = {{
           tooltips: {
             callbacks: {
-                label: function(tooltipItem, data) {
-                  console.log('hello')
-                  console.log('tooltip: ', tooltipItem);
-                  console.log('data: ', data)
-                  // let date = new Date(null);
-                  // date.setSeconds(tooltipItem.yLabel);
+              label: function(tooltipItem, data) {
+                if(data.datasets[0].data[tooltipItem.index] === 1) {
+                  return `${data.datasets[0].data[tooltipItem.index]} run`;
+                } else {
                   return `${data.datasets[0].data[tooltipItem.index]} runs`;
                 }
+              }
             }
           },
           plugins: {
@@ -37,7 +36,7 @@ export default props => {
           responsive: true,
           title: {
             display: true,
-            text: 'Run Session Comparisons',
+            text: 'Your Runs Breakdown',
             fontSize: 25,
             fontColor: 'black',
           },

@@ -11,7 +11,7 @@
     $run_id = $input['id'];
 
     $output = [
-        "success"=> false,
+        'success'=> false,
     ];
 
     $query = "DELETE FROM `run_stats` WHERE `id` = $run_id;
@@ -25,7 +25,9 @@
     }
 
     $output = [
-        "success"=> true
+        'success'=> true
     ];
+
+    print(json_encode($output));
 
 ?>
