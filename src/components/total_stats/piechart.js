@@ -12,11 +12,13 @@ export default props => {
         options = {{
           tooltips: {
             callbacks: {
-                label: function(tooltipItem, data) {
-                  // let date = new Date(null);
-                  // date.setSeconds(tooltipItem.yLabel);
+              label: function(tooltipItem, data) {
+                if(data.datasets[0].data[tooltipItem.index] === 1) {
+                  return `${data.datasets[0].data[tooltipItem.index]} run`;
+                } else {
                   return `${data.datasets[0].data[tooltipItem.index]} runs`;
                 }
+              }
             }
           },
           plugins: {
