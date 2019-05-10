@@ -5,8 +5,15 @@
     background-color: rgb(245, 245, 245);
     font-family: 'Open Sans', sans-serif;
 
+
+  .results-container {
+    top: 10vh;
+    position: relative;
+  }
+  
   .postRunMap {
     height: 30%;
+
 
     .col-12,
     .col-md-6,

@@ -132,7 +132,7 @@ class RunResult extends Component {
     return (
       <div className="postRunBody">
         <RunHeader />
-        <div className="container-fluid">
+        <div className="results-container container-fluid">
           <div className="postRunMap">
             <div className="row">
               {/* <div className="col-12 col-lg-6">

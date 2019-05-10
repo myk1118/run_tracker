@@ -15,7 +15,7 @@ export default props => {
             plugins: {
               datalabels: {
                  display: false,
-              }
+              },
             },
             maintainAspectRatio: false,
             responsive: true,
