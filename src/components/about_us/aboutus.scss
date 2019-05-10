@@ -15,22 +15,28 @@
     .nav-link-aboutus,
     .nav-link-logout {
         color: white;
+        position: absolute;
     }
 }
 
 .nav-link-home {
-    position: absolute;
     right: 18%;
 }
 
 .nav-link-aboutus {
-    position: absolute;
     right: 12%;
 }
 
 .nav-link-logout {
-    position: absolute;
     right: 6%;
+}
+
+.meetTheTeamContainer {
+    position: absolute;
+    top: 5vh;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100vw;
 }
 
 .meetTheTeam {
@@ -39,14 +45,16 @@
     margin: 12px;
 }
 
-.githubIcon {
-    width: 15%;
-}
+// .icon-container {
+//     margin: 10px;
+// }
 
-.linkedinIcon {
-    width: 15%;
-}
-
+.linkedinIcon,
+.githubIcon,
 .portfolioIcon {
-    width: 15%;
+    width: 12%;
+}
+
+.githubIcon {
+    margin: 5px;
 }

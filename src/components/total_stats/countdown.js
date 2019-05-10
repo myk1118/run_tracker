@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import './total_stats.scss';
 
 class Countdown extends Component {
-    state = {
-      days: 0,
-      hours: 0,
-      min: 0,
-      sec: 0,
-    }
-  
+  state = {
+    days: 0,
+    hours: 0,
+    min: 0,
+    sec: 0,
+  }
 
   componentDidMount() {
     this.interval = setInterval(() => {
@@ -35,15 +34,15 @@ class Countdown extends Component {
       sec: 0
     };
 
-    if (diff >= (365.25 * 86400)) { 
+    if (diff >= (365.25 * 86400)) {
       timeLeft.years = Math.floor(diff / (365.25 * 86400));
       diff -= timeLeft.years * 365.25 * 86400;
     }
-    if (diff >= 86400) { 
+    if (diff >= 86400) {
       timeLeft.days = Math.floor(diff / 86400);
       diff -= timeLeft.days * 86400;
     }
-    if (diff >= 3600) { 
+    if (diff >= 3600) {
       timeLeft.hours = Math.floor(diff / 3600);
       diff -= timeLeft.hours * 3600;
     }
@@ -75,8 +74,8 @@ class Countdown extends Component {
       <div className="Countdown">
         <span className="Countdown-col">`
           <span className="Countdown-col-element">
-              <strong>{this.addLeadingZeros(countDown.days)}</strong>
-              <span>{countDown.days === 1 ? 'Day' : 'Days'}</span>
+            <strong>{this.addLeadingZeros(countDown.days)}</strong>
+            <span>{countDown.days === 1 ? 'Day' : 'Days'}</span>
           </span>
         </span>
 
@@ -86,7 +85,6 @@ class Countdown extends Component {
             <span>Hours</span>
           </span>
         </span>
-
 
         <span className="Countdown-col">
           <span className="Countdown-col-element">

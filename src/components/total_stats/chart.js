@@ -1,20 +1,20 @@
 import React from 'react';
-import {Bar, Line, Pie} from 'react-chartjs-2';
+import { Bar, Line, Pie } from 'react-chartjs-2';
 import './total_stats.scss';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 export default props => {
 
-    const runs = props.runCount > 1 ? `${props.runCount} Runs` : `${props.runCount} Run`;
-    return (
-      <div className="line-graph-container">
-        <article className="runGraph">
+  const runs = props.runCount > 1 ? `${props.runCount} Runs` : `${props.runCount} Run`;
+  return (
+    <div className="line-graph-container">
+      <article className="runGraph">
         <Line
           data={props.chartData}
           options={{
             plugins: {
               datalabels: {
-                 display: false,
+                display: false,
               }
             },
             maintainAspectRatio: false,
@@ -54,6 +54,6 @@ export default props => {
           }}
         />
       </article>
-      </div>
-    )
+    </div>
+  )
 }
