@@ -83,6 +83,7 @@ class TotalStats extends React.Component {
               label: 'miles',
               data: [...distances],
               borderColor: 'blue',
+              backgroundColor: 'rgba(216,191,216,0.4)',
             }
           ]
         },
@@ -98,10 +99,10 @@ class TotalStats extends React.Component {
         <RunHeader />
         <div className="container-fluid">
         <div className="first-row row">
-          <div className="col-lg-6 col-12">
+          <div className="col-lg-10 offset-lg-1 col-12 ">
             <Chart chartData={chartData} runCount={runCount}/>
           </div>
-          <div className="col-12 col-lg-6">
+          <div className="col-lg-10 offset-lg-1 col-12 ">
             <PersonalBests
               longestRun={longestRun}
               lastRunDate={lastRunDate}
@@ -111,10 +112,10 @@ class TotalStats extends React.Component {
           </div>
         </div>
         <div className="second-row row">
-          <div className="col-lg-6 col-12 text-center">
+          <div className="col-lg-10 offset-lg-1 col-12 text-center">
             <PieChart pieChartData={pieChartData} />
           </div>
-          <div className="col-lg-6 col-12 text-center">
+          <div className="mt-1 col-lg-10 offset-lg-1 col-12 text-center">
             <EventDate/>
           </div>
         </div>

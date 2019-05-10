@@ -6,6 +6,7 @@ import apiKey from '../googlemap';
 import './run_results.scss';
 import ResultsDisplay from './results_display';
 
+
 class RunResult extends Component {
   constructor(props) {
     super(props);
@@ -93,7 +94,7 @@ class RunResult extends Component {
               label: 'Pace',
               data: [...time2],
               borderColor: 'blue',
-              backgroundColor: '#1E90FF',
+              backgroundColor: 'rgba(30, 144, 255, 0.7)',
               borderWidth: 1,
               borderColor: 'white',
               hoverBorderWidth: 3,
@@ -133,11 +134,11 @@ class RunResult extends Component {
         <RunHeader />
         <div className="container-fluid">
           <div className="postRunMap">
-            <div className="row border-bottom">
-              <div className="col-12 col-lg-6">
+            <div className="row">
+              {/* <div className="col-12 col-lg-6">
                 <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${currentLatLng.lat},${currentLatLng.lng}&zoom=14&size=640x200&markers=color:red%7C%7C${currentLatLng.lat},${currentLatLng.lng}&key=${apiKey}&`} />
-              </div>
-              <div className="col-12 col-lg-6 ">
+              </div> */}
+              <div className="col-12 col-lg-10 offset-lg-1 ">
                 <div className="run-message">
                   <p className="first-description text-center">{first_name}, here are your run results from {date.date} at {date.time}</p>
                   <p className="second-description">{this.runDescription(secondsRan, totalDistance)} </p>
@@ -147,7 +148,7 @@ class RunResult extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-6 col-12 text-center run-data">
+            <div className="results-display col-lg-10 offset-lg-1 col-12 text-center run-data">
               <ResultsDisplay
                 minutesSecondsRan={minutesSecondsRan}
                 distance={distance}
@@ -155,7 +156,7 @@ class RunResult extends Component {
                 calories={calories}
               />
             </div>
-            <div className="col-lg-6 col-12">
+            <div className="col-lg-10 offset-lg-1 col-12">
               <ResultsChart
                 chartData={this.state.chartData}
                 distance={this.state.totalDistance}

@@ -52,7 +52,7 @@ class EventModal extends Component {
     render() {
       return (
         <Fragment>
-          <Button variant="primary" onClick={this.handleShow}>
+          <Button  className="mt-2"variant="primary" onClick={this.handleShow}>
             Target Event
           </Button>
           <Modal show={this.state.show} onHide={this.handleClose}>

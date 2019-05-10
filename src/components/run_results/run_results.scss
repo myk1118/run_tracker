@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 .postRunBody {
-  height: 100vh;
+  // height: 100vh;
+    background-color: rgb(245, 245, 245);
+    font-family: 'Open Sans', sans-serif;
 
   .postRunMap {
     height: 30%;
@@ -21,7 +25,7 @@
     text-align: center;
 
     .first-description {
-      font-size: 1.4rem;
+      font-size: 2rem;
       font-weight: bold;
     }
 
@@ -36,6 +40,11 @@
 
   .bar-graph-container {
     height: 55vh;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+    background: rgb(255, 255, 255);
+    border-radius: 4px;
+    margin-top: 5%;
 
     article {
       height: 100%;
@@ -49,7 +58,7 @@
       border-bottom: solid navy 1px;
       padding-top: 20%;
       font-size: 1.3rem;
-      color: #708090;
+      color: black;
     }
 
     .run-title+p {
@@ -71,6 +80,13 @@
   display: block;
   left: 30%;
 
+}
+
+.results-display {
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+  background: rgb(255, 255, 255);
+  border-radius: 4px;
 }
 
 
@@ -109,6 +125,7 @@
     .bar-graph-container {
       height: 55vh;
 
+
       article {
         height: 100%;
       }
@@ -118,10 +135,8 @@
       height: 50%;
 
       .run-title {
-        border-bottom: solid navy 1px;
         padding-top: 12%;
         font-size: 1rem;
-        color: #708090;
       }
 
       .run-title+p {

@@ -13,9 +13,6 @@ export default props => {
           tooltips: {
             callbacks: {
                 label: function(tooltipItem, data) {
-                  console.log('hello')
-                  console.log('tooltip: ', tooltipItem);
-                  console.log('data: ', data)
                   // let date = new Date(null);
                   // date.setSeconds(tooltipItem.yLabel);
                   return `${data.datasets[0].data[tooltipItem.index]} runs`;
@@ -37,7 +34,7 @@ export default props => {
           responsive: true,
           title: {
             display: true,
-            text: 'Run Session Comparisons',
+            text: 'Your Runs Breakdown',
             fontSize: 25,
             fontColor: 'black',
           },
