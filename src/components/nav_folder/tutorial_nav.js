@@ -10,7 +10,7 @@ class RunHeader extends Component {
         return (
             <Fragment>
                 <div className="headerContainer">
-                    <div className="mapHeaderContainer">
+                    <div className="mapHeaderContainer fixed-top">
                         <div className="navLogo">Run-Tracker</div>
                         <span className="oi questionMark" data-glyph="question-mark" data-toggle="modal" data-target="#exampleModalCenter">
                         </span>
@@ -24,7 +24,7 @@ class RunHeader extends Component {
                             <span className="oi" data-glyph="account-logout"></span>
                         </NavLink>
                     </div>
-                    <nav className="navbar navbar-custom">
+                    <nav className="navbar navbar-custom fixed-top">
                         <ul className="nav navbar-nav">
                             <li><NavLink className="nav-link" activeClassName="active selected" exact to="/">Runs</NavLink></li>
                             <li><NavLink className="nav-link" activeClassName="active selected" to="/totalstats">Total Stats</NavLink></li>
@@ -35,19 +35,21 @@ class RunHeader extends Component {
                 <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLongTitle">How to use Run-Tracker</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
-                                Click plus (+) to start and record a new run.<br />
-                                Click a runner to view your past run.
-                        </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                {/* <button type="button" className="btn btn-primary">Save changes</button> */}
+                            {/* <div className="modal-header"> */}
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div className="modal-container">
+                                <h5 className="modal-title" id="exampleModalLongTitle">How to Use Run-Tracker</h5>
+                                {/* </div> */}
+                                <div className="modal-body">
+                                    • Click plus (+) to start and record a new run<br />
+                                    • Click a runner to view your past run
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    {/* <button type="button" className="btn btn-primary">Save changes</button> */}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,51 +1,39 @@
-.headerContainer {
-    position: relative;
-    padding: 0;
-    z-index: 3;
-    margin: 0;
-    height: 10vh;
-    width: 100%;
+.mapHeaderContainer {
+    display: flex;
+    align-items: center;
+    height: 5vh;
     background-color: #81b3c2;
-
-    .mapHeaderContainer {
-        display: flex;
-        align-items: center;
-        height: 5vh;
-        background-color: #81b3c2;
-    }
-
-    .navLogo {
-        color: white;
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, 0%);
-    }
-
-    .nav-link-home,
-    .nav-link-aboutus,
-    .nav-link-logout {
-        color: white;
-    }
 }
 
-.nav-link-home {
+.navLogo {
+    color: white;
     position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.nav-link-home,
+.nav-link-aboutus,
+.nav-link-logout,
+.questionMark {
+    color: white;
+    position: absolute;
+}
+
+
+.nav-link-home {
     right: 16%;
 }
 
 .nav-link-aboutus {
-    position: absolute;
     right: 10%;
 }
 
 .nav-link-logout {
-    position: absolute;
     right: 4%;
 }
 
 .questionMark {
-    color: white;
-    position: absolute;
     left: 4%;
 }
 
@@ -91,9 +79,9 @@
     }
 }
 
-
 .navbar {
     padding: 0;
+    top: 5vh;
 
     .nav {
         display: table;
@@ -122,4 +110,40 @@ li.nav-link {
 
 ul li:first-child {
     border-left: 0;
+}
+
+.modal-content {
+    border: transparent;
+    background-color: #f0e8d9;
+    height: 25vh;
+}
+
+.close {
+    position: absolute;
+    right: 5%;
+    top: 5%;
+}
+
+.modal-container {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    align-self: center;
+}
+
+.modal-title {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-body {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.modal-footer {
+    justify-content: center;
+    border-top: transparent;
+    padding: 0;
 }

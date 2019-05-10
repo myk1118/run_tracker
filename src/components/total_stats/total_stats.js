@@ -30,7 +30,7 @@ class TotalStats extends React.Component {
 
   async getPersonalBests() {
     const bests = await axios.get('/api/personalbestquery.php');
-    const {longestRun, lastRunDate, averagePace, mostCalories} = bests.data;
+    const { longestRun, lastRunDate, averagePace, mostCalories } = bests.data;
     this.setState({
       longestRun,
       lastRunDate,
@@ -39,23 +39,22 @@ class TotalStats extends React.Component {
     })
   }
 
-
   getChartData() {
     axios.get('/api/get_table_data.php').then(resp => {
       const { tableItems } = resp.data;
       const dates = tableItems.reverse().map(item => item.date);
       const distances = tableItems.map(item => item.distance);
-      const dataArray = [0,0,0,0,0];
+      const dataArray = [0, 0, 0, 0, 0];
 
       tableItems.forEach(run => {
-        const {distance} = run
-        if(distance > 8) {
+        const { distance } = run
+        if (distance > 8) {
           dataArray[4]++;
-        } else if(distance > 6 ) {
+        } else if (distance > 6) {
           dataArray[3]++;
-        } else if(distance > 4) {
+        } else if (distance > 4) {
           dataArray[2]++;
-        } else if(distance > 2) {
+        } else if (distance > 2) {
           dataArray[1]++;
         } else {
           dataArray[0]++;
@@ -90,35 +89,34 @@ class TotalStats extends React.Component {
     })
   }
 
-
   render() {
-    const {chartData, pieChartData, runCount, longestRun, lastRunDate, averagePace, mostCalories} = this.state;
+    const { chartData, pieChartData, runCount, longestRun, lastRunDate, averagePace, mostCalories } = this.state;
     return (
       <div className="total-stats">
         <RunHeader />
-        <div className="container-fluid">
-        <div className="first-row row">
-          <div className="col-lg-6 col-12">
-            <Chart chartData={chartData} runCount={runCount}/>
+        <div className="totalStatsContainer container-fluid">
+          <div className="first-row row">
+            <div className="col-lg-6 col-12">
+              <Chart chartData={chartData} runCount={runCount} />
+            </div>
+            <div className="col-12 col-lg-6">
+              <PersonalBests
+                longestRun={longestRun}
+                lastRunDate={lastRunDate}
+                averagePace={averagePace}
+                mostCalories={mostCalories}
+              />
+            </div>
           </div>
-          <div className="col-12 col-lg-6">
-            <PersonalBests
-              longestRun={longestRun}
-              lastRunDate={lastRunDate}
-              averagePace={averagePace}
-              mostCalories={mostCalories}
-            />
+          <div className="second-row row">
+            <div className="col-lg-6 col-12 text-center">
+              <PieChart pieChartData={pieChartData} />
+            </div>
+            <div className="col-lg-6 col-12 text-center">
+              <EventDate />
+            </div>
           </div>
         </div>
-        <div className="second-row row">
-          <div className="col-lg-6 col-12 text-center">
-            <PieChart pieChartData={pieChartData} />
-          </div>
-          <div className="col-lg-6 col-12 text-center">
-            <EventDate/>
-          </div>
-        </div>
-      </div>
       </div>
     )
   }

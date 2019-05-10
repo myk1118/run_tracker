@@ -1,7 +1,3 @@
-.runs {
-  height: 90%;
-}
-
 .backgroundImage {
   height: 100%;
   width: 100%;
@@ -10,11 +6,11 @@
   object-fit: cover;
   opacity: 0.75;
   position: fixed;
-  top: 0;
+  top: 10vh;
 }
 
 .runButtonsContainer {
-  top: 10%;
+  top: 10vh;
   position: absolute;
   display: flex;
   flex-wrap: wrap;
