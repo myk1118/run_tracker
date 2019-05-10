@@ -27,7 +27,7 @@ class MapNav extends Component {
   render() {
     return (
       <div className="headerContainer">
-        <div className="mapHeaderContainer">
+        <div className="mapHeaderContainer fixed-top">
           <div className="navLogo">Run-Tracker</div>
           <NavLink className="nav-link-home" exact to="/">
             <span className="oi" data-glyph="home"></span>
@@ -39,8 +39,8 @@ class MapNav extends Component {
             <span className="oi" data-glyph="account-logout"></span>
           </NavLink>
         </div>
-        <nav className="navbar navbar-custom">
-          <ul className="nav navbar-nav abc">
+        <nav className="navbar navbar-custom fixed-top">
+          <ul className="nav navbar-nav">
             <li onClick={this.handleClickMap} className={this.state.mapClicked ? 'nav-link selected' : 'nav-link'}>Map</li>
             <li onClick={this.handleClickMiles} className={this.state.milesClicked ? 'nav-link selected' : 'nav-link'}>Miles Run </li>
           </ul>

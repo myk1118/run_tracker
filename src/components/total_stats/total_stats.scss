@@ -1,4 +1,58 @@
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+// .total-stats {
+//   // height: 75vh;
+//
+//   .first-row {
+//
+//     .line-graph-container {
+//       height: 37vh;
+//
+//       article {
+//         height: 100%;
+//       }
+//     }
+//
+//     .personal-bests {
+//       .table {
+//         tr {
+//           th {
+//             text-align: left;
+//             font-weight: normal;
+//             border-top: none;
+//           }
+//
+//           td {
+//             border-top: none;
+//             font-size: 2.5rem;
+//             font-weight: bold;
+//
+//             span {
+//               font-weight: normal;
+//               font-size: 1rem;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+//
+//   .second-row {
+//
+//     .pie-chart-container {
+//       height: 80%;
+//       height: 40vh;
+//
+//       .graph-container {
+//         height: 100%;
+//         border-top: dotted lightgrey;
+//         border-bottom: dotted lightgrey;
+//       }
+//     }
+//   }
+// }
+
 
 .runCount {
   height: 100%;
@@ -14,7 +68,7 @@
   }
 
   .filterByDays {
-    margin-right: 8%;
+    margin-right: 1%;
   }
 
   .total,
@@ -22,8 +76,6 @@
   .week {
     cursor: pointer;
   }
-
-
 
   table {
     color: rgb(51, 51, 51);
@@ -136,6 +188,7 @@
 .total-stats {
   background-color: rgb(245, 245, 245);
   font-family: 'Open Sans', sans-serif;
+
 
   .first-row {
 
@@ -326,6 +379,17 @@
   position: relative;
   top: 20px;
 }
+
+.totalStatsContainer {
+  position: relative;
+  top: 10vh;
+}
+
+.activityLogContainer {
+  position: relative;
+  top: 10vh;
+}
+
 
 @media(max-width: 1200px) {
   .total-stats {

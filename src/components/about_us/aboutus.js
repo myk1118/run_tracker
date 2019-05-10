@@ -12,7 +12,7 @@ import { NavLink } from 'react-router-dom';
 export default props => {
     return (
         <div>
-            <div className="aboutUsNav">
+            <div className="aboutUsNav fixed-top">
                 <div className="navLogo">Run-Tracker</div>
                 <NavLink className="nav-link-home" to="/">
                     <span className="oi" data-glyph="home"></span>
