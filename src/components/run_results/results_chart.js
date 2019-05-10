@@ -64,7 +64,8 @@ export default props => {
             display: true,
             text: 'Pace per Mile',
             fontSize: 25,
-            fontColor: 'black'
+            fontColor: 'black',
+            padding: 10,
           },
           legend: {
             display: false,
