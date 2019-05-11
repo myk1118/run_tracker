@@ -135,7 +135,6 @@
 }
 
 .total-stats {
-  background-color: rgb(245, 245, 245);
   font-family: 'Open Sans', sans-serif;
 
 
@@ -148,6 +147,7 @@
       width: 100%;
       box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
       border-radius: 4px;
+      margin-top: 3%;
 
       article {
         height: 100%;
@@ -155,13 +155,13 @@
     }
 
     .personal-bests {
-      .row {
+      // .row {
       width: 100%;
       box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
       background: rgb(255, 255, 255);
       border-radius: 4px;
       margin-top: 5%;
-    }
+    // }
 
       .table {
         tr {
@@ -189,7 +189,6 @@
   .second-row {
 
     .pie-chart-container {
-      height: 80%;
       height: 40vh;
 
       .graph-container {
@@ -332,6 +331,7 @@
 .totalStatsContainer {
   position: relative;
   top: 10vh;
+  background-color: rgb(245, 245, 245);
 }
 
 .activityLogContainer {
@@ -370,6 +370,7 @@
 
   //Total Stats
   .total-stats {
+
     .first-row {
       .line-graph-container {
         height: 50vh;

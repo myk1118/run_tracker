@@ -8,6 +8,7 @@ import ResultsDisplay from './results_display';
 
 
 
+
 class RunResult extends Component {
   constructor(props) {
     super(props);
@@ -133,20 +134,15 @@ class RunResult extends Component {
       <div className="postRunBody">
         <RunHeader />
         <div className="results-container container-fluid">
-          <div className="postRunMap">
             <div className="row">
-              {/* <div className="col-12 col-lg-6">
-                <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${currentLatLng.lat},${currentLatLng.lng}&zoom=14&size=640x200&markers=color:red%7C%7C${currentLatLng.lat},${currentLatLng.lng}&key=${apiKey}&`} />
-              </div> */}
               <div className="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
                 <div className="run-message">
-                  <p className="first-description text-center">{first_name}, here are your run results from {date.date} at {date.time}</p>
+                  <p className="first-description text-center">{first_name}, here are your results from {date.date} at {date.time}</p>
                   <p className="second-description">{this.runDescription(secondsRan, totalDistance)} </p>
                   <p className="location">{city ? <span className="oi" data-glyph="map-marker"></span> : ''} {city}</p>
                 </div>
               </div>
             </div>
-          </div>
           <div className="row">
             <div className="results-display col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12 text-center run-data">
               <ResultsDisplay

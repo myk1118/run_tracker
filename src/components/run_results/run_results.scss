@@ -1,40 +1,34 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 .postRunBody {
-  // height: 100vh;
-    background-color: rgb(245, 245, 245);
     font-family: 'Open Sans', sans-serif;
 
 
   .results-container {
+    background-color: rgb(245, 245, 245);
     top: 10vh;
     position: relative;
   }
-  
-  .postRunMap {
-    height: 30%;
 
-
-    .col-12,
-    .col-md-6,
-    .col-lg-6 {
-      padding-left: 0;
-      padding-right: 0;
-
-      img {
-        height: 100%;
-        width: 100%;
-      }
-    }
-  }
 
   .run-message {
+    // background-color: rgba(255,220,0, 0.5);
     text-align: center;
     margin-bottom: 4%;
+    background-color: white;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+    border-radius: 4px;
+    margin-top: 3%;
+    padding-bottom: 1px;
+    padding-top: 10px;
 
     .first-description {
       font-size: 2rem;
       font-weight: bold;
+      border-bottom: 1px solid lightgrey;
+      margin-left: 3%;
+      margin-right: 3%;
     }
 
     .second-description,
@@ -53,6 +47,7 @@
     background: rgb(255, 255, 255);
     border-radius: 4px;
     margin-top: 5%;
+    margin-bottom: 3%;
 
     article {
       height: 100%;
@@ -111,21 +106,7 @@
   .postRunBody {
     height: 100vh;
 
-    .postRunMap {
-      height: 30%;
 
-      .col-12,
-      .col-md-6,
-      .col-lg-6 {
-        padding-left: 0;
-        padding-right: 0;
-
-        img {
-          height: 100%;
-          width: 100%;
-        }
-      }
-    }
 
     .run-message {
       .first-description {
