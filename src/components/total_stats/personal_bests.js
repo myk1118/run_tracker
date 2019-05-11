@@ -9,7 +9,7 @@ export default props => {
       <div className="personal-bests">
         <div className="row last-run">
           <div className="col-6">
-            <table className="table table-hover">
+            <table className="table">
               <thead>
                 <tr>
                   <th scope="col">Last Run:</th>
@@ -40,7 +40,7 @@ export default props => {
         personal bests
         <div className="row bests-per-run">
           <div className="col-6">
-            <table className="table table-hover">
+            <table className="table">
               <thead>
                 <tr>
                   <th scope="col">Longest Run:</th>
@@ -54,7 +54,7 @@ export default props => {
             </table>
           </div>
           <div className="col-6">
-            <table className="table table-hover">
+            <table className="table">
               <thead>
                 <tr>
                   <th scope="col">Calories Burned:</th>
@@ -71,7 +71,7 @@ export default props => {
         totals
         <div className="row total-statistics">
           <div className="col-6">
-            <table className="table table-hover">
+            <table className="table">
               <thead>
                 <tr>
                   <th scope="col">Average Pace:</th>
@@ -85,7 +85,7 @@ export default props => {
             </table>
           </div>
           <div className="col-6">
-            <table className="table table-hover">
+            <table className="table">
               <thead>
                 <tr>
                   <th scope="col">Total Calories Burned:</th>
@@ -99,7 +99,7 @@ export default props => {
             </table>
           </div>
           <div className="col-6">
-            <table className="table table-hover">
+            <table className="table">
               <thead>
                 <tr>
                   <th scope="col">Total Miles</th>
@@ -113,7 +113,7 @@ export default props => {
             </table>
           </div>
           <div className="col-6">
-            <table className="table table-hover">
+            <table className="table">
               <thead>
                 <tr>
                   <th scope="col">Total Minutes Ran</th>
