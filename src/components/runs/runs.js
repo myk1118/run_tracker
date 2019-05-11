@@ -2,10 +2,9 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import RunHeader from '../nav_folder/tutorial_nav';
 import './runs.scss';
-// import plus from './images/plus.png';
-// import runIcon from './images/running-icon.png';
 import backgroundImage from '../account/login/images/image19.jpeg';
 import axios from 'axios';
+import Logo from '../../../public/dist/images/logo_black.png';
 
 class Runs extends React.Component {
   constructor(props) {
@@ -53,6 +52,7 @@ class Runs extends React.Component {
               </NavLink>
             </div>
             {this.state.date_buttons}
+            <img className="logo" src={Logo}/>
           </div>
         </div>
       </Fragment>

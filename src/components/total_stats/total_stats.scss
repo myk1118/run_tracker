@@ -156,14 +156,38 @@
     }
 
     .personal-bests {
-      // .row {
-      width: 100%;
-      // box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
-      box-shadow: 0.125rem 0.125rem 0.375rem #b6b6b6;
-      background: rgb(255, 255, 255);
-      border-radius: 4px;
-      margin-top: 5%;
-    // }
+      .row {
+        margin: auto;
+        width: 100%;
+        // box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+        box-shadow: 0.125rem 0.125rem 0.375rem #b6b6b6;
+        background: rgb(255, 255, 255);
+        border-radius: 4px;
+        margin-top: 5%;
+      }
+
+      .personal-bests-title {
+        text-align: center;
+        font-weight: bold;
+        border-bottom: 2px solid darkgrey;
+        width: 100%;
+        background-color: lightgrey;
+        border-radius: 4px 4px 0 0;
+      }
+      tbody {
+        border-radius: 4px;
+        border: 1px solid black;
+      }
+      .personal-bests-date {
+        font-size: 1rem;
+      }
+
+
+      .best {
+        text-align: center;
+        border: 2px solid black;
+        border-radius: 4px;
+      }
 
       .table {
         tr {
@@ -340,6 +364,39 @@
 .activityLogContainer {
   position: relative;
   top: 10vh;
+}
+
+.logo {
+  height: 35px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 2%;
+  margin-bottom: 2%;
+  opacity: 0.7;
+}
+
+#longestRun {
+  p {
+    margin-top: 4%;
+    margin-bottom: 0.7rem;
+  }
+  .data-and-date-container {
+    padding-top: 0;
+
+    .best {
+      font-size: 1.5rem;
+      margin-top: 0;
+      padding-top: 3%;
+      padding-bottom: 4%;
+      margin-bottom: 0;
+    }
+    .personal-bests-date{
+      margin-bottom: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
 }
 
 

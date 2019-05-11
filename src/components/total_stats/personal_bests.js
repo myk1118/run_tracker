@@ -10,6 +10,7 @@ export default props => {
     return (
       <div className="personal-bests">
         <div className="row last-run">
+          <p className="personal-bests-title">LAST RUN</p>
           <div className="col-6">
             <table className="table">
               <thead>
@@ -39,10 +40,17 @@ export default props => {
             </table>
           </div> */}
         </div>
-        personal bests
         <div className="row bests-per-run">
-          <div className="col-6">
-            <table className="table">
+          <p className="personal-bests-title">PERSONAL BESTS</p>
+          <div id="longestRun"className="col-6">
+            <div>
+              <p>Longest Run:</p>
+              <div className="data-and-date-container">
+                <p className="best">{longestRun} <span>{longestRun ? 'miles' : ''}</span></p>
+                <p className="personal-bests-date">{longestRunDate}</p>
+              </div>
+            </div>
+            {/* <table className="table">
               <thead>
                 <tr>
                   <th scope="col">Longest Run:</th>
@@ -50,12 +58,11 @@ export default props => {
               </thead>
               <tbody>
                 <tr>
-                  <td className="best">{longestRun} <span>{longestRun ? 'miles' : ''}</span>
-                    <span> {longestRunDate}</span>
-                  </td>
+                  <td className="best">{longestRun} <span>{longestRun ? 'miles' : ''}</span></td>
                 </tr>
+                <span className="personal-bests-date"> {longestRunDate}</span>
               </tbody>
-            </table>
+            </table> */}
           </div>
           <div className="col-6">
             <table className="table">
@@ -66,16 +73,17 @@ export default props => {
               </thead>
               <tbody>
                 <tr>
-                  <td className="best">{mostCalories}<span> {mostCalories ? 'calories' : ''}</span>
-                    <span> {highestCalorieDate}</span>
-                  </td>
+                  <td className="best">{mostCalories}<span> {mostCalories ? 'calories' : ''}</span></td>
                 </tr>
+                <span className="personal-bests-date"> {highestCalorieDate}</span>
               </tbody>
             </table>
           </div>
         </div>
-        totals
+
+
         <div className="row total-statistics">
+          <p className="personal-bests-title">ALL-TIME</p>
           <div className="col-6">
             <table className="table">
               <thead>

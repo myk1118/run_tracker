@@ -7,6 +7,7 @@ import axios from 'axios';
 import EventDate from './event_date';
 import PieChart from './piechart';
 import EventModal from './modal/modal';
+import Logo from '../../../public/dist/images/logo_black.png';
 
 class TotalStats extends React.Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class TotalStats extends React.Component {
         longestRun,
         lastRunDate,
         mostCalories,
-        averagePace,
+        averagePace: averagePace.length > 4 ? averagePace.replace(/^0/, ' ') : averagePace,
         totalCalories,
         totalDistance,
         totalTime,
@@ -108,10 +109,10 @@ class TotalStats extends React.Component {
         <RunHeader />
         <div className="totalStatsContainer container-fluid">
         <div className="first-row row">
-          <div className="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12 ">
+          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 ">
             <Chart chartData={chartData} runCount={runCount}/>
           </div>
-          <div className="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12 ">
+          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 ">
             <PersonalBests
               longestRun={longestRun}
               lastRunDate={lastRunDate}
@@ -127,13 +128,14 @@ class TotalStats extends React.Component {
           </div>
         </div>
         <div className="second-row row">
-          <div className="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12 text-center">
+          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center">
             <PieChart pieChartData={pieChartData} />
           </div>
-          <div className="mt-1 col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12 text-center">
+          <div className="mt-1 col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center">
             <EventDate/>
           </div>
         </div>
+        <img className="logo" src={Logo}/>
       </div>
     </div>
     )
