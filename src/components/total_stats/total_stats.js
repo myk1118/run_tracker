@@ -109,7 +109,7 @@ class TotalStats extends React.Component {
         <RunHeader />
         <div className="totalStatsContainer container-fluid">
         <div className="first-row row">
-          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 ">
+          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 chart-component-container">
             <Chart chartData={chartData} runCount={runCount}/>
           </div>
           <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 ">
@@ -128,7 +128,7 @@ class TotalStats extends React.Component {
           </div>
         </div>
         <div className="second-row row">
-          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center">
+          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center chart-component-container">
             <PieChart pieChartData={pieChartData} />
           </div>
           <div className="mt-1 col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center">

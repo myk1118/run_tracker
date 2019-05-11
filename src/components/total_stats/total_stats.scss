@@ -172,10 +172,10 @@
         border-bottom: 2px solid darkgrey;
         width: 100%;
         background-color: lightgrey;
-        border-radius: 4px 4px 0 0;
+        // border-radius: 4px 4px 0 0;
       }
       tbody {
-        border-radius: 4px;
+        // border-radius: 4px;
         border: 1px solid black;
       }
       .personal-bests-date {
@@ -186,7 +186,7 @@
       .best {
         text-align: center;
         border: 2px solid black;
-        border-radius: 4px;
+        // border-radius: 4px;
       }
 
       .table {
@@ -431,7 +431,13 @@
   //Total Stats
   .total-stats {
 
+    .chart-component-container{
+      padding-left: 1%;
+      padding-right: 1%;
+    }
+
     .first-row {
+
       .line-graph-container {
         height: 50vh;
 

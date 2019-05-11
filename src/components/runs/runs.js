@@ -52,7 +52,7 @@ class Runs extends React.Component {
               </NavLink>
             </div>
             {this.state.date_buttons}
-            <img className="logo" src={Logo}/>
+              {/* <img className="logo" src={Logo}/> */}
           </div>
         </div>
       </Fragment>

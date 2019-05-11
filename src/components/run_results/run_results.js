@@ -136,7 +136,7 @@ class RunResult extends Component {
         <RunHeader />
         <div className="results-container container-fluid">
             <div className="row">
-              <div className="col-12 col-md-10 offset-md-1 col-xl-8 offset-xl-2">
+              <div className="col-12 col-md-10 offset-md-1 col-xl-8 offset-xl-2 run-message-container">
                 <div className="run-message">
                   <p className="first-description text-center">{first_name}, here are your results from {date.date} at {date.time}</p>
                   <p className="second-description">{this.runDescription(secondsRan, totalDistance)} </p>
