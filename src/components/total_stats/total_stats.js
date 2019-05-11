@@ -16,10 +16,7 @@ class TotalStats extends React.Component {
       chartData: {},
       pieChartData: {},
       runCount: 0,
-      longestRun: null,
-      lastRunDate: null,
-      averagePace: null,
-      mostCalories: null,
+      personalBests: {},
     }
   }
 
@@ -31,15 +28,21 @@ class TotalStats extends React.Component {
   async getPersonalBests() {
     const bests = await axios.get('/api/personalbestquery.php');
     console.log('bests: ',bests.data)
-    const { longestRun, lastRunDate, averagePace, mostCalories, totalCalories, totalDistance, totalTime } = bests.data;
+    const { longestRun, lastRunDate, averagePace, mostCalories, totalCalories,
+            totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate } = bests.data;
     this.setState({
-      longestRun,
-      lastRunDate,
-      mostCalories,
-      averagePace,
-      totalCalories,
-      totalDistance,
-      totalTime
+      personalBests: {
+        longestRun,
+        lastRunDate,
+        mostCalories,
+        averagePace,
+        totalCalories,
+        totalDistance,
+        totalTime,
+        lastRunTime: lastRunTime.replace(/^0/, ' '),
+        longestRunDate,
+        highestCalorieDate,
+      },
     })
   }
 
@@ -96,7 +99,9 @@ class TotalStats extends React.Component {
   }
 
   render() {
-    const {chartData, pieChartData, runCount, longestRun, lastRunDate, averagePace, mostCalories, totalCalories, totalDistance, totalTime} = this.state;
+    const{chartData, pieChartData, runCount} = this.state;
+    const {longestRun, lastRunDate, averagePace, mostCalories,
+          totalCalories, totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate} = this.state.personalBests;
     console.log(this.state)
     return (
       <div className="total-stats">
@@ -115,6 +120,9 @@ class TotalStats extends React.Component {
               totalCalories={totalCalories}
               totalDistance={totalDistance}
               totalTime={totalTime}
+              lastRunTime={lastRunTime}
+              longestRunDate={longestRunDate}
+              highestCalorieDate={highestCalorieDate}
             />
           </div>
         </div>

@@ -31,22 +31,75 @@ if(mysqli_num_rows($result) === 0){
 
 $data = mysqli_fetch_assoc($result);
 
+//GET THE DATE OF THE LONGEST RUN
+$longestRunQuery = "SELECT `date` FROM `run_stats` WHERE `user_id` = $userid
+                  ORDER BY `distance` DESC LIMIT 0, 1";
+
+$longestRunResult = mysqli_query($conn, $longestRunQuery);
+
+if(!$longestRunResult){
+	throw new Exception( mysqli_error($conn) );
+}
+
+if(mysqli_num_rows($longestRunResult) === 0){
+	throw new Exception( "no run data available");
+}
+
+$longestRunDateData = mysqli_fetch_assoc($longestRunResult);
+
+$longestRunDate = new DateTime($longestRunDateData['date']);
+$formattedLongestRunDate = $longestRunDate->format('m-d-Y');
 
 
 
+//GET THE DATE OF THE HIGHEST CALORIES
+$highestCalorieQuery = "SELECT `date` FROM `run_stats` WHERE `user_id` = $userid
+                  ORDER BY `calories` DESC LIMIT 0, 1";
+
+$highestCalorieResult = mysqli_query($conn, $highestCalorieQuery);
+
+if(!$highestCalorieResult){
+	throw new Exception( mysqli_error($conn) );
+}
+
+if(mysqli_num_rows($highestCalorieResult) === 0){
+	throw new Exception( "no run data available");
+}
+
+$highestCalorieDateData = mysqli_fetch_assoc($highestCalorieResult);
+
+$highestCalorieDate = new DateTime($highestCalorieDateData['date']);
+$formattedHighestCalorieDate = $highestCalorieDate->format('m-d-Y');
+
+
+//get the date of the last run
 $date = new DateTime($data['lastDate']);
+$formattedDate = $date->format('m-d-Y');
+
+//find the time of the last run
+$parent = $data['lastDate'];
+$timestamp = strtotime($parent);
+$time = date('h:i a', $timestamp);
+
 
 $output = [];
 
-$output['lastRunDate'] = $date->format('m-d-Y');
+$output['lastRunDate'] = $formattedDate;
+$output['lastRunTime'] = $time;
+
+
 $output['mostCalories'] = (int)$data['maxCalories'];
 $output['longestRun'] = (float)$data['longestDistance'];
+$output['longestRunDate'] = $formattedLongestRunDate;
+$output['highestCalorieDate'] = $formattedHighestCalorieDate;
+
+
 $output['totalDistance'] = (float)$data['totalDistance'];
-$output['fastestPace'] = (int)$data['maxDistance'];
+// $output['fastestPace'] = (int)$data['maxDistance'];
 $output['totalCalories'] = (int)$data['totalCalories'];
 $output['longestTime'] = (int)$data['longestTime'];
 $output['totalTime'] = (int)$data['totalTime'];
-$output['fastestpace'] = gmdate("i:s", round((int)$data['fastestpace'],0));
+// $output['fastestpace'] = gmdate("i:s", round((int)$data['fastestpace'],0));
 
 $pace_in_seconds = round((int)$data['totalTime'] / (float)$data['totalDistance']);
 $output['averagePace'] = gmdate("i:s", (int)$pace_in_seconds);

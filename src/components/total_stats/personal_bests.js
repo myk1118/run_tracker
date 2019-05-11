@@ -3,8 +3,10 @@ import axios from 'axios';
 
 export default props => {
 
-    const {longestRun, lastRunDate, averagePace, mostCalories, totalCalories, totalDistance, totalTime} = props;
-    const totalTimeInMinutes = (totalTime/60).toFixed(2)
+    const {longestRun, lastRunDate, averagePace, mostCalories, totalCalories,
+      totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate} = props;
+    const totalTimeInMinutes = (totalTime/60).toFixed(2);
+
     return (
       <div className="personal-bests">
         <div className="row last-run">
@@ -17,7 +19,7 @@ export default props => {
               </thead>
               <tbody>
                 <tr>
-                  <td className="best">{lastRunDate}</td>
+                  <td className="best">{lastRunDate} <span>{lastRunTime}</span></td>
                 </tr>
               </tbody>
             </table>
@@ -48,7 +50,9 @@ export default props => {
               </thead>
               <tbody>
                 <tr>
-                  <td className="best">{longestRun} <span>{longestRun ? 'miles' : ''}</span></td>
+                  <td className="best">{longestRun} <span>{longestRun ? 'miles' : ''}</span>
+                    <span> {longestRunDate}</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -62,7 +66,9 @@ export default props => {
               </thead>
               <tbody>
                 <tr>
-                  <td className="best">{mostCalories}<span> {mostCalories ? 'calories' : ''}</span></td>
+                  <td className="best">{mostCalories}<span> {mostCalories ? 'calories' : ''}</span>
+                    <span> {highestCalorieDate}</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
