@@ -179,6 +179,11 @@
 
       .right-arrow {
         cursor: pointer;
+        position: relative;
+      }
+
+      .right-arrow:hover {
+        left: 3px;
       }
       .personal-bests-title {
         text-align: center;
@@ -201,6 +206,7 @@
         box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
         border-radius: 2px;
         font-weight: bold;
+        // border-top: 5px solid rgba(216,191,216,1);
       }
     }
 
@@ -324,8 +330,6 @@
   p {
     margin-top: 4%;
   }
-  .data-and-date-container {
-    padding-top: 0;
 
     .best {
       font-size: 1.5rem;
@@ -339,7 +343,6 @@
       margin-top: 0;
       padding-top: 0;
     }
-  }
 }
 
 
