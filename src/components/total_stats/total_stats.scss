@@ -189,8 +189,9 @@
 
       .best {
         text-align: center;
-        border: 2px solid black;
-        // border-radius: 4px;
+        border: 2px solid lightgrey;
+        box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+        border-radius: 4px;
       }
 
       .table {
@@ -381,7 +382,7 @@
   opacity: 0.7;
 }
 
-#longestRun {
+.longestRun {
   p {
     margin-top: 4%;
     margin-bottom: 0.7rem;

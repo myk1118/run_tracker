@@ -42,7 +42,7 @@ export default props => {
         </div>
         <div className="row bests-per-run">
           <p className="personal-bests-title">PERSONAL BESTS</p>
-          <div id="longestRun"className="col-6">
+          <div className="longestRun col-6">
             <div>
               <p>Longest Run:</p>
               <div className="data-and-date-container">
@@ -50,34 +50,15 @@ export default props => {
                 <p className="personal-bests-date">{longestRunDate}</p>
               </div>
             </div>
-            {/* <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Longest Run:</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="best">{longestRun} <span>{longestRun ? 'miles' : ''}</span></td>
-                </tr>
-                <span className="personal-bests-date"> {longestRunDate}</span>
-              </tbody>
-            </table> */}
           </div>
-          <div className="col-6">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Calories Burned:</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="best">{mostCalories}<span> {mostCalories ? 'calories' : ''}</span></td>
-                </tr>
-                <span className="personal-bests-date"> {highestCalorieDate}</span>
-              </tbody>
-            </table>
+          <div className="longestRun col-6">
+            <div>
+              <p>Calories Burned:</p>
+              <div className="data-and-date-container">
+                <p className="best">{mostCalories} <span>{mostCalories ? 'calories' : ''}</span></p>
+                <p className="personal-bests-date">{highestCalorieDate}</p>
+              </div>
+            </div>
           </div>
         </div>
 
