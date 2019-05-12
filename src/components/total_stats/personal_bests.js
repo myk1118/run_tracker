@@ -65,7 +65,39 @@ export default props => {
 
         <div className="row total-statistics">
           <p className="personal-bests-title">ALL-TIME</p>
-          <div className="col-6">
+          <div className="all-time col-6">
+            <div>
+              <p className="all-time-title">Average Pace:</p>
+              <div className="data-and-date-container">
+                <p className="best">{averagePace}<span> {averagePace ? 'min/mile' : ''}</span></p>
+              </div>
+            </div>
+          </div>
+          <div className="all-time col-6">
+            <div>
+              <p className="all-time-title">Total Calories Burned:</p>
+              <div className="data-and-date-container">
+                <p className="best">{totalCalories}<span> {mostCalories ? 'calories' : ''}</span></p>
+              </div>
+            </div>
+          </div>
+          <div className="all-time col-6">
+            <div>
+              <p className="all-time-title">Total Miles</p>
+              <div className="data-and-date-container">
+                <p className="best">{totalDistance}<span> {totalDistance ? 'miles' : ''}</span></p>
+              </div>
+            </div>
+          </div>
+          <div className="all-time col-6">
+            <div>
+              <p className="all-time-title">Total Minutes Ran</p>
+              <div className="data-and-date-container">
+                <p className="best">{totalTimeInMinutes}<span> {totalTimeInMinutes ? 'minutes' : ''}</span></p>
+              </div>
+            </div>
+          </div>
+          {/* <div className="col-6">
             <table className="table">
               <thead>
                 <tr>
@@ -78,8 +110,8 @@ export default props => {
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div className="col-6">
+          </div> */}
+          {/* <div className="col-6">
             <table className="table">
               <thead>
                 <tr>
@@ -92,8 +124,8 @@ export default props => {
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div className="col-6">
+          </div> */}
+          {/* <div className="col-6">
             <table className="table">
               <thead>
                 <tr>
@@ -106,8 +138,8 @@ export default props => {
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div className="col-6">
+          </div> */}
+          {/* <div className="col-6">
             <table className="table">
               <thead>
                 <tr>
@@ -120,7 +152,7 @@ export default props => {
                 </tr>
               </tbody>
             </table>
-          </div>
+          </div> */}
         </div>
       </div>
     )
