@@ -31,6 +31,28 @@ if(mysqli_num_rows($result) === 0){
 
 $data = mysqli_fetch_assoc($result);
 
+
+//GET THE INFORMATION FROM THE LAST RUN
+$lastDateQuery = "SELECT `id`, `distance`, `time` FROM `run_stats` WHERE `user_id` = $userid
+                  ORDER BY `date` DESC LIMIT 0, 1";
+
+$lastDateResult = mysqli_query($conn, $lastDateQuery);
+
+if(!$lastDateResult ){
+	throw new Exception( mysqli_error($conn) );
+}
+if(mysqli_num_rows($lastDateResult) === 0){
+	throw new Exception( "no run data available");
+}
+
+$lastDateData = mysqli_fetch_assoc($lastDateResult);
+
+if((int)$lastDateData['time'] < 3600) {
+  $hrs_min_sec = "i:s";
+} else {
+  $hrs_min_sec = "H:i:s";
+}
+
 //GET THE DATE OF THE LONGEST RUN
 $longestRunQuery = "SELECT `date` FROM `run_stats` WHERE `user_id` = $userid
                   ORDER BY `distance` DESC LIMIT 0, 1";
@@ -74,7 +96,7 @@ $formattedHighestCalorieDate = $highestCalorieDate->format('m-d-Y');
 
 //get the date of the last run
 $date = new DateTime($data['lastDate']);
-$formattedDate = $date->format('m-d-Y');
+$formattedDate = $date->format('m.d.Y');
 
 //find the time of the last run
 $parent = $data['lastDate'];
@@ -83,6 +105,12 @@ $time = date('h:i a', $timestamp);
 
 
 $output = [];
+
+$output['latestRunInformation'] = [
+  'id' => (int)$lastDateData['id'],
+  'distance' => (float)$lastDateData['distance'],
+  'time' => gmdate($hrs_min_sec, (int)$lastDateData['time']),
+];
 
 $output['lastRunDate'] = $formattedDate;
 $output['lastRunTime'] = $time;

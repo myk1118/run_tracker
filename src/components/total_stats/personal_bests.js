@@ -4,42 +4,30 @@ import axios from 'axios';
 export default props => {
 
     const {longestRun, lastRunDate, averagePace, mostCalories, totalCalories,
-      totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate} = props;
+      totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate,
+      latestRunInformation} = props.personalBests;
+    const latestRunInfo = {...props.personalBests.latestRunInformation};
     const totalTimeInMinutes = (totalTime/60).toFixed(2);
 
     return (
       <div className="personal-bests">
         <div className="row last-run">
           <p className="personal-bests-title">LAST RUN</p>
-          <div className="col-6">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Last Run:</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="best">{lastRunDate} <span>{lastRunTime}</span></td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="col-3">
+            <p className="">{lastRunDate} <span>{lastRunTime}</span></p>
           </div>
-          {/* <div className="col-6">
-            <table className="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">Average Pace:</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="best">{averagePace}<span> {averagePace ? 'min/mile' : ''}</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div> */}
+          <div className="col-3">
+            <p className="">{lastRunDate} <span>{lastRunTime}</span></p>
+          </div>
+          <div className="col-3">
+            <p className="">{lastRunDate} <span>{lastRunTime}</span></p>
+          </div>
+          <div className="col-3">
+            <p className="">{lastRunDate} <span>{lastRunTime}</span></p>
+          </div>
         </div>
+
+
         <div className="row bests-per-run">
           <p className="personal-bests-title">PERSONAL BESTS</p>
           <div className="longestRun col-6">
@@ -97,62 +85,6 @@ export default props => {
               </div>
             </div>
           </div>
-          {/* <div className="col-6">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Average Pace:</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="best">{averagePace}<span> {averagePace ? 'min/mile' : ''}</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div> */}
-          {/* <div className="col-6">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Total Calories Burned:</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="best">{totalCalories}<span> {mostCalories ? 'calories' : ''}</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div> */}
-          {/* <div className="col-6">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Total Miles</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="best">{totalDistance}<span> {totalDistance ? 'miles' : ''}</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div> */}
-          {/* <div className="col-6">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Total Minutes Ran</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="best">{totalTimeInMinutes}<span> {totalTimeInMinutes ? 'minutes' : ''}</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div> */}
         </div>
       </div>
     )
