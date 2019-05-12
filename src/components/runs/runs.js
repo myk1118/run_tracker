@@ -4,7 +4,6 @@ import RunHeader from '../nav_folder/tutorial_nav';
 import './runs.scss';
 import backgroundImage from '../account/login/images/image19.jpeg';
 import axios from 'axios';
-import Logo from '../../../public/dist/images/logo_black.png';
 
 class Runs extends React.Component {
   constructor(props) {
@@ -52,7 +51,6 @@ class Runs extends React.Component {
               </NavLink>
             </div>
             {this.state.date_buttons}
-              {/* <img className="logo" src={Logo}/> */}
           </div>
         </div>
       </Fragment>
