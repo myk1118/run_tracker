@@ -153,7 +153,7 @@ class RunResult extends Component {
                 calories={calories}
               />
             </div>
-            <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12">
+            <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 results-chart-container">
               <ResultsChart
                 chartData={this.state.chartData}
                 distance={this.state.totalDistance}

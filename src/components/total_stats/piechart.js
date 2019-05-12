@@ -48,6 +48,9 @@ export default props => {
           legend: {
             display: true,
             position: 'bottom',
+            labels: {
+              fontColor: 'black',
+            },
           },
         }}
       />
