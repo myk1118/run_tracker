@@ -49,7 +49,7 @@ $lastDateData = mysqli_fetch_assoc($lastDateResult);
 
 
 //GET THE DATE OF THE LONGEST RUN
-$longestRunQuery = "SELECT `date` FROM `run_stats` WHERE `user_id` = $userid
+$longestRunQuery = "SELECT `date`, `id` FROM `run_stats` WHERE `user_id` = $userid
                   ORDER BY `distance` DESC LIMIT 0, 1";
 
 $longestRunResult = mysqli_query($conn, $longestRunQuery);
@@ -70,7 +70,7 @@ $formattedLongestRunDate = $longestRunDate->format('m-d-Y');
 
 
 //GET THE DATE OF THE HIGHEST CALORIES
-$highestCalorieQuery = "SELECT `date` FROM `run_stats` WHERE `user_id` = $userid
+$highestCalorieQuery = "SELECT `date`, `id` FROM `run_stats` WHERE `user_id` = $userid
                   ORDER BY `calories` DESC LIMIT 0, 1";
 
 $highestCalorieResult = mysqli_query($conn, $highestCalorieQuery);
@@ -91,7 +91,7 @@ $formattedHighestCalorieDate = $highestCalorieDate->format('m-d-Y');
 
 //get the date of the last run
 $date = new DateTime($data['lastDate']);
-$formattedDate = $date->format('m.d.Y');
+$formattedDate = $date->format('m/d/Y');
 
 //find the time of the last run
 $parent = $data['lastDate'];
@@ -115,13 +115,15 @@ $output['mostCalories'] = (int)$data['maxCalories'];
 $output['longestRun'] = (float)$data['longestDistance'];
 $output['longestRunDate'] = $formattedLongestRunDate;
 $output['highestCalorieDate'] = $formattedHighestCalorieDate;
+$output['highestCalorieId'] = (int)$highestCalorieDateData['id'];
+$output['longestRunId'] = (int)$longestRunDateData['id'];
 
 
 $output['totalDistance'] = (float)$data['totalDistance'];
 // $output['fastestPace'] = (int)$data['maxDistance'];
 $output['totalCalories'] = (int)$data['totalCalories'];
 $output['longestTime'] = (int)$data['longestTime'];
-$output['totalTime'] = (int)$data['totalTime'];
+$output['totalTime'] = gmdate("i:s", (int)$data['totalTime']);
 // $output['fastestpace'] = gmdate("i:s", round((int)$data['fastestpace'],0));
 
 $pace_in_seconds = round((int)$data['totalTime'] / (float)$data['totalDistance']);

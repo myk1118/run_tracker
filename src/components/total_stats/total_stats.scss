@@ -160,6 +160,34 @@
         margin-top: 5%;
       }
 
+      .bests-per-run {
+        .best {
+          font-size: 1.4rem;
+          border: 1px solid lightgrey;
+          border-radius: 2px 2px 0 0 ;
+          padding-top: 2%;
+          padding-bottom: 2%;
+        }
+        .personal-bests-date {
+          text-align: center;
+          font-size: 1rem;
+          border: 1px solid lightgrey;
+          border-top: 0;
+          box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+          border-radius: 0 0 4px 4px;
+          padding-top: 2%;
+          padding-bottom: 2%;
+
+          .right-arrow {
+            left: 20%;
+          }
+
+          .right-arrow:hover {
+            left: 20.8%;
+          }
+        }
+      }
+
       .last-run {
         div {
           font-size: 1.4rem;
@@ -188,17 +216,11 @@
       .personal-bests-title {
         text-align: center;
         font-weight: bold;
-        border-bottom: 2px solid darkgrey;
         width: 100%;
         background-color: #81b3c2;
         color: white;
         border-radius: 4px 4px 0 0;
       }
-
-      .personal-bests-date {
-        font-size: 1rem;
-      }
-
 
       .best {
         text-align: center;
@@ -206,7 +228,7 @@
         box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
         border-radius: 2px;
         font-weight: bold;
-        // border-top: 5px solid rgba(216,191,216,1);
+        margin-bottom: 0;
       }
     }
 
@@ -227,12 +249,6 @@
     }
   }
 }
-
-.runCount {
-  height: 100%;
-  background-color: rgb(140, 255, 125);
-}
-
 
 .App-logo {
   height: 80px;
@@ -338,11 +354,6 @@
       padding-bottom: 4%;
       margin-bottom: 0;
     }
-    .personal-bests-date{
-      margin-bottom: 0;
-      margin-top: 0;
-      padding-top: 0;
-    }
 }
 
 
@@ -405,7 +416,15 @@
     }
     .personal-bests{
       .best{
-        font-size: 1rem;
+        font-size: 1.1rem;
+      }
+      .bests-per-run {
+        .best {
+          font-size: 1.1rem;
+        }
+        .personal-bests-date {
+          font-size: 0.7rem;
+        }
       }
     }
 

@@ -7,9 +7,8 @@ export default props => {
 
     const {longestRun, lastRunDate, averagePace, mostCalories, totalCalories,
       totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate,
-      latestRunInformation} = props.personalBests;
+      latestRunInformation, longestRunId, highestCalorieId } = props.personalBests;
     const latestRunInfo = {...props.personalBests.latestRunInformation};
-    const totalTimeInMinutes = (totalTime/60).toFixed(2);
 
     return (
       <div className="personal-bests">
@@ -39,7 +38,11 @@ export default props => {
               <p>Longest Run:</p>
               <div className="data-and-date-container">
                 <p className="best">{longestRun} <span>{longestRun ? 'miles' : ''}</span></p>
-                <p className="personal-bests-date">{longestRunDate}</p>
+                <p className="personal-bests-date">{longestRunDate}
+                  <NavLink to={`/results/${longestRunId}`}>
+                    <i className="right-arrow"><FontAwesomeIcon  icon="chevron-right" color="rgba(107, 185, 240, 1)"/></i>
+                  </NavLink>
+                </p>
               </div>
             </div>
           </div>
@@ -47,8 +50,12 @@ export default props => {
             <div>
               <p>Calories Burned:</p>
               <div className="data-and-date-container">
-                <p className="best">{mostCalories} <span>{mostCalories ? 'calories' : ''}</span></p>
-                <p className="personal-bests-date">{highestCalorieDate}</p>
+                <p className="best">{mostCalories} <span>{mostCalories ? 'cal' : ''}</span></p>
+                <p className="personal-bests-date">{highestCalorieDate}
+                  <NavLink to={`/results/${highestCalorieId}`}>
+                    <i className="right-arrow"><FontAwesomeIcon  icon="chevron-right" color="rgba(107, 185, 240, 1)"/></i>
+                  </NavLink>
+                </p>
               </div>
             </div>
           </div>
@@ -69,7 +76,7 @@ export default props => {
             <div>
               <p className="all-time-title"><i><FontAwesomeIcon icon="fire" color="rgba(226,88,34,0.8)"/></i> Total Calories:</p>
               <div>
-                <p className="best">{totalCalories}<span> {mostCalories ? 'calories' : ''}</span></p>
+                <p className="best">{totalCalories}<span> {mostCalories ? 'cal' : ''}</span></p>
               </div>
             </div>
           </div>
@@ -85,7 +92,7 @@ export default props => {
             <div>
               <p className="all-time-title"><i><FontAwesomeIcon icon="clock" color="rgba(107, 185, 240, 1)"/></i> Total Minutes:</p>
               <div>
-                <p className="best">{totalTimeInMinutes}<span> {totalTimeInMinutes ? 'minutes' : ''}</span></p>
+                <p className="best">{totalTime}<span> {totalTime ? 'min' : ''}</span></p>
               </div>
             </div>
           </div>

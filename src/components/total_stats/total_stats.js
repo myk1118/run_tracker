@@ -30,11 +30,12 @@ class TotalStats extends React.Component {
     const bests = await axios.get('/api/personalbestquery.php');
     console.log('bests: ',bests.data)
     const { longestRun, lastRunDate, averagePace, mostCalories, totalCalories,
-            totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate, latestRunInformation } = bests.data;
+            totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate, latestRunInformation,
+            longestRunId, highestCalorieId } = bests.data;
     this.setState({
       personalBests: {
         longestRun,
-        lastRunDate,
+        lastRunDate: lastRunDate.replace(/^0/, ' '),
         mostCalories,
         averagePace: averagePace.length > 4 ? averagePace.replace(/^0/, ' ') : averagePace,
         totalCalories,
@@ -43,7 +44,9 @@ class TotalStats extends React.Component {
         lastRunTime: lastRunTime.replace(/^0/, ' '),
         longestRunDate,
         highestCalorieDate,
-        latestRunInformation
+        latestRunInformation,
+        longestRunId,
+        highestCalorieId,
       },
     })
   }
@@ -105,7 +108,7 @@ class TotalStats extends React.Component {
 
   render() {
     const{chartData, pieChartData, runCount} = this.state;
-    
+
     return (
       <div className="total-stats">
         <RunHeader />
