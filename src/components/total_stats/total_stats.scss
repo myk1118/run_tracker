@@ -137,10 +137,6 @@
 .total-stats {
   font-family: 'Open Sans', sans-serif;
 
-
-  .first-row {
-
-
     .line-graph-container {
       height: 55vh;
       background-color: white;
@@ -164,6 +160,26 @@
         margin-top: 5%;
       }
 
+      .last-run {
+        div {
+          font-size: 1.4rem;
+        }
+        // font-size: 1.4rem;
+      }
+
+      .last-run-date {
+        font-weight: bold;
+        font-size: 1.4rem;
+
+        span {
+          font-weight: normal;
+          font-size: 1rem;
+        }
+      }
+
+      .right-arrow {
+        cursor: pointer;
+      }
       .personal-bests-title {
         text-align: center;
         font-weight: bold;
@@ -173,9 +189,7 @@
         color: white;
         border-radius: 4px 4px 0 0;
       }
-      tbody {
-        border: 1px solid black;
-      }
+
       .personal-bests-date {
         font-size: 1rem;
       }
@@ -188,29 +202,8 @@
         border-radius: 2px;
         font-weight: bold;
       }
-
-      .table {
-        tr {
-          th {
-            text-align: left;
-            font-weight: normal;
-            border-top: none;
-          }
-
-          td {
-            border-top: none;
-            font-size: 2rem;
-            font-weight: bold;
-
-            span {
-              font-weight: normal;
-              font-size: 1rem;
-            }
-          }
-        }
-      }
     }
-  }
+
 
   .second-row {
 
@@ -219,14 +212,10 @@
 
       .graph-container {
         height: 100%;
-        // border-top: dotted lightgrey;
-        // border-bottom: dotted lightgrey;
         width: 100%;
-        // box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
         box-shadow: 0.125rem 0.125rem 0.375rem #b6b6b6;
         border-radius: 4px;
         margin-top: 5%;
-        // background-color: rgba(30, 139, 195, 1);
         background-color: white;
       }
     }
@@ -238,53 +227,6 @@
   background-color: rgb(140, 255, 125);
 }
 
-.tableContainer {
-  height: 100%;
-  font-family: 'Open Sans', sans-serif;
-
-  .total,
-  .month,
-  .week {
-    cursor: pointer;
-  }
-
-  table {
-    color: rgb(51, 51, 51);
-    font-family: Helvetica, Arial, sans-serif;
-    border-collapse:
-      collapse;
-    border-spacing: 0;
-  }
-
-  td,
-  th {
-    border: 1px solid transparent;
-    transition: all 0.3s;
-    text-align: center;
-    width: 25vw;
-  }
-
-  th {
-    background: #DFDFDF;
-    font-weight: bold;
-  }
-
-  td {
-    background: #FAFAFA;
-  }
-
-  tr:nth-child(even) td {
-    background: #F1F1F1;
-  }
-
-  tr:nth-child(odd) td {
-    background: #FEFEFE;
-  }
-
-  tbody tr:hover {
-    color: rgb(50, 50, 255);
-  }
-}
 
 .App-logo {
   height: 80px;
@@ -403,14 +345,37 @@
 
 @media(max-width: 1200px) {
   .total-stats {
-    .first-row {
       .personal-bests {
-        .table {
-          tr {
-            td {
-              font-size: 1.5rem;
-            }
+        .last-run {
+          div {
+            font-size: 1.2rem;
           }
+        }
+        .last-run-date {
+          font-size: 1.2rem;
+          span {
+            font-size: 0.8rem;
+          }
+      }
+    }
+  }
+}
+
+@media(max-width: 775px) {
+  .total-stats {
+    .personal-bests {
+
+      .last-run {
+        div {
+          font-size: 1rem;
+        }
+      }
+      .last-run-date {
+        font-size: 1rem;
+        text-align: center;
+        span {
+            font-size: 0.8rem;
+            display: none;
         }
       }
     }
@@ -438,9 +403,6 @@
     .personal-bests{
       .best{
         font-size: 1rem;
-        span {
-          font-size: 0.7rem;
-        }
       }
     }
 

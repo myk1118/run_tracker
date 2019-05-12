@@ -47,11 +47,6 @@ if(mysqli_num_rows($lastDateResult) === 0){
 
 $lastDateData = mysqli_fetch_assoc($lastDateResult);
 
-if((int)$lastDateData['time'] < 3600) {
-  $hrs_min_sec = "i:s";
-} else {
-  $hrs_min_sec = "H:i:s";
-}
 
 //GET THE DATE OF THE LONGEST RUN
 $longestRunQuery = "SELECT `date` FROM `run_stats` WHERE `user_id` = $userid
@@ -109,7 +104,7 @@ $output = [];
 $output['latestRunInformation'] = [
   'id' => (int)$lastDateData['id'],
   'distance' => (float)$lastDateData['distance'],
-  'time' => gmdate($hrs_min_sec, (int)$lastDateData['time']),
+  'time' => gmdate("i:s", (int)$lastDateData['time']),
 ];
 
 $output['lastRunDate'] = $formattedDate;

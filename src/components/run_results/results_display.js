@@ -1,9 +1,6 @@
 import React, {Fragment} from 'react';
 import './run_results.scss';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFire, faClock, faRoad, faStopwatch } from '@fortawesome/free-solid-svg-icons'
-library.add( faFire, faClock, faRoad, faStopwatch )
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default props => {
 

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavLink } from 'react-router-dom';
 
 export default props => {
 
@@ -13,17 +15,19 @@ export default props => {
       <div className="personal-bests">
         <div className="row last-run">
           <p className="personal-bests-title">LAST RUN</p>
-          <div className="col-3">
-            <p className="">{lastRunDate} <span>{lastRunTime}</span></p>
+          <div className="col-3 col-sm-4">
+            <p className="last-run-date ">{lastRunDate} <span>@ {lastRunTime}</span></p>
           </div>
-          <div className="col-3">
-            <p className="">{lastRunDate} <span>{lastRunTime}</span></p>
+          <div className="col-3 col-sm-3">
+            <p className="text-center">{latestRunInfo.distance} miles</p>
           </div>
-          <div className="col-3">
-            <p className="">{lastRunDate} <span>{lastRunTime}</span></p>
+          <div className="col-3 col-sm-3">
+            <p className="text-center">{latestRunInfo.time} min</p>
           </div>
-          <div className="col-3">
-            <p className="">{lastRunDate} <span>{lastRunTime}</span></p>
+          <div className="col-3 col-sm-2">
+            <NavLink to={`/results/${latestRunInfo.id}`}>
+              <p className="right-arrow text-center"><i><FontAwesomeIcon icon="chevron-right" color="rgba(107, 185, 240, 1)"/></i></p>
+            </NavLink>
           </div>
         </div>
 
@@ -63,7 +67,7 @@ export default props => {
           </div>
           <div className="all-time col-6">
             <div>
-              <p className="all-time-title">Total Calories Burned:</p>
+              <p className="all-time-title">Total Calories:</p>
               <div className="data-and-date-container">
                 <p className="best">{totalCalories}<span> {mostCalories ? 'calories' : ''}</span></p>
               </div>

@@ -14,6 +14,9 @@ import AboutUs from './about_us/aboutus';
 import MapNav from './nav_folder/map_nav';
 import auth from '../hoc/auth';
 import RunResult from './run_results/run_results';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faFire, faClock, faRoad, faStopwatch, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+library.add( faFire, faClock, faRoad, faStopwatch, faChevronRight )
 
 
 
