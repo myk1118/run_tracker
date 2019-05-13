@@ -6,28 +6,33 @@ import { NavLink } from 'react-router-dom';
 export default props => {
 
     const {longestRun, lastRunDate, averagePace, mostCalories, totalCalories,
-      totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate,
-      latestRunInformation, longestRunId, highestCalorieId } = props.personalBests;
+          totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate,
+          latestRunInformation, longestRunId, highestCalorieId } = props.personalBests;
     const latestRunInfo = {...props.personalBests.latestRunInformation};
+
+    const rightArrow = !latestRunInfo.id ? '' : <FontAwesomeIcon  icon="chevron-right" color="rgba(107, 185, 240, 1)"/>;
+
+
 
     return (
       <div className="personal-bests">
         <div className="row last-run">
           <p className="personal-bests-title">LAST RUN</p>
           <div className="col-3 col-sm-4">
-            <p className="last-run-date ">{lastRunDate} <span>@ {lastRunTime}</span></p>
+            <p className="last-run-date ">{lastRunDate} <span>{lastRunDate ? `@ ${lastRunTime}` : ''}</span></p>
           </div>
           <div className="col-3 col-sm-3">
-            <p className="text-center">{latestRunInfo.distance} miles</p>
+            <p className="text-center">{latestRunInfo.distance} {latestRunInfo.distance ? 'miles' : ''}</p>
           </div>
           <div className="col-3 col-sm-3">
-            <p className="text-center">{latestRunInfo.time} min</p>
+            <p className="text-center">{latestRunInfo.time} {latestRunInfo.time ? 'min' : ''}</p>
           </div>
           <div className="col-3 col-sm-2">
             <NavLink to={`/results/${latestRunInfo.id}`}>
-              <p className="right-arrow text-center"><i><FontAwesomeIcon  icon="chevron-right" color="rgba(107, 185, 240, 1)"/></i></p>
+              <p className="right-arrow text-center"><i>{rightArrow}</i></p>
             </NavLink>
           </div>
+
         </div>
 
 
@@ -40,7 +45,7 @@ export default props => {
                 <p className="best">{longestRun} <span>{longestRun ? 'miles' : ''}</span></p>
                 <p className="personal-bests-date">{longestRunDate}
                   <NavLink to={`/results/${longestRunId}`}>
-                    <i className="right-arrow"><FontAwesomeIcon  icon="chevron-right" color="rgba(107, 185, 240, 1)"/></i>
+                    <i className="right-arrow">{rightArrow}</i>
                   </NavLink>
                 </p>
               </div>
@@ -53,7 +58,7 @@ export default props => {
                 <p className="best">{mostCalories} <span>{mostCalories ? 'cal' : ''}</span></p>
                 <p className="personal-bests-date">{highestCalorieDate}
                   <NavLink to={`/results/${highestCalorieId}`}>
-                    <i className="right-arrow"><FontAwesomeIcon  icon="chevron-right" color="rgba(107, 185, 240, 1)"/></i>
+                    <i className="right-arrow">{rightArrow}</i>
                   </NavLink>
                 </p>
               </div>

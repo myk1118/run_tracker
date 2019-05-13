@@ -101,6 +101,8 @@ $time = date('h:i a', $timestamp);
 
 $output = [];
 
+$output['success'] = true;
+
 $output['latestRunInformation'] = [
   'id' => (int)$lastDateData['id'],
   'distance' => (float)$lastDateData['distance'],

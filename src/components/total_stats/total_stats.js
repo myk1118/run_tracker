@@ -28,27 +28,29 @@ class TotalStats extends React.Component {
 
   async getPersonalBests() {
     const bests = await axios.get('/api/personalbestquery.php');
-    console.log('bests: ',bests.data)
-    const { longestRun, lastRunDate, averagePace, mostCalories, totalCalories,
-            totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate, latestRunInformation,
-            longestRunId, highestCalorieId } = bests.data;
-    this.setState({
-      personalBests: {
-        longestRun,
-        lastRunDate: lastRunDate.replace(/^0/, ' '),
-        mostCalories,
-        averagePace: averagePace.length > 4 ? averagePace.replace(/^0/, ' ') : averagePace,
-        totalCalories,
-        totalDistance,
-        totalTime,
-        lastRunTime: lastRunTime.replace(/^0/, ' '),
-        longestRunDate,
-        highestCalorieDate,
-        latestRunInformation,
-        longestRunId,
-        highestCalorieId,
-      },
-    })
+    if(bests.data.success) {
+      console.log('bests: ',bests.data)
+      const { longestRun, lastRunDate, averagePace, mostCalories, totalCalories,
+              totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate, latestRunInformation,
+              longestRunId, highestCalorieId } = bests.data;
+      this.setState({
+        personalBests: {
+          longestRun,
+          lastRunDate: lastRunDate.replace(/^0/, ' '),
+          mostCalories,
+          averagePace: averagePace.length > 4 ? averagePace.replace(/^0/, ' ') : averagePace,
+          totalCalories,
+          totalDistance,
+          totalTime,
+          lastRunTime: lastRunTime.replace(/^0/, ' '),
+          longestRunDate,
+          highestCalorieDate,
+          latestRunInformation,
+          longestRunId,
+          highestCalorieId,
+        },
+      })
+  }
   }
 
   getChartData() {
