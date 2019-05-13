@@ -4,12 +4,14 @@ import RunHeader from '../nav_folder/tutorial_nav';
 import './runs.scss';
 import backgroundImage from '../account/login/images/image19.jpeg';
 import axios from 'axios';
+import PreLoader from '../preloader/preloader.js';
 
 class Runs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date_buttons: []
+      date_buttons: [],
+      loading: true,
     }
   }
 
@@ -34,27 +36,33 @@ class Runs extends React.Component {
       )
     })
     this.setState({
-      date_buttons: [...date_buttons]
+      date_buttons: [...date_buttons],
+      loading: false
     })
   }
 
   render() {
-    return (
-      <Fragment>
-        <RunHeader />
-        <div className="runs">
-          <img className="backgroundImage" src={backgroundImage} alt="Background Image" />
-          <div className="runButtonsContainer">
-            <div className="imgContainer col-6 col-sm-6 col-md-6 col-lg-4">
-              <NavLink to="/runmap">
-                <button className="bigSquareButton plusImg btn btn-dark btn-lg"></button>
-              </NavLink>
+
+    if(this.state.loading) {
+      return <PreLoader />
+    } else {
+      return (
+        <Fragment>
+          <RunHeader />
+          <div className="runs">
+            <img className="backgroundImage" src={backgroundImage} alt="Background Image" />
+            <div className="runButtonsContainer">
+              <div className="imgContainer col-6 col-sm-6 col-md-6 col-lg-4">
+                <NavLink to="/runmap">
+                  <button className="bigSquareButton plusImg btn btn-dark btn-lg"></button>
+                </NavLink>
+              </div>
+              {this.state.date_buttons}
             </div>
-            {this.state.date_buttons}
           </div>
-        </div>
-      </Fragment>
-    );
+        </Fragment>
+      );
+    }
   }
 }
 
