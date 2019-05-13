@@ -63,10 +63,11 @@ class RunMap extends Component {
         clearTimeout(this.calorieTimeout)
         clearTimeout(this.timeout);
         this.deleteCurrentRun();
-      } else {
-        this.postlatestMile(this.state.distanceTraveled);
-        this.postCurrentRun(this.state.elapsed);
       }
+      //  else {
+      //   this.postlatestMile(this.state.distanceTraveled);
+      //   this.postCurrentRun(this.state.elapsed);
+      // }
     }
 
     deleteCurrentRun = () => {
@@ -304,8 +305,8 @@ class RunMap extends Component {
     reset() {
         const { elapsed, distanceTraveled, mileCounter } = this.state;
         if (this.state.status === 'paused') {
-            // this.postlatestMile(distanceTraveled);
-            // this.postCurrentRun(elapsed);
+            this.postlatestMile(distanceTraveled);
+            this.postCurrentRun(elapsed);
             this.setState({
                 status: 'stopped',
                 start: null,
