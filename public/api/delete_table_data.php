@@ -22,8 +22,8 @@ if(!$delete_item_result){
     throw new Exception(mysqli_error($conn));
 }
 if(mysqli_affected_rows($conn) === 0){
-    throw new Exception('Failed to delete item from table');
-} 
+    throw new Exception('Failed to delete item');
+}
 
 $output = [
     'success' => true,
@@ -33,5 +33,3 @@ print(json_encode($output));
 
 
 ?>
-
-

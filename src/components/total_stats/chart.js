@@ -15,7 +15,7 @@ export default props => {
             plugins: {
               datalabels: {
                  display: false,
-              }
+              },
             },
             maintainAspectRatio: false,
             responsive: true,
@@ -26,7 +26,7 @@ export default props => {
               fontColor: 'black',
             },
             legend: {
-              display: true,
+              display: false,
               position: 'bottom',
             },
             elements: {
@@ -36,18 +36,24 @@ export default props => {
             },
             scales: {
               xAxes: [{
+                ticks: {
+                  fontColor: 'black',
+                },
                 scaleLabel: {
                   display: true,
                   labelString: 'Date',
+                  fontColor: 'black',
                 },
               }],
               yAxes: [{
                 ticks: {
-                  beginAtZero: true
+                  beginAtZero: true,
+                  fontColor: 'black'
                 },
                 scaleLabel: {
                   display: true,
                   labelString: 'Distance (mi)',
+                  fontColor: 'black',
                 }
               }],
             }

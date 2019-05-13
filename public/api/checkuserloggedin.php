@@ -31,6 +31,7 @@ if (mysqli_num_rows($login_result) !== 1) {
 
 $data = mysqli_fetch_assoc($login_result);
 
+
 $output['success'] = true;
 
 if (!empty($_SESSION['user_data'])) {

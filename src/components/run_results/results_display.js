@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import './run_results.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default props => {
 
@@ -11,13 +12,13 @@ export default props => {
       <div className="row">
         <div className="col-6">
           <div className="results-display-container">
-            <p className="runtitle">Duration (min:sec)</p>
+            <p className="runtitle"><i><FontAwesomeIcon icon="clock" color="rgba(107, 185, 240, 1)"/></i> Duration (min:sec)</p>
             <p>{minutesSecondsRan}</p>
           </div>
         </div>
         <div className="col-6">
           <div className="results-display-container">
-            <p className="runtitle">Distance</p>
+            <p className="runtitle"><i><FontAwesomeIcon icon="road" color="grey"/></i> Distance</p>
             <p>{distance} miles</p>
           </div>
         </div>
@@ -25,13 +26,13 @@ export default props => {
       <div className="row">
         <div className="col-6">
           <div className="results-display-container">
-            <p className="runtitle">Avg Pace (min/mile)</p>
+            <p className="runtitle"><i><FontAwesomeIcon icon="stopwatch" color="rgba(130, 82, 0.8)"/></i> Avg Pace (min/mile)</p>
             <p>{paceWithNaNCheck}</p>
           </div>
         </div>
         <div className="col-6">
           <div className="results-display-container">
-            <p className="runtitle">Calories</p>
+            <p className="runtitle"><i><FontAwesomeIcon icon="fire" color="rgba(226,88,34,0.8)"/></i> Calories</p>
             <p>{calories}</p>
           </div>
         </div>

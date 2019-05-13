@@ -7,6 +7,7 @@ import axios from 'axios';
 import EventDate from './event_date';
 import PieChart from './piechart';
 import EventModal from './modal/modal';
+import Logo from '../../../public/dist/images/logo_black.png';
 
 class TotalStats extends React.Component {
   constructor(props) {
@@ -16,10 +17,7 @@ class TotalStats extends React.Component {
       chartData: {},
       pieChartData: {},
       runCount: 0,
-      longestRun: null,
-      lastRunDate: null,
-      averagePace: null,
-      mostCalories: null,
+      personalBests: {},
     }
   }
 
@@ -30,13 +28,29 @@ class TotalStats extends React.Component {
 
   async getPersonalBests() {
     const bests = await axios.get('/api/personalbestquery.php');
-    const { longestRun, lastRunDate, averagePace, mostCalories } = bests.data;
-    this.setState({
-      longestRun,
-      lastRunDate,
-      mostCalories,
-      averagePace,
-    })
+    if(bests.data.success) {
+      console.log('bests: ',bests.data)
+      const { longestRun, lastRunDate, averagePace, mostCalories, totalCalories,
+              totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate, latestRunInformation,
+              longestRunId, highestCalorieId } = bests.data;
+      this.setState({
+        personalBests: {
+          longestRun,
+          lastRunDate: lastRunDate.replace(/^0/, ' '),
+          mostCalories,
+          averagePace: averagePace.length > 4 ? averagePace.replace(/^0/, ' ') : averagePace,
+          totalCalories,
+          totalDistance,
+          totalTime,
+          lastRunTime: lastRunTime.replace(/^0/, ' '),
+          longestRunDate,
+          highestCalorieDate,
+          latestRunInformation,
+          longestRunId,
+          highestCalorieId,
+        },
+      })
+  }
   }
 
   getChartData() {
@@ -70,7 +84,8 @@ class TotalStats extends React.Component {
               label: 'miles',
               fill: true,
               data: [...dataArray],
-              borderColor: 'blue',
+              borderColor: 'white',
+              borderWidth: 2,
               backgroundColor: ['rgba(228,204,49,0.6)', 'rgba(138,17,129,0.6)', 'rgba(204,231,135,0.6)',
                'rgba(30,144,255, 0.6)', 'rgba(54,18,46,0.6)'],
             }
@@ -81,9 +96,11 @@ class TotalStats extends React.Component {
           datasets: [
             {
               label: 'miles',
+              borderWidth: 1,
               data: [...distances],
               borderColor: 'blue',
               backgroundColor: 'rgba(216,191,216,0.4)',
+
             }
           ]
         },
@@ -92,33 +109,31 @@ class TotalStats extends React.Component {
   }
 
   render() {
-    const {chartData, pieChartData, runCount, longestRun, lastRunDate, averagePace, mostCalories} = this.state;
-    console.log(this.state)
+    const{chartData, pieChartData, runCount} = this.state;
+
     return (
       <div className="total-stats">
         <RunHeader />
         <div className="totalStatsContainer container-fluid">
         <div className="first-row row">
-          <div className="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12 ">
+          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 chart-component-container">
             <Chart chartData={chartData} runCount={runCount}/>
           </div>
-          <div className="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12 ">
+          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 ">
             <PersonalBests
-              longestRun={longestRun}
-              lastRunDate={lastRunDate}
-              averagePace={averagePace}
-              mostCalories={mostCalories}
+              personalBests={{...this.state.personalBests}}
             />
           </div>
         </div>
         <div className="second-row row">
-          <div className="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12 text-center">
+          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center chart-component-container">
             <PieChart pieChartData={pieChartData} />
           </div>
-          <div className="mt-1 col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12 text-center">
+          <div className="mt-1 col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center">
             <EventDate/>
           </div>
         </div>
+        <img className="logo" src={Logo}/>
       </div>
     </div>
     )

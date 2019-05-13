@@ -4,6 +4,7 @@ require_once('config.php');
 require_once('mysqlconnect.php');
 require_once('checkuserloggedin.php');
 set_exception_handler('handleError');
+require_once('delete_blank_runsessions.php');
 
 $user_id = $_SESSION['user_data']['id'];
 

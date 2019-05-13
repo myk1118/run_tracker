@@ -1,57 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-// .total-stats {
-//   // height: 75vh;
-//
-//   .first-row {
-//
-//     .line-graph-container {
-//       height: 37vh;
-//
-//       article {
-//         height: 100%;
-//       }
-//     }
-//
-//     .personal-bests {
-//       .table {
-//         tr {
-//           th {
-//             text-align: left;
-//             font-weight: normal;
-//             border-top: none;
-//           }
-//
-//           td {
-//             border-top: none;
-//             font-size: 2.5rem;
-//             font-weight: bold;
-//
-//             span {
-//               font-weight: normal;
-//               font-size: 1rem;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-//
-//   .second-row {
-//
-//     .pie-chart-container {
-//       height: 80%;
-//       height: 40vh;
-//
-//       .graph-container {
-//         height: 100%;
-//         border-top: dotted lightgrey;
-//         border-bottom: dotted lightgrey;
-//       }
-//     }
-//   }
-// }
 
 
 .runCount {
@@ -186,19 +135,15 @@
 }
 
 .total-stats {
-  background-color: rgb(245, 245, 245);
   font-family: 'Open Sans', sans-serif;
-
-
-  .first-row {
 
     .line-graph-container {
       height: 55vh;
-      // background-color: rgba(135,206,250,0.3);
       background-color: white;
       width: 100%;
-      box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+      box-shadow: 0.125rem 0.125rem 0.375rem #b6b6b6;
       border-radius: 4px;
+      margin-top: 3%;
 
       article {
         height: 100%;
@@ -206,107 +151,102 @@
     }
 
     .personal-bests {
-      // .row {
-      width: 100%;
-      box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
-      background: rgb(255, 255, 255);
-      border-radius: 4px;
-      margin-top: 5%;
-    // }
-
-      .table {
-        tr {
-          th {
-            text-align: left;
-            font-weight: normal;
-            border-top: none;
-          }
-
-          td {
-            border-top: none;
-            font-size: 2rem;
-            font-weight: bold;
-
-            span {
-              font-weight: normal;
-              font-size: 1rem;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .second-row {
-
-    .pie-chart-container {
-      height: 80%;
-      height: 40vh;
-
-      .graph-container {
-        height: 100%;
-        // border-top: dotted lightgrey;
-        // border-bottom: dotted lightgrey;
+      .row {
+        margin: auto;
         width: 100%;
-        box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+        box-shadow: 0.125rem 0.125rem 0.375rem #b6b6b6;
         background: rgb(255, 255, 255);
         border-radius: 4px;
         margin-top: 5%;
       }
+
+      .bests-per-run {
+        .best {
+          font-size: 1.4rem;
+          border: 1px solid lightgrey;
+          border-radius: 2px 2px 0 0 ;
+          padding-top: 2%;
+          padding-bottom: 2%;
+        }
+        .personal-bests-date {
+          text-align: center;
+          font-size: 1rem;
+          border: 1px solid lightgrey;
+          border-top: 0;
+          box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+          border-radius: 0 0 4px 4px;
+          padding-top: 2%;
+          padding-bottom: 2%;
+
+          .right-arrow {
+            left: 20%;
+          }
+
+          .right-arrow:hover {
+            left: 20.8%;
+          }
+        }
+      }
+
+      .last-run {
+        div {
+          font-size: 1.4rem;
+        }
+        // font-size: 1.4rem;
+      }
+
+      .last-run-date {
+        font-weight: bold;
+        font-size: 1.4rem;
+
+        span {
+          font-weight: normal;
+          font-size: 1rem;
+        }
+      }
+
+      .right-arrow {
+        cursor: pointer;
+        position: relative;
+      }
+
+      .right-arrow:hover {
+        left: 3px;
+      }
+      .personal-bests-title {
+        text-align: center;
+        font-weight: bold;
+        width: 100%;
+        background-color: #81b3c2;
+        color: white;
+        border-radius: 4px 4px 0 0;
+      }
+
+      .best {
+        text-align: center;
+        border: 2px solid lightgrey;
+        box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
+        border-radius: 2px;
+        font-weight: bold;
+        margin-bottom: 0;
+      }
     }
-  }
-}
 
-.runCount {
-  height: 100%;
-  background-color: rgb(140, 255, 125);
-}
 
-.tableContainer {
-  height: 100%;
-  font-family: 'Open Sans', sans-serif;
+  .second-row {
 
-  .total,
-  .month,
-  .week {
-    cursor: pointer;
-  }
+    .pie-chart-container {
+      height: 40vh;
 
-  table {
-    color: rgb(51, 51, 51);
-    font-family: Helvetica, Arial, sans-serif;
-    border-collapse:
-      collapse;
-    border-spacing: 0;
-  }
-
-  td,
-  th {
-    border: 1px solid transparent;
-    transition: all 0.3s;
-    text-align: center;
-    width: 25vw;
-  }
-
-  th {
-    background: #DFDFDF;
-    font-weight: bold;
-  }
-
-  td {
-    background: #FAFAFA;
-  }
-
-  tr:nth-child(even) td {
-    background: #F1F1F1;
-  }
-
-  tr:nth-child(odd) td {
-    background: #FEFEFE;
-  }
-
-  tbody tr:hover {
-    color: rgb(50, 50, 255);
+      .graph-container {
+        height: 100%;
+        width: 100%;
+        box-shadow: 0.125rem 0.125rem 0.375rem #b6b6b6;
+        border-radius: 4px;
+        margin-top: 5%;
+        background-color: white;
+      }
+    }
   }
 }
 
@@ -383,6 +323,7 @@
 .totalStatsContainer {
   position: relative;
   top: 10vh;
+  background-color: rgb(245, 245, 245);
 }
 
 .activityLogContainer {
@@ -390,17 +331,65 @@
   top: 10vh;
 }
 
+.logo {
+  height: 35px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 2%;
+  margin-bottom: 2%;
+  opacity: 0.7;
+}
+
+.all-time {
+  margin-bottom: 16px;
+  p {
+    margin-top: 4%;
+  }
+
+    .best {
+      font-size: 1.5rem;
+      margin-top: 0;
+      padding-top: 3%;
+      padding-bottom: 4%;
+      margin-bottom: 0;
+    }
+}
+
 
 @media(max-width: 1200px) {
   .total-stats {
-    .first-row {
       .personal-bests {
-        .table {
-          tr {
-            td {
-              font-size: 1.5rem;
-            }
+        .last-run {
+          div {
+            font-size: 1.2rem;
           }
+        }
+        .last-run-date {
+          font-size: 1.2rem;
+          span {
+            font-size: 0.8rem;
+          }
+      }
+    }
+  }
+}
+
+@media(max-width: 775px) {
+  .total-stats {
+    .personal-bests {
+
+      .last-run {
+        div {
+          font-size: 1rem;
+        }
+      }
+      .last-run-date {
+        font-size: 1rem;
+        text-align: center;
+        span {
+            font-size: 0.8rem;
+            display: none;
         }
       }
     }
@@ -421,29 +410,31 @@
 
   //Total Stats
   .total-stats {
+
+    .all-time-title {
+      font-size: 0.7rem;
+    }
+    .personal-bests{
+      .best{
+        font-size: 1.1rem;
+      }
+      .bests-per-run {
+        .best {
+          font-size: 1.1rem;
+        }
+        .personal-bests-date {
+          font-size: 0.7rem;
+        }
+      }
+    }
+
+    .chart-component-container{
+      padding-left: 2px;
+      padding-right: 2px;
+    }
     .first-row {
       .line-graph-container {
         height: 50vh;
-
-        article {}
-      }
-
-      .personal-bests {
-        .table {
-          tr {
-            th {
-              font-size: 0.7rem;
-            }
-
-            td {
-              font-size: 1rem;
-
-              span {
-                font-size: 0.7rem;
-              }
-            }
-          }
-        }
       }
     }
   }

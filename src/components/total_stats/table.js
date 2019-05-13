@@ -3,6 +3,7 @@ import RunHeader from '../nav_folder/run_nav';
 import axios from 'axios';
 import TableData from './tabledata';
 import './total_stats.scss';
+import Logo from '../../../public/dist/images/logo_black.png';
 
 class Chart extends Component {
   constructor(props) {
@@ -120,6 +121,7 @@ class Chart extends Component {
               {this.state.stats}
             </tbody>
           </table>
+          <img className="logo" src={Logo}/>
         </div>
       </div>
     )

@@ -21,16 +21,21 @@ export default props => {
               }
             }
           },
+          // plugins: {
+          //   datalabels: {
+          //      display: function(context) {
+          //        return context.dataset.data[context.dataIndex] > 0
+          //      },
+          //      color: 'black',
+          //      font: {
+          //        weight: 'bold',
+          //      }
+          //   }
+          // },
           plugins: {
             datalabels: {
-               display: function(context) {
-                 return context.dataset.data[context.dataIndex] > 0
-               },
-               color: 'black',
-               font: {
-                 weight: 'bold',
-               }
-            }
+               display: false,
+            },
           },
           maintainAspectRatio: false,
           responsive: true,
@@ -43,6 +48,9 @@ export default props => {
           legend: {
             display: true,
             position: 'bottom',
+            labels: {
+              fontColor: 'black',
+            },
           },
         }}
       />

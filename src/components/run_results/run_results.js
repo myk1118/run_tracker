@@ -5,6 +5,8 @@ import ResultsChart from './results_chart';
 import apiKey from '../googlemap';
 import './run_results.scss';
 import ResultsDisplay from './results_display';
+import Logo from '../../../public/dist/images/logo_black.png';
+
 
 
 
@@ -132,23 +134,18 @@ class RunResult extends Component {
     return (
       <div className="postRunBody">
         <RunHeader />
-        <div className="container-fluid">
-          <div className="postRunMap">
+        <div className="results-container container-fluid">
             <div className="row">
-              {/* <div className="col-12 col-lg-6">
-                <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${currentLatLng.lat},${currentLatLng.lng}&zoom=14&size=640x200&markers=color:red%7C%7C${currentLatLng.lat},${currentLatLng.lng}&key=${apiKey}&`} />
-              </div> */}
-              <div className="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+              <div className="col-12 col-md-10 offset-md-1 col-xl-8 offset-xl-2 run-message-container">
                 <div className="run-message">
-                  <p className="first-description text-center">{first_name}, here are your run results from {date.date} at {date.time}</p>
+                  <p className="first-description text-center">{first_name}, here are your results from {date.date} at {date.time}</p>
                   <p className="second-description">{this.runDescription(secondsRan, totalDistance)} </p>
                   <p className="location">{city ? <span className="oi" data-glyph="map-marker"></span> : ''} {city}</p>
                 </div>
               </div>
             </div>
-          </div>
           <div className="row">
-            <div className="results-display col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12 text-center run-data">
+            <div className="results-display col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center run-data">
               <ResultsDisplay
                 minutesSecondsRan={minutesSecondsRan}
                 distance={distance}
@@ -156,7 +153,7 @@ class RunResult extends Component {
                 calories={calories}
               />
             </div>
-            <div className="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12">
+            <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 results-chart-container">
               <ResultsChart
                 chartData={this.state.chartData}
                 distance={this.state.totalDistance}
@@ -164,6 +161,7 @@ class RunResult extends Component {
               />
             </div>
           </div>
+          <img className="logo" src={Logo}/>
         </div>
       </div>
     )
