@@ -6,8 +6,7 @@ import apiKey from '../googlemap';
 import './run_results.scss';
 import ResultsDisplay from './results_display';
 import Logo from '../../../public/dist/images/logo_black.png';
-
-
+import PreLoader from '../preloader/preloader.js';
 
 
 class RunResult extends Component {
@@ -32,6 +31,7 @@ class RunResult extends Component {
         lat: 0,
         lng: 0
       },
+      loading: true,
     }
   }
 
@@ -105,6 +105,7 @@ class RunResult extends Component {
             }
           ]
         },
+        loading: false,
       })
     })
   }
@@ -131,40 +132,45 @@ class RunResult extends Component {
 
   render() {
     const { date, first_name, currentLatLng, distance, city, minutesSecondsRan, calories, pace, totalDistance, secondsRan } = this.state;
-    return (
-      <div className="postRunBody">
-        <RunHeader />
-        <div className="results-container container-fluid">
-            <div className="row">
-              <div className="col-12 col-md-10 offset-md-1 col-xl-8 offset-xl-2 run-message-container">
-                <div className="run-message">
-                  <p className="first-description text-center">{first_name}, here are your results from {date.date} at {date.time}</p>
-                  <p className="second-description">{this.runDescription(secondsRan, totalDistance)} </p>
-                  <p className="location">{city ? <span className="oi" data-glyph="map-marker"></span> : ''} {city}</p>
+
+    if(this.state.loading) {
+      return <PreLoader />
+    } else {
+      return (
+        <div className="postRunBody">
+          <RunHeader />
+          <div className="results-container container-fluid">
+              <div className="row">
+                <div className="col-12 col-md-10 offset-md-1 col-xl-8 offset-xl-2 run-message-container">
+                  <div className="run-message">
+                    <p className="first-description text-center">{first_name}, here are your results from {date.date} at {date.time}</p>
+                    <p className="second-description">{this.runDescription(secondsRan, totalDistance)} </p>
+                    <p className="location">{city ? <span className="oi" data-glyph="map-marker"></span> : ''} {city}</p>
+                  </div>
                 </div>
               </div>
+            <div className="row">
+              <div className="results-display col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center run-data">
+                <ResultsDisplay
+                  minutesSecondsRan={minutesSecondsRan}
+                  distance={distance}
+                  pace={pace}
+                  calories={calories}
+                />
+              </div>
+              <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 results-chart-container">
+                <ResultsChart
+                  chartData={this.state.chartData}
+                  distance={this.state.totalDistance}
+                  secondsRan={this.state.secondsRan}
+                />
+              </div>
             </div>
-          <div className="row">
-            <div className="results-display col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center run-data">
-              <ResultsDisplay
-                minutesSecondsRan={minutesSecondsRan}
-                distance={distance}
-                pace={pace}
-                calories={calories}
-              />
-            </div>
-            <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 results-chart-container">
-              <ResultsChart
-                chartData={this.state.chartData}
-                distance={this.state.totalDistance}
-                secondsRan={this.state.secondsRan}
-              />
-            </div>
+            <img className="logo" src={Logo}/>
           </div>
-          <img className="logo" src={Logo}/>
         </div>
-      </div>
-    )
+      )
+    }
   }
 }
 

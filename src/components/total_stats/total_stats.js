@@ -8,6 +8,7 @@ import EventDate from './event_date';
 import PieChart from './piechart';
 import EventModal from './modal/modal';
 import Logo from '../../../public/dist/images/logo_black.png';
+import PreLoader from '../preloader/preloader.js';
 
 class TotalStats extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class TotalStats extends React.Component {
       pieChartData: {},
       runCount: 0,
       personalBests: {},
+      loading: true,
     }
   }
 
@@ -104,6 +106,7 @@ class TotalStats extends React.Component {
             }
           ]
         },
+        loading: false,
       })
     })
   }
@@ -111,32 +114,36 @@ class TotalStats extends React.Component {
   render() {
     const{chartData, pieChartData, runCount} = this.state;
 
-    return (
-      <div className="total-stats">
-        <RunHeader />
-        <div className="totalStatsContainer container-fluid">
-        <div className="first-row row">
-          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 chart-component-container">
-            <Chart chartData={chartData} runCount={runCount}/>
+    if(this.state.loading) {
+      return <PreLoader />
+    } else {
+      return (
+        <div className="total-stats">
+          <RunHeader />
+          <div className="totalStatsContainer container-fluid">
+          <div className="first-row row">
+            <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 chart-component-container">
+              <Chart chartData={chartData} runCount={runCount}/>
+            </div>
+            <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 ">
+              <PersonalBests
+                personalBests={{...this.state.personalBests}}
+              />
+            </div>
           </div>
-          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 ">
-            <PersonalBests
-              personalBests={{...this.state.personalBests}}
-            />
+          <div className="second-row row">
+            <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center chart-component-container">
+              <PieChart pieChartData={pieChartData} />
+            </div>
+            <div className="mt-1 col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center">
+              <EventDate/>
+            </div>
           </div>
+          <img className="logo" src={Logo}/>
         </div>
-        <div className="second-row row">
-          <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center chart-component-container">
-            <PieChart pieChartData={pieChartData} />
-          </div>
-          <div className="mt-1 col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center">
-            <EventDate/>
-          </div>
-        </div>
-        <img className="logo" src={Logo}/>
       </div>
-    </div>
-    )
+      )
+    }
   }
 }
 

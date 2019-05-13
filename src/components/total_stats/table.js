@@ -4,6 +4,8 @@ import axios from 'axios';
 import TableData from './tabledata';
 import './total_stats.scss';
 import Logo from '../../../public/dist/images/logo_black.png';
+import PreLoader from '../preloader/preloader.js';
+
 
 class Chart extends Component {
   constructor(props) {
@@ -97,35 +99,72 @@ class Chart extends Component {
   }
 
   render() {
-    return (
-      <div className="tableContainer">
-        <RunHeader />
-        <div className="activityLogContainer">
-          <div className="filterByDays float-right text-primary pt-3 pb-3">
-            <span onClick={this.displayActivityLogData} className={`total ${this.state.clickedElement === 'total' ? 'bold' : ''}`}>Total </span>
-            <span>|</span>
-            <span onClick={this.filterByMonth} className={`month ${this.state.clickedElement === 'month' ? 'bold' : ''}`}> Last 30 Days </span>
-            <span>|</span>
-            <span onClick={this.filterByWeek} className={`week ${this.state.clickedElement === 'week' ? 'bold' : ''}`}> Last 10 days</span>
-          </div>
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Distance (mi)</th>
-                <th scope="col">Time (h:m:s)</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.stats}
-            </tbody>
-          </table>
-          <img className="logo" src={Logo}/>
+    if(this.state.stats.length === 0) {
+      return(
+        <div>
+          <PreLoader />
         </div>
-      </div>
-    )
-  }
+      )
+    } else {
+      return (
+        <div className="tableContainer">
+          <RunHeader />
+          <div className="activityLogContainer">
+            <div className="filterByDays float-right text-primary pt-3 pb-3">
+              <span onClick={this.displayActivityLogData} className={`total ${this.state.clickedElement === 'total' ? 'bold' : ''}`}>Total </span>
+              <span>|</span>
+              <span onClick={this.filterByMonth} className={`month ${this.state.clickedElement === 'month' ? 'bold' : ''}`}> Last 30 Days </span>
+              <span>|</span>
+              <span onClick={this.filterByWeek} className={`week ${this.state.clickedElement === 'week' ? 'bold' : ''}`}> Last 10 days</span>
+            </div>
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Distance (mi)</th>
+                  <th scope="col">Time (h:m:s)</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.stats}
+              </tbody>
+            </table>
+            <img className="logo" src={Logo}/>
+          </div>
+        </div>
+      )
+    }
+    // return (
+    //   <div className="tableContainer">
+    //     <RunHeader />
+    //     <div className="activityLogContainer">
+    //       <div className="filterByDays float-right text-primary pt-3 pb-3">
+    //         <span onClick={this.displayActivityLogData} className={`total ${this.state.clickedElement === 'total' ? 'bold' : ''}`}>Total </span>
+    //         <span>|</span>
+    //         <span onClick={this.filterByMonth} className={`month ${this.state.clickedElement === 'month' ? 'bold' : ''}`}> Last 30 Days </span>
+    //         <span>|</span>
+    //         <span onClick={this.filterByWeek} className={`week ${this.state.clickedElement === 'week' ? 'bold' : ''}`}> Last 10 days</span>
+    //       </div>
+    //       <table className="table table-hover">
+    //         <thead>
+    //           <tr>
+    //             <th scope="col">Date</th>
+    //             <th scope="col">Distance (mi)</th>
+    //             <th scope="col">Time (h:m:s)</th>
+    //             <th scope="col"></th>
+    //           </tr>
+    //         </thead>
+    //         <tbody>
+    //           {this.state.stats}
+    //         </tbody>
+    //       </table>
+    //       <img className="logo" src={Logo}/>
+    //     </div>
+    //   </div>
+    // )
+    }
+
 }
 
 export default Chart;
