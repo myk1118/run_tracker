@@ -22,7 +22,7 @@ export default props => {
             <p className="last-run-date ">{lastRunDate} <span>{lastRunDate ? `@ ${lastRunTime}` : ''}</span></p>
           </div>
           <div className="col-3 col-sm-3">
-            <p className="text-center">{latestRunInfo.distance} {latestRunInfo.distance ? 'miles' : ''}</p>
+            <p className="text-center">{latestRunInfo.distance} {latestRunInfo.distance || latestRunInfo.distance === 0 ? 'miles' : ''}</p>
           </div>
           <div className="col-3 col-sm-3">
             <p className="text-center">{latestRunInfo.time} {latestRunInfo.time ? 'min' : ''}</p>
