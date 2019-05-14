@@ -152,7 +152,7 @@
 
     .personal-bests {
       padding: 1% 0;
-      font-size: 1.5rem;
+      // font-size: 1.5rem;
       .row {
         margin: auto;
         width: 100%;
@@ -222,6 +222,7 @@
         background-color: #81b3c2;
         color: white;
         border-radius: 4px 4px 0 0;
+        font-size: 1.5rem;
       }
 
       .best {
@@ -430,12 +431,23 @@
   }
 
   //Total Stats
+
   .total-stats {
+
+    .personalbests-component-container {
+      // padding-left: 2px;
+      // padding-right: 2px;
+    }
 
     .all-time-title {
       font-size: 0.7rem;
     }
     .personal-bests{
+
+      .personal-bests-title {
+        font-size: 1rem;
+      }
+
       .best{
         font-size: 1.1rem;
       }
@@ -450,8 +462,8 @@
     }
 
     .chart-component-container{
-      padding-left: 2px;
-      padding-right: 2px;
+      // padding-left: 2px;
+      // padding-right: 2px;
     }
     .first-row {
       .line-graph-container {
