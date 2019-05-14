@@ -184,10 +184,11 @@ class RunMap extends Component {
                         lng: position.coords.longitude,
                     }
                 })
-            }
+            }, error => {
+                  console.log(error)
+            },
+            {enableHighAccuracy: true}
             )
-        } else {
-            error => console.log(error)
         }
     }
 
