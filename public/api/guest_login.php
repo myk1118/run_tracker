@@ -12,16 +12,9 @@ $json_input = file_get_contents("php://input");
 
 $input = json_decode($json_input, true);
 
-// if (empty($input['email'])) {
-//     throw new Exception('Email is a required value');
-// }
 
-// if (empty($input['password'])) {
-//     throw new Exception('Password is a required value');
-// }
-
-$email = 'guest@guest.com';
-$password = 'guestpassword';
+$email = $input['email'];
+$password = $input['password'];
 
 $email = addslashes($email);
 $hashedPassword = sha1($password);
@@ -82,5 +75,3 @@ $output['token'] = $token;
 $json_output = json_encode($output);
 
 print($json_output);
-
-

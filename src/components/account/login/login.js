@@ -62,6 +62,26 @@ class LogIn extends Component {
     this.handleLogIn(values);
   }
 
+  handleGuestLogIn = () => {
+    const values = {
+      email: 'guest@guest.com',
+      password: 'guestpassword'
+    }
+    axios.post('/api/login.php', values).then(resp => {
+      console.log('guest resp', resp);
+      this.props.history.push('/'); 
+    })
+  }
+
+  deleteCurrentRun = () => {
+    const data = {
+      id: this.state.run_id
+    }
+    axios.post('/api/deleterun.php', data).then(resp => {
+      console.log(resp)
+    })
+  }
+
   handleLogInButton() {
     this.setState({
       transition: {
@@ -116,9 +136,7 @@ class LogIn extends Component {
           <div className="loginButtonsContainer">
             <button onClick={this.handleLogInButton} className="loginButton btn btn-info">Log In</button>
             <button onClick={this.handleSignUpButton} className="loginButton btn btn-info">Sign Up</button>
-            <NavLink className="guest" to="/runmap">
-              <button className="loginButton btn btn-info">Guest</button>
-            </NavLink>
+              <button onClick={this.handleGuestLogIn} className="loginButton btn btn-info">Guest</button>
           </div>
           <div className="transition" style={this.state.transition}>
             <div className={this.state.loginHidden ? 'hidden' : 'loginFormContainer'}>
