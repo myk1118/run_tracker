@@ -13,6 +13,7 @@ class Chart extends Component {
     this.state = {
       stats: [],
       clickedElement: null,
+      loading: true,
     }
   }
 
@@ -42,6 +43,7 @@ class Chart extends Component {
       this.setState({
         stats: [...stats],
         clickedElement: 'total',
+        loading: false,
       })
     })
   }
@@ -99,7 +101,7 @@ class Chart extends Component {
   }
 
   render() {
-    if(this.state.stats.length === 0) {
+    if(this.state.loading) {
       return(
         <div>
           <PreLoader />
