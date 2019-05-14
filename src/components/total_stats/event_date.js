@@ -31,11 +31,11 @@ class EventDate extends Component {
     return (
 
       <Fragment>
-        <div className="col-8 text-center align-self-center offset-2">
-          <EventModal getEvent={this.getEvent} />
-        </div>
         <h3 className="title">{eventName}</h3>
         <Countdown date={`${eventDate}`} />
+        <div className="col">
+          <EventModal getEvent={this.getEvent} />
+        </div>
       </Fragment>
 
     )
