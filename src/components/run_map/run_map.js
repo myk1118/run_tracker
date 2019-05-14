@@ -58,16 +58,14 @@ class RunMap extends Component {
     }
 
     componentWillUnmount() {
-      if(this.state.status === 'running') {
-        clearInterval(this.state.watchId);
+
         clearTimeout(this.calorieTimeout)
         clearTimeout(this.timeout);
+        navigator.geolocation.clearWatch(this.state.watchId);
+
+      if(this.state.status === 'running') {
         this.deleteCurrentRun();
       }
-      //  else {
-      //   this.postlatestMile(this.state.distanceTraveled);
-      //   this.postCurrentRun(this.state.elapsed);
-      // }
     }
 
     deleteCurrentRun = () => {
@@ -184,10 +182,11 @@ class RunMap extends Component {
                         lng: position.coords.longitude,
                     }
                 })
-            }
+            }, error => {
+                  console.log(error)
+            },
+            {enableHighAccuracy: true}
             )
-        } else {
-            error => console.log(error)
         }
     }
 
@@ -208,17 +207,17 @@ class RunMap extends Component {
 
     startTracking = () => {
       const watchId = navigator.geolocation.watchPosition(position => {
-        this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+          this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
       }, error => {
-      }, {enableHighAccuracy: true})
-        this.setState({
-          watchId: watchId
-        })
+      }, {enableHighAccuracy: true});
+
+      this.setState({
+        watchId: watchId
+      })
     }
     //when you click the stop button, stop tracking
     stopTracking = () => {
-        // navigator.geolocation.clearWatch(this.state.watchId);
-        clearInterval(this.state.watchId);
+        navigator.geolocation.clearWatch(this.state.watchId);
     }
     stopCalorie = () => {
         clearTimeout(this.countCalories);
@@ -228,8 +227,8 @@ class RunMap extends Component {
     monitorUserDistance = (newLatitude, newLongitude) => {
         const { lat, lng } = this.state.currentLatLng
         const distanceCalculation = this.calcDistanceHaversine(lat, lng, newLatitude, newLongitude);
-        let newDistance = this.state.distanceTraveled + distanceCalculation;
         const { distance, distanceTraveled, mileCounter } = this.state;
+        let newDistance = distanceTraveled + distanceCalculation;
         if (distanceTraveled && distanceTraveled - mileCounter >= 0) {
             this.postlatestMile(mileCounter);
         }

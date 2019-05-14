@@ -128,7 +128,12 @@ $output['longestTime'] = (int)$data['longestTime'];
 $output['totalTime'] = gmdate("i:s", (int)$data['totalTime']);
 // $output['fastestpace'] = gmdate("i:s", round((int)$data['fastestpace'],0));
 
-$pace_in_seconds = round((int)$data['totalTime'] / (float)$data['totalDistance']);
+if((float)$data['totalDistance'] === 0.00) {
+  $pace_in_seconds = 0;
+} else {
+  $pace_in_seconds = round((int)$data['totalTime'] / (float)$data['totalDistance']);
+}
+
 $output['averagePace'] = gmdate("i:s", (int)$pace_in_seconds);
 
 

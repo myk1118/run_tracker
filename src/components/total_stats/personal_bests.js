@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 
 export default props => {
 
+    console.log('props: ', props)
+
     const {longestRun, lastRunDate, averagePace, mostCalories, totalCalories,
           totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate,
           latestRunInformation, longestRunId, highestCalorieId } = props.personalBests;
