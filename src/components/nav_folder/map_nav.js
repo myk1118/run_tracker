@@ -39,12 +39,12 @@ class MapNav extends Component {
             <span className="oi" data-glyph="account-logout"></span>
           </NavLink>
         </div>
-        <nav className="navbar navbar-custom fixed-top">
+        {/* <nav className="navbar navbar-custom fixed-top">
           <ul className="nav navbar-nav">
             <li onClick={this.handleClickMap} className={this.state.mapClicked ? 'nav-link selected' : 'nav-link'}>Map</li>
             <li onClick={this.handleClickMiles} className={this.state.milesClicked ? 'nav-link selected' : 'nav-link'}>Miles Run </li>
           </ul>
-        </nav>
+        </nav> */}
       </div>
     )
   }
