@@ -58,7 +58,7 @@ class RunMap extends Component {
     }
 
     componentWillUnmount() {
-      // if(this.state.status === 'running') {
+
         clearTimeout(this.calorieTimeout)
         clearTimeout(this.timeout);
         navigator.geolocation.clearWatch(this.state.watchId);
@@ -66,10 +66,6 @@ class RunMap extends Component {
       if(this.state.status === 'running') {
         this.deleteCurrentRun();
       }
-      //  else {
-      //   this.postlatestMile(this.state.distanceTraveled);
-      //   this.postCurrentRun(this.state.elapsed);
-      // }
     }
 
     deleteCurrentRun = () => {
