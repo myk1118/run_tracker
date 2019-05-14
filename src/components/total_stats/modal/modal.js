@@ -61,7 +61,6 @@ class EventModal extends Component {
             </Modal.Header>
             <form onSubmit={this.postEvent}>
             <Modal.Body>
-
             <input
                 value={this.state.event}
                 onChange={this.handleInputChange}
