@@ -61,7 +61,7 @@ class RunMap extends Component {
       // if(this.state.status === 'running') {
         clearTimeout(this.calorieTimeout)
         clearTimeout(this.timeout);
-        clearInterval(this.state.watchId);
+        navigator.geolocation.clearWatch(this.state.watchId);
 
       if(this.state.status === 'running') {
         this.deleteCurrentRun();
@@ -221,8 +221,7 @@ class RunMap extends Component {
     }
     //when you click the stop button, stop tracking
     stopTracking = () => {
-        // navigator.geolocation.clearWatch(this.state.watchId);
-        clearInterval(this.state.watchId);
+        navigator.geolocation.clearWatch(this.state.watchId);
     }
     stopCalorie = () => {
         clearTimeout(this.countCalories);
