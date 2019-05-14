@@ -33,10 +33,10 @@ class Chart extends Component {
     axios.get('/api/get_table_data.php').then(resp => {
       const { tableItems } = resp.data;
       const stats = tableItems.map(row => {
-        const { id, date, time, distance } = row;
+        const { id, date, time, distance, calories } = row;
         return (
           <tr key={id}>
-            <TableData id={id} distance={distance} date={date} time={time} deleteRow={this.deleteRow} />
+            <TableData id={id} distance={distance} date={date} time={time} calories={calories} deleteRow={this.deleteRow} />
           </tr>
         )
       })
@@ -63,10 +63,10 @@ class Chart extends Component {
         const daysInMilliseconds = 30 * 86400000;
         return currentDateTime - runDateTime <= daysInMilliseconds
       }).map(row => {
-        const { id, date, time, distance } = row;
+        const { id, date, time, distance, calories } = row;
         return (
           <tr key={id}>
-            <TableData id={id} distance={distance} date={date} time={time} deleteRow={this.deleteRow} />
+            <TableData id={id} distance={distance} date={date} time={time} calories={calories} deleteRow={this.deleteRow} />
           </tr>
         )
       })
@@ -86,10 +86,10 @@ class Chart extends Component {
         const daysInMilliseconds = 10 * 86400000;
         return currentDateTime - runDateTime <= daysInMilliseconds
       }).map(row => {
-        const { id, date, time, distance } = row;
+        const { id, date, time, distance, calories } = row;
         return (
           <tr key={id}>
-            <TableData id={id} distance={distance} date={date} time={time} deleteRow={this.deleteRow} />
+            <TableData id={id} distance={distance} date={date} time={time} calories={calories} deleteRow={this.deleteRow} />
           </tr>
         )
       })
@@ -125,6 +125,7 @@ class Chart extends Component {
                   <th scope="col">Date</th>
                   <th scope="col">Distance (mi)</th>
                   <th scope="col">Time (h:m:s)</th>
+                  <th scope="col">Calories</th>
                   <th scope="col"></th>
                 </tr>
               </thead>

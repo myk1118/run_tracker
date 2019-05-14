@@ -1,14 +1,16 @@
 import React, {Fragment} from 'react';
+import TableModal from './modal/table_modal';
 
 export default props => {
 
-  const {date, distance, time, id} = props;
+  const {date, distance, calories, time, id} = props;
   return(
       <Fragment>
         <td>{date}</td>
         <td>{distance}</td>
         <td>{time}</td>
-        <td><button onClick={() => props.deleteRow(id)} className="btn btn-sm btn-outline-danger">Delete</button></td>
+        <td>{calories}</td>
+        <td><TableModal deleteRow={props.deleteRow} id={id}/></td>
       </Fragment>
   )
 }

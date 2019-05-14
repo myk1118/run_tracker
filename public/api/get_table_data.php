@@ -13,7 +13,7 @@ $output = [
 
 $user_id = $_SESSION['user_data']['id'];
 
-$query = "SELECT `id`, `date`, `distance`, `time`, `pace` FROM `run_stats`
+$query = "SELECT `id`, `date`, `distance`, `time`, `pace`, `calories` FROM `run_stats`
   WHERE `user_id` = $user_id
   ORDER BY `date` DESC
   ";
@@ -32,7 +32,8 @@ while($row = mysqli_fetch_assoc($result)) {
   'distance' => (float)$row['distance'],
   'time' => gmdate('H:i:s', $row['time']),
   'pace' => (int)$row['pace'],
-  'id' => (int)$row['id']
+  'id' => (int)$row['id'],
+  'calories' => (int)$row['calories']
   ];
 };
 
