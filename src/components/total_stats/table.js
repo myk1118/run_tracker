@@ -122,11 +122,11 @@ class Chart extends Component {
             <table className="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">Date</th>
-                  <th scope="col">Distance (mi)</th>
-                  <th scope="col">Time (h:m:s)</th>
-                  <th scope="col">Calories</th>
-                  <th scope="col"></th>
+                  <th className="col-s2">Date</th>
+                  <th className="col-s2">Distance (mi)</th>
+                  <th className="col-s2">Time (h:m:s)</th>
+                  <th className="col-s2">Calories</th>
+                  <th className="col-s2"></th>
                 </tr>
               </thead>
               <tbody>
