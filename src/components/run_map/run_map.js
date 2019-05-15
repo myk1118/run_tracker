@@ -64,14 +64,12 @@ class RunMap extends Component {
     }
 
     componentWillUnmount() {
-
         clearTimeout(this.calorieTimeout)
         clearTimeout(this.timeout);
         navigator.geolocation.clearWatch(this.state.watchId);
-
-      if(this.state.status === 'running') {
-        this.deleteCurrentRun();
-      }
+        if (this.state.status === 'running') {
+            this.deleteCurrentRun();
+        }
     }
 
     deleteCurrentRun = () => {
@@ -102,7 +100,7 @@ class RunMap extends Component {
         const data = {
             lat,
             lng,
-            city: this.state.city,
+            city: this.state.city
         };
         axios.post('/api/create_new_id.php', data).then(resp => {
             this.setState({
@@ -188,20 +186,19 @@ class RunMap extends Component {
                     }
                 })
             }, error => {
-                  console.log(error)
+                console.log(error)
             },
-            {enableHighAccuracy: true}
+                { enableHighAccuracy: true }
             )
         }
     }
-
 
     // geoLocationInterval = () => {
     //     navigator.geolocation.getCurrentPosition(position => {
     //         this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length / 40000), position.coords.longitude + (this.state.coordinateArray.length / 40000));
     //     })
     // }
-    //
+
     // //when you click the button, start tracking
     // startTracking = () => {
     //     const watchId = setInterval(this.geoLocationInterval, 200);
@@ -211,15 +208,16 @@ class RunMap extends Component {
     // }
 
     startTracking = () => {
-      const watchId = navigator.geolocation.watchPosition(position => {
-          this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
-      }, error => {
-      }, {enableHighAccuracy: true});
+        const watchId = navigator.geolocation.watchPosition(position => {
+            this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+        }, error => {
+        }, { enableHighAccuracy: true });
 
-      this.setState({
-        watchId: watchId
-      })
+        this.setState({
+            watchId: watchId
+        })
     }
+
     //when you click the stop button, stop tracking
     stopTracking = () => {
         navigator.geolocation.clearWatch(this.state.watchId);
@@ -341,9 +339,9 @@ class RunMap extends Component {
         }
     }
 
-    //MET 6 = 15min mile   8.3 12min mile  9.8 10min mile
-    //  11.8 7min mile    12.3  7min mile
-    //12.8 6.5min mile   16.0 5.5min mile
+    // MET 6 = 15min mile      8.3   12min mile      9.8 10min mile
+    // 11.8    7min mile       12.3  7min mile
+    // 12.8    6.5min mile     16.0  5.5min mile
 
     countCalories() {
         const { status, calories, weight, elapsed, distanceTraveled } = this.state;
@@ -471,7 +469,6 @@ class RunMap extends Component {
 
     render() {
         const { distanceTraveled } = this.state;
-
         return (
             <div className="mapBody">
                 <MapNav clickMap={this.clickMap} clickMiles={this.clickMiles} />

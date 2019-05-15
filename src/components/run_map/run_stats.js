@@ -33,9 +33,9 @@ class RunStats extends Component {
 
   render() {
     return (
-      <div className="tableContainer">
+      <div className="tableContainer overflow-auto">
         <MapNav />
-        <div className="totalMonthWeek text-primary">Total | Month | Week </div>
+        {/* <div className="totalMonthWeek text-primary">Total | Month | Week </div> */}
         <table className="table table-hover">
           <thead>
             <tr>
