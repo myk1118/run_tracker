@@ -126,7 +126,7 @@ class TotalStats extends React.Component {
             <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 chart-component-container">
               <Chart chartData={chartData} runCount={runCount}/>
             </div>
-            <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 ">
+            <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 personalbests-component-container">
               <PersonalBests
                 personalBests={{...this.state.personalBests}}
               />
