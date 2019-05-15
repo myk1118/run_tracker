@@ -1,0 +1,25 @@
+.background404 {
+    opacity: 0.4;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.not-found-content {
+    height: 95vh;
+    position: absolute;
+    top: 5vh;
+    text-align: center;
+}
+
+.homeIcon {
+    color: #17a2b8;
+    font-size: 5em;
+}
+
+.error {
+    position: absolute;
+    top: 52.5%;
+    left: 50%;
+    transform: translate(-50%, -47.5%);
+}
