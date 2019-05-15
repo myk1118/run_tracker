@@ -64,14 +64,13 @@ class LogIn extends Component {
     this.handleLogIn(values);
   }
 
-  handleGuestLogIn = () => {
+  handleGuestLogIn = async () => {
     const values = {
       email: 'guest@guest.com',
       password: 'guestpassword'
     }
-    axios.post('/api/login.php', values).then(resp => {
-      console.log('guest resp', resp);
-    })
+    await this.props.logIn(values);
+    this.props.history.push('/');
   }
 
   deleteCurrentRun = () => {
