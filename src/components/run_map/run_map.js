@@ -173,10 +173,10 @@ class RunMap extends Component {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     },
-                    coordinateArray: [...this.state.coordinateArray, {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    }],
+                    // coordinateArray: [...this.state.coordinateArray, {
+                    //     lat: position.coords.latitude,
+                    //     lng: position.coords.longitude
+                    // }],
                     startingCoords: {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
@@ -193,10 +193,10 @@ class RunMap extends Component {
 
     // geoLocationInterval = () => {
     //     navigator.geolocation.getCurrentPosition(position => {
-    //         this.monitorUserDistance(position.coords.latitude + (this.state.coordinateArray.length / 40000), position.coords.longitude + (this.state.coordinateArray.length / 40000));
+    //         this.monitorUserDistance(position.coords.latitude + ((this.state.coordinateArray.length + 1 )/ 40000), position.coords.longitude + ((this.state.coordinateArray.length + 1) / 40000));
     //     })
     // }
-    //
+
     // //when you click the button, start tracking
     // startTracking = () => {
     //     const watchId = setInterval(this.geoLocationInterval, 200);
@@ -218,6 +218,7 @@ class RunMap extends Component {
     //when you click the stop button, stop tracking
     stopTracking = () => {
         navigator.geolocation.clearWatch(this.state.watchId);
+        // clearInterval(this.state.watchId);
     }
     stopCalorie = () => {
         clearTimeout(this.countCalories);
@@ -268,7 +269,7 @@ class RunMap extends Component {
     }
 
     start() {
-      if(this.state.coordinateArray.length > 0) {
+      if(this.state.currentLatLng.lat) {
 
         if(!this.state.run_id){
           this.createNewRun()
@@ -393,7 +394,8 @@ class RunMap extends Component {
                 <Fragment>
                     <div className="h-60 mapContainer">
                         <div className="map">
-                          {this.state.coordinateArray.length === 0 ? <MapLoader /> :
+                          {/* {this.state.coordinateArray.length === 0 ? <MapLoader /> : */}
+                          {!this.state.currentLatLng.lat ? <MapLoader /> :
                             <MyMapComponent
                                 isMarkerShown
                                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
@@ -455,4 +457,4 @@ class RunMap extends Component {
     }
 }
 
-export default RunMap;
+export default RunMap
