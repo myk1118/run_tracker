@@ -4,6 +4,8 @@ import { logIn, signUp } from '../../../actions';
 import { Redirect, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import LogInForm from './login_form';
+import GuestLoginForm from './guest_login_form';
+
 import SignUpForm from '../sign_up/signup_form';
 import Carousel from './carousel';
 import Logo from '../../../../public/dist/images/logo_white.png';
@@ -69,7 +71,6 @@ class LogIn extends Component {
     }
     axios.post('/api/login.php', values).then(resp => {
       console.log('guest resp', resp);
-      this.props.history.push('/'); 
     })
   }
 
@@ -136,7 +137,7 @@ class LogIn extends Component {
           <div className="loginButtonsContainer">
             <button onClick={this.handleLogInButton} className="loginButton btn btn-info">Log In</button>
             <button onClick={this.handleSignUpButton} className="loginButton btn btn-info">Sign Up</button>
-              <button onClick={this.handleGuestLogIn} className="loginButton btn btn-info">Guest</button>
+            <GuestLoginForm guestLogin={this.handleGuestLogIn}/>
           </div>
           <div className="transition" style={this.state.transition}>
             <div className={this.state.loginHidden ? 'hidden' : 'loginFormContainer'}>
