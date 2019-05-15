@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MapNav from '../nav_folder/map_nav';
 import axios from 'axios';
 import '../total_stats/total_stats.scss';
+import './run_map.scss';
 
 class RunStats extends Component {
   state = {
@@ -30,26 +31,25 @@ class RunStats extends Component {
     })
   }
 
-
-render(){
-    return(
-    <div className="tableContainer">
-      <MapNav />
-      <div className="float-right text-primary pt-3 pb-3">Total | Month | Week </div>
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th className="w-25">Mile</th>
-            <th className="w-25">Time</th>
-            {/* <th className="w-25">Heart Rate</th>
+  render() {
+    return (
+      <div className="tableContainer overflow-auto">
+        <MapNav />
+        {/* <div className="totalMonthWeek text-primary">Total | Month | Week </div> */}
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th className="w-25">Mile</th>
+              <th className="w-25">Time</th>
+              {/* <th className="w-25">Heart Rate</th>
             <th className="w-25">Calories Burned</th> */}
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.mileStats}
-        </tbody>
-      </table>
-    </div>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.mileStats}
+          </tbody>
+        </table>
+      </div>
     )
   }
 }
