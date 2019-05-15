@@ -304,7 +304,7 @@ class RunMap extends Component {
 
     reset() {
         const { elapsed, distanceTraveled, mileCounter } = this.state;
-        if (this.state.status === 'paused') {
+        // if (this.state.status === 'paused') {
             this.postlatestMile(distanceTraveled);
             this.postCurrentRun(elapsed);
             this.setState({
@@ -312,7 +312,7 @@ class RunMap extends Component {
                 start: null,
                 elapsed: 0
             })
-        }
+        // }
     }
 
     clickMap = () => {
