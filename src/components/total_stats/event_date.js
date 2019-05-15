@@ -4,20 +4,19 @@ import EventModal from './modal/modal';
 import Countdown from './countdown.js';
 import axios from 'axios';
 
-
 class EventDate extends Component {
   state = {
     eventName: '',
     eventDate: ''
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getEvent();
   }
-  getEvent=()=>{
-    axios.get('/api/get_event.php').then(resp=>{
-      const {eventDay, eventName} = resp.data['1'];
-      let {date} = eventDay;
+  getEvent = () => {
+    axios.get('/api/get_event.php').then(resp => {
+      const { eventDay, eventName } = resp.data['1'];
+      let { date } = eventDay;
       let newDate = new Date(date);
       this.setState({
         eventName,
@@ -27,7 +26,7 @@ class EventDate extends Component {
   }
 
   render() {
-    const {eventName, eventDate} = this.state;
+    const { eventName, eventDate } = this.state;
     return (
 
       <Fragment>

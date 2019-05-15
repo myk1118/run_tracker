@@ -90,7 +90,7 @@ class TotalStats extends React.Component {
               borderColor: 'white',
               borderWidth: 2,
               backgroundColor: ['rgba(228,204,49,0.6)', 'rgba(138,17,129,0.6)', 'rgba(204,231,135,0.6)',
-               'rgba(30,144,255, 0.6)', 'rgba(54,18,46,0.6)'],
+                'rgba(30,144,255, 0.6)', 'rgba(54,18,46,0.6)'],
             }
           ]
         },
