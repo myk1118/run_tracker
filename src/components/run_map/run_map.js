@@ -98,8 +98,8 @@ class RunMap extends Component {
     createNewRun = () => {
         const { lat, lng } = this.state.startingCoords;
         const data = {
-            lat: 0,
-            lng: 0,
+            lat,
+            lng,
             city: this.state.city
         };
         axios.post('/api/create_new_id.php', data).then(resp => {
