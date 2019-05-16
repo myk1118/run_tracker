@@ -191,12 +191,20 @@
           padding-top: 2%;
           padding-bottom: 2%;
 
+          // .right-arrow {
+          //   left: 20%;
+          // }
+          //
+          // .right-arrow:hover {
+          //   left: 20.8%;
+          // }
           .right-arrow {
-            left: 20%;
+            position: absolute;
+            left: 80%;
+            padding-left: 5%;
           }
-
           .right-arrow:hover {
-            left: 20.8%;
+            left: 81%;
           }
         }
       }
