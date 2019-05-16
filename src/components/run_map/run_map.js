@@ -98,8 +98,8 @@ class RunMap extends Component {
     createNewRun = () => {
         const { lat, lng } = this.state.startingCoords;
         const data = {
-            lat,
-            lng,
+            lat: 0,
+            lng: 0,
             city: this.state.city
         };
         axios.post('/api/create_new_id.php', data).then(resp => {
@@ -216,6 +216,7 @@ class RunMap extends Component {
 
     startTracking = () => {
         const watchId = navigator.geolocation.watchPosition(position => {
+            console.log('accuracy: ',position.coords.accuracy);
             this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
         }, error => {
         }, { enableHighAccuracy: true });
@@ -235,37 +236,58 @@ class RunMap extends Component {
         clearTimeout(this.countCalories);
     }
 
+    setBeginningCoordinates(lat, lng) {
+      this.setState({
+        coordinateArray: [
+          {
+              lat,
+              lng
+          }
+        ],
+        currentLatLng: {
+            lat,
+            lng
+        },
+      })
+    }
+
     //track distance traveled. Updates everytime movement is tracked.
     monitorUserDistance = (newLatitude, newLongitude) => {
-        const { lat, lng } = this.state.currentLatLng
-        const distanceCalculation = this.calcDistanceHaversine(lat, lng, newLatitude, newLongitude);
-        if(distanceCalculation < 0.015) {
-            const { distance, distanceTraveled, mileCounter } = this.state;
-            let newDistance = distanceTraveled + distanceCalculation;
-            if (distanceTraveled && distanceTraveled - mileCounter >= 0) {
-                this.postlatestMile(mileCounter);
-            }
-            if (distanceCalculation !== 0) {
-                this.setState({
-                    coordinateArray: [...this.state.coordinateArray, {
-                        lat: newLatitude,
-                        lng: newLongitude
-                    }],
-                    distanceTraveled: newDistance,
-                    currentLatLng: {
-                        lat: newLatitude,
-                        lng: newLongitude
-                    }
-                })
-            } else {
-                this.setState({
-                    distanceTraveled: newDistance,
-                    currentLatLng: {
-                        lat: newLatitude,
-                        lng: newLongitude
-                    }
-                })
-            }
+
+        //set the first distance coordinate:
+        if(this.state.coordinateArray.length === 0 ) {
+          this.setBeginningCoordinates(newLatitude, newLongitude)
+        } else {
+          let { lat, lng } = this.state.currentLatLng
+          const distanceCalculation = this.calcDistanceHaversine(lat, lng, newLatitude, newLongitude);
+          if(distanceCalculation < 0.015) {
+              const { distance, distanceTraveled, mileCounter } = this.state;
+              let newDistance = distanceTraveled + distanceCalculation;
+              if (distanceTraveled && distanceTraveled - mileCounter >= 0) {
+                  this.postlatestMile(mileCounter);
+              }
+              if (distanceCalculation !== 0) {
+                  this.setState({
+                      coordinateArray: [...this.state.coordinateArray, {
+                          lat: newLatitude,
+                          lng: newLongitude
+                      }],
+                      distanceTraveled: newDistance,
+                      currentLatLng: {
+                          lat: newLatitude,
+                          lng: newLongitude
+                      }
+                  })
+              } else {
+                  this.setState({
+                      distanceTraveled: newDistance,
+                      currentLatLng: {
+                          lat: newLatitude,
+                          lng: newLongitude
+                      }
+                  })
+              }
+          }
         }
     }
 
