@@ -193,35 +193,35 @@ class RunMap extends Component {
         }
     }
 
-    // geoLocationInterval = () => {
-    //     navigator.geolocation.getCurrentPosition(position => {
-    //         this.monitorUserDistance(position.coords.latitude + ((this.state.coordinateArray.length + 1 )/ 40000), position.coords.longitude + ((this.state.coordinateArray.length + 1) / 40000));
-    //     })
-    // }
+    geoLocationInterval = () => {
+        navigator.geolocation.getCurrentPosition(position => {
+            this.monitorUserDistance(position.coords.latitude + ((this.state.coordinateArray.length + 1 )/ 4000), position.coords.longitude + ((this.state.coordinateArray.length + 1) / 4000));
+        })
+    }
 
     // //when you click the button, start tracking
-    // startTracking = () => {
-    //     const watchId = setInterval(this.geoLocationInterval, 200);
-    //     this.setState({
-    //         watchId: watchId
-    //     })
-    // }
-
     startTracking = () => {
-        const watchId = navigator.geolocation.watchPosition(position => {
-            this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
-        }, error => {
-        }, { enableHighAccuracy: true });
-
+        const watchId = setInterval(this.geoLocationInterval, 200);
         this.setState({
             watchId: watchId
         })
     }
 
+    // startTracking = () => {
+    //     const watchId = navigator.geolocation.watchPosition(position => {
+    //         this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+    //     }, error => {
+    //     }, { enableHighAccuracy: true });
+    //
+    //     this.setState({
+    //         watchId: watchId
+    //     })
+    // }
+
     //when you click the stop button, stop tracking
     stopTracking = () => {
-        navigator.geolocation.clearWatch(this.state.watchId);
-        // clearInterval(this.state.watchId);
+        // navigator.geolocation.clearWatch(this.state.watchId);
+        clearInterval(this.state.watchId);
     }
 
     stopCalorie = () => {
@@ -407,6 +407,7 @@ class RunMap extends Component {
     }
 
     renderPage = () => {
+      console.log('sdf',this.state.mileStats)
         const { elapsed, distanceTraveled, status, renderPage, calories } = this.state;
         const paceInMinutes = isFinite(Math.trunc(elapsed / (60000 * distanceTraveled))) ? Math.trunc(elapsed / (60000 * distanceTraveled)) : 0;
         const paceInSeconds = isFinite(((elapsed / (60000 * distanceTraveled) - paceInMinutes) * 60).toFixed(0)) ? ((elapsed / (60000 * distanceTraveled) - paceInMinutes) * 60).toFixed(0) : '00';
@@ -437,7 +438,7 @@ class RunMap extends Component {
                         </div>
                         <button onClick={this.handleMilesRun} className="milesRunButton">{this.state.buttonName}</button>
                         <div style={this.state.transition} className="transitionMilesRun">
-                            <MilesRun />
+                            <MilesRun mileStats={this.state.mileStats}/>
                         </div>
                     </div>
                     <div className="mapStatsContainer">
@@ -449,7 +450,7 @@ class RunMap extends Component {
                             calories={calories}
                         />
                     </div>
-                </Fragment >
+                </Fragment>
             )
         } else {
             return (
