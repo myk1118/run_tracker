@@ -154,16 +154,27 @@ class RunMap extends Component {
     }
 
     //current run data is sent to database when the user ends the run
-    postCurrentRun = (elapsed) => {
-        const { distanceTraveled, pace, calories, run_id, city } = this.state;
-        const data = {
+    postCurrentRun = () => {
+        const { distanceTraveled, pace, calories, run_id, city, elapsed, previousTime, miles } = this.state;
+        const currentRunData = {
             distance: distanceTraveled,
             time: Math.floor(elapsed / 1000),
             pace: pace,
             calories: calories,
             run_id,
         }
-        axios.post(`/api/addrun.php`, data);
+
+        const perMileData = {
+          run_id,
+          time: Math.floor((elapsed - previousTime) / 1000),
+          mileage: distanceTraveled,
+        }
+
+        axios.post('/api/addrun.php', currentRunData).then(() => {
+          axios.post('/api/addpermile.php', perMileData)
+        }).then(() => {
+            this.props.history.push(`/results/${run_id}`);
+        })
     }
 
     //get the current location
@@ -189,35 +200,35 @@ class RunMap extends Component {
         }
     }
 
-    geoLocationInterval = () => {
-        navigator.geolocation.getCurrentPosition(position => {
-            this.monitorUserDistance(position.coords.latitude + ((this.state.coordinateArray.length + 1 )/ 4000), position.coords.longitude + ((this.state.coordinateArray.length + 1) / 4000));
-        })
-    }
+    // geoLocationInterval = () => {
+    //     navigator.geolocation.getCurrentPosition(position => {
+    //         this.monitorUserDistance(position.coords.latitude + ((this.state.coordinateArray.length + 1 )/ 7000), position.coords.longitude + ((this.state.coordinateArray.length + 1) / 7000));
+    //     })
+    // }
 
     // //when you click the button, start tracking
-    startTracking = () => {
-        const watchId = setInterval(this.geoLocationInterval, 200);
-        this.setState({
-            watchId: watchId
-        })
-    }
-
     // startTracking = () => {
-    //     const watchId = navigator.geolocation.watchPosition(position => {
-    //         this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
-    //     }, error => {
-    //     }, { enableHighAccuracy: true });
-    //
+    //     const watchId = setInterval(this.geoLocationInterval, 200);
     //     this.setState({
     //         watchId: watchId
     //     })
     // }
 
+    startTracking = () => {
+        const watchId = navigator.geolocation.watchPosition(position => {
+            this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+        }, error => {
+        }, { enableHighAccuracy: true });
+
+        this.setState({
+            watchId: watchId
+        })
+    }
+
     //when you click the stop button, stop tracking
     stopTracking = () => {
-        // navigator.geolocation.clearWatch(this.state.watchId);
-        clearInterval(this.state.watchId);
+        navigator.geolocation.clearWatch(this.state.watchId);
+        // clearInterval(this.state.watchId);
     }
 
     stopCalorie = () => {
@@ -304,15 +315,12 @@ class RunMap extends Component {
 
     reset() {
         const { elapsed, distanceTraveled, mileCounter } = this.state;
-        // if (this.state.status === 'paused') {
-            this.postlatestMile(distanceTraveled);
-            this.postCurrentRun(elapsed);
+            this.postCurrentRun();
             this.setState({
                 status: 'stopped',
                 start: null,
                 elapsed: 0
-            })
-        // }
+        })
     }
 
     clickMap = () => {
