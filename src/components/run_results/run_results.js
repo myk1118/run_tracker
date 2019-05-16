@@ -131,6 +131,8 @@ class RunResult extends Component {
   }
 
   render() {
+
+    console.log('history: ', this.props.history)
     const { date, first_name, currentLatLng, distance, city, minutesSecondsRan, calories, pace, totalDistance, secondsRan } = this.state;
 
     if(this.state.loading) {
