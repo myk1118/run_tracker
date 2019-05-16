@@ -5,7 +5,7 @@ import './run_map.scss';
 
 
 export default props => {
-  render() {
+    return(
       <div className="tableContainer overflow-auto">
         <MapNav />
         <table className="table table-hover">
