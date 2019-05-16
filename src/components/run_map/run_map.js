@@ -239,31 +239,33 @@ class RunMap extends Component {
     monitorUserDistance = (newLatitude, newLongitude) => {
         const { lat, lng } = this.state.currentLatLng
         const distanceCalculation = this.calcDistanceHaversine(lat, lng, newLatitude, newLongitude);
-        const { distance, distanceTraveled, mileCounter } = this.state;
-        let newDistance = distanceTraveled + distanceCalculation;
-        if (distanceTraveled && distanceTraveled - mileCounter >= 0) {
-            this.postlatestMile(mileCounter);
-        }
-        if (distanceCalculation !== 0) {
-            this.setState({
-                coordinateArray: [...this.state.coordinateArray, {
-                    lat: newLatitude,
-                    lng: newLongitude
-                }],
-                distanceTraveled: newDistance,
-                currentLatLng: {
-                    lat: newLatitude,
-                    lng: newLongitude
-                }
-            })
-        } else {
-            this.setState({
-                distanceTraveled: newDistance,
-                currentLatLng: {
-                    lat: newLatitude,
-                    lng: newLongitude
-                }
-            })
+        if(distanceCalculation < 0.015) {
+            const { distance, distanceTraveled, mileCounter } = this.state;
+            let newDistance = distanceTraveled + distanceCalculation;
+            if (distanceTraveled && distanceTraveled - mileCounter >= 0) {
+                this.postlatestMile(mileCounter);
+            }
+            if (distanceCalculation !== 0) {
+                this.setState({
+                    coordinateArray: [...this.state.coordinateArray, {
+                        lat: newLatitude,
+                        lng: newLongitude
+                    }],
+                    distanceTraveled: newDistance,
+                    currentLatLng: {
+                        lat: newLatitude,
+                        lng: newLongitude
+                    }
+                })
+            } else {
+                this.setState({
+                    distanceTraveled: newDistance,
+                    currentLatLng: {
+                        lat: newLatitude,
+                        lng: newLongitude
+                    }
+                })
+            }
         }
     }
 
