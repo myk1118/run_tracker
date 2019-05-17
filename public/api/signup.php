@@ -80,8 +80,21 @@ if(!$connect_result){
 };
 
 if(mysqli_affected_rows($conn) !== 1){
-    throw new Exception('could not log you in: connection not saved');
+    throw new Exception('Could not log you in: connection not saved');
 };
+
+$firstname = $data['first_name'];
+$lastname = $data['last_name'];
+
+$_SESSION['user_data'] = [
+    'users_id' => $data['id'],
+    'username' => $firstname . ' ' . $lastname,
+    'token' => $token
+];
+
+$output['success'] = true;
+$output['username'] = $firstname . ' ' . $lastname;
+$output['token'] = $token;
 
 $json_output = json_encode($output);
 
