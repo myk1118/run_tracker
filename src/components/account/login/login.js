@@ -32,12 +32,6 @@ class LogIn extends Component {
     this.hideTransition = this.hideTransition.bind(this);
   }
 
-  // handleChange = (event) => {
-  //   const input = event.target;
-  //   const value = input.type === 'checkbox' ? input.checked : input.value;
-  //   this.setState({ [input.name]: value });
-  // };
-
   handleLogIn = (values) => {
     this.props.logIn(values);
     axios.post('/api/login.php', values).then(resp => {
