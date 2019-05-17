@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import './total_stats.scss';
 import EventModal from './modal/modal';
 import Countdown from './countdown.js';
 import axios from 'axios';
+import './total_stats.scss';
 
 class EventDate extends Component {
   state = {
@@ -27,16 +27,19 @@ class EventDate extends Component {
 
   render() {
     const { eventName, eventDate } = this.state;
+
     return (
-
       <Fragment>
-        <h3 className="title">{eventName}</h3>
-        <Countdown date={`${eventDate}`} />
-        <div className="col">
-          <EventModal getEvent={this.getEvent} />
+        <div className="eventCountdownContainer">
+          <p className="eventCountdownTitle">
+            {eventName ? eventName : 'EVENT COUNTDOWN'}
+          </p>
+          <Countdown className="col-6" date={`${eventDate}`} />
+          <div className="col">
+            <EventModal getEvent={this.getEvent} />
+          </div>
         </div>
-      </Fragment>
-
+      </Fragment >
     )
   }
 }

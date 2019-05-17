@@ -14,14 +14,14 @@ export default props => {
           options={{
             plugins: {
               datalabels: {
-                 display: false,
+                display: false,
               },
             },
             maintainAspectRatio: false,
             responsive: true,
             title: {
               display: true,
-              text: `Distances Tracked For Your Last ${runs}`,
+              text: `Distances Tracked for Your Last ${runs}`,
               fontSize: 25,
               fontColor: 'black',
             },
