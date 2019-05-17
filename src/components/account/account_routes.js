@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 import NotFound from '../404/404';
 import LogIn from './login';
 import LogOut from './logout';
-import SignUp from './sign_up';
 import Runs from '../runs/runs';
 import auth from '../../hoc/auth';
 
@@ -13,7 +12,6 @@ export default props => {
         <Switch>
             <Route path={`${match.path}/login`} component={auth(LogIn, '/', false)} />
             <Route path={`${match.path}/logout`} component={auth(LogOut)} />
-            {/* <Route path={`${match.path}/sign-up`} component={auth(SignUp, '/account', false)} /> */}
             <Route component={NotFound} />
         </Switch>
     )

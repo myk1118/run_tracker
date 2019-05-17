@@ -1,8 +1,6 @@
 import React from 'react';
 
-export default ({ input, id, label, meta: { error, touched }, type = 'text',
-    col = 'sm-12',
-    placeholder }) => {
+export default ({ input, id, meta: { error, touched }, type = 'text, number', col = 'sm-12', placeholder }) => {
 
     return (
         <div className={`input-field`}>
