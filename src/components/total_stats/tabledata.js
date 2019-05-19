@@ -9,7 +9,7 @@ export default props => {
         <td>{date}</td>
         <td>{distance}</td>
         <td>{time}</td>
-        <td>{calories}</td>
+        <td className="calories-data">{calories}</td>
         <td><TableModal deleteRow={props.deleteRow} id={id}/></td>
       </Fragment>
   )
