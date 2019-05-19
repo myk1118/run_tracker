@@ -13,6 +13,8 @@ function userReducer(state = DEFAULT_STATE, action) {
             return { ...DEFAULT_STATE };
         case types.SIGN_UP:
             return { ...state, auth: true, email: action.email };
+        case types.GUEST_LOG_IN:
+        return { ...state, auth: true, email: action.email };
         default:
             return state;
     }

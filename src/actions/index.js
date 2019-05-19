@@ -32,6 +32,24 @@ export function logIn(user) {
     }
 }
 
+export function guestLogIn(user) {
+    return function (dispatch) {
+        axios.post('/api/login.php', user).then(resp => {
+            if (resp.data.success) {
+                localStorage.setItem('loggedIn', 'true');
+                dispatch({
+                    type: types.LOG_IN,
+                    email: resp.data.email
+                });
+            } else {
+                dispatch({
+                    type: types.LOG_IN_ERROR
+                });
+            }
+        });
+    }
+}
+
 export function logOut() {
     return function (dispatch) {
         axios.get('/api/logout.php').then(resp => {

@@ -2,9 +2,7 @@
 require_once('functions.php');
 set_exception_handler('handleError');
 require_once('config.php');
-// require_once('checkuserloggedin.php');
 require_once('mysqlconnect.php');
-
 
 $output = [
     'success' => false,
@@ -14,13 +12,6 @@ $json_input = file_get_contents("php://input");
 
 $input = json_decode($json_input, true);
 
-if (empty($input['email'])) {
-    throw new Exception('Email is a required value');
-}
-
-if (empty($input['password'])) {
-    throw new Exception('Password is a required value');
-}
 
 $email = $input['email'];
 $password = $input['password'];
