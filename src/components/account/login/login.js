@@ -34,12 +34,6 @@ class LogIn extends Component {
     this.hideTransition = this.hideTransition.bind(this);
   }
 
-  // handleChange = (event) => {
-  //   const input = event.target;
-  //   const value = input.type === 'checkbox' ? input.checked : input.value;
-  //   this.setState({ [input.name]: value });
-  // };
-
   handleLogIn = (values) => {
     this.props.logIn(values);
     axios.post('/api/login.php', values).then(resp => {
@@ -70,7 +64,9 @@ class LogIn extends Component {
       password: 'guestpassword'
     }
     await this.props.logIn(values);
-    this.props.history.push('/');
+    axios.post('/api/delete_guest_run.php').then(
+      this.props.history.push('/')
+    );
   }
 
   deleteCurrentRun = () => {
