@@ -27,10 +27,14 @@
 
     $delete_query = "DELETE FROM `run_stats` WHERE `id` = $run_id";
 
-    if($_SESSION['user_data']['id'] == 5 && $date > $cutoff_date) {
-      $result = mysqli_query($conn, $delete_query);
-    } else {
+    if($_SESSION['user_data']['id'] == 5) {
+      if($date > $cutoff_date) {
+        $result = mysqli_query($conn, $delete_query);
+      } else {
       throw new Exception('you cannot delete preset guest runs');
+      }
+    } else {
+      $result = mysqli_query($conn, $delete_query);
     }
 
     if (!$result) {
