@@ -49,8 +49,13 @@ class Chart extends Component {
   }
 
   deleteRow = (id) => {
-    axios.post('api/deleterun.php', { id: id }).then(() => {
-      this.displayActivityLogData();
+    axios.post('api/deleterun.php', { id: id }).then((resp) => {
+      if(resp.data.success) {
+        this.displayActivityLogData();
+        return true;
+      } else {
+        return false;
+      }
     })
   }
 

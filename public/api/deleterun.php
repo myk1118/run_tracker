@@ -14,11 +14,24 @@
         'success'=> false,
     ];
 
-    $query = "DELETE FROM `run_stats` WHERE `id` = $run_id;
+    $date_query ="SELECT `date` FROM `run_stats` WHERE `id` = $run_id";
 
-    ";
+    $date_result = mysqli_query($conn, $date_query);
 
-    $result = mysqli_query($conn, $query);
+    $date_data = mysqli_fetch_assoc($date_result);
+
+
+    $date = strtotime($date_data['date']);
+    $cutoff_date = strtotime('2019-05-09 13:18:10');
+
+
+    $delete_query = "DELETE FROM `run_stats` WHERE `id` = $run_id";
+
+    if($_SESSION['user_data']['id'] == 5 && $date > $cutoff_date) {
+      $result = mysqli_query($conn, $delete_query);
+    } else {
+      throw new Exception('you cannot delete preset guest runs');
+    }
 
     if (!$result) {
         throw new Exception('no matching id found: ' . mysqli_error($conn));
