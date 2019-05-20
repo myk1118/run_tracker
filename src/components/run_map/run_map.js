@@ -8,6 +8,7 @@ import haversine from 'haversine';
 import MapLoader from './maploader';
 import MapStatsContainer from './map_stats_container';
 import MilesRun from './run_stats';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './run_map.scss';
 import '../total_stats/total_stats.scss';
 
@@ -38,7 +39,7 @@ class RunMap extends Component {
                 width: '0px',
             },
             milesRunHidden: true,
-            buttonName: '<<'
+            buttonName: 'left'
         }
 
         this.start = this.start.bind(this);
@@ -165,13 +166,13 @@ class RunMap extends Component {
         }
 
         const perMileData = {
-          run_id,
-          time: Math.floor((elapsed - previousTime) / 1000),
-          mileage: distanceTraveled,
+            run_id,
+            time: Math.floor((elapsed - previousTime) / 1000),
+            mileage: distanceTraveled,
         }
 
         axios.post('/api/addrun.php', currentRunData).then(() => {
-          axios.post('/api/addpermile.php', perMileData)
+            axios.post('/api/addpermile.php', perMileData)
         }).then(() => {
             this.props.history.push(`/results/${run_id}`);
         })
@@ -216,9 +217,9 @@ class RunMap extends Component {
 
     startTracking = () => {
         const watchId = navigator.geolocation.watchPosition(position => {
-            console.log('accuracy: ',position.coords.accuracy);
-            if(position.coords.accuracy < 25) {
-              this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+            console.log('accuracy: ', position.coords.accuracy);
+            if (position.coords.accuracy < 25) {
+                this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
             }
         }, error => {
         }, { enableHighAccuracy: true });
@@ -239,57 +240,56 @@ class RunMap extends Component {
     }
 
     setBeginningCoordinates(lat, lng) {
-      this.setState({
-        coordinateArray: [
-          {
-              lat,
-              lng
-          }
-        ],
-        currentLatLng: {
-            lat,
-            lng
-        },
-      })
+        this.setState({
+            coordinateArray: [
+                {
+                    lat,
+                    lng
+                }
+            ],
+            currentLatLng: {
+                lat,
+                lng
+            },
+        })
     }
 
     //track distance traveled. Updates everytime movement is tracked.
     monitorUserDistance = (newLatitude, newLongitude) => {
-
         //set the first distance coordinate:
-        if(this.state.coordinateArray.length === 0 ) {
-          this.setBeginningCoordinates(newLatitude, newLongitude)
+        if (this.state.coordinateArray.length === 0) {
+            this.setBeginningCoordinates(newLatitude, newLongitude)
         } else {
-          let { lat, lng } = this.state.currentLatLng
-          const distanceCalculation = this.calcDistanceHaversine(lat, lng, newLatitude, newLongitude);
-          if(distanceCalculation < 0.015) {
-              const { distance, distanceTraveled, mileCounter } = this.state;
-              let newDistance = distanceTraveled + distanceCalculation;
-              if (distanceTraveled && distanceTraveled - mileCounter >= 0) {
-                  this.postlatestMile(mileCounter);
-              }
-              if (distanceCalculation !== 0) {
-                  this.setState({
-                      coordinateArray: [...this.state.coordinateArray, {
-                          lat: newLatitude,
-                          lng: newLongitude
-                      }],
-                      distanceTraveled: newDistance,
-                      currentLatLng: {
-                          lat: newLatitude,
-                          lng: newLongitude
-                      }
-                  })
-              } else {
-                  this.setState({
-                      distanceTraveled: newDistance,
-                      currentLatLng: {
-                          lat: newLatitude,
-                          lng: newLongitude
-                      }
-                  })
-              }
-          }
+            let { lat, lng } = this.state.currentLatLng
+            const distanceCalculation = this.calcDistanceHaversine(lat, lng, newLatitude, newLongitude);
+            if (distanceCalculation < 0.015) {
+                const { distance, distanceTraveled, mileCounter } = this.state;
+                let newDistance = distanceTraveled + distanceCalculation;
+                if (distanceTraveled && distanceTraveled - mileCounter >= 0) {
+                    this.postlatestMile(mileCounter);
+                }
+                if (distanceCalculation !== 0) {
+                    this.setState({
+                        coordinateArray: [...this.state.coordinateArray, {
+                            lat: newLatitude,
+                            lng: newLongitude
+                        }],
+                        distanceTraveled: newDistance,
+                        currentLatLng: {
+                            lat: newLatitude,
+                            lng: newLongitude
+                        }
+                    })
+                } else {
+                    this.setState({
+                        distanceTraveled: newDistance,
+                        currentLatLng: {
+                            lat: newLatitude,
+                            lng: newLongitude
+                        }
+                    })
+                }
+            }
         }
     }
 
@@ -306,17 +306,16 @@ class RunMap extends Component {
     }
 
     start() {
-      if(this.state.currentLatLng.lat) {
-
-        if(!this.state.run_id){
-          this.createNewRun()
-        }
-        this.startTracking();
-        const { start, elapsed, calories, weight } = this.state;
-        let newStart = new Date().getTime();
-        let newCalories = calories;
-        if (start) {
-          newStart -= elapsed;
+        if (this.state.currentLatLng.lat) {
+            if (!this.state.run_id) {
+                this.createNewRun()
+            }
+            this.startTracking();
+            const { start, elapsed, calories, weight } = this.state;
+            let newStart = new Date().getTime();
+            let newCalories = calories;
+            if (start) {
+                newStart -= elapsed;
             }
             this.setState({
                 status: 'running',
@@ -341,11 +340,11 @@ class RunMap extends Component {
 
     reset() {
         const { elapsed, distanceTraveled, mileCounter } = this.state;
-            this.postCurrentRun();
-            this.setState({
-                status: 'stopped',
-                start: null,
-                elapsed: 0
+        this.postCurrentRun();
+        this.setState({
+            status: 'stopped',
+            start: null,
+            elapsed: 0
         })
     }
 
@@ -415,7 +414,7 @@ class RunMap extends Component {
                     width: '100vw'
                 },
                 milesRunHidden: false,
-                buttonName: '>>'
+                buttonName: 'right'
             })
         } else {
             this.setState({
@@ -423,7 +422,7 @@ class RunMap extends Component {
                     width: '0vw'
                 },
                 milesRunHidden: true,
-                buttonName: '<<'
+                buttonName: 'left'
             })
         }
     }
@@ -439,17 +438,17 @@ class RunMap extends Component {
                 <MapNav clickMap={this.clickMap} clickMiles={this.clickMiles} />
                 <div className="mapContainer">
                     <div className="map">
-                      {!this.state.currentLatLng.lat ? <MapLoader /> :
-                        <MyMapComponent
-                            isMarkerShown
-                            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
-                            loadingElement={<div className="loading-element" style={{ height: `100%` }} />}
-                            containerElement={<div style={{ height: `100%` }} />}
-                            mapElement={<div style={{ height: `100%` }} />}
-                            currentLocation={this.state.currentLatLng}
-                            coordinateArray={this.state.coordinateArray}
-                        />
-                      }
+                        {!this.state.currentLatLng.lat ? <MapLoader /> :
+                            <MyMapComponent
+                                isMarkerShown
+                                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}
+                                loadingElement={<div className="loading-element" style={{ height: `100%` }} />}
+                                containerElement={<div style={{ height: `100%` }} />}
+                                mapElement={<div style={{ height: `100%` }} />}
+                                currentLocation={this.state.currentLatLng}
+                                coordinateArray={this.state.coordinateArray}
+                            />
+                        }
                     </div>
                     <div className="runmapButtonsContainer">
                         <WatchBtns status={status}
@@ -458,9 +457,11 @@ class RunMap extends Component {
                             pause={this.pause}
                             reset={this.reset} />
                     </div>
-                    <button onClick={this.handleMilesRun} className="milesRunButton">{this.state.buttonName}</button>
+                    <button onClick={this.handleMilesRun} className="btn btn-info milesRunButton">
+                        {this.state.buttonName === 'left' ? <i><FontAwesomeIcon icon="angle-double-left" color="white" /></i> : <i><FontAwesomeIcon icon="angle-double-right" color="white" /></i>}
+                    </button>
                     <div style={this.state.transition} className="transitionMilesRun">
-                        <MilesRun mileStats={this.state.mileStats}/>
+                        <MilesRun mileStats={this.state.mileStats} />
                     </div>
                 </div>
                 <div className="mapStatsContainer">
