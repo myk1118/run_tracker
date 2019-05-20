@@ -8,6 +8,7 @@ export default props => {
   const seconds = secondsRan - minutes * 60;
   const oneOrMoreMinutes = minutes > 1 ? 'minutes' : 'minute';
   const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrMoreMinutes} and ${seconds} Seconds`;
+  console.log('true or false? ', window.matchMedia('(max-width: 600px)').matches)
 
   return (
     <div className="bar-graph-container">
@@ -20,35 +21,17 @@ export default props => {
           plugins: {
             datalabels: {
               formatter: function(value, context) {
-                let date = new Date(null);
-                date.setSeconds(value);
-                return date.toISOString().slice(14,19);
+                  let date = new Date(null);
+                  date.setSeconds(value);
+                  return date.toISOString().slice(14,19);
               },
+              display: distance > 5 && window.matchMedia('(max-width: 370px)').matches ? false : true,
               color: 'white',
               font: {
                 weight: 'bold',
               }
             },
           },
- //          "animation": {
- //   "duration": 1,
- //   "onComplete": function() {
- //     var chartInstance = this.chart,
- //       ctx = chartInstance.ctx;
- //
- //     ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
- //     ctx.textAlign = 'center';
- //     ctx.textBaseline = 'bottom';
- //
- //     this.data.datasets.forEach(function(dataset, i) {
- //       var meta = chartInstance.controller.getDatasetMeta(i);
- //       meta.data.forEach(function(bar, index) {
- //         var data = dataset.data[index];
- //         ctx.fillText(data, bar._model.x, bar._model.y - 5);
- //       });
- //     });
- //   }
- // },
           tooltips: {
             callbacks: {
                 label: function(tooltipItem, data) {
@@ -90,7 +73,7 @@ export default props => {
                 ticks: {
                   callback: label => {
                     let date = new Date(null);
-                    date.setSeconds(label); // specify value for SECONDS here
+                    date.setSeconds(label);
                     return date.toISOString().slice(14,19);
                   },
                   beginAtZero: true

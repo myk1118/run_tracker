@@ -155,20 +155,13 @@
           padding-top: 2%;
           padding-bottom: 2%;
 
-          // .right-arrow {
-          //   left: 20%;
-          // }
-          //
-          // .right-arrow:hover {
-          //   left: 20.8%;
-          // }
           .right-arrow {
             position: absolute;
-            left: 80%;
+            left: 75%;
             padding-left: 5%;
           }
           .right-arrow:hover {
-            left: 81%;
+            left: 76%;
 
         }
       }
@@ -464,6 +457,9 @@
     .week {
       font-size: 0.8rem;
     }
+    .btn-sm {
+      padding: 0.1rem;
+    }
   }
 
   //Total Stats
@@ -488,6 +484,10 @@
           font-size: 0.7rem;
         }
       }
+
+      .all-time-title {
+        font-size: 0.9rem;
+      }
     }
 
     .first-row {
@@ -498,6 +498,27 @@
 
     .modal-dialog {
       margin: auto;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .total-stats {
+
+    .total-statistics {
+
+        .best {
+          font-size: 0.9rem;
+        }
+    }
+  }
+
+  .tableContainer {
+    .calories-header {
+      display: none;
+    }
+    .calories-data {
+      display: none;
     }
   }
 }

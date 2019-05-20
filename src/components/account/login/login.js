@@ -48,7 +48,6 @@ class LogIn extends Component {
   handleSignUp = (values) => {
     this.props.signUp(values);
     axios.post('/api/signup.php', values).then(resp => {
-      console.log('response: ', resp);
       if (resp.data.success) {
         this.setState({
           signedUp: true

@@ -6,6 +6,7 @@ import '../total_stats.scss';
 class TableModal extends Component {
     state = {
         show: false,
+        deleteSuccess: true,
       };
 
 
@@ -20,11 +21,19 @@ class TableModal extends Component {
     deleteRun=(e)=>{
         const {id} = this.props
         e.preventDefault();
-        this.props.deleteRow(id);
+        const deleteRowResult = this.props.deleteRow(id);
+        if(!deleteRowResult) {
+          this.setState({
+            deleteSuccess: false
+          })
+        }
     }
 
 
     render() {
+      const {deleteSuccess} = this.state;
+      const deleteMessage = deleteSuccess ? 'Are you sure you want to delete run?' : 'You cannot delete pre-set guest runs';
+
       return (
         <Fragment>
           <Button variant="none" className="btn btn-sm btn-outline-danger" onClick={this.handleShow}>
@@ -32,7 +41,7 @@ class TableModal extends Component {
           </Button>
           <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title>Are you sure you want to delete run?</Modal.Title>
+              <Modal.Title>{deleteMessage}</Modal.Title>
             </Modal.Header>
             <form onSubmit={this.deleteRun}>
             <Modal.Body>

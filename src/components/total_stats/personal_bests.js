@@ -6,7 +6,6 @@ import './total_stats.scss';
 
 export default props => {
 
-  console.log('props: ', props)
 
   const { longestRun, lastRunDate, averagePace, mostCalories, totalCalories,
     totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate,
@@ -22,10 +21,10 @@ export default props => {
           <p className="last-run-date ">{lastRunDate} <span>{lastRunDate ? `@ ${lastRunTime}` : ''}</span></p>
         </div>
         <div className="col-3 col-sm-3">
-          <p className="text-center">{latestRunInfo.distance} {latestRunInfo.distance || latestRunInfo.distance === 0 ? 'miles' : ''}</p>
+          <p className="text-right text-sm-center">{latestRunInfo.distance} {latestRunInfo.distance || latestRunInfo.distance === 0 ? 'miles' : ''}</p>
         </div>
         <div className="col-3 col-sm-3">
-          <p className="text-center">{latestRunInfo.time} {latestRunInfo.time ? 'min' : ''}</p>
+          <p className="text-right text-sm-center">{latestRunInfo.time} {latestRunInfo.time ? 'min' : ''}</p>
         </div>
         <div className="col-3 col-sm-2">
           <NavLink to={`/results/${latestRunInfo.id}`}>
@@ -51,7 +50,7 @@ export default props => {
         </div>
         <div className="col-6">
           <div>
-            <p className="all-time-title">Calories Burned</p>
+            <p className="all-time-title">Calories</p>
             <div className="data-and-date-container">
               <p className="best">{mostCalories} <span>{mostCalories ? 'cal' : ''}</span></p>
               <p className="personal-bests-date">{highestCalorieDate}
@@ -68,9 +67,9 @@ export default props => {
         <p className="personal-bests-title">ALL-TIME</p>
         <div className="all-time col-6">
           <div>
-            <p className="all-time-title"><i><FontAwesomeIcon icon="stopwatch" color="rgba(130, 82, 0.8)" /></i> Average Pace</p>
+            <p className="all-time-title"><i><FontAwesomeIcon icon="clock" color="rgba(107, 185, 240, 1)" /></i> Total Minutes</p>
             <div>
-              <p className="best">{averagePace}<span> {averagePace ? 'min/mile' : ''}</span></p>
+              <p className="best">{totalTime}<span> {totalTime ? 'min' : ''}</span></p>
             </div>
           </div>
         </div>
@@ -92,9 +91,9 @@ export default props => {
         </div>
         <div className="all-time col-6">
           <div>
-            <p className="all-time-title"><i><FontAwesomeIcon icon="clock" color="rgba(107, 185, 240, 1)" /></i> Total Minutes</p>
+            <p className="all-time-title"><i><FontAwesomeIcon icon="stopwatch" color="rgba(130, 82, 0.8)" /></i> Average Pace</p>
             <div>
-              <p className="best">{totalTime}<span> {totalTime ? 'min' : ''}</span></p>
+              <p className="best">{averagePace}<span> {averagePace ? 'min/mile' : ''}</span></p>
             </div>
           </div>
         </div>

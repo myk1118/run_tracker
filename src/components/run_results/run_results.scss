@@ -118,10 +118,6 @@
   .postRunBody {
     height: 100vh;
 
-    .run-message-container {
-      padding-left: 2px;
-      padding-right: 2px;
-    }
 
     .run-message {
       .first-description {
@@ -136,10 +132,6 @@
       }
     }
 
-    .results-chart-container {
-      padding-left: 2px;
-      padding-right: 2px
-    }
 
     .bar-graph-container {
       height: 55vh;
@@ -154,9 +146,16 @@
       height: 50%;
 
 
-      .col-6 {
-        padding-left: 2px;
+      .results-left-column {
         padding-right: 2px;
+      }
+
+      .results-right-column {
+        padding-left: 2px;
+      }
+
+      .results-display-units {
+        font-size: 0.8rem;
       }
 
       .runtitle {
