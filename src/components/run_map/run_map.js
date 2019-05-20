@@ -85,7 +85,6 @@ class RunMap extends Component {
     getCityName(lat, lng) {
         axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${lat}%2C+${lng}&key=76e6a71e44ff40759963af6dacacc318&pretty=1`).then(resp => {
             if (resp.data) {
-                console.log('city: ', resp.data.results[0].components.city)
                 this.setState({
                     city: resp.data.results[0].components.city
                 })
@@ -217,9 +216,8 @@ class RunMap extends Component {
 
     startTracking = () => {
         const watchId = navigator.geolocation.watchPosition(position => {
-            console.log('accuracy: ', position.coords.accuracy);
-            if (position.coords.accuracy < 25) {
-                this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
+            if(position.coords.accuracy < 5) {
+              this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
             }
         }, error => {
         }, { enableHighAccuracy: true });

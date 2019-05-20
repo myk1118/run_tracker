@@ -49,8 +49,13 @@ class Chart extends Component {
   }
 
   deleteRow = (id) => {
-    axios.post('api/deleterun.php', { id: id }).then(() => {
-      this.displayActivityLogData();
+    axios.post('api/deleterun.php', { id: id }).then((resp) => {
+      if(resp.data.success) {
+        this.displayActivityLogData();
+        return true;
+      } else {
+        return false;
+      }
     })
   }
 
@@ -125,7 +130,7 @@ class Chart extends Component {
                   <th className="col-s2">Date</th>
                   <th className="col-s2">Distance (mi)</th>
                   <th className="col-s2">Time (h:m:s)</th>
-                  <th className="col-s2">Calories</th>
+                  <th className="col-s2 calories-header">Calories</th>
                   <th className="col-s2"></th>
                 </tr>
               </thead>
@@ -138,36 +143,7 @@ class Chart extends Component {
         </div>
       )
     }
-    // return (
-    //   <div className="tableContainer">
-    //     <RunHeader />
-    //     <div className="activityLogContainer">
-    //       <div className="filterByDays float-right text-primary pt-3 pb-3">
-    //         <span onClick={this.displayActivityLogData} className={`total ${this.state.clickedElement === 'total' ? 'bold' : ''}`}>Total </span>
-    //         <span>|</span>
-    //         <span onClick={this.filterByMonth} className={`month ${this.state.clickedElement === 'month' ? 'bold' : ''}`}> Last 30 Days </span>
-    //         <span>|</span>
-    //         <span onClick={this.filterByWeek} className={`week ${this.state.clickedElement === 'week' ? 'bold' : ''}`}> Last 10 days</span>
-    //       </div>
-    //       <table className="table table-hover">
-    //         <thead>
-    //           <tr>
-    //             <th scope="col">Date</th>
-    //             <th scope="col">Distance (mi)</th>
-    //             <th scope="col">Time (h:m:s)</th>
-    //             <th scope="col"></th>
-    //           </tr>
-    //         </thead>
-    //         <tbody>
-    //           {this.state.stats}
-    //         </tbody>
-    //       </table>
-    //       <img className="logo" src={Logo}/>
-    //     </div>
-    //   </div>
-    // )
-    }
-
+  }
 }
 
 export default Chart;
