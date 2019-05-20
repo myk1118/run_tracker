@@ -64,7 +64,7 @@ while($row = mysqli_fetch_assoc($result)) {
   ];
   $output['secondsRan'] = (int)$row['time'];
   $output['minutesSecondsRan'] = gmdate($hrs_min_sec, (int)$row['time']);
-  $output['distance'] = $row['distance'];
+  $output['distance'] = (float)$row['distance'];
   $output['sessionData'][] = [
     'time' => (int)$minutes,
     'distance' => (int)$row['distance'],

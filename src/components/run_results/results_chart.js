@@ -20,9 +20,11 @@ export default props => {
           plugins: {
             datalabels: {
               formatter: function(value, context) {
-                let date = new Date(null);
-                date.setSeconds(value);
-                return date.toISOString().slice(14,19);
+                if(distance <= 5) {
+                  let date = new Date(null);
+                  date.setSeconds(value);
+                  return date.toISOString().slice(14,19);
+                }
               },
               color: 'white',
               font: {
@@ -30,25 +32,6 @@ export default props => {
               }
             },
           },
- //          "animation": {
- //   "duration": 1,
- //   "onComplete": function() {
- //     var chartInstance = this.chart,
- //       ctx = chartInstance.ctx;
- //
- //     ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
- //     ctx.textAlign = 'center';
- //     ctx.textBaseline = 'bottom';
- //
- //     this.data.datasets.forEach(function(dataset, i) {
- //       var meta = chartInstance.controller.getDatasetMeta(i);
- //       meta.data.forEach(function(bar, index) {
- //         var data = dataset.data[index];
- //         ctx.fillText(data, bar._model.x, bar._model.y - 5);
- //       });
- //     });
- //   }
- // },
           tooltips: {
             callbacks: {
                 label: function(tooltipItem, data) {
@@ -90,7 +73,7 @@ export default props => {
                 ticks: {
                   callback: label => {
                     let date = new Date(null);
-                    date.setSeconds(label); // specify value for SECONDS here
+                    date.setSeconds(label);
                     return date.toISOString().slice(14,19);
                   },
                   beginAtZero: true

@@ -18,16 +18,16 @@ export default props => {
         </div>
         <div className="col-6">
           <div className="results-display-container">
-            <p className="runtitle"><i><FontAwesomeIcon icon="road" color="grey"/></i> Distance</p>
-            <p>{distance} miles</p>
+            <p className="runtitle"><i><FontAwesomeIcon icon="stopwatch" color="rgba(130, 82, 0.8)"/></i> Avg Pace (min/mile)</p>
+            <p>{paceWithNaNCheck}</p>
           </div>
         </div>
       </div>
       <div className="row">
         <div className="col-6">
           <div className="results-display-container">
-            <p className="runtitle"><i><FontAwesomeIcon icon="stopwatch" color="rgba(130, 82, 0.8)"/></i> Avg Pace (min/mile)</p>
-            <p>{paceWithNaNCheck}</p>
+            <p className="runtitle"><i><FontAwesomeIcon icon="road" color="grey"/></i> Distance</p>
+            <p>{distance} miles</p>
           </div>
         </div>
         <div className="col-6">

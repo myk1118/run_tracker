@@ -165,6 +165,7 @@ class RunResult extends Component {
                   chartData={this.state.chartData}
                   distance={this.state.totalDistance}
                   secondsRan={this.state.secondsRan}
+                  
                 />
               </div>
             </div>
