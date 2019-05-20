@@ -6,7 +6,6 @@ import './total_stats.scss';
 
 export default props => {
 
-  console.log('props: ', props)
 
   const { longestRun, lastRunDate, averagePace, mostCalories, totalCalories,
     totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate,
