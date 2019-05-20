@@ -8,6 +8,7 @@ export default props => {
   const seconds = secondsRan - minutes * 60;
   const oneOrMoreMinutes = minutes > 1 ? 'minutes' : 'minute';
   const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrMoreMinutes} and ${seconds} Seconds`;
+  console.log('true or false? ', window.matchMedia('(max-width: 600px)').matches)
 
   return (
     <div className="bar-graph-container">
@@ -20,12 +21,11 @@ export default props => {
           plugins: {
             datalabels: {
               formatter: function(value, context) {
-                if(distance <= 5) {
                   let date = new Date(null);
                   date.setSeconds(value);
                   return date.toISOString().slice(14,19);
-                }
               },
+              display: distance > 5 && window.matchMedia('(max-width: 370px)').matches ? false : true,
               color: 'white',
               font: {
                 weight: 'bold',
