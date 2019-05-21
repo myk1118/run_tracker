@@ -67,9 +67,9 @@ export default props => {
         <p className="personal-bests-title">ALL-TIME</p>
         <div className="all-time col-6">
           <div>
-            <p className="all-time-title"><i><FontAwesomeIcon icon="clock" color="rgba(107, 185, 240, 1)" /></i> Total Minutes</p>
+            <p className="all-time-title"><i><FontAwesomeIcon icon="clock" color="rgba(107, 185, 240, 1)" /></i> Time <span className="total-time-units">(hrs:min:sec)</span></p>
             <div>
-              <p className="best">{totalTime}<span> {totalTime ? 'min' : ''}</span></p>
+              <p className="best">{totalTime}</p>
             </div>
           </div>
         </div>

@@ -216,7 +216,7 @@ class RunMap extends Component {
 
     startTracking = () => {
         const watchId = navigator.geolocation.watchPosition(position => {
-            if(position.coords.accuracy < 5) {
+            if(position.coords.accuracy < 20) {
               this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
             }
         }, error => {
