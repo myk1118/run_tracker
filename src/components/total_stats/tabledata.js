@@ -10,7 +10,7 @@ export default props => {
         <td>{distance}</td>
         <td>{time}</td>
         <td className="calories-data">{calories}</td>
-        <td><TableModal deleteRow={props.deleteRow} id={id}/></td>
+        <td><TableModal displayActivityLogData={props.displayActivityLogData} id={id}/></td>
       </Fragment>
   )
 }

@@ -102,11 +102,12 @@ $time = date('h:i a', $timestamp);
 $output = [];
 
 $output['success'] = true;
+$hours_or_minutes_format = (int)$lastDateData['time'] > 3600 ? "h:i:s" : "i:s";
 
 $output['latestRunInformation'] = [
   'id' => (int)$lastDateData['id'],
   'distance' => (float)$lastDateData['distance'],
-  'time' => gmdate("i:s", (int)$lastDateData['time']),
+  'time' => gmdate($hours_or_minutes_format, (int)$lastDateData['time']),
 ];
 
 $output['lastRunDate'] = $formattedDate;
