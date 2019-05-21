@@ -488,7 +488,10 @@
       .all-time-title {
         font-size: 0.9rem;
       }
-    }
+      .total-time-units {
+        font-size: 0.8rem;
+      }
+     }
 
     .first-row {
       .line-graph-container {
@@ -510,6 +513,12 @@
         .best {
           font-size: 0.9rem;
         }
+    }
+    .personal-bests {
+      .total-time-units {
+        font-size: 0.6rem;
+      }
+
     }
   }
 

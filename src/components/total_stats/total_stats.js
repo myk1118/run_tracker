@@ -30,6 +30,7 @@ class TotalStats extends React.Component {
 
   async getPersonalBests() {
     const bests = await axios.get('/api/personalbestquery.php');
+    console.log(bests.data)
     if (bests.data.success) {
       const { longestRun, lastRunDate, averagePace, mostCalories, totalCalories,
         totalDistance, totalTime, lastRunTime, longestRunDate, highestCalorieDate, latestRunInformation,

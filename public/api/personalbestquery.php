@@ -102,11 +102,12 @@ $time = date('h:i a', $timestamp);
 $output = [];
 
 $output['success'] = true;
+$hours_or_minutes_format = (int)$lastDateData['time'] > 3600 ? "h:i:s" : "i:s";
 
 $output['latestRunInformation'] = [
   'id' => (int)$lastDateData['id'],
   'distance' => (float)$lastDateData['distance'],
-  'time' => gmdate("i:s", (int)$lastDateData['time']),
+  'time' => gmdate($hours_or_minutes_format, (int)$lastDateData['time']),
 ];
 
 $output['lastRunDate'] = $formattedDate;
@@ -121,12 +122,19 @@ $output['highestCalorieId'] = (int)$highestCalorieDateData['id'];
 $output['longestRunId'] = (int)$longestRunDateData['id'];
 
 
+
 $output['totalDistance'] = (float)$data['totalDistance'];
-// $output['fastestPace'] = (int)$data['maxDistance'];
 $output['totalCalories'] = (int)$data['totalCalories'];
 $output['longestTime'] = (int)$data['longestTime'];
-$output['totalTime'] = gmdate("i:s", (int)$data['totalTime']);
-// $output['fastestpace'] = gmdate("i:s", round((int)$data['fastestpace'],0));
+
+
+
+$totalTimeInSec = (int)$data['totalTime'];
+$hours = floor($totalTimeInSec / 3600) < 10 ? 0 . floor($totalTimeInSec / 3600) : floor($totalTimeInSec / 3600);
+$minutes = floor(($totalTimeInSec / 60) % 60) < 10 ? 0 . floor(($totalTimeInSec / 60) % 60) : floor(($totalTimeInSec / 60) % 60);
+$seconds = $totalTimeInSec % 60 < 10 ? 0 . $totalTimeInSec % 60 : $totalTimeInSec % 60;
+
+$output['totalTime'] = "$hours:$minutes:$seconds";
 
 if((float)$data['totalDistance'] === 0.00) {
   $pace_in_seconds = 0;
@@ -134,7 +142,9 @@ if((float)$data['totalDistance'] === 0.00) {
   $pace_in_seconds = round((int)$data['totalTime'] / (float)$data['totalDistance']);
 }
 
-$output['averagePace'] = gmdate("i:s", (int)$pace_in_seconds);
+$hours_or_minutes_format = (int)$pace_in_seconds > 3600 ? "h:i:s" : "i:s";
+
+$output['averagePace'] = gmdate($hours_or_minutes_format, (int)$pace_in_seconds);
 
 
 

@@ -17,26 +17,20 @@ class Chart extends Component {
     }
   }
 
-  delete(item) {
-    const newState = this.state.stats.slice();
-    if (newState.indexOf(item) > -1) {
-      newState.splice(newState.indexOf(item), 1);
-      this.setState({ stats: newState })
-    }
-  }
 
   componentDidMount() {
     this.displayActivityLogData();
   }
 
   displayActivityLogData = () => {
+    console.log('displayed')
     axios.get('/api/get_table_data.php').then(resp => {
       const { tableItems } = resp.data;
       const stats = tableItems.map(row => {
         const { id, date, time, distance, calories } = row;
         return (
           <tr key={id}>
-            <TableData id={id} distance={distance} date={date} time={time} calories={calories} deleteRow={this.deleteRow} />
+            <TableData id={id} displayActivityLogData={this.displayActivityLogData} distance={distance} date={date} time={time} calories={calories} />
           </tr>
         )
       })
@@ -45,17 +39,6 @@ class Chart extends Component {
         clickedElement: 'total',
         loading: false,
       })
-    })
-  }
-
-  deleteRow = (id) => {
-    axios.post('api/deleterun.php', { id: id }).then((resp) => {
-      if(resp.data.success) {
-        this.displayActivityLogData();
-        return true;
-      } else {
-        return false;
-      }
     })
   }
 
@@ -71,7 +54,7 @@ class Chart extends Component {
         const { id, date, time, distance, calories } = row;
         return (
           <tr key={id}>
-            <TableData id={id} distance={distance} date={date} time={time} calories={calories} deleteRow={this.deleteRow} />
+            <TableData id={id} distance={distance} date={date} time={time} calories={calories} displayActivityLogData={this.displayActivityLogData}/>
           </tr>
         )
       })
@@ -94,7 +77,7 @@ class Chart extends Component {
         const { id, date, time, distance, calories } = row;
         return (
           <tr key={id}>
-            <TableData id={id} distance={distance} date={date} time={time} calories={calories} deleteRow={this.deleteRow} />
+            <TableData id={id} distance={distance} date={date} time={time} calories={calories} displayActivityLogData={this.displayActivityLogData}/>
           </tr>
         )
       })

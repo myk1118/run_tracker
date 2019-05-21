@@ -21,12 +21,18 @@ class TableModal extends Component {
     deleteRun=(e)=>{
         const {id} = this.props
         e.preventDefault();
-        const deleteRowResult = this.props.deleteRow(id);
-        if(!deleteRowResult) {
-          this.setState({
-            deleteSuccess: false
-          })
-        }
+        axios.post('api/deleterun.php', { id: id }).then((resp) => {
+          if(!resp.data.success) {
+            this.setState({
+              deleteSuccess: false,
+            })
+          } else {
+            this.setState({
+              show: false
+            })
+            this.props.displayActivityLogData();
+          }
+        })
     }
 
 

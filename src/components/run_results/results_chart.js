@@ -8,7 +8,6 @@ export default props => {
   const seconds = secondsRan - minutes * 60;
   const oneOrMoreMinutes = minutes > 1 ? 'minutes' : 'minute';
   const timeRan = secondsRan < 60 ? `${secondsRan} Seconds` : `${minutes} ${oneOrMoreMinutes} and ${seconds} Seconds`;
-  console.log('true or false? ', window.matchMedia('(max-width: 600px)').matches)
 
   return (
     <div className="bar-graph-container">
