@@ -22,7 +22,8 @@ class Countdown extends Component {
   }
 
   calculateCountdown(endDate) {
-    let diff = (Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000;
+    // debugger;
+    let diff = ((Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000) - 25200;
 
     if (diff <= 0) return false;
 
@@ -51,7 +52,7 @@ class Countdown extends Component {
       diff -= timeLeft.min * 60;
     }
     timeLeft.sec = diff;
-
+    timeLeft.days
     return timeLeft;
   }
 
@@ -65,7 +66,7 @@ class Countdown extends Component {
       value = '0' + value;
     }
     return value;
-  }
+  }  
 
   render() {
     const countDown = this.state;
