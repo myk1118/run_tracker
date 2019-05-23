@@ -91,6 +91,10 @@
     }
 }
 
+.btn-info {
+  border-radius: 1px;
+}
+
 @media screen and (min-width: 1281px) {
     .loginLogo {
         width: 54vh;
@@ -127,7 +131,7 @@
         line-height: 1.2;
         text-transform: uppercase;
         padding: 10px 14px;
-        width: 8vw;
+        width: 12vw;
     }
 
     .transition {
@@ -146,6 +150,12 @@
         .hidden {
             display: none;
         }
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .loginButton {
+        width: 20vw;
     }
 }
 
