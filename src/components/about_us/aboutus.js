@@ -1,9 +1,9 @@
 import React from 'react';
 import './aboutus.scss';
-import David from '../../../public/dist/images/avocadodavid.jpg';
-import Johnny from '../../../public/dist/images/avocadobackend.jpg';
-import Alice from '../../../public/dist/images/avocadoalice.jpg';
-import Jaime from '../../../public/dist/images/avocadojaime.jpg';
+import David from '../../../public/dist/images/david.jpg';
+import Johnny from '../../../public/dist/images/johnny.jpg';
+import Alice from '../../../public/dist/images/alice.jpg';
+import Jaime from '../../../public/dist/images/jaime.jpg';
 import Github from '../../../public/dist/images/github-sign.png';
 import Linkedin from '../../../public/dist/images/linkedin-sign.png';
 import Portfolio from '../../../public/dist/images/folder.png';
