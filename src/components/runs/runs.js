@@ -11,13 +11,14 @@ class Runs extends React.Component {
     super(props);
     this.state = {
       date_buttons: [],
-      loading: true,
+      loading: false,
     }
   }
 
   componentDidMount() {
     this.getRunData();
   }
+
 
   async getRunData() {
     const run_dates = await axios.get('/api/get_run_dates.php');
