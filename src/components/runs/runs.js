@@ -11,7 +11,7 @@ class Runs extends React.Component {
     super(props);
     this.state = {
       date_buttons: [],
-      loading: false,
+      loading: true,
     }
   }
 
