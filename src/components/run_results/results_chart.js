@@ -26,9 +26,6 @@ export default props => {
               },
               display: distance > 5 && window.matchMedia('(max-width: 370px)').matches ? false : true,
               color: 'white',
-              font: {
-                weight: 'bold',
-              }
             },
           },
           tooltips: {

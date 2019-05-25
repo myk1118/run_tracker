@@ -39,7 +39,9 @@ class RunMap extends Component {
                 width: '0px',
             },
             milesRunHidden: true,
-            buttonName: 'left'
+            buttonName: 'left',
+            paceInSeconds: '00',
+            paceInMinutes: 0
         }
 
         this.start = this.start.bind(this);
@@ -67,6 +69,7 @@ class RunMap extends Component {
     componentWillUnmount() {
         clearTimeout(this.calorieTimeout)
         clearTimeout(this.timeout);
+        clearTimeout(this.paceTimeout);
         navigator.geolocation.clearWatch(this.state.watchId);
         if (this.state.status === 'running') {
             this.deleteCurrentRun();
@@ -216,7 +219,7 @@ class RunMap extends Component {
 
     startTracking = () => {
         const watchId = navigator.geolocation.watchPosition(position => {
-            if(position.coords.accuracy < 17) {
+            if(position.coords.accuracy < 15) {
               this.monitorUserDistance(position.coords.latitude, position.coords.longitude);
             }
         }, error => {
@@ -325,6 +328,7 @@ class RunMap extends Component {
             setTimeout(() => {
                 this.countCalories();
             }, 1000);
+            this.calculatePace();
         }
     }
 
@@ -425,11 +429,23 @@ class RunMap extends Component {
         }
     }
 
+    calculatePace = () => {
+      const { elapsed, distanceTraveled} = this.state;
+      const paceInMinutes = isFinite(Math.trunc(elapsed / (60000 * distanceTraveled))) ? Math.trunc(elapsed / (60000 * distanceTraveled)) : 0;
+      let paceInSeconds = isFinite(((elapsed / (60000 * distanceTraveled) - paceInMinutes) * 60).toFixed(0)) ? ((elapsed / (60000 * distanceTraveled) - paceInMinutes) * 60).toFixed(0) : '00';
+      paceInSeconds = paceInSeconds !== '00' && paceInSeconds < 10 ? `0${paceInSeconds}` : paceInSeconds;
+      this.setState({
+        paceInMinutes,
+        paceInSeconds
+      })
+      this.paceTimeout = setTimeout(this.calculatePace, 1000);
+      if (status === 'paused') {
+        clearTimeout(this.paceTimeout);
+      }
+    }
+
     render() {
-        const { elapsed, distanceTraveled, status, renderPage, calories } = this.state;
-        const paceInMinutes = isFinite(Math.trunc(elapsed / (60000 * distanceTraveled))) ? Math.trunc(elapsed / (60000 * distanceTraveled)) : 0;
-        let paceInSeconds = isFinite(((elapsed / (60000 * distanceTraveled) - paceInMinutes) * 60).toFixed(0)) ? ((elapsed / (60000 * distanceTraveled) - paceInMinutes) * 60).toFixed(0) : '00';
-        paceInSeconds = paceInSeconds !== '00' && paceInSeconds < 10 ? `0${paceInSeconds}` : paceInSeconds;
+        const { elapsed, distanceTraveled, status, renderPage, calories, paceInMinutes, paceInSeconds } = this.state;
 
         return (
             <div className="mapBody">

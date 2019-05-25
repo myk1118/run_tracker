@@ -19,6 +19,7 @@ class Runs extends React.Component {
     this.getRunData();
   }
 
+
   async getRunData() {
     const run_dates = await axios.get('/api/get_run_dates.php');
     const dates = run_dates.data.dates;
