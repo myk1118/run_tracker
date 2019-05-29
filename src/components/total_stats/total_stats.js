@@ -107,6 +107,11 @@ class TotalStats extends React.Component {
         },
         loading: false,
       })
+    }).catch(err => {
+      this.setState({
+        loading: false,
+      })
+      console.log('error: ', err)
     })
   }
 
