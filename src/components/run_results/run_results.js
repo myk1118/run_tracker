@@ -150,7 +150,7 @@ class RunResult extends Component {
                   <div className="run-message">
                     <p className="first-description text-center">{first_name}, here are your results from {date.date} at {date.time}</p>
                     <p className="second-description">{this.runDescription(secondsRan, totalDistance)} </p>
-                    <p className="location">{city || city !== 'none' ? <span className="oi" data-glyph="map-marker"></span> : ''} {city}</p>
+                    <p className="location">{city || city !== 'none' ? <span className="oi" data-glyph="map-marker"></span> : ''} {city === 'none' ? '' : city}</p>
                   </div>
                 </div>
               </div>
