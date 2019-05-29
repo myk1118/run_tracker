@@ -106,6 +106,11 @@ class RunResult extends Component {
         },
         loading: false,
       })
+    }).catch(err => {
+      this.setState({
+        loading: false,
+      })
+      console.log('error: ', err)
     })
   }
 

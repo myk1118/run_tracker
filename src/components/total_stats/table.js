@@ -62,6 +62,11 @@ class Chart extends Component {
         stats: [...stats],
         clickedElement: 'month',
       })
+    }).catch(err => {
+      this.setState({
+        loading: false,
+      })
+      console.log('error: ', err)
     })
   }
 
