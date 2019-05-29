@@ -91,8 +91,15 @@ class RunMap extends Component {
                 this.setState({
                     city: resp.data.results[0].components.city
                 })
+            } else {
+                this.setState({
+                    city: 'none'
+              })
             }
         }).catch(error => {
+            this.setState({
+                city: 'none'
+            })
             console.log(error.response)
         })
     }
