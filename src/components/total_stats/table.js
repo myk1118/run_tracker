@@ -23,7 +23,6 @@ class Chart extends Component {
   }
 
   displayActivityLogData = () => {
-    console.log('displayed')
     axios.get('/api/get_table_data.php').then(resp => {
       const { tableItems } = resp.data;
       const stats = tableItems.map(row => {
