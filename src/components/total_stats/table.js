@@ -23,7 +23,6 @@ class Chart extends Component {
   }
 
   displayActivityLogData = () => {
-    console.log('displayed')
     axios.get('/api/get_table_data.php').then(resp => {
       const { tableItems } = resp.data;
       const stats = tableItems.map(row => {
@@ -39,6 +38,11 @@ class Chart extends Component {
         clickedElement: 'total',
         loading: false,
       })
+    }).catch(err => {
+      this.setState({
+        loading: false,
+      })
+      console.log('error: ', err)
     })
   }
 
@@ -62,11 +66,6 @@ class Chart extends Component {
         stats: [...stats],
         clickedElement: 'month',
       })
-    }).catch(err => {
-      this.setState({
-        loading: false,
-      })
-      console.log('error: ', err)
     })
   }
 

@@ -44,7 +44,7 @@ class Runs extends React.Component {
         this.setState({
           loading: false,
         })
-        console.log('error: ', err)
+        console.log(err)
       })
   }
 
