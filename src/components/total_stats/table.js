@@ -37,12 +37,12 @@ class Chart extends Component {
         stats: [...stats],
         clickedElement: 'total',
         loading: false,
-      }).catch(err => {
-        this.setState({
-          loading: false,
-        })
-        console.log('error: ', err)
       })
+    }).catch(err => {
+      this.setState({
+        loading: false,
+      })
+      console.log('error: ', err)
     })
   }
 
