@@ -64,7 +64,8 @@ class LogIn extends Component {
     }
     await this.props.logIn(values);
     axios.post('/api/delete_guest_run.php').then(
-      this.props.history.push('/')
+      axios.post('/api/delete_guest_event.php').then(
+        this.props.history.push('/'))
     );
   }
 

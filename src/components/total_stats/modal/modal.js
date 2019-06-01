@@ -30,7 +30,7 @@ class EventModal extends Component {
   }
 
   postEvent = (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
 
     const { event, date } = this.state;
     const data = {
