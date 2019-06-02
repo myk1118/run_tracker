@@ -22,8 +22,13 @@ class Countdown extends Component {
   }
 
   calculateCountdown(endDate) {
-    // debugger;
-    let diff = ((Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000) - 25200;
+
+    let diff = 0;
+    if(this.props.eventName === null){
+      diff = ((Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000) - 25200;
+    } else{
+      diff = ((Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000);
+    }
 
 
     const timeLeft = {

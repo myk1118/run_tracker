@@ -74,7 +74,6 @@ class LogIn extends Component {
       id: this.state.run_id
     }
     axios.post('/api/deleterun.php', data).then(resp => {
-      console.log(resp)
     })
   }
 

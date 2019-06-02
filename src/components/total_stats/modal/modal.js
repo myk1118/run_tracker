@@ -8,7 +8,8 @@ class EventModal extends Component {
   state = {
     show: false,
     event: '',
-    date: ''
+    date: '',
+    time: '00:00'
   };
 
   handleClose = () => {
@@ -30,14 +31,14 @@ class EventModal extends Component {
   }
 
   postEvent = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
-    const { event, date } = this.state;
+    const { event, date, time } = this.state;
+    const dateTime = date + ' ' + time;
     const data = {
       event: event,
-      eventDate: date
+      eventDate: dateTime
     };
-
     axios.post('/api/add_event.php', data).then(() => {
       this.handleClose();
       this.props.history.push(`/totalstats?event=${data.event}&date=${data.eventDate}`);
@@ -71,10 +72,16 @@ class EventModal extends Component {
                 id="date"
                 value={this.state.date}
                 onChange={this.handleInputChange}
-                value={this.state.date}
                 type="date"
                 name="date"
                 required
+              />
+                            <input
+                id="time"
+                value={this.state.time}
+                onChange={this.handleInputChange}
+                type="time"
+                name="time"
               />
             </Modal.Body>
             <Modal.Footer>
