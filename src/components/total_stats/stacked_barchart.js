@@ -64,11 +64,9 @@ export default props => {
               position: 'bottom',
               labels: {
                 fontColor: 'black',
-                // filter: (item, chart) => {
-                //   console.log('item', item)
-                //   console.log('chart', chart.datasets);
-                //   return !item.text.includes('6-8mi')
-                // }
+                filter: (item, chart) => {
+                  return chart.datasets[item.datasetIndex].data[0] !== 0
+                }
               },
             },
           }}
