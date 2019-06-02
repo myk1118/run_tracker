@@ -55,7 +55,7 @@ class TableModal extends Component {
             </Button>
             <Modal show={this.state.show} onHide={this.handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>{deleteMessage}</Modal.Title>
+                <Modal.Title className="text-center">{deleteMessage}</Modal.Title>
               </Modal.Header>
               <form onSubmit={this.deleteRun}>
               <Modal.Body>
@@ -77,7 +77,7 @@ class TableModal extends Component {
             </Button>
             <Modal show={this.state.show} onHide={this.handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>{deleteMessage}</Modal.Title>
+                <Modal.Title className="text-center">{deleteMessage}</Modal.Title>
               </Modal.Header>
               <form onSubmit={this.deleteRun}>
               <Modal.Body>
