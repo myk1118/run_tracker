@@ -31,16 +31,18 @@ export default props => {
               }]
             },
             tooltips: {
-              enabled: false,
-              // callbacks: {
-              //   label: function (tooltipItem, data) {
-              //     if (data.datasets[0].data[tooltipItem.index] === 1) {
-              //       return `${data.datasets[0].data[tooltipItem.index]} run`;
-              //     } else {
-              //       return `${data.datasets[0].data[tooltipItem.index]} runs`;
-              //     }
-              //   }
-              // }
+              title: {
+                enabled: false,
+              },
+              callbacks: {
+                label: function (tooltipItem, data) {
+                  let runValue = tooltipItem.value === '1' ? 'run' : 'runs'
+                  return `${data.datasets[tooltipItem.datasetIndex].label}: ${tooltipItem.value} ${runValue}`;
+                },
+                title: function() {
+                  return
+                }
+              }
             },
             plugins: {
               datalabels: {
