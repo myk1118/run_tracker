@@ -53,7 +53,7 @@ class TableModal extends Component {
             <Button variant="none" className="btn btn-sm btn-outline-danger" onClick={this.handleShow}>
               Delete
             </Button>
-            <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal className="col-12 text-center" show={this.state.show} onHide={this.handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>{deleteMessage}</Modal.Title>
               </Modal.Header>
@@ -75,7 +75,7 @@ class TableModal extends Component {
             <Button variant="none" className="btn btn-sm btn-outline-danger" onClick={this.handleShow}>
               Delete
             </Button>
-            <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal className="col-12 text-center" show={this.state.show} onHide={this.handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>{deleteMessage}</Modal.Title>
               </Modal.Header>

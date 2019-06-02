@@ -34,15 +34,15 @@ class RunHeader extends Component {
                 </div>
                 <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered" role="document">
-                        <div className="modal-content">
+                        <div className="col-10 offset-1 modal-content2">
                             {/* <div className="modal-header"> */}
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <div className="modal-container">
+                            <div className="modal-container col-12">
                                 <h5 className="modal-title" id="exampleModalLongTitle">How to Use Run-Tracker</h5>
                                 {/* </div> */}
-                                <div className="modal-body">
+                                <div className="text-center modal-body">
                                     • Click plus (+) to start and record a new run<br />
                                     • Click a runner to view your past run
                                 </div>
