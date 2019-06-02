@@ -11,11 +11,20 @@ class TableModal extends Component {
 
 
     handleClose=()=> {
-      this.setState({ show: false });
+      this.setState({ 
+        show: false,
+        deleteSuccess: true,
+      });
     }
 
     handleShow=()=> {
       this.setState({ show: true });
+    }
+
+    componentDidMount(){
+      this.setState({
+        deleteSuccess:true
+      })
     }
 
     deleteRun=(e)=>{
@@ -35,35 +44,57 @@ class TableModal extends Component {
         })
     }
 
-
     render() {
       const {deleteSuccess} = this.state;
       const deleteMessage = deleteSuccess ? 'Are you sure you want to delete run?' : 'You cannot delete pre-set guest runs';
-
-      return (
-        <Fragment>
-          <Button variant="none" className="btn btn-sm btn-outline-danger" onClick={this.handleShow}>
-            Delete
-          </Button>
-          <Modal show={this.state.show} onHide={this.handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>{deleteMessage}</Modal.Title>
-            </Modal.Header>
-            <form onSubmit={this.deleteRun}>
-            <Modal.Body>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button type="button" variant="secondary" onClick={this.handleClose}>
-                Cancel
-              </Button>
-              <Button variant="danger" type="submit" >
-                Delete
-              </Button>
-            </Modal.Footer>
-            </form>
-          </Modal>
-        </Fragment>
-      );
+      if(deleteSuccess === false){
+        return (
+          <Fragment>
+            <Button variant="none" className="btn btn-sm btn-outline-danger" onClick={this.handleShow}>
+              Delete
+            </Button>
+            <Modal show={this.state.show} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>{deleteMessage}</Modal.Title>
+              </Modal.Header>
+              <form onSubmit={this.deleteRun}>
+              <Modal.Body>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button type="button" variant="primary" onClick={this.handleClose}>
+                  Okay
+                </Button>
+              </Modal.Footer>
+              </form>
+            </Modal>
+          </Fragment>
+        );
+      }else{
+        return (
+          <Fragment>
+            <Button variant="none" className="btn btn-sm btn-outline-danger" onClick={this.handleShow}>
+              Delete
+            </Button>
+            <Modal show={this.state.show} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>{deleteMessage}</Modal.Title>
+              </Modal.Header>
+              <form onSubmit={this.deleteRun}>
+              <Modal.Body>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button type="button" variant="secondary" onClick={this.handleClose}>
+                  Cancel
+                </Button>
+                <Button variant="danger" type="submit" >
+                  Delete
+                </Button>
+              </Modal.Footer>
+              </form>
+            </Modal>
+          </Fragment>
+        );
+      }
     }
 }
 export default TableModal;
