@@ -25,7 +25,6 @@ class Countdown extends Component {
     // debugger;
     let diff = ((Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000) - 25200;
 
-    if (diff <= 0) return false;
 
     const timeLeft = {
       years: 0,
@@ -51,7 +50,13 @@ class Countdown extends Component {
       timeLeft.min = Math.floor(diff / 60);
       diff -= timeLeft.min * 60;
     }
-    timeLeft.sec = diff;
+    if (diff >= 60) {
+      timeLeft.min = Math.floor(diff / 60);
+      diff -= timeLeft.min * 60;
+    }
+    if (diff >= 0){
+      timeLeft.sec = diff;
+    }
     timeLeft.days
     return timeLeft;
   }

@@ -7,7 +7,7 @@ export default props => {
   return(
       <Fragment>
         <td>{date}</td>
-        <td>{distance}</td>
+        <td>{distance.toFixed(2)}</td>
         <td>{time}</td>
         <td className="calories-data">{calories}</td>
         <td><TableModal displayActivityLogData={props.displayActivityLogData} id={id}/></td>
