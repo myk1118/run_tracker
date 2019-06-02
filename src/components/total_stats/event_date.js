@@ -16,7 +16,6 @@ class EventDate extends Component {
   }
   getEvent = () => {
     axios.get('/api/get_event.php').then(resp => {
-      console.log('event resp', resp);
       const { eventDay, eventName } = resp.data['1'];
       let { date } = eventDay;
       let newDate = new Date(date).toISOString();

@@ -39,7 +39,6 @@ class EventModal extends Component {
       event: event,
       eventDate: dateTime
     };
-    console.log('this is data', data);
     axios.post('/api/add_event.php', data).then(() => {
       this.handleClose();
       this.props.history.push(`/totalstats?event=${data.event}&date=${data.eventDate}`);
