@@ -19,7 +19,7 @@ class EventDate extends Component {
       console.log('event resp', resp);
       const { eventDay, eventName } = resp.data['1'];
       let { date } = eventDay;
-      let newDate = new Date(date);
+      let newDate = new Date(date).toISOString();
       this.setState({
         eventName,
         eventDate: newDate
@@ -28,7 +28,6 @@ class EventDate extends Component {
   }
 
   render() {
-    // debugger;
     const { eventName, eventDate } = this.state;
 
     return (
@@ -37,7 +36,7 @@ class EventDate extends Component {
           <p className="eventCountdownTitle">
             {eventName ? eventName : 'EVENT COUNTDOWN'}
           </p>
-          <Countdown className="col-6" date={`${eventDate}`}/>
+          <Countdown className="col-6" date={`${eventDate}`} eventName={eventName}/>
           <div className="col">
             <EventModal getEvent={this.getEvent} />
           </div>
