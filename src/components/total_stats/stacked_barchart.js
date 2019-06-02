@@ -58,8 +58,8 @@ export default props => {
               display: true,
               text: 'Your Runs Breakdown',
               fontSize: 25,
+              padding: 20,
               fontColor: 'black',
-              background: 'red'
             },
             legend: {
               display: true,
