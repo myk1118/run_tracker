@@ -10,7 +10,7 @@ export default props => {
         <td>{distance.toFixed(2)}</td>
         <td>{time}</td>
         <td className="calories-data">{calories}</td>
-        <td><TableModal displayActivityLogData={props.displayActivityLogData} id={id}/></td>
+        <td><TableModal date={date} displayActivityLogData={props.displayActivityLogData} id={id}/></td>
       </Fragment>
   )
 }

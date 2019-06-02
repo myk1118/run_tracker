@@ -46,7 +46,7 @@ class TableModal extends Component {
 
     render() {
       const {deleteSuccess} = this.state;
-      const deleteMessage = deleteSuccess ? 'Are you sure you want to delete run?' : 'You cannot delete pre-set guest runs';
+      const deleteMessage = deleteSuccess ? `Are you sure you want to delete you run from ${this.props.date}?` : 'You cannot delete pre-set guest runs';
       if(deleteSuccess === false){
         return (
           <Fragment>
