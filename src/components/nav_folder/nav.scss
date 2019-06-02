@@ -120,10 +120,11 @@ ul li:first-child {
     border-left: 0;
 }
 
-.modal-content {
+.modal-content2 {
     border: transparent;
     background-color: white;
-    height: 25vh;
+    height: 40vh;
+
 }
 
 .close {
@@ -137,6 +138,7 @@ ul li:first-child {
     top: 50%;
     transform: translate(0, -50%);
     align-self: center;
+    right: 0%;
 }
 
 .modal-title {
@@ -154,4 +156,20 @@ ul li:first-child {
     justify-content: center;
     border-top: transparent;
     padding: 0;
+}
+
+@media only screen 
+  and (max-device-width: 1000px) 
+  and (orientation: landscape) { 
+    .modal-content2 {
+        border: transparent;
+        background-color: white;
+        height: 50vh;
+    }
+    .modal-container {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        align-self: center;
+    }
 }
