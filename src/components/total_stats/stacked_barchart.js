@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Bar, Line, Pie } from 'react-chartjs-2';
+import { HorizontalBar, Bar, Line, Pie } from 'react-chartjs-2';
 import './total_stats.scss';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
@@ -7,14 +7,17 @@ export default props => {
   return (
     <div className="pie-chart-container">
       <article className="graph-container">
-        <Bar
+        <HorizontalBar
           data={props.barChartData}
           options={{
+            layout: {
+              padding: {
+                left: 10,
+                right: 10,
+              }
+            },
             scales: {
               xAxes: [{
-                stacked: true,
-              }],
-              yAxes: [{
                 stacked: true,
                 scaleLabel: {
                   display: true,
@@ -28,9 +31,13 @@ export default props => {
                     }
                   }
                 }
+              }],
+              yAxes: [{
+                stacked: true,
               }]
             },
             tooltips: {
+              mode: 'nearest',
               title: {
                 enabled: false,
               },
