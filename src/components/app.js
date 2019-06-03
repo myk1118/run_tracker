@@ -16,8 +16,8 @@ import NotFound from './404/404';
 import auth from '../hoc/auth';
 import RunResult from './run_results/run_results';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faFire, faClock, faRoad, faStopwatch, faChevronRight, faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
-library.add(faFire, faClock, faRoad, faStopwatch, faChevronRight, faAngleDoubleLeft, faAngleDoubleRight)
+import { faExclamationCircle, faFire, faClock, faRoad, faStopwatch, faChevronRight, faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
+library.add(faExclamationCircle, faFire, faClock, faRoad, faStopwatch, faChevronRight, faAngleDoubleLeft, faAngleDoubleRight)
 
 
 const App = (props) => {

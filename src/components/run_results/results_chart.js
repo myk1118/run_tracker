@@ -22,7 +22,14 @@ export default props => {
               formatter: function(value, context) {
                   let date = new Date(null);
                   date.setSeconds(value);
-                  return date.toISOString().slice(14,19);
+                  const unformattedDate = date.toISOString().slice(14,19);
+                  let formattedDate = null;
+                  if(unformattedDate.length === 5 && unformattedDate.charAt(0) === '0') {
+                      formattedDate = unformattedDate.replace(/^0/, ' ');
+                  } else {
+                      formattedDate = date.toISOString().slice(14,19)
+                  }
+                  return formattedDate;
               },
               display: distance > 5 && window.matchMedia('(max-width: 370px)').matches ? false : true,
               color: 'white',

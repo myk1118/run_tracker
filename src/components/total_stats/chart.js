@@ -21,7 +21,7 @@ export default props => {
             responsive: true,
             title: {
               display: true,
-              text: `Distances Tracked for Your Last ${runs}`,
+              text: `Your Last ${runs}`,
               fontSize: 25,
               fontColor: 'black',
             },

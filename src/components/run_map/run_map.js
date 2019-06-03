@@ -41,7 +41,8 @@ class RunMap extends Component {
             milesRunHidden: true,
             buttonName: 'left',
             paceInSeconds: '00',
-            paceInMinutes: 0
+            paceInMinutes: 0,
+            errorMessage: null,
         }
 
         this.start = this.start.bind(this);
@@ -203,7 +204,24 @@ class RunMap extends Component {
                     }
                 })
             }, error => {
-                console.log(error)
+                  let errorMessage = '';
+                  switch(error.code) {
+                      case error.PERMISSION_DENIED:
+                          errorMessage = 'Please enable location services in your browser to allow access to the map';
+                          break;
+                      case error.POSITION_UNAVAILABLE:
+                          errorMessage = 'Location information is unavailable.';
+                          break;
+                      case error.TIMEOUT:
+                          errorMessage = 'The request to find your current location has timed out.';
+                          break;
+                      case error.UNKNOWN_ERROR:
+                          errorMessage = 'An unknown error occurred.';
+                          break;
+                  }
+                  this.setState({
+                    errorMessage
+                  })
             },
                 { enableHighAccuracy: true }
             )
@@ -452,14 +470,14 @@ class RunMap extends Component {
     }
 
     render() {
-        const { elapsed, distanceTraveled, status, renderPage, calories, paceInMinutes, paceInSeconds } = this.state;
+        const { elapsed, distanceTraveled, status, renderPage, calories, paceInMinutes, paceInSeconds, errorMessage } = this.state;
 
         return (
             <div className="mapBody">
                 <MapNav clickMap={this.clickMap} clickMiles={this.clickMiles} />
                 <div className="mapContainer">
                     <div className="map">
-                        {!this.state.currentLatLng.lat ? <MapLoader /> :
+                        {!this.state.currentLatLng.lat ? <MapLoader errorMessage={errorMessage}/> :
                             <MyMapComponent
                                 isMarkerShown
                                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=3.exp&libraries=geometry,drawing,places`}

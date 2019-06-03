@@ -4,7 +4,7 @@ import RunHeader from '../nav_folder/run_nav';
 import PersonalBests from './personal_bests';
 import axios from 'axios';
 import EventDate from './event_date';
-import PieChart from './piechart';
+import BarChart from './stacked_barchart';
 import EventModal from './modal/modal';
 import Logo from '../../../public/dist/images/logo_black.png';
 import PreLoader from '../preloader/preloader.js';
@@ -16,7 +16,7 @@ class TotalStats extends React.Component {
 
     this.state = {
       chartData: {},
-      pieChartData: {},
+      barChartData: {},
       runCount: 0,
       personalBests: {},
       loading: true,
@@ -78,17 +78,32 @@ class TotalStats extends React.Component {
 
       this.setState({
         runCount: tableItems.length,
-        pieChartData: {
-          labels: ['Less than 2 mi', '2-4mi', '3-6mi', '6-8mi', '8 or more mi'],
+        barChartData: {
           datasets: [
             {
-              label: 'miles',
-              fill: true,
-              data: [...dataArray],
-              borderColor: 'white',
-              borderWidth: 2,
-              backgroundColor: ['rgba(228,204,49,0.6)', 'rgba(138,17,129,0.6)', 'rgba(204,231,135,0.6)',
-                'rgba(30,144,255, 0.6)', 'rgba(54,18,46,0.6)'],
+              label: 'Less than 2 mi',
+              data: [dataArray[0]],
+              backgroundColor: 'rgba(228,204,49,0.5)'
+            },
+            {
+              label: '2-4mi',
+              data: [dataArray[1]],
+              backgroundColor: 'rgba(138,17,129,0.5)'
+            },
+            {
+              label: '3-6mi',
+              data: [dataArray[2]],
+              backgroundColor: 'rgba(204,231,135,0.5)'
+            },
+            {
+              label: '6-8mi',
+              data: [dataArray[3]],
+              backgroundColor: 'rgba(30,144,255, 0.5)'
+            },
+            {
+              label: '8 or more mi',
+              data: [dataArray[4]],
+              backgroundColor: 'rgba(54,18,46,0.5)'
             }
           ]
         },
@@ -115,7 +130,7 @@ class TotalStats extends React.Component {
   }
 
   render() {
-    const { chartData, pieChartData, runCount } = this.state;
+    const { chartData, barChartData, runCount } = this.state;
 
     if (this.state.loading) {
       return <PreLoader />
@@ -136,7 +151,7 @@ class TotalStats extends React.Component {
             </div>
             <div className="second-row row">
               <div className="col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center chart-component-container">
-                <PieChart pieChartData={pieChartData} />
+                <BarChart barChartData={barChartData} />
               </div>
               <div className="mt-1 col-xl-8 offset-xl-2 col-md-10 offset-md-1 col-12 text-center">
                 <EventDate />
