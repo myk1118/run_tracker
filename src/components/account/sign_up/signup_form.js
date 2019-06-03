@@ -32,7 +32,7 @@ function validate({ first_name, last_name, height, weight, email, password, conf
         errors.last_name = 'Please enter last name';
     }
     if (!height) {
-        errors.gender = 'Please enter your height';
+        errors.height = 'Please enter your height';
     }
     if (!weight) {
         errors.weight = 'Please enter your weight';

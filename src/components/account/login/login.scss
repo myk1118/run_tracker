@@ -35,6 +35,8 @@
 
 .errorMessage {
     font-size: 0.9em;
+    position: absolute;
+    width: 100vw;
 }
 
 .buttonsContainer {
@@ -80,10 +82,12 @@
 .inputFields {
     display: flex;
     flex-direction: column;
-    width: 35vw;
+    width: 60vw;
     max-width: 300px;
     border-radius: 8px;
-
+    .input-field{
+        margin-bottom:8%;
+    }
     input {
         font-size: 12pt;
         height: 35px;
@@ -196,17 +200,17 @@
         }
     }
 
-    .inputFields {
-        display: flex;
-        flex-direction: column;
-        width: 35vw;
-        max-width: 300px;
-        border-radius: 8px;
+    // .inputFields {
+    //     display: flex;
+    //     flex-direction: column;
+    //     width: 35vw;
+    //     max-width: 300px;
+    //     border-radius: 8px;
 
-        input {
-            font-size: 12pt;
-            height: 35px;
-            padding: 0 8px;
-        }
-    }
+    //     input {
+    //         font-size: 12pt;
+    //         height: 35px;
+    //         padding: 0 8px;
+    //     }
+    // }
 }
