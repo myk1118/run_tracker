@@ -83,27 +83,37 @@ class TotalStats extends React.Component {
             {
               label: 'Less than 2 mi',
               data: [dataArray[0]],
-              backgroundColor: 'rgba(228,204,49,0.5)'
+              borderWidth: 1,
+              borderColor: 'white',
+              backgroundColor: 'rgba(228,204,49,0.4)'
             },
             {
               label: '2-4mi',
               data: [dataArray[1]],
-              backgroundColor: 'rgba(138,17,129,0.5)'
+              borderWidth: 1,
+              borderColor: 'white',
+              backgroundColor: 'rgba(138,17,129,0.4)'
             },
             {
               label: '3-6mi',
               data: [dataArray[2]],
-              backgroundColor: 'rgba(204,231,135,0.5)'
+              borderWidth: 1,
+              borderColor: 'white',
+              backgroundColor: 'rgba(204,231,135,0.4)'
             },
             {
               label: '6-8mi',
               data: [dataArray[3]],
-              backgroundColor: 'rgba(30,144,255, 0.5)'
+              borderWidth: 1,
+              borderColor: 'white',
+              backgroundColor: 'rgba(30,144,255, 0.4)'
             },
             {
               label: '8 or more mi',
               data: [dataArray[4]],
-              backgroundColor: 'rgba(54,18,46,0.5)'
+              borderWidth: 1,
+              borderColor: 'white',
+              backgroundColor: 'rgba(54,18,46,0.4)'
             }
           ]
         },
