@@ -288,7 +288,7 @@ class RunMap extends Component {
         } else {
             let { lat, lng } = this.state.currentLatLng
             const distanceCalculation = this.calcDistanceHaversine(lat, lng, newLatitude, newLongitude);
-            if (distanceCalculation < 0.015) {
+            // if (distanceCalculation < 0.015) {
                 const { distance, distanceTraveled, mileCounter } = this.state;
                 let newDistance = distanceTraveled + distanceCalculation;
                 if (distanceTraveled && distanceTraveled - mileCounter >= 0) {
@@ -315,7 +315,7 @@ class RunMap extends Component {
                         }
                     })
                 }
-            }
+            // }
         }
     }
 
