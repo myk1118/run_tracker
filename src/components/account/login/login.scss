@@ -24,7 +24,7 @@
 .loginButtonsContainer {
     position: absolute;
     z-index: 2;
-    top: 66%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, 0%);
     transition: none;
@@ -115,7 +115,7 @@
         line-height: 1.2;
         text-transform: uppercase;
         padding: 10px 14px;
-        width: 6vw;
+        width: 12vw;
     }
 }
 
@@ -130,11 +130,11 @@
     }
 
     .loginButton {
-        margin: 8px;
-        font-size: 18px;
+        margin: 3px;
+        font-size: 15px;
         line-height: 1.2;
         text-transform: uppercase;
-        padding: 10px 14px;
+        padding: 5px 14px;
         width: 12vw;
     }
 
@@ -174,12 +174,12 @@
     }
 
     .loginButton {
-        margin: 4px;
+        margin: 3px;
         font-size: 14px;
         line-height: 1.2;
         text-transform: uppercase;
-        padding: 8px 12px;
-        width: 22vw;
+        padding: 5px 5px;
+        width: 25vw;
     }
 
     .transition {
@@ -199,6 +199,28 @@
             display: none;
         }
     }
+
+    
+    // @media screen and (min-height: 300px) {
+    //     .loginLogo {
+    //         width: 54vh;
+    //         position: absolute;
+    //         top: 25%;
+    //         left: 50%;
+    //         transform: translate(-50%);
+    //         z-index: 2;
+    //     }
+    
+    //     .loginButton {
+    //         margin: 8px;
+    //         font-size: 18px;
+    //         line-height: 1.2;
+    //         text-transform: uppercase;
+    //         padding: 10px 14px;
+    //         width: 6vw;
+    //     }
+    // }
+
 
     // .inputFields {
     //     display: flex;
