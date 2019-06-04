@@ -24,7 +24,7 @@
 .loginButtonsContainer {
     position: absolute;
     z-index: 2;
-    top: 66%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, 0%);
     transition: none;
@@ -85,9 +85,11 @@
     width: 60vw;
     max-width: 300px;
     border-radius: 8px;
-    .input-field{
-        margin-bottom:8%;
+
+    .input-field {
+        margin-bottom: 8%;
     }
+
     input {
         font-size: 12pt;
         height: 35px;
@@ -96,7 +98,7 @@
 }
 
 .btn-info {
-  border-radius: 1px;
+    border-radius: 1px;
 }
 
 @media screen and (min-width: 1281px) {
@@ -115,7 +117,7 @@
         line-height: 1.2;
         text-transform: uppercase;
         padding: 10px 14px;
-        width: 6vw;
+        width: 12vw;
     }
 }
 
@@ -130,16 +132,16 @@
     }
 
     .loginButton {
-        margin: 8px;
-        font-size: 18px;
+        margin: 3px;
+        font-size: 15px;
         line-height: 1.2;
         text-transform: uppercase;
-        padding: 10px 14px;
+        padding: 5px 14px;
         width: 12vw;
     }
 
     .transition {
-        width: 40vw;
+        width: 50vw;
         height: 60vh;
         background: #f8f5f5;
         border-radius: 10px;
@@ -154,6 +156,28 @@
         .hidden {
             display: none;
         }
+    }
+}
+
+@media screen and (min-width: 800px) {
+
+    .errorMessage {
+        font-size: 12px;
+    }
+
+    .inputFields input {
+        font-size: 11pt;
+        height: 20px;
+        padding: 0px 8px;
+
+    }
+
+    .inputFields {
+        display: flex;
+        flex-direction: column;
+        width: 25vw;
+        max-width: 300px;
+        border-radius: 5px;
     }
 }
 
@@ -174,12 +198,12 @@
     }
 
     .loginButton {
-        margin: 4px;
+        margin: 3px;
         font-size: 14px;
         line-height: 1.2;
         text-transform: uppercase;
-        padding: 8px 12px;
-        width: 22vw;
+        padding: 5px 5px;
+        width: 25vw;
     }
 
     .transition {
@@ -200,17 +224,26 @@
         }
     }
 
-    // .inputFields {
-    //     display: flex;
-    //     flex-direction: column;
-    //     width: 35vw;
-    //     max-width: 300px;
-    //     border-radius: 8px;
 
-    //     input {
-    //         font-size: 12pt;
-    //         height: 35px;
-    //         padding: 0 8px;
-    //     }
-    // }
+    @media screen and (min-width: 560px) {
+
+        .errorMessage {
+            font-size: 9px;
+        }
+
+        .inputFields input {
+            font-size: 12px;
+            height: 20px;
+            padding: 0px 5px;
+        }
+
+        .inputFields {
+            display: flex;
+            flex-direction: column;
+            width: 25vw;
+            max-width: 300px;
+            border-radius: 5px;
+        }
+    }
+
 }
