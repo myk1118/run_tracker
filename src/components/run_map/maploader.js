@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default props => {
     return(
         props.errorMessage ?
-            <div className="errorMessage">
+            <div className="mapErrorMessage">
                 <div className="text-center mb-3">
                     <FontAwesomeIcon icon="exclamation-circle" color="grey" size="4x" />
                 </div>
