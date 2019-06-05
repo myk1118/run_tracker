@@ -1,4 +1,3 @@
-<img align="right" width="150" src="https://github.com/Learning-Fuze/react-with-server/blob/master/public/dist/php-react.png">
 
 # Run Tracker
 
