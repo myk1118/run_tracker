@@ -137,7 +137,6 @@ class RunResult extends Component {
   render() {
 
     const { date, first_name, currentLatLng, distance, city, minutesSecondsRan, calories, pace, totalDistance, secondsRan } = this.state;
-    console.log('city: ', city)
     if(this.state.loading) {
       return <PreLoader />
     } else {
