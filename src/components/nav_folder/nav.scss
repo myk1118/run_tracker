@@ -158,6 +158,28 @@ ul li:first-child {
     padding: 0;
 }
 
+.modalSize{
+    height:75vh;
+}
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; 
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    }
+    
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    }
+
 @media only screen 
   and (max-device-width: 1000px) 
   and (orientation: landscape) { 
