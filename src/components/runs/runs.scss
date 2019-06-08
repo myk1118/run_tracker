@@ -87,16 +87,16 @@
   }
 }
 
-@media only screen 
-  and (max-device-width: 1000px) 
-  and (orientation: landscape) { 
+@media only screen
+  and (max-device-width: 1000px)
+  and (orientation: landscape) {
     .imgContainer {
       height: 30vh;
       width: 80vw;
       display: flex;
       justify-content: center;
       align-items: center;
-    
+
       .bigSquareButton {
         opacity: 0.8;
         height: 25vh;
@@ -105,4 +105,13 @@
     }
 }
 
+@media only screen and (max-device-width: 850px) and (orientation: landscape) {
 
+  .backgroundImage {
+    top: 16vh;
+  }
+
+  .runButtonsContainer {
+    top: 16vh;
+  }
+}

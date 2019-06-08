@@ -197,3 +197,22 @@ ul li:first-child {
         align-self: center;
     }
 }
+
+@media only screen and (max-device-width: 850px) and (orientation: landscape) {
+
+    .mapHeaderContainer {
+      height: 8vh;
+    }
+
+    .navbar {
+      top: 8vh;
+
+      .nav {
+        line-height: 8vh;
+      }
+    }
+
+    .navbar-custom {
+      height: 8vh;
+    }
+}
