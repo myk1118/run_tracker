@@ -63,6 +63,7 @@
     bottom: 25vh;
     left: 50%;
     transform: translate(-50%);
+    overflow-x: hidden;
     overflow-y: hidden;
     transition: height 1s, bottom 1.8s;
 
