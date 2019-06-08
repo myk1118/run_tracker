@@ -5,12 +5,10 @@ import { Redirect, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import LogInForm from './login_form';
 import GuestLoginForm from './guest_login_form';
-
 import SignUpForm from '../sign_up/signup_form';
 import Carousel from './carousel';
 import Logo from '../../../../public/dist/images/logo_white.png';
 import './login.scss';
-// import SignUp from '../sign_up';
 
 class LogIn extends Component {
   constructor(props) {
@@ -93,8 +91,8 @@ class LogIn extends Component {
   handleSignUpButton() {
     this.setState({
       transition: {
-        height: '80vh',
-        bottom: '10vh',
+        height: '85vh',
+        bottom: '7.5vh',
       },
       transitionBackground: {
         height: '100vh'
@@ -131,7 +129,7 @@ class LogIn extends Component {
           <div className="loginButtonsContainer">
             <button onClick={this.handleLogInButton} className="loginButton btn btn-info">Log In</button>
             <button onClick={this.handleSignUpButton} className="loginButton btn btn-info">Sign Up</button>
-            <GuestLoginForm guestLogin={this.handleGuestLogIn}/>
+            <GuestLoginForm guestLogin={this.handleGuestLogIn} />
           </div>
           <div className="transition" style={this.state.transition}>
             <div className={this.state.loginHidden ? 'hidden' : 'loginFormContainer'}>
