@@ -35,8 +35,8 @@
 
   .bigSquareButton {
     opacity: 0.8;
-    height: 18vh;
-    width: 18vh;
+    height: 19vh;
+    width: 19vh;
   }
 }
 
@@ -68,15 +68,51 @@
   position: absolute;
 }
 
+
 @media (max-width: 600px) {
   .runs {
     .runImg {
       font-size: 1rem;
     }
 
-    .run-time {
-      font-size: 0.7rem;
+    .runs {
+      .run-time {
+        font-size: 0.7rem;
+      }
     }
+  }
+  .imgContainer {
+    .bigSquareButton {
+      height: 18vh;
+      width: 18vh;
+    }
+  }
+}
+@media (max-width: 330px) {
+  .imgContainer {
+    .bigSquareButton {
+      height: 20vh;
+      width: 20vh;
+    }
+  }
+}
+
+@media (max-height: 530px) {
+  .imgContainer {
+
+    .bigSquareButton {
+      height: 100px;
+      width: 100px;
+    }
+  }
+}
+
+@media (max-height: 479px) {
+  .imgContainer {
+    height: 150px;
+  }
+  .run-time {
+    font-size: 0.7rem;
   }
 }
 
