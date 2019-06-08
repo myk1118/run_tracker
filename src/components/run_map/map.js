@@ -7,7 +7,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) => {
     <GoogleMap
       defaultZoom={!props.zoom ? 18 : props.zoom}
       center={{ lat: lat, lng: lng }}
-      defaultOptions={{fullscreenControl: false}}
+      defaultOptions={{fullscreenControl: false, streetViewControl: false}}
     >
       {props.isMarkerShown && <Marker animation={google.maps.Animation.DROP} position={{ lat: lat, lng: lng }} />}
       <Polyline
