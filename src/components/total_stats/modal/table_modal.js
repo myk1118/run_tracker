@@ -46,7 +46,7 @@ class TableModal extends Component {
 
     render() {
       const {deleteSuccess} = this.state;
-      const deleteMessage = deleteSuccess ? `Are you sure you want to delete you run from ${this.props.date}?` : 'You cannot delete pre-set guest runs';
+      const deleteMessage = deleteSuccess ? `Are you sure you want to delete your run from ${this.props.date}?` : 'You cannot delete pre-set guest runs';
       if(deleteSuccess === false){
         return (
           <Fragment>
@@ -55,15 +55,16 @@ class TableModal extends Component {
             </Button>
             <Modal className="col-12 text-center" show={this.state.show} onHide={this.handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title className="text-center">{deleteMessage}</Modal.Title>
+                <Modal.Title className="text-center mt-3 mx-5">{deleteMessage}</Modal.Title>
               </Modal.Header>
               <form onSubmit={this.deleteRun}>
               <Modal.Body>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button type="button" variant="primary" onClick={this.handleClose}>
+              <Button type="button" variant="primary" onClick={this.handleClose}>
                   Okay
                 </Button>
+              </Modal.Body>
+              <Modal.Footer>
+
               </Modal.Footer>
               </form>
             </Modal>
@@ -77,19 +78,19 @@ class TableModal extends Component {
             </Button>
             <Modal className="col-12 text-center" show={this.state.show} onHide={this.handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title className="text-center">{deleteMessage}</Modal.Title>
+                <Modal.Title className="text-center mt-3 mx-5">{deleteMessage}</Modal.Title>
               </Modal.Header>
               <form onSubmit={this.deleteRun}>
               <Modal.Body>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button type="button" variant="secondary" onClick={this.handleClose}>
+              <Button type="button" variant="secondary" onClick={this.handleClose}>
                   Cancel
                 </Button>
                 <Button variant="danger" type="submit" >
                   Delete
                 </Button>
-              </Modal.Footer>
+              </Modal.Body>
+              <Modal.Footer>
+</Modal.Footer>
               </form>
             </Modal>
           </Fragment>

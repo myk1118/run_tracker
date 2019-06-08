@@ -51,12 +51,12 @@ class EventModal extends Component {
         <Button className="countdownButton" variant="info" onClick={this.handleShow}>
           Add Target Event
           </Button>
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal className="text-center" show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Target Event</Modal.Title>
+            <Modal.Title className="mt-1">Target Event</Modal.Title>
           </Modal.Header>
           <form onSubmit={this.postEvent}>
-            <Modal.Body>
+            <Modal.Body className=" row col-10 offset-1">
               <input
                 value={this.state.event}
                 onChange={this.handleInputChange}
@@ -64,27 +64,27 @@ class EventModal extends Component {
                 type="text"
                 name="event"
                 required
-                className="eventName"
+                className="eventName col-sm-12 col-md-12"
               />
-              <br />
-              <br />
               <input
                 id="date"
                 value={this.state.date}
                 onChange={this.handleInputChange}
                 type="date"
                 name="date"
+                className="eventName col-sm-12 col-md-6"
                 required
               />
                             <input
                 id="time"
                 value={this.state.time}
                 onChange={this.handleInputChange}
+                className="eventName col-sm-12 col-md-6"
                 type="time"
                 name="time"
               />
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className="mb-2">
               <Button type="button" variant="secondary" onClick={this.handleClose}>
                 Close
               </Button>

@@ -71,6 +71,7 @@
     bottom: 25vh;
     left: 50%;
     transform: translate(-50%);
+    overflow-x: hidden;
     overflow-y: hidden;
     transition: height 1s, bottom 1.8s;
 
@@ -167,7 +168,7 @@
 
     .inputFields input {
         font-size: 11pt;
-        height: 20px;
+        height: 40px;
         padding: 0px 8px;
 
     }
