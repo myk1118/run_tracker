@@ -24,7 +24,7 @@
 .loginButtonsContainer {
     position: absolute;
     z-index: 2;
-    top: 60%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, 0%);
     transition: none;
@@ -53,18 +53,10 @@
     bottom: 0%;
 }
 
-.loginFormContainer {
-    position: absolute;
-    z-index: 4;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 .transition {
     width: 30vw;
     height: 50vh;
-    background: #f8f5f5;
+    background: #EBEBEB;
     border-radius: 10px;
     z-index: 3;
     position: absolute;
@@ -79,6 +71,24 @@
     }
 }
 
+.loginFormContainer {
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loginModalTitle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .inputFields {
     display: flex;
     flex-direction: column;
@@ -87,7 +97,7 @@
     border-radius: 8px;
 
     .input-field {
-        margin-bottom: 8%;
+        margin-bottom: 16%;
     }
 
     input {
@@ -143,7 +153,7 @@
     .transition {
         width: 50vw;
         height: 60vh;
-        background: #f8f5f5;
+        background: #EBEBEB;
         border-radius: 10px;
         z-index: 3;
         position: absolute;
@@ -167,7 +177,7 @@
 
     .inputFields input {
         font-size: 11pt;
-        height: 20px;
+        height: 28px;
         padding: 0px 8px;
 
     }
@@ -209,7 +219,7 @@
     .transition {
         width: 75vw;
         height: 50vh;
-        background: #f8f5f5;
+        background: #EBEBEB;
         border-radius: 10px;
         z-index: 3;
         position: absolute;
@@ -234,7 +244,7 @@
 
         .inputFields input {
             font-size: 12px;
-            height: 20px;
+            height: 28px;
             padding: 0px 5px;
         }
 

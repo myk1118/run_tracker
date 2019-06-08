@@ -6,6 +6,7 @@ const SignUpForm = props => {
     const { handleSubmit, signUp } = props;
     return (
         <form onSubmit={handleSubmit(signUp)}>
+            <div className="loginModalTitle">Run-Tracker</div>
             <div className="inputFields">
                 <Field col="s12" id="first_name" name="first_name" component={Input} placeholder="First Name" />
                 <Field col="s12" id="last_name" name="last_name" component={Input} placeholder="Last Name" />
@@ -15,7 +16,6 @@ const SignUpForm = props => {
                 <Field col="s12" id="signupPassword" name="password" component={Input} type="password" placeholder="Password" />
                 <Field col="s12" id="confirmpassword" name="confirmpassword" component={Input} type="password" placeholder="Confirm Password" />
             </div>
-            
             <div className="buttonsContainer">
                 <button className="btn btn-info">Sign Up</button>
             </div>

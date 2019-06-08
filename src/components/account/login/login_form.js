@@ -6,6 +6,7 @@ const LoginForm = props => {
     const { handleSubmit, logIn } = props;
     return (
         <form onSubmit={handleSubmit(logIn)}>
+            <div className="loginModalTitle">Run-Tracker</div>
             <div className="inputFields">
                 <Field id="loginEmail" name="email" component={Input} type="email" placeholder="Email" />
                 <Field id="loginPassword" name="password" component={Input} type="password" placeholder="Password" />
