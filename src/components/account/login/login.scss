@@ -95,16 +95,16 @@
     flex-direction: column;
     width: 60vw;
     max-width: 300px;
-    border-radius: 8px;
+    border-radius: 5px;
 
     .input-field {
-        margin-bottom: 16%;
+        margin-bottom: 10%;
     }
 
     input {
-        font-size: 12pt;
+        font-size: 11pt;
         height: 35px;
-        padding: 0 8px;
+        padding: 0 5px;
     }
 }
 
@@ -234,28 +234,42 @@
             display: none;
         }
     }
+}
 
 
+@media only screen and (min-width: 560px) and (orientation: landscape) {
 
-    @media screen and (min-width: 560px) {
-
-        .errorMessage {
-            font-size: 9px;
-        }
-
-        .inputFields input {
-            font-size: 12px;
-            height: 28px;
-            padding: 0px 5px;
-        }
-
-        .inputFields {
-            display: flex;
-            flex-direction: column;
-            width: 25vw;
-            max-width: 300px;
-            border-radius: 5px;
-        }
+    .errorMessage {
+        font-size: 9px;
     }
 
+    .inputFields input {
+        font-size: 12px;
+        height: 20px;
+        padding: 0px 5px;
+    }
+
+    .inputFields {
+        display: flex;
+        flex-direction: column;
+        width: 20vw;
+        max-width: 300px;
+        border-radius: 5px;
+    }
+
+    .loginModalTitle {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2%;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .btn {
+        line-height: 0.5;
+        width: 80px;
+        font-size: small;
+    }
 }
