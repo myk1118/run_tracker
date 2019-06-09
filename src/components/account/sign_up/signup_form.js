@@ -6,12 +6,12 @@ const SignUpForm = props => {
     const { handleSubmit, signUp } = props;
     return (
         <form onSubmit={handleSubmit(signUp)}>
-            <div className="loginModalTitle">Run-Tracker</div>
+            <div className="loginModalTitle">Sign Up</div>
             <div className="inputFields">
                 <Field col="s12" id="first_name" name="first_name" component={Input} placeholder="First Name" />
                 <Field col="s12" id="last_name" name="last_name" component={Input} placeholder="Last Name" />
                 <Field col="s12" id="height" name="height" type="number" component={Input} placeholder="Height (Inches)" />
-                <Field col="s12" id="weight" name="weight" type="number" component={Input} placeholder="Weight" />
+                <Field col="s12" id="weight" name="weight" type="number" component={Input} placeholder="Weight (lbs)" />
                 <Field col="s12" id="signupEmail" name="email" component={Input} placeholder="Email" />
                 <Field col="s12" id="signupPassword" name="password" component={Input} type="password" placeholder="Password" />
                 <Field col="s12" id="confirmpassword" name="confirmpassword" component={Input} type="password" placeholder="Confirm Password" />
