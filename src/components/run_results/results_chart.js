@@ -40,7 +40,9 @@ export default props => {
                 label: function(tooltipItem, data) {
                   let date = new Date(null);
                   date.setSeconds(tooltipItem.yLabel);
-                  return `Pace: ${date.toISOString().slice(14,19)} min/mile`;
+                  const unformattedDate = date.toISOString().slice(14,19);
+                  let formattedDate = unformattedDate.length === 5 && unformattedDate.charAt(0) === '0' ? unformattedDate.replace(/^0/, ' ') : unformattedDate;
+                  return `Pace: ${formattedDate} min/mile`;
                 }
             }
           },
@@ -77,7 +79,9 @@ export default props => {
                   callback: label => {
                     let date = new Date(null);
                     date.setSeconds(label);
-                    return date.toISOString().slice(14,19);
+                    const unformattedDate = date.toISOString().slice(14,19);
+                    let formattedDate = unformattedDate.length === 5 && unformattedDate.charAt(0) === '0' ? unformattedDate.replace(/^0/, ' ') : unformattedDate;
+                    return formattedDate;
                   },
                   beginAtZero: true
                 },

@@ -12,12 +12,10 @@
 
 
   .run-message {
-    // background-color: rgba(255,220,0, 0.5);
     text-align: center;
     margin-bottom: 4%;
     background-color: white;
     width: 100%;
-    // box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
     box-shadow: 0.125rem 0.125rem 0.375rem #b6b6b6;
     border-radius: 4px;
     margin-top: 3%;
@@ -27,9 +25,10 @@
     .first-description {
       font-size: 2rem;
       font-weight: bold;
-      border-bottom: 1px solid rgba(78, 205, 196, 1);
-      // margin-left: 3%;
+      border-bottom: 1.5px solid rgba(78, 205, 196, 1);
+      margin-left: 3%;
       margin-right: 3%;
+      padding-bottom: 1%;
     }
 
     .second-description,
@@ -60,10 +59,8 @@
     height: 50%;
 
     .results-display-container{
-      // border: 1px solid grey;
       border-top: 4px solid #81b3c2;
       width: 100%;
-      // box-shadow: rgba(0, 0, 0, 0.13) 0px 1px 2px 0px;
       box-shadow: 0.125rem 0.125rem 0.375rem #b6b6b6;
       background: rgb(255, 255, 255);
       border-radius: 4px 4px 2px 2px;

@@ -196,3 +196,28 @@
     opacity: 0;
   }
 }
+
+@media only screen and (max-device-width: 850px) and (orientation: landscape) {
+  .mapBody {
+
+    .mapContainer {
+      height: 60vh;
+      top: 8vh;
+    }
+  }
+
+  .mapStatsContainer {
+    .time, .distance, .statResult {
+      font-size: 1.2em;
+    }
+  }
+
+  .transitionMilesRun {
+    top: 3vh;
+  }
+
+  .milesRunButton {
+    top: 40%;
+  }
+
+}
