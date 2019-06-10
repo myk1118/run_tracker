@@ -244,7 +244,6 @@
 }
 
 .modal-content {
-  // width:100vw;
   justify-content: center;
   align-items: center;
 }
@@ -252,6 +251,12 @@
 .modal-header {
   padding: 0;
   border-bottom: 0;
+}
+
+.modal-body {
+  .btn-secondary {
+    margin-right: 4%;
+  }
 }
 
 .fade {

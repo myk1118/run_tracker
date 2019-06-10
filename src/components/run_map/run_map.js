@@ -207,7 +207,7 @@ class RunMap extends Component {
                   let errorMessage = '';
                   switch(error.code) {
                       case error.PERMISSION_DENIED:
-                          errorMessage = 'Please enable location services in your browser to allow access to the map';
+                          errorMessage = 'Please enable location services in your browser so your run can be tracked.';
                           break;
                       case error.POSITION_UNAVAILABLE:
                           errorMessage = 'Location information is unavailable.';
