@@ -17,7 +17,11 @@ class LogIn extends Component {
       // loggedIn: false,
       // signedUp: false,
       message: '',
-      transition: {
+      loginTransition: {
+        height: '0px',
+        bottom: '0'
+      },
+      signupTransition: {
         height: '0px',
         bottom: '0'
       },
@@ -77,7 +81,7 @@ class LogIn extends Component {
 
   handleLogInButton() {
     this.setState({
-      transition: {
+      loginTransition: {
         // height: '80vh',
         // bottom: '10vh'
       },
@@ -90,9 +94,9 @@ class LogIn extends Component {
 
   handleSignUpButton() {
     this.setState({
-      transition: {
-        height: '85vh',
-        bottom: '7.5vh',
+      signupTransition: {
+        // height: '85vh',
+        // bottom: '7.5vh'
       },
       transitionBackground: {
         height: '100vh'
@@ -103,7 +107,11 @@ class LogIn extends Component {
 
   hideTransition() {
     this.setState({
-      transition: {
+      loginTransition: {
+        height: '0px',
+        bottom: '0'
+      },
+      signupTransition: {
         height: '0px',
         bottom: '0'
       },
@@ -131,11 +139,13 @@ class LogIn extends Component {
             <button onClick={this.handleSignUpButton} className="loginButton btn btn-info">Sign Up</button>
             <GuestLoginForm guestLogin={this.handleGuestLogIn} />
           </div>
-          <div className="transition" style={this.state.transition}>
+          <div className="loginTransition" style={this.state.loginTransition}>
             <div className={this.state.loginHidden ? 'hidden' : 'loginFormContainer'}>
               <div className="message">{this.state.message}</div>
               <LogInForm logIn={this.handleLogIn} />
             </div>
+          </div>
+          <div className="signupTransition" style={this.state.signupTransition}>
             <div className={this.state.signupHidden ? 'hidden' : 'loginFormContainer'}>
               <SignUpForm signUp={this.handleSignUp} />
             </div>

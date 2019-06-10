@@ -19,38 +19,36 @@ class Runs extends React.Component {
     this.getRunData();
   }
 
-
   getRunData = () => {
-      axios.get('/api/get_run_dates.php').then( run_dates => {
-        const dates = run_dates.data.dates;
-        const date_buttons = dates.map(item => {
-          return (
-            <div key={item.id} className="imgContainer col-6 col-sm-6 col-md-6 col-lg-4">
-              <NavLink to={`/results/${item.id}`}>
-                <button className="bigSquareButton runImg btn btn-dark btn-lg">
-                  <div>{item.date}</div>
-                  <div className="run-time">{item.miles} miles</div>
-                  <div className="run-time">{item.city || item.city !== 'none' ? item.city : ''}</div>
-                </button>
-              </NavLink>
-            </div>
-          )
-        })
-        this.setState({
-          date_buttons,
-          loading: false
-        })
-      }).catch(err => {
-        this.setState({
-          loading: false,
-        })
-        console.log(err)
+    axios.get('/api/get_run_dates.php').then(run_dates => {
+      const dates = run_dates.data.dates;
+      const date_buttons = dates.map(item => {
+        return (
+          <div key={item.id} className="imgContainer col-6 col-sm-6 col-md-6 col-lg-4">
+            <NavLink to={`/results/${item.id}`}>
+              <button className="bigSquareButton runImg btn btn-dark btn-lg">
+                <div>{item.date}</div>
+                <div className="run-time">{item.miles} miles</div>
+                <div className="run-time">{item.city || item.city !== 'none' ? item.city : ''}</div>
+              </button>
+            </NavLink>
+          </div>
+        )
       })
+      this.setState({
+        date_buttons,
+        loading: false
+      })
+    }).catch(err => {
+      this.setState({
+        loading: false,
+      })
+      console.log(err)
+    })
   }
 
   render() {
-
-    if(this.state.loading) {
+    if (this.state.loading) {
       return <PreLoader />
     } else {
       return (
