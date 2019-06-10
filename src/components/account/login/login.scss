@@ -357,8 +357,8 @@
     }
 
     form {
-        height: 85%;
-        top: 7.5%;
+        height: 80%;
+        top: 10%;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -374,14 +374,14 @@
         width: 88%;
         flex-wrap: wrap;
         overflow-y: auto;
-        margin: 12px 0 0 0;
+        margin: 16px 0 0 0;
 
         .input-field {
             margin-bottom: 22px;
         }
 
         .inputFields {
-            width: 250px;
+            width: 220px;
             height: 28px;
         }
     }
@@ -391,21 +391,24 @@
     }
 }
 
-@media only screen and (max-width: 823px) and (orientation: landscape) {
+@media only screen and (max-width: 812px) and (orientation: landscape) {
     form {
-        height: 78%;
-        top: 11%;
+        height: 87%;
+        top: 6.5%;
     }
+}
 
-    .inputFieldsContainer .inputFields {
-        width: 220px;
+@media only screen and (max-width: 736px) and (orientation: landscape) {
+    form {
+        height: 80%;
+        top: 10%;
     }
 }
 
 @media only screen and (max-width: 667px) and (orientation: landscape) {
     form {
-        height: 85%;
-        top: 7.5%;
+        height: 87%;
+        top: 6.5%;
     }
 
     .inputFieldsContainer .inputFields {
@@ -424,6 +427,11 @@
 @media only screen and (max-width: 640px) and (orientation: landscape) {
     .loginButton {
         height: 30px;
+    }
+
+    form {
+        height: 90%;
+        top: 5%;
     }
 }
 
