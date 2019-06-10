@@ -60,8 +60,8 @@
     z-index: 3;
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    // top: 50%;
+    transform: translate(-50%);
     overflow-x: hidden;
     overflow-y: hidden;
     transition: height 1s, bottom 1.8s;
@@ -128,20 +128,24 @@
 
 @media screen and (min-width: 1281px) {
     .loginLogo {
-        width: 54vh;
+        width: 72vh;
         position: absolute;
-        top: 25%;
+        top: 16%;
         left: 50%;
         transform: translate(-50%);
         z-index: 2;
     }
 
+    .loginButtonsContainer {
+        top: 68%;
+    }
+
     .loginButton {
-        margin: 8px;
+        margin: 5px;
         font-size: 18px;
         text-transform: uppercase;
-        width: 120px;
-        height: 48px;
+        width: 115px;
+        height: 44px;
     }
 }
 
@@ -235,22 +239,26 @@
 
 @media screen and (max-width: 780px) {
     .loginButton {
-        width: 15vw;
+        width: 16vw;
     }
 }
 
 @media screen and (max-width: 768px) {
     .loginLogo {
-        width: 40vh;
+        width: 55vh;
         position: absolute;
-        top: 28%;
+        top: 22%;
         left: 50%;
         transform: translate(-50%);
         z-index: 2;
     }
 
+    .loginButtonsContainer {
+        top: 64%;
+    }
+
     .loginButton {
-        margin: 5px;
+        margin: 4px;
         font-size: 14px;
         text-transform: uppercase;
     }
@@ -264,7 +272,7 @@
     .signupTransition {
         width: 60vw;
         height: 80vh;
-        bottom: 17.5vh;
+        bottom: 10vh;
     }
 
     .loginModalTitle {
@@ -290,26 +298,28 @@
 }
 
 @media screen and (max-height: 670px) {
-  .inputFieldsContainer {
-    .inputFields {
-      height: 28px;
+    .inputFieldsContainer {
+        .inputFields {
+            height: 28px;
+        }
+
+        .input-field {
+            margin-bottom: 24px;
+        }
     }
-    .input-field {
-      margin-bottom: 24px;
-    }
-  }
 
 }
 
 @media screen and (max-width: 650px) {
-  .inputFieldsContainer {
-    .input-field {
-      margin-bottom: 20px;
+    .inputFieldsContainer {
+        .input-field {
+            margin-bottom: 20px;
+        }
+
+        .inputFields {
+            height: 25px;
+        }
     }
-    .inputFields {
-      height: 25px;
-    }
-  }
 }
 
 @media only screen and (max-width: 823px) and (orientation: landscape) {
@@ -481,6 +491,11 @@
 }
 
 @media screen and (max-width: 414px) and (max-height: 823px) {
+    .loginLogo {
+        width: 42vh;
+        top: 28%;
+    }
+
     .loginButton {
         width: 22vw;
     }
@@ -493,8 +508,8 @@
 
     .signupTransition {
         width: 75vw;
-        height: 78vh;
-        bottom: 11vh;
+        height: 60vh;
+        bottom: 20vh;
     }
 
     .inputFieldsContainer {
@@ -508,6 +523,11 @@
 }
 
 @media screen and (max-width: 414px) and (max-height: 736px) {
+    .loginLogo {
+        width: 50vh;
+        top: 24%;
+    }
+
     .loginButton {
         width: 22vw;
     }
@@ -521,7 +541,7 @@
     .signupTransition {
         width: 75vw;
         height: 70vh;
-        bottom: 7.5vh;
+        bottom: 15vh;
     }
 
     .inputFieldsContainer {
@@ -535,6 +555,19 @@
 }
 
 @media screen and (max-width: 375px) and (max-height: 812px) {
+    .loginLogo {
+        width: 40vh;
+        top: 28%;
+    }
+
+    .loginButtonsContainer {
+        top: 60%;
+    }
+
+    .loginButton {
+        width: 24vw;
+    }
+
     .loginTransition {
         width: 80vw;
         height: 40vh;
@@ -543,8 +576,8 @@
 
     .signupTransition {
         width: 80vw;
-        height: 70vh;
-        bottom: 10vh;
+        height: 65vh;
+        bottom: 17.5vh;
     }
 
     .inputFieldsContainer {
@@ -567,7 +600,7 @@
     .signupTransition {
         width: 75vw;
         height: 70vh;
-        bottom: 5vh;
+        bottom: 15vh;
     }
 
     .inputFieldsContainer {
