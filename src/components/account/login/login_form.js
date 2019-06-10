@@ -7,7 +7,7 @@ const LoginForm = props => {
     return (
         <form onSubmit={handleSubmit(logIn)}>
             <div className="loginModalTitle">Log In</div>
-            <div className="inputFields">
+            <div className="inputFieldsContainer">
                 <Field id="loginEmail" name="email" component={Input} type="email" placeholder="Email" />
                 <Field id="loginPassword" name="password" component={Input} type="password" placeholder="Password" />
             </div>

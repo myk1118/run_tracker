@@ -7,7 +7,7 @@ const SignUpForm = props => {
     return (
         <form onSubmit={handleSubmit(signUp)}>
             <div className="loginModalTitle">Sign Up</div>
-            <div className="inputFields">
+            <div className="inputFieldsContainer">
                 <Field col="s12" id="first_name" name="first_name" component={Input} placeholder="First Name" />
                 <Field col="s12" id="last_name" name="last_name" component={Input} placeholder="Last Name" />
                 <Field col="s12" id="height" name="height" type="number" component={Input} placeholder="Height (Inches)" />
