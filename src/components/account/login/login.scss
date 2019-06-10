@@ -60,7 +60,8 @@
     z-index: 3;
     position: absolute;
     left: 50%;
-    transform: translate(-50%);
+    top: 50%;
+    transform: translate(-50%, -50%);
     overflow-x: hidden;
     overflow-y: hidden;
     transition: height 1s, bottom 1.8s;
@@ -262,7 +263,7 @@
 
     .signupTransition {
         width: 60vw;
-        height: 65vh;
+        height: 80vh;
         bottom: 17.5vh;
     }
 
@@ -286,6 +287,18 @@
     .errorMessage {
         font-size: 12px;
     }
+}
+
+@media screen and (max-height: 670px) {
+  .inputFieldsContainer {
+    .inputFields {
+      height: 28px;
+    }
+    .input-field {
+      margin-bottom: 24px;
+    }
+  }
+
 }
 
 @media screen and (max-width: 650px) {
