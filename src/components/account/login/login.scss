@@ -346,7 +346,7 @@
     }
 
     .signupTransition {
-        width: 75vw;
+        width: 64vw;
         height: 88vh;
         bottom: 6vh;
     }
@@ -357,8 +357,8 @@
     }
 
     form {
-        height: 80%;
-        top: 10%;
+        height: 85%;
+        top: 7.5%;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -381,8 +381,8 @@
         }
 
         .inputFields {
-            width: 220px;
-            height: 28px;
+            width: 200px;
+            height: 32px;
         }
     }
 
@@ -396,12 +396,29 @@
         height: 87%;
         top: 6.5%;
     }
+
+    .inputFieldsContainer {
+        .inputFields {
+            height: 28px;
+        }
+    }
 }
 
 @media only screen and (max-width: 736px) and (orientation: landscape) {
+    .signupTransition {
+        width: 68vw;
+    }
+
     form {
-        height: 80%;
-        top: 10%;
+        height: 84%;
+        top: 8%;
+    }
+
+    .inputFieldsContainer {
+        .inputFields {
+            width: 200px;
+            height: 32px;
+        }
     }
 }
 
@@ -411,8 +428,13 @@
         top: 6.5%;
     }
 
-    .inputFieldsContainer .inputFields {
-        width: 200px;
+    .inputFieldsContainer {
+        width: 90%;
+
+        .inputFields {
+            width: 180px;
+            height: 28px;
+        }
     }
 }
 
@@ -432,6 +454,35 @@
     form {
         height: 90%;
         top: 5%;
+    }
+}
+
+@media only screen and (max-width: 568px) and (orientation: landscape) {
+    .signupTransition {
+        width: 75vw;
+    }
+
+    .loginModalTitle {
+        font-size: 18px;
+    }
+
+    .inputFieldsContainer {
+        .input-field {
+            margin-bottom: 19px;
+        }
+
+        .inputFields {
+            width: 170px;
+            height: 26px;
+        }
+    }
+
+    .errorMessage {
+        font-size: 10px;
+    }
+
+    .signUpModalButton {
+        font-size: 10px;
     }
 }
 
@@ -465,7 +516,6 @@
         display: flex;
         flex-direction: column;
         width: 20vw;
-        max-width: 300px;
         border-radius: 5px;
     }
 
@@ -495,6 +545,36 @@
         font-size: 10px;
         width: 72px;
         height: 26px;
+    }
+
+    .signupTransition {
+        width: 80vw;
+    }
+
+    .loginModalTitle {
+        font-size: 18px;
+    }
+
+    .inputFieldsContainer {
+        width: 90%;
+        margin: 14px 0 0 0;
+
+        .input-field {
+            margin-bottom: 16px;
+        }
+
+        .inputFields {
+            width: 150px;
+            height: 28px;
+        }
+    }
+
+    .errorMessage {
+        font-size: 10px;
+    }
+
+    .signUpModalButton {
+        font-size: 10px;
     }
 }
 

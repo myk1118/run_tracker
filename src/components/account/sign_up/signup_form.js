@@ -17,7 +17,7 @@ const SignUpForm = props => {
                 <Field col="s12" id="confirmpassword" name="confirmpassword" component={Input} type="password" placeholder="Confirm Password" />
             </div>
             <div className="buttonsContainer">
-                <button className="btn btn-info">Sign Up</button>
+                <button className="signUpModalButton btn btn-info">Sign Up</button>
             </div>
         </form>
     )
