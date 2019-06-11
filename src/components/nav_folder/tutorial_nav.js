@@ -32,25 +32,13 @@ class RunHeader extends Component {
                         </ul>
                     </nav>
                 </div>
-                <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div className="modal-dialog modal-dialog-centered" role="document">
-                        <div className="col-10 offset-1 modal-content2">
-                            {/* <div className="modal-header"> */}
+                <div id="exampleModalCenter" className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-lg">
+                        <div className="modal-content modalSize">
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <div className="modal-container col-12">
-                                <h5 className="modal-title" id="exampleModalLongTitle">How to Use Run-Tracker</h5>
-                                {/* </div> */}
-                                <div className="text-center modal-body">
-                                    • Click plus (+) to start and record a new run<br />
-                                    • Click a runner to view your past run
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    {/* <button type="button" className="btn btn-primary">Save changes</button> */}
-                                </div>
-                            </div>
+                            <div class="video-container"><iframe width="853" height="480" src="https://www.youtube.com/embed/dUAV1j9yvRE" frameborder="0" allowfullscreen></iframe></div>
                         </div>
                     </div>
                 </div>
