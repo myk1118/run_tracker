@@ -65,10 +65,11 @@ class LogIn extends Component {
       password: 'guestpassword'
     }
     await this.props.logIn(values);
-    axios.post('/api/delete_guest_run.php').then(
-      axios.post('/api/delete_guest_event.php').then(
-        this.props.history.push('/'))
-    );
+    axios.post('/api/delete_guest_run.php').then(() => {
+      axios.post('/api/delete_guest_event.php').then(() => {
+        this.props.history.push('/');
+      })
+    });
   }
 
   deleteCurrentRun = () => {
